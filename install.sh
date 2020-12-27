@@ -36,7 +36,10 @@ checkWget() {
     else
         brew install wget
 
-        installSecman
+        if [ -x "$(command -v wget)" ]; then
+            installSecman
+        fi
+
     fi
 }
 

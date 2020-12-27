@@ -1,4 +1,4 @@
-# [<img src=".github/assets/secman.svg" align="center">]()
+# [<img src=".github/assets/secman.svg" align="center">][smUrl]
 
 > stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
@@ -17,7 +17,7 @@
 ### Install by `install.sh`
 
 ```sh
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/main/install.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/install.sh)"
 ```
 
 ## Getting started with secman
@@ -42,7 +42,7 @@ The `--help` argument can be used on any subcommand to describe it and see docum
 
 The `SECDIR` environment variable specifies the directory that your vault is in.
 
-I store my vault in the default location `~/.secman`. All subcommands will respect this environment variable, including `init`
+it's store the vault in the default location `~/.secman`. All subcommands will respect this environment variable, including `init`
 
 ## COMMANDS
 
@@ -52,8 +52,12 @@ I store my vault in the default location `~/.secman`. All subcommands will respe
 ❯ secman
 ├──git
 |  └──github.com
-└──dev
-   └──dev.to
+├──dev
+|  └──dev.to
+└──faunadb
+   └──contact.devx
+      ├──adminKey
+      └──serverKey
 ```
 
 This basic command is used to print out the contents of your password vault. It doesn't require you to enter your master password.
@@ -188,3 +192,4 @@ The encryption and key computation are done using the `golang.org/x/crypto/nacl/
 After the site information is added, the site's generated private key is thrown away.
 
 [goUrl]: https://goland.org
+[smUrl]: https://secman.web.app
