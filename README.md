@@ -119,8 +119,7 @@ If you want to securely update a password for an already existing site, the edit
 
 ```code
 ❯ secman generate
-%L4^!s,Rry!}s:U<QwliL{vQ
-Kow321-!tr}:232
+%L4^!s,Rry!}s:U<QwliL{vQKow321-!tr}:232
 
 ❯ secman generate 8
 #%Xy1t7E
@@ -130,14 +129,14 @@ secman can also create randomly generated passwords. The default length of secma
 
 ### Searching the vault
 
-```sh
-❯ secman find money
-└──money
-   └──mint.com
+```code
+❯ secman find git
+└──git
+   └──github.com
 
-❯ secman ls money
-└──money
-   └──mint.com
+❯ secman ls dev
+└──dev
+   └──dev.to
 ```
 
 `find` and `ls` can both be used to search for all sites that contain a particular substring. It's good for printing out groups of sites as well. `secman ls` is an alias of `secman find`.
@@ -150,16 +149,16 @@ secman can also create randomly generated passwords. The default length of secma
 |  └──ff
 ├──something
 |  └──somethingelse.com
-└──twiinsen.com
-   └──bbbbb
+└──code.com
+   └──dex.io
 
 ❯ secman remove bb/ff
 
 ❯ secman
 ├──something
 |  └──somethingelse.com
-└──twiinsen.com
-   └──bbbbb
+└──code.com
+   └──dex.io
 ```
 
 remove is used for removing sites from the password vault. `secman rm` is an alias of `secman remove`.
