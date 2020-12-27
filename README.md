@@ -79,7 +79,7 @@ Inserting a password in to your vault is easy. If you wish to group multiple ent
 
 Here we are adding mint.com to the password store within the money group.
 
-### Inserting a file
+### Inserting a file 📝
 
 ```sh
 ❯ secman insert money/budget.csv budget.csv
@@ -92,7 +92,7 @@ Adding a file works almost the same as insert. Instead it has an extra argument.
 ```code
 ❯ secman show git/github.com
 Enter master password:
-dolladollabills$$1
+github_is_🤩
 ```
 
 Show is used to display a password in standard out.
