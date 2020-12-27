@@ -179,5 +179,13 @@ The encryption and key computation are done using the `golang.org/x/crypto/nacl/
 
 After the site information is added, the site's generated private key is thrown away.
 
+## Uninstall [secman][smUrl]
+
+if you want yo uninstall `secman`, you should type
+
+```sh
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/uninstall.sh)"
+```
+
 [goUrl]: https://goland.org
 [smUrl]: https://secman.web.app

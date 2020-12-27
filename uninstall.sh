@@ -7,20 +7,61 @@ goodBye() {
 smLoc=/usr/local/bin/secman
 SECDIR=~/.secman
 
+clearAllData() {
+    echo -e "clear all data?\n[Y/n]"
+    read -n 1 accept
+
+    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
+        if [ -x "$(command -v sudo)" ]; then
+            if [ -x "$(command -v manx)" ]; then
+                sudo manx $SECDIR
+            
+            else
+                installManx
+
+                sudo manx $SECDIR
+            fi
+        else
+            if [ -x "$(command -v manx)" ]; then
+                manx $SECDIR
+            
+            else
+                installManx
+
+                manx $SECDIR
+            fi
+        fi
+    fi
+
+    echo "after clear, you can find your old .secman in ~/.local/share/Trash if you want to restore it"
+}
+
+installManx() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo npm i -g @abdfnx/manx
+    else
+        npm i -g @abdfnx/manx
+    fi
+}
+
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc $SECDIR
+        sudo manx $smLoc
     else
-        manx $smLoc $SECDIR
+        manx $smLoc
     fi
+
+    clearAllData
 }
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc $SECDIR
+        sudo rm -rf $smLoc
     else
-        rm -rf $smLoc $SECDIR
+        rm -rf $smLoc
     fi
+
+    clearAllData
 }
 
 if [ -x "$(command -v secman)" ]; then
@@ -31,18 +72,23 @@ if [ -x "$(command -v secman)" ]; then
         if [ -x "$(command -v manx)" ]; then
             manxopa
         else
-            if [ -x "$(command -v sudo)" ]; then
-                sudo npm i -g @abdfnx/manx
+            # if [ -x "$(command -v sudo)" ]; then
+            #     sudo npm i -g @abdfnx/manx
 
-                if [ -x "$(command -v manx)" ]; then
-                    manxopa
-                fi
-            else
-                npm i -g @abdfnx/manx
+            #     if [ -x "$(command -v manx)" ]; then
+            #         manxopa
+            #     fi
+            # else
+            #     npm i -g @abdfnx/manx
 
-                if [ -x "$(command -v manx)" ]; then
-                    manxopa
-                fi
+            #     if [ -x "$(command -v manx)" ]; then
+            #         manxopa
+            #     fi
+            # fi
+
+            installManx
+            if [ -x "$(command -v manx)" ]; then
+                manxopa
             fi
         fi
     elif [ "$un" == "rm" ]; then
