@@ -5,20 +5,21 @@ goodBye() {
 }
 
 smLoc=/usr/local/bin/secman
+SECDIR=~/.secman
 
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc
+        sudo manx $smLoc $SECDIR
     else
-        manx $smLoc
+        manx $smLoc $SECDIR
     fi
 }
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc
+        sudo rm -rf $smLoc $SECDIR
     else
-        rm -rf $smLoc
+        rm -rf $smLoc $SECDIR
     fi
 }
 
