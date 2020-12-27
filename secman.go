@@ -38,7 +38,7 @@ directory, and initialize your cryptographic keys.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			info, ok := debug.ReadBuildInfo()
 			if !ok {
-				fmt.Println("(unknown)")
+				fmt.Println("secman@2.0.0")
 				return
 			}
 			fmt.Println(info.Main.Version)
@@ -57,7 +57,7 @@ directory, and initialize your cryptographic keys.`,
 	insertCmd = &cobra.Command{
 		Use:     "insert",
 		Short:   "Insert a file or password in to your vault",
-		Example: "secman insert money/bank.com",
+		Example: "secman insert core/docker.com",
 		Args:    cobra.RangeArgs(1, 2),
 		Long: `Add a site to your password store. This site can optionally be a part
 of a group by prepending a group name and slash to the site name.
@@ -76,7 +76,7 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	showCmd = &cobra.Command{
 		Use:     "show",
-		Example: "secman show money/bank.com",
+		Example: "secman show core/docker.com",
 		Short:   "Print the password of a secman entry.",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
@@ -126,7 +126,7 @@ one group or all sites that contain a certain word in the group or name`,
 	renameCmd = &cobra.Command{
 		Use:     "rename",
 		Short:   "Rename an entry in the password vault",
-		Example: "secman rename money/bank.com",
+		Example: "secman rename core/docker.com",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
@@ -138,7 +138,7 @@ one group or all sites that contain a certain word in the group or name`,
 		Use:     "edit",
 		Aliases: []string{"update"},
 		Short:   "Change the password of a site in the vault.",
-		Example: "secman edit money/bank.com",
+		Example: "secman edit core/docker.com",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
@@ -149,7 +149,7 @@ one group or all sites that contain a certain word in the group or name`,
 	removeCmd = &cobra.Command{
 		Use:     "remove",
 		Aliases: []string{"rm"},
-		Example: "secman remove money/bank.com",
+		Example: "secman remove core/docker.com",
 		Short:   "Remove a site from the password vault by specifying the entire site-path.",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {

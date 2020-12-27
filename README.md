@@ -42,8 +42,8 @@ it's store the vault in the default location `~/.secman`. All subcommands will r
 
 ```code
 ❯ secman
-├──git
-|  └──github.com
+├──ionic
+|  └──pass
 └──dev
    └──dev.to
 ```
@@ -63,13 +63,13 @@ By default, secman will create your password vault in the `.secman` directory wi
 ### Inserting a password
 
 ```code
-❯ secman insert git/github.com
-Enter password for git/github.com: 
+❯ secman insert accounts/ionic
+Enter password for accounts/ionic: 
 ```
 
 Inserting a password in to your vault is easy. If you wish to group multiple entries together, it can be accomplished by prepending a group name followed by a slash to the pass-name.
 
-Here we are adding mint.com to the password store within the money group.
+Here we are adding ionic to the password store within the money group.
 
 ### Inserting a file 📝
 
@@ -82,7 +82,7 @@ Adding a file works almost the same as insert. Instead it has an extra argument.
 ### Retrieving a password
 
 ```code
-❯ secman show git/github.com
+❯ secman show accounts/ionic
 Enter master password:
 github_is_🤩
 ```
@@ -92,11 +92,11 @@ Show is used to display a password in standard out.
 ### Rename a password
 
 ```code
-❯ secman rename mney/mint.com
-Enter new site name for mney/mint.com: git/github.com
+❯ secman rename accounts/ionic-hub
+Enter new site name for accounts/ionic-hub: accounts/ionic
 ```
 
-If a password is added with the wrong name it can be updated later. Here we rename our mint.com site after misspelling the group name.
+If a password is added with the wrong name it can be updated later. Here we rename ionic site after misspelling the group name.
 
 ### Updating/Editing a password
 
