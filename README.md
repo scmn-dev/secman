@@ -52,12 +52,8 @@ it's store the vault in the default location `~/.secman`. All subcommands will r
 ❯ secman
 ├──git
 |  └──github.com
-├──dev
-|  └──dev.to
-└──faunadb
-   └──contact.devx
-      ├──adminKey
-      └──serverKey
+└──dev
+   └──dev.to
 ```
 
 This basic command is used to print out the contents of your password vault. It doesn't require you to enter your master password.
