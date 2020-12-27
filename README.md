@@ -92,7 +92,7 @@ Adding a file works almost the same as insert. Instead it has an extra argument.
 ```code
 ❯ secman show accounts/ionic
 Enter master password:
-github_is_🤩
+ionic_is_😎_js_platform
 ```
 
 Show is used to display a password in standard out.
