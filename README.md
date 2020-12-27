@@ -1,8 +1,8 @@
-# secman
+# [<img src=".github/assets/secman.svg" align="center">]()
 
-stores, retrieves, generates, and synchronizes passwords and files securely and is written in Go! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
-secman is meant to be secure enough that you can publicly post your vault.
+`secman is meant to be secure enough that you can publicly post your vault.`
 
 ## Installation
 
@@ -36,7 +36,7 @@ Finally, to learn more you can either read about the commands listed in this REA
 ❯ secman help
 ```
 
-The `--help` argument can be used on any subcommand to describe it and see documentation or examples.
+The `--help` argument can be used on any subcommand to describe it and see documentation or examples 😉.
 
 ## Configuring secman
 
@@ -48,12 +48,12 @@ I store my vault in the default location `~/.secman`. All subcommands will respe
 
 ### Listing Passwords
 
-```sh
+```code
 ❯ secman
-├──money
-|  └──mint.com
-└──another
-   └──another.com
+├──git
+|  └──github.com
+└──dev
+   └──dev.to
 ```
 
 This basic command is used to print out the contents of your password vault. It doesn't require you to enter your master password.
@@ -70,9 +70,9 @@ By default, secman will create your password vault in the `.secman` directory wi
 
 ### Inserting a password
 
-```sh
-❯ secman insert money/mint.com
-Enter password for money/mint.com: 
+```code
+❯ secman insert git/github.com
+Enter password for git/github.com: 
 ```
 
 Inserting a password in to your vault is easy. If you wish to group multiple entries together, it can be accomplished by prepending a group name followed by a slash to the pass-name.
@@ -89,8 +89,8 @@ Adding a file works almost the same as insert. Instead it has an extra argument.
 
 ### Retrieving a password
 
-```sh
-❯ secman show money/mint.com
+```code
+❯ secman show git/github.com
 Enter master password:
 dolladollabills$$1
 ```
@@ -99,31 +99,31 @@ Show is used to display a password in standard out.
 
 ### Rename a password
 
-```sh
+```code
 ❯ secman rename mney/mint.com
-Enter new site name for mney/mint.com: money/mint.com
+Enter new site name for mney/mint.com: git/github.com
 ```
 
 If a password is added with the wrong name it can be updated later. Here we rename our mint.com site after misspelling the group name.
 
-### Updating a password
+### Updating/Editing a password
 
-```sh
-❯ secman edit money/mint.com
-Enter new password for money/mint.com:
+```code
+❯ secman edit dev/dev.to
+Enter new password for dev/dev.to:
 ```
 
 If you want to securely update a password for an already existing site, the edit command is helpful.
 
 ### Generating a password
 
-```sh
+```code
 ❯ secman generate
 %L4^!s,Rry!}s:U<QwliL{vQ
 Kow321-!tr}:232
 
 ❯ secman generate 8
-[;K6otS3
+#%Xy1t7E
 ```
 
 secman can also create randomly generated passwords. The default length of secman generated passwords is 24 characters. This length can be changed by passing an optional length to the generate subcommand.
@@ -166,19 +166,13 @@ remove is used for removing sites from the password vault. `secman rm` is an ali
 
 ### Getting Help
 
-```sh
+```code
 ❯ secman --help
 ```
 
 All subcommands support the `--help` flag.
 
 ## CRYPTOGRAPHY DETAILS
-
-###### Password Store Initialization
-
-secman only uses AEADs for encrypting data. When `secman init` is run, users are prompted for a master password. A random salt is generated and the master password along with the salt are passed to the Scrypt algorithm to generate a symmetric master key.
-
-A master public/private keypair is generated when `secman init` is run. The symmetric master password is used to encrypt the master private key, while the master public key is left in plaintext.
 
 ###### Generating Passwords
 
@@ -193,11 +187,5 @@ When a site is added to the password store, a new public private key pair is gen
 The encryption and key computation are done using the `golang.org/x/crypto/nacl/box` package which uses Curve25519, XSalsa20, and Poly1305 to encrypt and authenticate the site's data.
 
 After the site information is added, the site's generated private key is thrown away.
-
-## Threat model
-
-The threat model of secman assumes there are no attackers on your local machine. The secman vault puts some level of trust in the remote git repository.
-
-An evil git server could modify the public key of your vault. If the evil git server does this then secman will tell you that the Vault integrity cannot be verified the next time you attempt to read a password.
 
 [goUrl]: https://goland.org

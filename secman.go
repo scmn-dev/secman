@@ -31,6 +31,7 @@ directory, and initialize your cryptographic keys.`,
 			}
 		},
 	}
+
 	versionCmd = &cobra.Command{
 		Use:   "version",
 		Short: "Print the version of your secman binary.",
@@ -43,6 +44,7 @@ directory, and initialize your cryptographic keys.`,
 			fmt.Println(info.Main.Version)
 		},
 	}
+
 	initCmd = &cobra.Command{
 		Use:   "init",
 		Short: "Initialize your secman vault",
@@ -51,6 +53,7 @@ directory, and initialize your cryptographic keys.`,
 			initialize.Init()
 		},
 	}
+
 	insertCmd = &cobra.Command{
 		Use:     "insert",
 		Short:   "Insert a file or password in to your vault",
@@ -70,6 +73,7 @@ Will prompt for confirmation when a site path is not unique.`,
 			}
 		},
 	}
+
 	showCmd = &cobra.Command{
 		Use:     "show",
 		Example: "secman show money/bank.com",
@@ -80,6 +84,7 @@ Will prompt for confirmation when a site path is not unique.`,
 			show.Site(path, copyPass)
 		},
 	}
+
 	generateCmd = &cobra.Command{
 		Use:     "generate",
 		Short:   "Generate a secure password",
@@ -103,6 +108,7 @@ will fail.`,
 			fmt.Println(pass)
 		},
 	}
+
 	findCmd = &cobra.Command{
 		Use:     "find",
 		Aliases: []string{"ls"},
@@ -116,6 +122,7 @@ one group or all sites that contain a certain word in the group or name`,
 			show.Find(path)
 		},
 	}
+
 	renameCmd = &cobra.Command{
 		Use:     "rename",
 		Short:   "Rename an entry in the password vault",
@@ -126,6 +133,7 @@ one group or all sites that contain a certain word in the group or name`,
 			edit.Rename(path)
 		},
 	}
+
 	editCmd = &cobra.Command{
 		Use:     "edit",
 		Aliases: []string{"update"},
@@ -137,6 +145,7 @@ one group or all sites that contain a certain word in the group or name`,
 			edit.Edit(path)
 		},
 	}
+
 	removeCmd = &cobra.Command{
 		Use:     "remove",
 		Aliases: []string{"rm"},
@@ -163,6 +172,7 @@ func init() {
 	RootCmd.AddCommand(versionCmd)
 }
 
+// main function
 func main() {
 	RootCmd.Execute()
 }
