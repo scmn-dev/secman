@@ -8,14 +8,6 @@
 
 `secman` requires [Go][goUrl] version 1.11 or later.
 
-### by [<img src=".github/assets/go.svg" align="center" width="30">][goUrl]
-
-```sh
-❯ go get -u github.com/abdfnx/secman
-```
-
-### by `install.sh`
-
 ```sh
 ❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/install.sh)"
 ```
