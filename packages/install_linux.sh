@@ -7,7 +7,7 @@
 # 4- some Linux platforms don't have git installed, so it's well checking is git command is exist
 
 UNAME=$(uname)
-smUrl=https://raw.githubusercontent.com/abdfnx/secman/main/release/linux/secman
+smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/linux/secman
 smLocLD=/usr/local/bin
 
 successInstall() {

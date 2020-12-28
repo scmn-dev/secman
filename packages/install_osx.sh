@@ -6,7 +6,7 @@
 # 3- check if brew command // /////
 
 UNAME=$(uname)
-smUrl=https://raw.githubusercontent.com/abdfnx/secman/main/release/osx/secman
+smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/osx/secman
 smLocLD=/usr/local/bin
 
 successInstall() {
