@@ -9,7 +9,11 @@
 `secman` requires [Go][goUrl] version 1.11 or later.
 
 ```sh
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/install.sh)"
+# linux
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/install_linux.sh)"
+
+# macOS
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/install_osx.sh)"
 ```
 
 ## Getting started with secman
