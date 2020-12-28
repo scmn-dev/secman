@@ -8,29 +8,22 @@ smLoc=/usr/local/bin/secman
 SECDIR=~/.secman
 
 clearAllData() {
-    echo -e "clear all data?\n[Y/n]"
+    echo -e "clear all data?\n[y/N]"
     read -n 1 accept
 
-    if [[ $accept == "" || $accept == "Y" || $accept == "y" ]]; then
+    if [[ $accept == "Y" || $accept == "y" ]]; then
         if [ -x "$(command -v sudo)" ]; then
             if [ -x "$(command -v manx)" ]; then
                 sudo manx $SECDIR
-            
+
             else
                 installManx
 
                 sudo manx $SECDIR
             fi
-        else
-            if [ -x "$(command -v manx)" ]; then
-                manx $SECDIR
-            
-            else
-                installManx
-
-                manx $SECDIR
-            fi
         fi
+    elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
+        echo "ok"
     fi
 
     echo "after clear, you can find your old .secman in ~/.local/share/Trash if you want to restore it"

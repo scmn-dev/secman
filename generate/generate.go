@@ -19,6 +19,7 @@ func Generate(pwlen int) string {
 	if pwlen < 1 {
 		pwlen = defaultPwLen
 	}
+	
 	// By default, we should generate a strong password that needs everything
 	specs := &pc.PasswordSpecs{
 		NeedsUpper:  true,
@@ -26,9 +27,12 @@ func Generate(pwlen int) string {
 		NeedsSymbol: true,
 		NeedsDigit:  true,
 	}
+
 	pass, err := pc.GeneratePassword(specs, pwlen)
+
 	if err != nil {
 		log.Fatalf("Could not generate password: %s", err.Error())
 	}
+
 	return pass
 }

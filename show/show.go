@@ -17,7 +17,7 @@ import (
 type searchType int
 
 var (
-	lastPrefix      = "└──"
+	lastPrefix      = "└──" // last
 	regPrefix       = "├──"
 	innerPrefix     = "|  "
 	innerLastPrefix = "   "

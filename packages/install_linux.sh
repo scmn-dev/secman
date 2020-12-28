@@ -7,7 +7,7 @@
 # 4- some Linux platforms don't have git installed, so it's well checking is git command is exist
 
 UNAME=$(uname)
-smUrl=https://raw.githubusercontent.com/abdfnx/secman/main/secman
+smUrl=https://raw.githubusercontent.com/abdfnx/secman/main/release/linux/secman
 smLocLD=/usr/local/bin
 
 successInstall() {
@@ -39,7 +39,6 @@ checkWget() {
         if [ -x "$(command -v wget)" ]; then
             installSecman
         fi
-
     fi
 }
 
@@ -53,16 +52,15 @@ gitAndBrew() {
     fi
 }
 
-checkPlat() {
-    if [ "$UNAME" == "Darwin" ]; then
-        xcode-select --install
-
+checkGit() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo apt install git
         gitAndBrew
     else
-        sudo apt install git
-
+        apt install git
         gitAndBrew
     fi
+
 }
 
 mainCheck() {
@@ -77,7 +75,7 @@ mainCheck() {
                 checkWget
             fi
         else
-            checkPlat
+            checkGit
         fi
     fi
 }

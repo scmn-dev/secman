@@ -118,23 +118,27 @@ func Init() {
 	// Create a new salt for encrypting public key.
 	var hmacSalt [32]byte
 	_, err = rand.Read(hmacSalt[:])
+	
 	if err != nil {
 		log.Fatalf("Could not generate random salt: %s", err.Error())
 	}
 
 	// kdf the master password.
 	passKey, err := pc.Scrypt([]byte(pass), keySalt[:])
+
 	if err != nil {
 		log.Fatalf("Could not generate master key from pass: %s", err.Error())
 	}
 
 	pub, priv, err := box.GenerateKey(rand.Reader)
+
 	if err != nil {
 		log.Fatalf("Could not generate master key pair: %s", err.Error())
 	}
 
 	// Encrypt master private key with master password key.
 	sealedMasterPrivKey, err := pc.Seal(&passKey, priv[:])
+	
 	if err != nil {
 		log.Fatalf("Could not encrypt master key: %s", err.Error())
 	}
@@ -148,5 +152,6 @@ func Init() {
 	if err = passConfig.SaveFile(); err != nil {
 		log.Fatalf("Could not write to config file: %s", err.Error())
 	}
+
 	fmt.Println("Password Vault successfully initialized")
 }

@@ -1,18 +1,18 @@
-FROM --platform=${BUILDPLATFORM} golang:1.14.3-alpine AS build
-WORKDIR /src
-ENV CGO_ENABLED=0
-COPY . .
-ARG TARGETOS
-ARG TARGETARCH
-RUN GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o secman.go .
+FROM ubuntu:latest
 
-FROM scratch AS bin-unix
-COPY --from=build secman.go /
+ENV DEBIAN_FRONTEND=noninteractive
 
-FROM bin-unix AS bin-linux
-FROM bin-unix AS bin-darwin
+ARG PACKAGES="bash git tar gzip curl"
+ARG smUrl=https://raw.githubusercontent.com/abdfnx/secman/main/secman
+ARG smLocLD=/usr/bin
 
-FROM scratch AS bin-windows
-COPY --from=build secman.go /example.exe
+RUN apt-get update
+RUN apt-get install -y software-properties-common
+RUN apt-get update
 
-FROM bin-${TARGETOS} AS bin
+RUN apt-get install -y $PACKAGES
+RUN apt-get update
+
+RUN apt-get install -y wget
+RUN wget -P $smLocLD $smUrl
+RUN chmod 755 $smLocLD/secman

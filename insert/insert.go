@@ -15,11 +15,9 @@ import (
 
 const (
 	// PassPrompt is the string formatter that should be used
-	// when prompting for a password.
 	PassPrompt = "Enter password for %s"
 )
 
-// Password is used to add a new password entry to the vault.
 func Password(name string) {
 	var c pio.ConfigFile
 	pub, priv, err := box.GenerateKey(rand.Reader)
@@ -34,11 +32,13 @@ func Password(name string) {
 
 	// Read the master public key.
 	configContents, err := ioutil.ReadFile(config)
+
 	if err != nil {
 		log.Fatalf("Could not get config file contents: %s", err.Error())
 	}
 
 	err = json.Unmarshal(configContents, &c)
+	
 	if err != nil {
 		log.Fatalf("Could not unmarshal config file contents: %s", err.Error())
 	}
