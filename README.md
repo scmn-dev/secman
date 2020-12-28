@@ -188,7 +188,7 @@ After the site information is added, the site's generated private key is thrown 
 if you want yo uninstall `secman`, you should type
 
 ```sh
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/uninstall.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/uninstall.sh)"
 ```
 
 [goUrl]: https://goland.org

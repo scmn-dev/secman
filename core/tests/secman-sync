@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -d "~/.secman" ]
+then
+    cd ~/.secman
+
+    gh repo create --private
+fi
