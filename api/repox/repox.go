@@ -20,7 +20,7 @@ func New(owner, repo string) Interface {
 }
 
 func NewWithHost(owner, repo, hostname string) Interface {
-	return &repo{
+	return &sRepo{
 		owner:    owner,
 		name:     repo,
 		hostname: normalizeHostname(hostname),

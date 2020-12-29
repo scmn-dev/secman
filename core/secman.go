@@ -12,15 +12,18 @@ import (
 	"github.com/abdfnx/secman/v3/pio"
 	"github.com/abdfnx/secman/v3/show"
 	"github.com/spf13/cobra"
-	// "github.com/cli/cli/api"
-	"github.com/abdfnx/secman/v3/api/build"
-	"github.com/abdfnx/secman/v3/api/common"
 	"github.com/abdfnx/secman/v3/api/update"
-	"github.com/cli/cli/pkg/cmd/alias/expand"
-	"github.com/cli/cli/pkg/cmd/factory"
-	"github.com/cli/cli/pkg/cmd/root"
-	"github.com/cli/cli/pkg/cmdutil"
-	"github.com/cli/cli/utils"
+	"github.com/abdfnx/secman/v3/api/cmd/alias/expand"
+	"github.com/abdfnx/secman/v3/api/cmd/factory"
+	"github.com/abdfnx/secman/v3/api/cmd/root"
+	"github.com/abdfnx/secman/v3/api/utils"
+	// "github.com/cli/cli/pkg/cmd/alias/expand"
+	// "github.com/cli/cli/pkg/cmd/factory"
+	// "github.com/cli/cli/pkg/cmd/root"
+	// "github.com/cli/cli/pkg/cmdutil"
+	// "github.com/cli/cli/utils"
+
+
 	"github.com/cli/safeexec"
 )
 

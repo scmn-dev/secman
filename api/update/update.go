@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"time"
 
-	// "github.com/cli/cli/api"
 	"github.com/abdfnx/secman/v3/api"
 	"github.com/abdfnx/secman/v3/api/common"
 	"github.com/hashicorp/go-version"
