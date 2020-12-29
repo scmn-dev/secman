@@ -15,7 +15,7 @@ import (
 	"github.com/abdfnx/secman/v3/api/update"
 	"github.com/abdfnx/secman/v3/api/cmd/alias/expand"
 	"github.com/abdfnx/secman/v3/api/cmd/factory"
-	"github.com/abdfnx/secman/v3/api/cmd/root"
+	// "github.com/abdfnx/secman/v3/api/cmd/root"
 	"github.com/abdfnx/secman/v3/api/utils"
 	// "github.com/cli/cli/pkg/cmd/alias/expand"
 	// "github.com/cli/cli/pkg/cmd/factory"
