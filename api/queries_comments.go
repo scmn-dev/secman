@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/cli/cli/internal/ghrepo"
+	"github.com/abdfnx/secman/v3/api/repox"
 	"github.com/shurcooL/githubv4"
 )
 
@@ -28,7 +28,7 @@ type PageInfo struct {
 	EndCursor   string
 }
 
-func CommentsForIssue(client *Client, repo ghrepo.Interface, issue *Issue) (*Comments, error) {
+func CommentsForIssue(client *Client, repo repox.Interface, issue *Issue) (*Comments, error) {
 	type response struct {
 		Repository struct {
 			Issue struct {
@@ -64,7 +64,7 @@ func CommentsForIssue(client *Client, repo ghrepo.Interface, issue *Issue) (*Com
 	return &Comments{Nodes: comments, TotalCount: len(comments)}, nil
 }
 
-func CommentsForPullRequest(client *Client, repo ghrepo.Interface, pr *PullRequest) (*Comments, error) {
+func CommentsForPullRequest(client *Client, repo repox.Interface, pr *PullRequest) (*Comments, error) {
 	type response struct {
 		Repository struct {
 			PullRequest struct {

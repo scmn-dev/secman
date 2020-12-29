@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cli/cli/internal/ghrepo"
+	"github.com/abdfnx/secman/v3/api/repox"
 	"github.com/shurcooL/githubv4"
 )
 
@@ -87,7 +87,7 @@ func (r Repository) ViewerCanTriage() bool {
 	}
 }
 
-func GitHubRepo(client *Client, repo ghrepo.Interface) (*Repository, error) {
+func GitHubRepo(client *Client, repo repox.Interface) (*Repository, error) {
 	query := `
 	fragment repo on Repository {
 		id
@@ -127,7 +127,7 @@ func GitHubRepo(client *Client, repo ghrepo.Interface) (*Repository, error) {
 	return InitRepoHostname(&result.Repository, repo.RepoHost()), nil
 }
 
-func RepoDefaultBranch(client *Client, repo ghrepo.Interface) (string, error) {
+func RepoDefaultBranch(client *Client, repo repox.Interface) (string, error) {
 	if r, ok := repo.(*Repository); ok && r.DefaultBranchRef.Name != "" {
 		return r.DefaultBranchRef.Name, nil
 	}
@@ -139,7 +139,7 @@ func RepoDefaultBranch(client *Client, repo ghrepo.Interface) (string, error) {
 	return r.DefaultBranchRef.Name, nil
 }
 
-func CanPushToRepo(httpClient *http.Client, repo ghrepo.Interface) (bool, error) {
+func CanPushToRepo(httpClient *http.Client, repo repox.Interface) (bool, error) {
 	if r, ok := repo.(*Repository); ok && r.ViewerPermission != "" {
 		return r.ViewerCanPush(), nil
 	}
@@ -153,7 +153,7 @@ func CanPushToRepo(httpClient *http.Client, repo ghrepo.Interface) (bool, error)
 }
 
 // RepoParent finds out the parent repository of a fork
-func RepoParent(client *Client, repo ghrepo.Interface) (ghrepo.Interface, error) {
+func RepoParent(client *Client, repo repox.Interface) (repox.Interface, error) {
 	var query struct {
 		Repository struct {
 			Parent *struct {
@@ -179,7 +179,7 @@ func RepoParent(client *Client, repo ghrepo.Interface) (ghrepo.Interface, error)
 		return nil, nil
 	}
 
-	parent := ghrepo.NewWithHost(query.Repository.Parent.Owner.Login, query.Repository.Parent.Name, repo.RepoHost())
+	parent := repox.NewWithHost(query.Repository.Parent.Owner.Login, query.Repository.Parent.Name, repo.RepoHost())
 	return parent, nil
 }
 
@@ -190,7 +190,7 @@ type RepoNetworkResult struct {
 }
 
 // RepoNetwork inspects the relationship between multiple GitHub repositories
-func RepoNetwork(client *Client, repos []ghrepo.Interface) (RepoNetworkResult, error) {
+func RepoNetwork(client *Client, repos []repox.Interface) (RepoNetworkResult, error) {
 	var hostname string
 	if len(repos) > 0 {
 		hostname = repos[0].RepoHost()
@@ -306,8 +306,8 @@ type repositoryV3 struct {
 }
 
 // ForkRepo forks the repository on GitHub and returns the new repository
-func ForkRepo(client *Client, repo ghrepo.Interface) (*Repository, error) {
-	path := fmt.Sprintf("repos/%s/forks", ghrepo.FullName(repo))
+func ForkRepo(client *Client, repo repox.Interface) (*Repository, error) {
+	path := fmt.Sprintf("repos/%s/forks", repox.FullName(repo))
 	body := bytes.NewBufferString(`{}`)
 	result := repositoryV3{}
 	err := client.REST(repo.RepoHost(), "POST", path, body, &result)
@@ -329,7 +329,7 @@ func ForkRepo(client *Client, repo ghrepo.Interface) (*Repository, error) {
 }
 
 // RepoFindForks finds forks of the repo that are affiliated with the viewer
-func RepoFindForks(client *Client, repo ghrepo.Interface, limit int) ([]*Repository, error) {
+func RepoFindForks(client *Client, repo repox.Interface, limit int) ([]*Repository, error) {
 	result := struct {
 		Repository struct {
 			Forks struct {
@@ -497,7 +497,7 @@ type RepoMetadataInput struct {
 }
 
 // RepoMetadata pre-fetches the metadata for attaching to issues and pull requests
-func RepoMetadata(client *Client, repo ghrepo.Interface, input RepoMetadataInput) (*RepoMetadataResult, error) {
+func RepoMetadata(client *Client, repo repox.Interface, input RepoMetadataInput) (*RepoMetadataResult, error) {
 	result := RepoMetadataResult{}
 	errc := make(chan error)
 	count := 0
@@ -588,7 +588,7 @@ type RepoResolveInput struct {
 }
 
 // RepoResolveMetadataIDs looks up GraphQL node IDs in bulk
-func RepoResolveMetadataIDs(client *Client, repo ghrepo.Interface, input RepoResolveInput) (*RepoMetadataResult, error) {
+func RepoResolveMetadataIDs(client *Client, repo repox.Interface, input RepoResolveInput) (*RepoMetadataResult, error) {
 	users := input.Assignees
 	hasUser := func(target string) bool {
 		for _, u := range users {
@@ -687,7 +687,7 @@ type RepoProject struct {
 }
 
 // RepoProjects fetches all open projects for a repository
-func RepoProjects(client *Client, repo ghrepo.Interface) ([]RepoProject, error) {
+func RepoProjects(client *Client, repo repox.Interface) ([]RepoProject, error) {
 	type responseData struct {
 		Repository struct {
 			Projects struct {
@@ -732,7 +732,7 @@ type RepoAssignee struct {
 }
 
 // RepoAssignableUsers fetches all the assignable users for a repository
-func RepoAssignableUsers(client *Client, repo ghrepo.Interface) ([]RepoAssignee, error) {
+func RepoAssignableUsers(client *Client, repo repox.Interface) ([]RepoAssignee, error) {
 	type responseData struct {
 		Repository struct {
 			AssignableUsers struct {
@@ -777,7 +777,7 @@ type RepoLabel struct {
 }
 
 // RepoLabels fetches all the labels in a repository
-func RepoLabels(client *Client, repo ghrepo.Interface) ([]RepoLabel, error) {
+func RepoLabels(client *Client, repo repox.Interface) ([]RepoLabel, error) {
 	type responseData struct {
 		Repository struct {
 			Labels struct {
@@ -822,7 +822,7 @@ type RepoMilestone struct {
 }
 
 // RepoMilestones fetches milestones in a repository
-func RepoMilestones(client *Client, repo ghrepo.Interface, state string) ([]RepoMilestone, error) {
+func RepoMilestones(client *Client, repo repox.Interface, state string) ([]RepoMilestone, error) {
 	type responseData struct {
 		Repository struct {
 			Milestones struct {
@@ -874,7 +874,7 @@ func RepoMilestones(client *Client, repo ghrepo.Interface, state string) ([]Repo
 	return milestones, nil
 }
 
-func MilestoneByTitle(client *Client, repo ghrepo.Interface, state, title string) (*RepoMilestone, error) {
+func MilestoneByTitle(client *Client, repo repox.Interface, state, title string) (*RepoMilestone, error) {
 	milestones, err := RepoMilestones(client, repo, state)
 	if err != nil {
 		return nil, err
@@ -888,7 +888,7 @@ func MilestoneByTitle(client *Client, repo ghrepo.Interface, state, title string
 	return nil, fmt.Errorf("no milestone found with title %q", title)
 }
 
-func MilestoneByNumber(client *Client, repo ghrepo.Interface, number int32) (*RepoMilestone, error) {
+func MilestoneByNumber(client *Client, repo repox.Interface, number int32) (*RepoMilestone, error) {
 	var query struct {
 		Repository struct {
 			Milestone *RepoMilestone `graphql:"milestone(number: $number)"`

@@ -3,12 +3,12 @@ package api
 import (
 	"context"
 
-	"github.com/cli/cli/internal/ghrepo"
+	"github.com/abdfnx/secman/v3/api/repox"
 	"github.com/shurcooL/githubv4"
 )
 
 // OrganizationProjects fetches all open projects for an organization
-func OrganizationProjects(client *Client, repo ghrepo.Interface) ([]RepoProject, error) {
+func OrganizationProjects(client *Client, repo repox.Interface) ([]RepoProject, error) {
 	type responseData struct {
 		Organization struct {
 			Projects struct {
@@ -52,7 +52,7 @@ type OrgTeam struct {
 }
 
 // OrganizationTeams fetches all the teams in an organization
-func OrganizationTeams(client *Client, repo ghrepo.Interface) ([]OrgTeam, error) {
+func OrganizationTeams(client *Client, repo repox.Interface) ([]OrgTeam, error) {
 	type responseData struct {
 		Organization struct {
 			Teams struct {

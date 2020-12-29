@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/abdfnx/secman/v3/api/common"
-	"github.com/cli/cli/internal/ghrepo"
+	"github.com/abdfnx/secman/v3/api/repox"
 	"github.com/shurcooL/githubv4"
 )
 
@@ -220,9 +220,9 @@ func (pr *PullRequest) ChecksStatus() (summary PullRequestChecksStatus) {
 	return
 }
 
-func (c Client) PullRequestDiff(baseRepo ghrepo.Interface, prNumber int) (io.ReadCloser, error) {
+func (c Client) PullRequestDiff(baseRepo repox.Interface, prNumber int) (io.ReadCloser, error) {
 	url := fmt.Sprintf("%srepos/%s/pulls/%d",
-		common.RESTPrefix(baseRepo.RepoHost()), ghrepo.FullName(baseRepo), prNumber)
+		common.RESTPrefix(baseRepo.RepoHost()), repox.FullName(baseRepo), prNumber)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
@@ -290,7 +290,7 @@ func determinePullRequestFeatures(httpClient *http.Client, hostname string) (prF
 	return
 }
 
-func PullRequests(client *Client, repo ghrepo.Interface, currentPRNumber int, currentPRHeadRef, currentUsername string) (*PullRequestsPayload, error) {
+func PullRequests(client *Client, repo repox.Interface, currentPRNumber int, currentPRHeadRef, currentUsername string) (*PullRequestsPayload, error) {
 	type edges struct {
 		TotalCount int
 		Edges      []struct {
@@ -419,8 +419,8 @@ func PullRequests(client *Client, repo ghrepo.Interface, currentPRNumber int, cu
 		}
 	}
 
-	viewerQuery := fmt.Sprintf("repo:%s state:open is:pr author:%s", ghrepo.FullName(repo), currentUsername)
-	reviewerQuery := fmt.Sprintf("repo:%s state:open review-requested:%s", ghrepo.FullName(repo), currentUsername)
+	viewerQuery := fmt.Sprintf("repo:%s state:open is:pr author:%s", repox.FullName(repo), currentUsername)
+	reviewerQuery := fmt.Sprintf("repo:%s state:open review-requested:%s", repox.FullName(repo), currentUsername)
 
 	branchWithoutOwner := currentPRHeadRef
 	if idx := strings.Index(currentPRHeadRef, ":"); idx >= 0 {
@@ -517,7 +517,7 @@ func prCommitsFragment(httpClient *http.Client, hostname string) (string, error)
 	`, nil
 }
 
-func PullRequestByNumber(client *Client, repo ghrepo.Interface, number int) (*PullRequest, error) {
+func PullRequestByNumber(client *Client, repo repox.Interface, number int) (*PullRequest, error) {
 	type response struct {
 		Repository struct {
 			PullRequest PullRequest
@@ -648,7 +648,7 @@ func PullRequestByNumber(client *Client, repo ghrepo.Interface, number int) (*Pu
 	return &resp.Repository.PullRequest, nil
 }
 
-func PullRequestForBranch(client *Client, repo ghrepo.Interface, baseBranch, headBranch string, stateFilters []string) (*PullRequest, error) {
+func PullRequestForBranch(client *Client, repo repox.Interface, baseBranch, headBranch string, stateFilters []string) (*PullRequest, error) {
 	type response struct {
 		Repository struct {
 			PullRequests struct {
@@ -906,7 +906,7 @@ func isBlank(v interface{}) bool {
 	}
 }
 
-func AddReview(client *Client, repo ghrepo.Interface, pr *PullRequest, input *PullRequestReviewInput) error {
+func AddReview(client *Client, repo repox.Interface, pr *PullRequest, input *PullRequestReviewInput) error {
 	var mutation struct {
 		AddPullRequestReview struct {
 			ClientMutationID string
@@ -934,7 +934,7 @@ func AddReview(client *Client, repo ghrepo.Interface, pr *PullRequest, input *Pu
 	return gql.MutateNamed(context.Background(), "PullRequestReviewAdd", &mutation, variables)
 }
 
-func PullRequestList(client *Client, repo ghrepo.Interface, vars map[string]interface{}, limit int) (*PullRequestAndTotalCount, error) {
+func PullRequestList(client *Client, repo repox.Interface, vars map[string]interface{}, limit int) (*PullRequestAndTotalCount, error) {
 	type prBlock struct {
 		Edges []struct {
 			Node PullRequest
@@ -1102,7 +1102,7 @@ loop:
 	return &res, nil
 }
 
-func PullRequestClose(client *Client, repo ghrepo.Interface, pr *PullRequest) error {
+func PullRequestClose(client *Client, repo repox.Interface, pr *PullRequest) error {
 	var mutation struct {
 		ClosePullRequest struct {
 			PullRequest struct {
@@ -1123,7 +1123,7 @@ func PullRequestClose(client *Client, repo ghrepo.Interface, pr *PullRequest) er
 	return err
 }
 
-func PullRequestReopen(client *Client, repo ghrepo.Interface, pr *PullRequest) error {
+func PullRequestReopen(client *Client, repo repox.Interface, pr *PullRequest) error {
 	var mutation struct {
 		ReopenPullRequest struct {
 			PullRequest struct {
@@ -1144,7 +1144,7 @@ func PullRequestReopen(client *Client, repo ghrepo.Interface, pr *PullRequest) e
 	return err
 }
 
-func PullRequestMerge(client *Client, repo ghrepo.Interface, pr *PullRequest, m PullRequestMergeMethod) error {
+func PullRequestMerge(client *Client, repo repox.Interface, pr *PullRequest, m PullRequestMergeMethod) error {
 	mergeMethod := githubv4.PullRequestMergeMethodMerge
 	switch m {
 	case PullRequestMergeMethodRebase:
@@ -1181,7 +1181,7 @@ func PullRequestMerge(client *Client, repo ghrepo.Interface, pr *PullRequest, m 
 	return err
 }
 
-func PullRequestReady(client *Client, repo ghrepo.Interface, pr *PullRequest) error {
+func PullRequestReady(client *Client, repo repox.Interface, pr *PullRequest) error {
 	var mutation struct {
 		MarkPullRequestReadyForReview struct {
 			PullRequest struct {
@@ -1200,7 +1200,7 @@ func PullRequestReady(client *Client, repo ghrepo.Interface, pr *PullRequest) er
 	return gql.MutateNamed(context.Background(), "PullRequestReadyForReview", &mutation, variables)
 }
 
-func BranchDeleteRemote(client *Client, repo ghrepo.Interface, branch string) error {
+func BranchDeleteRemote(client *Client, repo repox.Interface, branch string) error {
 	path := fmt.Sprintf("repos/%s/%s/git/refs/heads/%s", repo.RepoOwner(), repo.RepoName(), branch)
 	return client.REST(repo.RepoHost(), "DELETE", path, nil, nil)
 }

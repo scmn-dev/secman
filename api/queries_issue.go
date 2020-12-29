@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cli/cli/internal/ghrepo"
+	"github.com/abdfnx/secman/v3/api/repox"
 	"github.com/shurcooL/githubv4"
 )
 
@@ -123,7 +123,7 @@ func IssueCreate(client *Client, repo *Repository, params map[string]interface{}
 	return &result.CreateIssue.Issue, nil
 }
 
-func IssueStatus(client *Client, repo ghrepo.Interface, currentUsername string) (*IssuesPayload, error) {
+func IssueStatus(client *Client, repo repox.Interface, currentUsername string) (*IssuesPayload, error) {
 	type response struct {
 		Repository struct {
 			Assigned struct {
@@ -180,7 +180,7 @@ func IssueStatus(client *Client, repo ghrepo.Interface, currentUsername string) 
 	}
 
 	if !resp.Repository.HasIssuesEnabled {
-		return nil, fmt.Errorf("the '%s' repository has disabled issues", ghrepo.FullName(repo))
+		return nil, fmt.Errorf("the '%s' repository has disabled issues", repox.FullName(repo))
 	}
 
 	payload := IssuesPayload{
@@ -201,7 +201,7 @@ func IssueStatus(client *Client, repo ghrepo.Interface, currentUsername string) 
 	return &payload, nil
 }
 
-func IssueList(client *Client, repo ghrepo.Interface, state string, labels []string, assigneeString string, limit int, authorString string, mentionString string, milestoneString string) (*IssuesAndTotalCount, error) {
+func IssueList(client *Client, repo repox.Interface, state string, labels []string, assigneeString string, limit int, authorString string, mentionString string, milestoneString string) (*IssuesAndTotalCount, error) {
 	var states []string
 	switch state {
 	case "open", "":
@@ -298,7 +298,7 @@ loop:
 			return nil, err
 		}
 		if !response.Repository.HasIssuesEnabled {
-			return nil, fmt.Errorf("the '%s' repository has disabled issues", ghrepo.FullName(repo))
+			return nil, fmt.Errorf("the '%s' repository has disabled issues", repox.FullName(repo))
 		}
 		totalCount = response.Repository.Issues.TotalCount
 
@@ -321,7 +321,7 @@ loop:
 	return &res, nil
 }
 
-func IssueByNumber(client *Client, repo ghrepo.Interface, number int) (*Issue, error) {
+func IssueByNumber(client *Client, repo repox.Interface, number int) (*Issue, error) {
 	type response struct {
 		Repository struct {
 			Issue            Issue
@@ -413,13 +413,13 @@ func IssueByNumber(client *Client, repo ghrepo.Interface, number int) (*Issue, e
 
 	if !resp.Repository.HasIssuesEnabled {
 
-		return nil, &IssuesDisabledError{fmt.Errorf("the '%s' repository has disabled issues", ghrepo.FullName(repo))}
+		return nil, &IssuesDisabledError{fmt.Errorf("the '%s' repository has disabled issues", repox.FullName(repo))}
 	}
 
 	return &resp.Repository.Issue, nil
 }
 
-func IssueClose(client *Client, repo ghrepo.Interface, issue Issue) error {
+func IssueClose(client *Client, repo repox.Interface, issue Issue) error {
 	var mutation struct {
 		CloseIssue struct {
 			Issue struct {
@@ -444,7 +444,7 @@ func IssueClose(client *Client, repo ghrepo.Interface, issue Issue) error {
 	return nil
 }
 
-func IssueReopen(client *Client, repo ghrepo.Interface, issue Issue) error {
+func IssueReopen(client *Client, repo repox.Interface, issue Issue) error {
 	var mutation struct {
 		ReopenIssue struct {
 			Issue struct {
