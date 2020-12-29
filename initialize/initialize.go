@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/abdfnx/secman/v2/pc"
-	"github.com/abdfnx/secman/v2/pio"
+	"github.com/abdfnx/secman/v3/pc"
+	"github.com/abdfnx/secman/v3/pio"
 	"golang.org/x/crypto/nacl/box"
 )
 

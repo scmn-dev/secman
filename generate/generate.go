@@ -3,7 +3,7 @@ package generate
 import (
 	"log"
 
-	"github.com/abdfnx/secman/v2/pc"
+	"github.com/abdfnx/secman/v3/pc"
 )
 
 var (
