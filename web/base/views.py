@@ -4,13 +4,14 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home(req):
-    return HttpResponse('<h2>Home</h2>')
-
-def docs(req):
-    return HttpResponse('<h2>Docs</h2>')
-
-def doc(req):
-    return HttpResponse('<h2>Doc Title</h2>')
+    return render(req, 'base/home.html')
 
 def blog(req):
-    return HttpResponse('<h2>Blog</h2>')
+    return render(req, 'base/blog.html')
+    
+def docs(req):
+    return render(req, 'base/docs.html')
+
+def doc(req):
+    return render(req, 'base/doc.html')
+
