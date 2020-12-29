@@ -20,7 +20,9 @@ clearAllData() {
             else
                 installManx
 
-                sudo manx $SECDIR
+                if [ -x "$(command -v manx)" ]; then
+                    sudo manx $SECDIR
+                fi
             fi
         fi
     elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then

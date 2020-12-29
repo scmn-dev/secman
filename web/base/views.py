@@ -6,11 +6,11 @@ from django.http import HttpResponse
 def home(req):
     return HttpResponse('<h2>Home</h2>')
 
-def posts(req):
-    return HttpResponse('<h2>Posts</h2>')
+def docs(req):
+    return HttpResponse('<h2>Docs</h2>')
 
-def post(req):
-    return HttpResponse('<h2>Post Title</h2>')
+def doc(req):
+    return HttpResponse('<h2>Doc Title</h2>')
 
-def profile(req):
-    return HttpResponse('<h2>User Profile</h2>')
+def blog(req):
+    return HttpResponse('<h2>Blog</h2>')
