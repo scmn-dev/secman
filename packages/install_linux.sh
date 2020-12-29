@@ -8,6 +8,7 @@
 
 UNAME=$(uname)
 smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/linux/secman
+sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/core/secman-un
 smLocLD=/usr/local/bin
 
 successInstall() {
@@ -30,14 +31,30 @@ installSecman() {
     fi
 }
 
+installSecman_un() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo wget -P $smLocLD $sm_unUrl
+
+        sudo chmod 755 $smLocLD/secman-un
+    else
+        wget -P $smLocLD $sm_unUrl
+
+        chmod 755 $smLocLD/secman-un
+    fi
+}
+
 checkWget() {
     if [ -x "$(command -v wget)" ]; then
         installSecman
+
+        installSecman_un
     else
         brew install wget
 
         if [ -x "$(command -v wget)" ]; then
             installSecman
+
+            installSecman_un
         fi
     fi
 }
