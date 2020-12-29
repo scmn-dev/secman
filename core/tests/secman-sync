@@ -1,11 +1,26 @@
 #!/bin/bash
 
+function repo() {
+    if [ -x "$(command -v gh)" ]; then
+        gh repo create -y --private
+    fi
+}
+
 if [ -d "~/.secman" ]; then
     cd ~/.secman
     if [ -d ".git" ]; then
         git init
-        gh repo create -y --private
 
-        if 
+        if [ -x "$(command -v gh)" ]; then
+            repo
+        else
+            if [ -x "$(command -v brew)" ]; then
+                brew install gh
+
+                if [ -x "$(command -v gh)" ]; then
+                    repo
+                fi
+            fi
+        fi
     fi
 fi
