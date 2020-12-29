@@ -12,7 +12,7 @@ import (
 	"github.com/abdfnx/secman/v3/pio"
 	"github.com/abdfnx/secman/v3/show"
 	"github.com/spf13/cobra"
-	"github.com/cli/cli/api"
+	// "github.com/cli/cli/api"
 	"github.com/abdfnx/secman/v3/api/build"
 	"github.com/abdfnx/secman/v3/api/common"
 	"github.com/abdfnx/secman/v3/api/update"

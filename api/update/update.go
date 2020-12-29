@@ -5,7 +5,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	"github.com/cli/cli/api"
+	// "github.com/cli/cli/api"
+	"github.com/abdfnx/secman/v3/api"
 	"github.com/abdfnx/secman/v3/api/common"
 	"github.com/hashicorp/go-version"
 	"gopkg.in/yaml.v3"
@@ -48,7 +49,7 @@ func CheckForUpdate(client *api.Client, stateFilePath, repo, currentVersion stri
 
 func getLatestReleaseInfo(client *api.Client, repo string) (*ReleaseInfo, error) {
 	var latestRelease ReleaseInfo
-	err := client.REST(ghinstance.Default(), "GET", fmt.Sprintf("repos/%s/releases/latest", repo), nil, &latestRelease)
+	err := client.REST(common.Default(), "GET", fmt.Sprintf("repos/%s/releases/latest", repo), nil, &latestRelease)
 	if err != nil {
 		return nil, err
 	}
