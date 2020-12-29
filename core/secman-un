@@ -5,6 +5,7 @@ goodBye() {
 }
 
 smLoc=/usr/local/bin/secman
+sm_unLoc=/usr/local/bin/secman-un
 SECDIR=~/.secman
 
 clearAllData() {
@@ -39,9 +40,9 @@ installManx() {
 
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc
+        sudo manx $smLoc $sm_unLoc
     else
-        manx $smLoc
+        manx $smLoc $sm_unLoc
     fi
 
     clearAllData
@@ -49,9 +50,9 @@ manxopa() {
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc
+        sudo rm -rf $smLoc $sm_unLoc
     else
-        rm -rf $smLoc
+        rm -rf $smLoc $sm_unLoc
     fi
 
     clearAllData
