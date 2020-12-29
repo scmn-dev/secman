@@ -1,8 +1,11 @@
 #!/bin/bash
 
-if [ -d "~/.secman" ]
-then
+if [ -d "~/.secman" ]; then
     cd ~/.secman
+    if [ -d ".git" ]; then
+        git init
+        gh repo create -y --private
 
-    gh repo create --private
+        if 
+    fi
 fi

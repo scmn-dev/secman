@@ -12,6 +12,16 @@ import (
 	"github.com/abdfnx/secman/v2/pio"
 	"github.com/abdfnx/secman/v2/show"
 	"github.com/spf13/cobra"
+	"github.com/cli/cli/api"
+	"github.com/abdfnx/secman/api/build"
+	"github.com/cli/cli/internal/ghinstance"
+	"github.com/abdfnx/secman/api/update"
+	"github.com/cli/cli/pkg/cmd/alias/expand"
+	"github.com/cli/cli/pkg/cmd/factory"
+	"github.com/cli/cli/pkg/cmd/root"
+	"github.com/cli/cli/pkg/cmdutil"
+	"github.com/cli/cli/utils"
+	"github.com/cli/safeexec"
 )
 
 var (
@@ -170,6 +180,25 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
+
+	var updaterEnabled = ""
+
+	updateMessageChan := make(chan *update.ReleaseInfo)
+	go func() {
+		rel, _ := checkForUpdate(buildVersion)
+		updateMessageChan <- rel
+	}()
+
+	newRelease := <-updateMessageChan
+	if newRelease != nil {
+		msg := fmt.Sprintf("%s %s → %s\n%s",
+			ansi.Color("A new release of secman is available:", "yellow"),
+			ansi.Color(buildVersion, "cyan"),
+			ansi.Color(newRelease.Version, "cyan"),
+			ansi.Color(newRelease.URL, "yellow"))
+
+		fmt.Fprintf(stderr, "\n\n%s\n\n", msg)
+	}
 }
 
 // main function
