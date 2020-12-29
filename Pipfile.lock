@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c2776581b338fdab679a80c94539ed3da9c1b744046055c2c431ba9933fac059"
+            "sha256": "03c4a1de800a280a806ca18a2b32da6fe7846237a013b6dd7b95a55b10436293"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -100,6 +100,13 @@
             "index": "pypi",
             "version": "==3.1.4"
         },
+        "django-scss": {
+            "hashes": [
+                "sha256:201545148b5531680a4729c4aa36f08cfe5c256eecfe4e075a90c20e79c06693"
+            ],
+            "index": "pypi",
+            "version": "==0.6.1"
+        },
         "firebase-admin": {
             "hashes": [
                 "sha256:8b2ba6fccfb2fa522bd0bcbf8d3f081e8a11eeda1ae02c31e843d507bde25896",
@@ -113,7 +120,6 @@
                 "sha256:0f1dee446db2685863c3c493a90fefa5fc7f4defaf8e1a320b50ccaddfb5d469",
                 "sha256:a7f5794446a22ff7d36764959ba5f319f37628faf4da04fdc0dedf1598b556c1"
             ],
-            "markers": "platform_python_implementation != 'PyPy'",
             "version": "==1.24.1"
         },
         "google-api-python-client": {
