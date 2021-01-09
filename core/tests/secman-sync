@@ -2,7 +2,7 @@
 
 function repo() {
     if [ -x "$(command -v gh)" ]; then
-        gh repo create -y --private
+        gh repo create $SM_GH_UN/.secman -y --private
     fi
 }
 

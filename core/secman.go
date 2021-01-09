@@ -11,6 +11,7 @@ import (
 	"github.com/abdfnx/secman/v3/insert"
 	"github.com/abdfnx/secman/v3/pio"
 	"github.com/abdfnx/secman/v3/show"
+	"github.com/abdfnx/secman/v3/signin"
 	"github.com/spf13/cobra"
 )
 
@@ -82,6 +83,16 @@ Will prompt for confirmation when a site path is not unique.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			show.Site(path, copyPass)
+		},
+	}
+
+	signinCmd = &cobra.Command{
+		Use:     "signin",
+		Example: "secman signin",
+		Short:   "sigin in by github for sync",
+		Args:    cobra.ExactArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			signin
 		},
 	}
 

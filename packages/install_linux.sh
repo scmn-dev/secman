@@ -20,7 +20,7 @@ installBrew() {
 }
 
 installSecman() {
-    if [ -x "$(command -v sudo)" ]; then
+    if [ -x "$(command -x sudo)" ]; then
         sudo wget -P $smLocLD $smUrl
 
         sudo chmod 755 $smLocLD/secman
@@ -32,7 +32,7 @@ installSecman() {
 }
 
 installSecman_un() {
-    if [ -x "$(command -v sudo)" ]; then
+    if [ -x "$(command -x sudo)" ]; then
         sudo wget -P $smLocLD $sm_unUrl
 
         sudo chmod 755 $smLocLD/secman-un
@@ -44,14 +44,14 @@ installSecman_un() {
 }
 
 checkWget() {
-    if [ -x "$(command -v wget)" ]; then
+    if [ -x "$(command -x wget)" ]; then
         installSecman
 
         installSecman_un
     else
         brew install wget
 
-        if [ -x "$(command -v wget)" ]; then
+        if [ -x "$(command -x wget)" ]; then
             installSecman
 
             installSecman_un
@@ -60,17 +60,17 @@ checkWget() {
 }
 
 gitAndBrew() {
-    if [ -x "$(command -v git)" ]; then
+    if [ -x "$(command -x git)" ]; then
         installBrew
 
-        if [ -x "$(command -v brew)" ]; then
+        if [ -x "$(command -x brew)" ]; then
             checkWget
         fi
     fi
 }
 
 checkGit() {
-    if [ -x "$(command -v sudo)" ]; then
+    if [ -x "$(command -x sudo)" ]; then
         sudo apt install git
         gitAndBrew
     else
@@ -81,14 +81,14 @@ checkGit() {
 }
 
 mainCheck() {
-    if [ -x "$(command -v brew)" ]; then
+    if [ -x "$(command -x brew)" ]; then
         checkWget
 
     else
-        if [ -x "$(command -v git)" ]; then
+        if [ -x "$(command -x git)" ]; then
             installBrew
 
-            if [ -x "$(command -v brew)" ]; then
+            if [ -x "$(command -x brew)" ]; then
                 checkWget
             fi
         else
@@ -97,10 +97,10 @@ mainCheck() {
     fi
 }
 
-if [ -x "$(command -v curl)" ]; then
+if [ -x "$(command -x curl)" ]; then
     mainCheck
 
-    if [ -x "$(command -v secman)" ]; then
+    if [ -x "$(command -x secman)" ]; then
         successInstall
     else
         echo "Download failed 😔"
@@ -109,4 +109,12 @@ if [ -x "$(command -v curl)" ]; then
 else
     echo "You should install curl"
     exit 0
+fi
+
+if [ -x "$(command -x secman)" ]; then
+    echo "Enter your github username: "
+    echo " "
+    read sgu
+
+    echo "export $SM_GH_UN=$sgu"
 fi
