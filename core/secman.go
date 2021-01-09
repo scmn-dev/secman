@@ -12,7 +12,6 @@ import (
 	"github.com/abdfnx/secman/v3/pio"
 	"github.com/abdfnx/secman/v3/show"
 	"github.com/spf13/cobra"
-	"github.com/tcnksm/go-latest"
 )
 
 var (
