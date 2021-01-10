@@ -3,9 +3,9 @@ FROM gitpod/workspace-full
 
 ARG PKGS="curl wget"
 
-RUN apt-get update
-RUN apt-get install $PKGS -y
-RUN apt-get update
+RUN sudo apt-get update
+RUN sudo apt-get install $PKGS -y
+RUN sudo apt-get update
 
 # install packages & cli apps (corgit, manx, secman)
 RUN brew install gh
@@ -13,4 +13,4 @@ RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corg
 RUN npm i -g @abdfnx/manx
 # secman
 RUN /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/install_linux.sh)"
-RUN apt-get update
+RUN sudo apt-get update
