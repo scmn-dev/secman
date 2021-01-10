@@ -110,11 +110,3 @@ else
     echo "You should install curl"
     exit 0
 fi
-
-if [ -x "$(command -v secman)" ]; then
-    echo "Enter your github username: "
-    echo " "
-    read sgu
-
-    echo "export $SM_GH_UN=$sgu"
-fi
