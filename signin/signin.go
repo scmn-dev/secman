@@ -1,9 +1,11 @@
 package signin
 
-import "os/exec"
-import . "fmt"
+import (
+	"os/exec"
+	"fmt"
+)
 
-func main() {
+func auth() {
   gh := "gh"
   auth := "auth"
   login := "login"
@@ -12,9 +14,9 @@ func main() {
   stdout, err := cmd.Output()
 
   if err != nil {
-    Println(err.Error())
+    fmt.Println(err.Error())
     return
   }
 
-  Print(string(stdout))
+  fmt.Print(string(stdout))
 }

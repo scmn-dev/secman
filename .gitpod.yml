@@ -4,3 +4,7 @@ image:
 tasks:
   - init: cd core && go get && go build ./...
     command: go run
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker@1.9.0:4xGJXGiECj67djaFJ4cIuA==
