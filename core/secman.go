@@ -92,7 +92,7 @@ Will prompt for confirmation when a site path is not unique.`,
 		Short:   "sigin in by github for sync",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			
+			signin
 		},
 	}
 

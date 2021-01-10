@@ -7,7 +7,8 @@
 
 UNAME=$(uname)
 smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/osx/secman
-sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/terraform/secman-un
+sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/secman-un
+sm_syUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/secman-sync
 smLocLD=/usr/local/bin
 
 successInstall() {
@@ -18,36 +19,31 @@ installBrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-installSecman() {
+installSecman_&_Tools() {
+    # secman
     sudo wget -P $smLocLD $smUrl
 
     sudo chmod 755 $smLocLD/secman
-}
 
-installSecman_un() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo wget -P $smLocLD $sm_unUrl
+    # secman-un
+    sudo wget -P $smLocLD $sm_unUrl
 
-        sudo chmod 755 $smLocLD/secman-un
-    else
-        wget -P $smLocLD $sm_unUrl
+    sudo chmod 755 $smLocLD/secman-un
 
-        chmod 755 $smLocLD/secman-un
-    fi
+    # secman-sync
+    sudo wget -P $smLocLD $sm_syUrl
+
+    sudo chmod 755 $smLocLD/secman-sync
 }
 
 checkWget() {
     if [ -x "$(command -v wget)" ]; then
-        installSecman
-
-        installSecman_un
+        installSecman_&_Tools
     else
         brew install wget
 
         if [ -x "$(command -v wget)" ]; then
-            installSecman
-
-            installSecman_un
+            installSecman_&_Tools
         fi
     fi
 }

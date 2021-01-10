@@ -4,17 +4,36 @@ SM_GH_UN=$(git config user.name)
 create="gh repo create $SM_GH_UN/.secman -y --private"
 brew_gh="brew install gh"
 
+function usage() {
+    local u=(
+        "Usage:"
+        "   -h | --help: help about any command"
+        "   -d: show description"
+        "   i: init \".git\" and push origin"
+        "   s: status"
+        "   ph: push and commit"
+        "   pl: fetch and pull"
+    )
+
+    printf "%s\n" "${u[@]}"
+}
+
 function repo() {
     local install_brew=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
-
+    local csi="cgit secman-i"
+    
     if [ -x "$(command -v gh)" ]; then
         ${create}
+
+        ${csi}
     else
         if [ -x "$(command -v brew)" ]; then
             ${brew_gh}
 
             if [ -x "$(command -v gh)" ]; then
                 ${create}
+
+                ${csi}
             fi
         else
             ${install_brew}
@@ -24,6 +43,8 @@ function repo() {
 
                 if [ -x "$(command -v gh)" ]; then
                     ${create}
+
+                    ${csi}
                 fi
             fi
         fi
@@ -57,3 +78,89 @@ function clonex() {
         ${clone}
     fi
 }
+
+function badUsage() {
+    local msg="$1"
+    local txt=(
+        "For an overview of the command, execute:"
+        "secman-sync -h"
+    )
+
+    [[ $msg ]] && printf "$msg\n"
+
+    printf "%s\n" "${txt[@]}"
+}
+
+while (($#)); do
+    case "$1" in
+
+    --help | -h)
+        usage
+        exit 0
+        ;;
+
+    --version | -v)
+        version
+        exit 0
+        ;;
+
+    --desc | --description | -d)
+        desc
+        exit 0
+        ;;
+
+    -dv)
+        dvf
+        exit 0
+        ;;
+
+    status | s)
+        status
+        exit 0
+        ;;
+
+    sl)
+        statusList
+        exit 0
+        ;;
+
+    init | i)
+        initx
+        exit 0
+        ;;
+
+    e)
+        exrepo
+        exit 0
+        ;;
+
+    push | ph)
+        pushx
+        exit 0
+        ;;
+
+    pull | pl)
+        pullx
+        exit 0
+        ;;
+
+    secman-i)
+        secman-i
+        exit 0
+        ;;
+    
+    secman-ph)
+        secman-ph
+        exit 0
+        ;;
+    secman-pl)
+        secman-pl
+        exit 0
+        ;;
+
+    *)
+        badUsage "Option/command not recognized."
+        exit 0
+        ;;
+    esac
+done

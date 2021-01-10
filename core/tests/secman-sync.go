@@ -4,14 +4,7 @@ import "os/exec"
 import . "fmt"
 
 func main() {
-  gh := "gh"
-
-  // arg0 := "-e"
-  // arg1 := "Hello world"
-  // arg2 := "\n\tfrom"
-  // arg3 := "golang"
-
-  cmd := exec.Command(gh)
+  cmd := exec.Command("gh", "repo")
   stdout, err := cmd.Output()
 
   if err != nil {

@@ -8,7 +8,8 @@
 
 UNAME=$(uname)
 smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/linux/secman
-sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/terraform/secman-un
+sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/secman-un
+sm_syUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/secman-sync
 smLocLD=/usr/local/bin
 
 successInstall() {
@@ -43,11 +44,25 @@ installSecman_un() {
     fi
 }
 
+installSecman_sy() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo wget -P $smLocLD $sm_syUrl
+
+        sudo chmod 755 $smLocLD/secman-sync
+    else
+        wget -P $smLocLD $sm_syUrl
+
+        chmod 755 $smLocLD/secman-sync
+    fi
+}
+
 checkWget() {
     if [ -x "$(command -v wget)" ]; then
         installSecman
 
         installSecman_un
+
+        installSecman_sy
     else
         brew install wget
 
@@ -55,6 +70,8 @@ checkWget() {
             installSecman
 
             installSecman_un
+
+            installSecman_sy
         fi
     fi
 }
