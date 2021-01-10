@@ -7,7 +7,7 @@
 
 UNAME=$(uname)
 smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/osx/secman
-sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/core/secman-un
+sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/terraform/secman-un
 smLocLD=/usr/local/bin
 
 successInstall() {

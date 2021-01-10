@@ -1,8 +1,8 @@
 #!/bin/bash
 
 SM_GH_UN=$(git config user.name)
-create=$(gh repo create $SM_GH_UN/.secman -y --private)
-brew_gh=$(brew install gh)
+create="gh repo create $SM_GH_UN/.secman -y --private"
+brew_gh="brew install gh"
 
 function repo() {
     local install_brew=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
@@ -45,15 +45,15 @@ function corgit() {
 }
 
 function clonex() {
-    if [ -d "~/.secman" ]; then
-        rm -rf ~/.secman
-        DIR="pwd"
+    local SECDIR="~/.secman"
+    local clone="gh repo clone $SM_GH_UN/.secman"
 
+    if [ -d $SECDIR ]; then
+        rm -rf $SECDIR
         cd
-        gh repo clone $SM_GH_UN/.secman
-
-        cd $DIR
+        ${clone}
+    else
+        cd
+        ${clone}
     fi
 }
-
-clonex

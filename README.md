@@ -9,7 +9,7 @@
 `secman` requires [Go][goUrl] version 1.11 or later.
 
 ```sh
-# linux
+# wsl/linux
 ❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/install_linux.sh)"
 
 # macOS
@@ -192,7 +192,7 @@ if you want yo uninstall `secman`, you should type
 > `update by secman-up`
 
 ```sh
-❯ secman-up -y
+❯ secman-up
 ```
 
 ### Uninstall
@@ -200,7 +200,7 @@ if you want yo uninstall `secman`, you should type
 > `uninstall by secman-un`
 
 ```sh
-❯ secman un -y
+❯ secman-un
 ```
 
 [goUrl]: https://goland.org

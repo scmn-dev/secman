@@ -2,9 +2,10 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  - init: cd core && go get && go build ./...
+  - init: cd core && go get
     command: go run
 
 vscode:
   extensions:
     - foxundermoon.shell-format@7.0.1:dJqOSN173jVh12b+ScTqtw==
+    - pkief.material-icon-theme@4.4.0:rUeW9VprKCFBXYTvg+AimA==
