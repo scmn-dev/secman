@@ -1,12 +1,10 @@
 FROM gitpod/workspace-full
-FROM ubuntu:latest
-ENV DEBIAN_FRONTEND=noninteractive
 # curl & wget
 
 ARG PKGS="curl wget"
 
 RUN apt-get update
-RUN apt install $PKGS -y
+RUN apt-get install $PKGS -y
 RUN apt-get update
 
 # install packages & cli apps (corgit, manx, secman)
