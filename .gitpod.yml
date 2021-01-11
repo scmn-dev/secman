@@ -1,5 +1,5 @@
 image:
-  file: Dockerfile
+  file: docker/Dockerfile
 
 tasks:
   - init: cd core && go get

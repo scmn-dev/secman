@@ -6,9 +6,10 @@ brew_gh="brew install gh"
 
 function usage() {
     local u=(
-        "Commands:"
+        "Flags:"
         "   -h | --help: help about any command"
         "   -d: show the description"
+        "Commands:"
         "   i: init .git in .secman and create a gh repo for it"
         "   s: show the status of .secman"
         "   ph: push and commit a new secret"
@@ -92,7 +93,11 @@ function badUsage() {
 }
 
 version() {
-    
+    r="abdfnx/secman"
+
+    if [ -x "$(command -v verx)" ]; then
+        verx $r
+    fi
 }
 
 while (($#)); do
@@ -149,21 +154,21 @@ while (($#)); do
         ;;
 
     secman-i)
-        secman-i
+        cgit secman-i
         exit 0
         ;;
     
     secman-ph)
-        secman-ph
+        cgit secman-ph
         exit 0
         ;;
     secman-pl)
-        secman-pl
+        cgit secman-pl
         exit 0
         ;;
 
     *)
-        badUsage "Option/command not recognized."
+        badUsage "flag/command not recognized."
         exit 0
         ;;
     esac
