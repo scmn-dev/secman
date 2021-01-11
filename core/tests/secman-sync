@@ -6,13 +6,13 @@ brew_gh="brew install gh"
 
 function usage() {
     local u=(
-        "Usage:"
+        "Commands:"
         "   -h | --help: help about any command"
-        "   -d: show description"
-        "   i: init \".git\" and push origin"
-        "   s: status"
-        "   ph: push and commit"
-        "   pl: fetch and pull"
+        "   -d: show the description"
+        "   i: init .git in .secman and create a gh repo for it"
+        "   s: show the status of .secman"
+        "   ph: push and commit a new secret"
+        "   pl: pull secret/s"
     )
 
     printf "%s\n" "${u[@]}"
@@ -66,7 +66,7 @@ function corgit() {
 }
 
 function clonex() {
-    local SECDIR="~/.secman"
+    local SECDIR=~/.secman
     local clone="gh repo clone $SM_GH_UN/.secman"
 
     if [ -d $SECDIR ]; then
@@ -89,6 +89,10 @@ function badUsage() {
     [[ $msg ]] && printf "$msg\n"
 
     printf "%s\n" "${txt[@]}"
+}
+
+version() {
+    
 }
 
 while (($#)); do

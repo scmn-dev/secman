@@ -1,9 +1,9 @@
 image:
-  file: .gitpod.Dockerfile
+  file: Dockerfile
 
 tasks:
   - init: cd core && go get
-    command: go run
+    command: go build
 
 vscode:
   extensions:
