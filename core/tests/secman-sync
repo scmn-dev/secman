@@ -20,10 +20,12 @@ function usage() {
 }
 
 function repo() {
-    local install_brew=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")
+    local install_brew='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")'
     local csi="cgit secman-i"
-    
+
     if [ -x "$(command -v gh)" ]; then
+        cd
+
         ${create}
 
         ${csi}
@@ -32,6 +34,8 @@ function repo() {
             ${brew_gh}
 
             if [ -x "$(command -v gh)" ]; then
+                cd
+
                 ${create}
 
                 ${csi}
@@ -43,6 +47,8 @@ function repo() {
                 ${brew_gh}
 
                 if [ -x "$(command -v gh)" ]; then
+                    cd
+
                     ${create}
 
                     ${csi}
@@ -52,7 +58,7 @@ function repo() {
     fi
 }
 
-function corgit() {
+function corgit-ph() {
     local install_cgit=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)")
 
     if [ -x "$(command -v cgit)" ]; then
@@ -62,6 +68,20 @@ function corgit() {
 
         if [ -x "$(command -v cgit)" ]; then
             cgit ph
+        fi
+    fi
+}
+
+function corgit-pl() {
+    local install_cgit=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)")
+
+    if [ -x "$(command -v cgit)" ]; then
+        cgit pl
+    else
+        ${install_cgit}
+
+        if [ -x "$(command -v cgit)" ]; then
+            cgit pl
         fi
     fi
 }
@@ -94,9 +114,16 @@ function badUsage() {
 
 version() {
     r="abdfnx/secman"
+    v="verx $r"
 
     if [ -x "$(command -v verx)" ]; then
-        verx $r
+        ${v}
+    else
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
+
+        if [ -x "$(command -v verx)" ]; then
+            ${v}
+        fi
     fi
 }
 
@@ -113,33 +140,33 @@ while (($#)); do
         exit 0
         ;;
 
-    --desc | --description | -d)
-        desc
+    # --desc | --description | -d)
+    #     desc
+    #     exit 0
+    #     ;;
+
+    sync | s)
+        repo
         exit 0
         ;;
 
-    -dv)
-        dvf
+    clone)
+        clonex
         exit 0
         ;;
 
-    status | s)
-        status
-        exit 0
-        ;;
-
-    init | i)
-        initx
+    signin)
+        secman signin
         exit 0
         ;;
 
     push | ph)
-        pushx
+        corgit-ph
         exit 0
         ;;
 
     pull | pl)
-        pullx
+        corgit-pl
         exit 0
         ;;
 
