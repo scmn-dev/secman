@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: secman-image
+  IMAGE_NAME: secman-con
 
 jobs:
   # Run tests.
