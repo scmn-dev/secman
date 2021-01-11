@@ -185,7 +185,7 @@ After the site information is added, the site's generated private key is thrown 
 
 ## Update/Uninstall [secman][smUrl]
 
-if you want yo uninstall `secman`, you should type
+if you want yo update/uninstall `secman`, you should type
 
 ### Update
 
