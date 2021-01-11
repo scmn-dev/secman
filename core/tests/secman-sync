@@ -128,18 +128,8 @@ while (($#)); do
         exit 0
         ;;
 
-    sl)
-        statusList
-        exit 0
-        ;;
-
     init | i)
         initx
-        exit 0
-        ;;
-
-    e)
-        exrepo
         exit 0
         ;;
 
@@ -150,20 +140,6 @@ while (($#)); do
 
     pull | pl)
         pullx
-        exit 0
-        ;;
-
-    secman-i)
-        cgit secman-i
-        exit 0
-        ;;
-    
-    secman-ph)
-        cgit secman-ph
-        exit 0
-        ;;
-    secman-pl)
-        cgit secman-pl
         exit 0
         ;;
 
