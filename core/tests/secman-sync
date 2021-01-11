@@ -3,28 +3,36 @@
 SM_GH_UN=$(git config user.name)
 create="gh repo create $SM_GH_UN/.secman -y --private"
 brew_gh="brew install gh"
+SECDIR=~/.secman
+cd_SECDIR="cd $SECDIR"
+
+# pkgs
+url="/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com$1)""
+install_cgit="$url/Dev-x-Team/corgit/main/setup"
+install_brew="$url/Homebrew/install/HEAD/install.sh"
+install_verx="$url/abdfnx/verx/HEAD/install.sh"
 
 function usage() {
     local u=(
         "Flags:"
         "   -h | --help: help about any command"
-        "   -d: show the description"
         "Commands:"
-        "   i: init .git in .secman and create a gh repo for it"
-        "   s: show the status of .secman"
-        "   ph: push and commit a new secret"
-        "   pl: pull secret/s"
+        "   sy | sync: create private github repo and sync your passwords on it by git"
+        "   cn | clone: clone .secman repo"
+        "   ph | push: push and commit a new secret"
+        "   pl | pull: pull secret/s"
+        "   sg | signin: signin by gh auth login"
     )
 
     printf "%s\n" "${u[@]}"
 }
 
 function repo() {
-    local install_brew='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)")'
     local csi="cgit secman-i"
+    local rdm='echo "" >> README.md'
 
     if [ -x "$(command -v gh)" ]; then
-        cd
+        ${cd_SECDIR}
 
         ${create}
 
@@ -34,7 +42,7 @@ function repo() {
             ${brew_gh}
 
             if [ -x "$(command -v gh)" ]; then
-                cd
+                ${cd_SECDIR}
 
                 ${create}
 
@@ -47,7 +55,7 @@ function repo() {
                 ${brew_gh}
 
                 if [ -x "$(command -v gh)" ]; then
-                    cd
+                    ${cd_SECDIR}
 
                     ${create}
 
@@ -59,35 +67,38 @@ function repo() {
 }
 
 function corgit-ph() {
-    local install_cgit=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)")
+    local push="cgit ph"
 
     if [ -x "$(command -v cgit)" ]; then
-        cgit ph
+        ${cd_SECDIR}
+        ${push}
     else
         ${install_cgit}
 
         if [ -x "$(command -v cgit)" ]; then
-            cgit ph
+            ${cd_SECDIR}
+            ${push}
         fi
     fi
 }
 
 function corgit-pl() {
-    local install_cgit=$(/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)")
+    local pull="cgit pl"
 
     if [ -x "$(command -v cgit)" ]; then
-        cgit pl
+        ${cd_SECDIR}
+        ${pull}
     else
         ${install_cgit}
 
         if [ -x "$(command -v cgit)" ]; then
-            cgit pl
+            ${cd_SECDIR}
+            ${pull}
         fi
     fi
 }
 
 function clonex() {
-    local SECDIR=~/.secman
     local clone="gh repo clone $SM_GH_UN/.secman"
 
     if [ -d $SECDIR ]; then
@@ -119,7 +130,7 @@ version() {
     if [ -x "$(command -v verx)" ]; then
         ${v}
     else
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
+        ${install_verx}
 
         if [ -x "$(command -v verx)" ]; then
             ${v}
@@ -140,22 +151,17 @@ while (($#)); do
         exit 0
         ;;
 
-    # --desc | --description | -d)
-    #     desc
-    #     exit 0
-    #     ;;
-
-    sync | s)
+    sync | sy)
         repo
         exit 0
         ;;
 
-    clone)
+    clone | cn)
         clonex
         exit 0
         ;;
 
-    signin)
+    sg | signin)
         secman signin
         exit 0
         ;;

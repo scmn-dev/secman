@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"runtime/debug"
+	"os/exec"
 	"strconv"
 
 	"github.com/abdfnx/secman/v3/edit"
@@ -11,7 +11,7 @@ import (
 	"github.com/abdfnx/secman/v3/insert"
 	"github.com/abdfnx/secman/v3/pio"
 	"github.com/abdfnx/secman/v3/show"
-	"github.com/abdfnx/secman/v3/signin"
+	// "github.com/abdfnx/secman/v3/signin"
 	"github.com/spf13/cobra"
 )
 
@@ -34,15 +34,18 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	versionCmd = &cobra.Command{
-		Use:   "version",
+		Use:   "-v",
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			info, ok := debug.ReadBuildInfo()
-			if !ok {
-				fmt.Println("secman@2.0.0")
+			v := exec.Command("verx", "abdfnx/secman")
+			stdout, err := v.Output()
+
+			if err != nil {
+				fmt.Println(err.Error())
 				return
 			}
-			fmt.Println(info.Main.Version)
+
+			fmt.Print(string(stdout))
 		},
 	}
 
@@ -89,10 +92,10 @@ Will prompt for confirmation when a site path is not unique.`,
 	signinCmd = &cobra.Command{
 		Use:     "signin",
 		Example: "secman signin",
-		Short:   "sigin in by github for sync",
+		Short:   "sign in by github for sync",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			signin
+			// signin
 		},
 	}
 
@@ -180,10 +183,11 @@ func init() {
 	RootCmd.AddCommand(editCmd)
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
+	RootCmd.AddCommand(signinCmd)
 	RootCmd.AddCommand(versionCmd)
 }
 
-// main function
+// main
 func main() {
 	RootCmd.Execute()
 }
