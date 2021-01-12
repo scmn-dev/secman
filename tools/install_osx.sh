@@ -5,10 +5,10 @@
 # 2- check if wget command // /////
 # 3- check if brew command // /////
 
-UNAME=$(uname)
-smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/osx/secman
-sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/secman-un
-sm_syUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/secman-sync
+GH_RAW_URL=https://raw.githubusercontent.com/abdfnx
+smUrl=$GH_RAW_URL/secman/HEAD/release/linux/secman
+sm_unUrl=$GH_RAW_URL/secman/HEAD/packages/secman-un
+sm_syUrl=$GH_RAW_URL/secman/HEAD/api/secman-sync
 smLocLD=/usr/local/bin
 
 successInstall() {

@@ -1,4 +1,4 @@
-module github.com/abdfnx/secman/v3
+module github.com/abdfnx/secman/v4
 
 go 1.15
 

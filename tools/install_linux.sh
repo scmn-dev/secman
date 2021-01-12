@@ -6,10 +6,10 @@
 # 3- check if brew command // //
 # 4- some Linux platforms don't have git installed, so it's well checking is git command is exist
 
-UNAME=$(uname)
-smUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/release/linux/secman
-sm_unUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/packages/secman-un
-sm_syUrl=https://raw.githubusercontent.com/abdfnx/secman/HEAD/api/secman-sync
+GH_RAW_URL=https://raw.githubusercontent.com/abdfnx
+smUrl=$GH_RAW_URL/secman/HEAD/release/linux/secman
+sm_unUrl=$GH_RAW_URL/secman/HEAD/packages/secman-un
+sm_syUrl=$GH_RAW_URL/secman/HEAD/api/secman-sync
 smLocLD=/usr/local/bin
 
 successInstall() {

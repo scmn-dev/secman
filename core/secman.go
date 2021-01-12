@@ -5,12 +5,12 @@ import (
 	"os/exec"
 	"strconv"
 
-	"github.com/abdfnx/secman/v3/edit"
-	"github.com/abdfnx/secman/v3/generate"
-	"github.com/abdfnx/secman/v3/initialize"
-	"github.com/abdfnx/secman/v3/insert"
-	"github.com/abdfnx/secman/v3/pio"
-	"github.com/abdfnx/secman/v3/show"
+	"github.com/abdfnx/secman/v4/edit"
+	"github.com/abdfnx/secman/v4/generate"
+	"github.com/abdfnx/secman/v4/initialize"
+	"github.com/abdfnx/secman/v4/insert"
+	"github.com/abdfnx/secman/v4/pio"
+	"github.com/abdfnx/secman/v4/show"
 	"github.com/spf13/cobra"
 )
 

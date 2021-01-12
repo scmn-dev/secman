@@ -7,10 +7,10 @@ SECDIR=~/.secman
 cd_SECDIR="cd $SECDIR"
 
 # pkgs
-url="/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com)""
-install_cgit="$url/Dev-x-Team/corgit/main/setup"
-install_brew="$url/Homebrew/install/HEAD/install.sh"
-install_verx="$url/abdfnx/verx/HEAD/install.sh"
+ghraw_url="https://raw.githubusercontent.com"
+install_cgit="/bin/bash -c "$(curl -fsSL $ghraw_url/Dev-x-Team/corgit/main/setup)""
+install_brew="/bin/bash -c "$(curl -fsSL $ghraw_url/Homebrew/install/HEAD/install.sh)""
+install_verx="/bin/bash -c "$(curl -fsSL $ghraw_url/abdfnx/verx/HEAD/install.sh)""
 
 function usage() {
     local u=(
@@ -26,26 +26,29 @@ function usage() {
     printf "%s\n" "${u[@]}"
 }
 
-function repo() {
+
+function repo_work() {
     local csi="cgit secman-i"
-    local rdm='echo "" >> README.md'
+    local rdm="echo \"# My secman passwords - $SM_GH_UN\" >> README.md"
 
+    ${cd_SECDIR}
+
+    ${rdm}
+
+    ${create}
+
+    ${csi}
+}
+
+function repo() {
     if [ -x "$(command -v gh)" ]; then
-        ${cd_SECDIR}
-
-        ${create}
-
-        ${csi}
+        repo_work
     else
         if [ -x "$(command -v brew)" ]; then
             ${brew_gh}
 
             if [ -x "$(command -v gh)" ]; then
-                ${cd_SECDIR}
-
-                ${create}
-
-                ${csi}
+                repo_work
             fi
         else
             ${install_brew}
@@ -54,11 +57,7 @@ function repo() {
                 ${brew_gh}
 
                 if [ -x "$(command -v gh)" ]; then
-                    ${cd_SECDIR}
-
-                    ${create}
-
-                    ${csi}
+                    repo_work
                 fi
             fi
         fi
@@ -122,7 +121,7 @@ function badUsage() {
 
 version() {
     r="abdfnx/secman"
-    v="verx $r"
+    v="verx $r -l"
 
     if [ -x "$(command -v verx)" ]; then
         ${v}
