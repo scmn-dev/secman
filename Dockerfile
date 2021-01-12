@@ -9,6 +9,7 @@ ARG GITHUB_URL="https://raw.githubusercontent.com"
 RUN $UPD && \
     sudo apt-get install $PKGS -y && \
     brew install dep && \
+    gem install bundler && \
     $UPD
 
 # install cli apps (gh, corgit, manx and verx) & install deps from gemfile

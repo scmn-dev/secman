@@ -5,9 +5,8 @@ import (
 	"os/exec"
 )
 
-// code
 func Checker() {
-	cmd := exec.Command("bash", "abdfnx/secman")
+	cmd := exec.Command("verx", "--sm")
 	stdout, err := cmd.Output()
 
 	if err != nil {
