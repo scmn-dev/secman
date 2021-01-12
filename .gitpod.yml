@@ -2,8 +2,8 @@ image:
   file: Dockerfile
 
 tasks:
-  - init: git config pull.ff only && cd core && go get
-    command: go build 
+  - init: git config pull.ff only && cd core && go get && cd ..
+    command: go build
 
 vscode:
   extensions:

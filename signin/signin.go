@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func auth() {
+func Auth() {
   cmd := exec.Command("gh", "auth", "login")
   stdout, err := cmd.Output()
 
