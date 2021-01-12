@@ -1,3 +1,5 @@
 #!/usr/bin/ruby -W
 
-require ""
+require 'tools/v_checker'
+
+check
