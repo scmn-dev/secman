@@ -1,5 +1,9 @@
 #!/usr/bin/ruby -W
 
-require 'tools/v_checker'
+require '../tools/v_checker.rb'
 
-check
+# V_CHECKER. new
+
+if $l != $c
+    puts "new"
+end
