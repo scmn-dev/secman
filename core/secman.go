@@ -11,6 +11,7 @@ import (
 	"github.com/abdfnx/secman/v4/insert"
 	"github.com/abdfnx/secman/v4/pio"
 	"github.com/abdfnx/secman/v4/show"
+	"github.com/abdfnx/secman/v4/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -33,10 +34,10 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	versionCmd = &cobra.Command{
-		Use:   "-v",
+		Use:   "ver",
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			v := exec.Command("verx", "abdfnx/secman")
+			v := exec.Command("verx", "-c")
 			stdout, err := v.Output()
 
 			if err != nil {
@@ -178,4 +179,5 @@ func init() {
 // main
 func main() {
 	RootCmd.Execute()
+	checker.Checker()
 }
