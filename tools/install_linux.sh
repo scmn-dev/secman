@@ -10,6 +10,7 @@ GH_RAW_URL=https://raw.githubusercontent.com/abdfnx
 smUrl=$GH_RAW_URL/secman/HEAD/release/linux/secman
 sm_unUrl=$GH_RAW_URL/secman/HEAD/packages/secman-un
 sm_syUrl=$GH_RAW_URL/secman/HEAD/api/secman-sync
+vrb=$GH_RAW_URL/secman/HEAD/tools/v_checker.rb
 smLocLD=/usr/local/bin
 
 successInstall() {
@@ -20,58 +21,33 @@ installBrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-installSecman() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo wget -P $smLocLD $smUrl
+installSecman_&_Tools() {
+    # secman
+    sudo wget -P $smLocLD $smUrl
 
-        sudo chmod 755 $smLocLD/secman
-    else
-        wget -P $smLocLD $smUrl
+    sudo chmod 755 $smLocLD/secman
 
-        chmod 755 $smLocLD/secman
-    fi
-}
+    # secman-un
+    sudo wget -P $smLocLD $sm_unUrl
 
-installSecman_un() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo wget -P $smLocLD $sm_unUrl
+    sudo chmod 755 $smLocLD/secman-un
 
-        sudo chmod 755 $smLocLD/secman-un
-    else
-        wget -P $smLocLD $sm_unUrl
+    # secman-sync
+    sudo wget -P $smLocLD $sm_syUrl
 
-        chmod 755 $smLocLD/secman-un
-    fi
-}
+    sudo chmod 755 $smLocLD/secman-sync
 
-installSecman_sy() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo wget -P $smLocLD $sm_syUrl
-
-        sudo chmod 755 $smLocLD/secman-sync
-    else
-        wget -P $smLocLD $sm_syUrl
-
-        chmod 755 $smLocLD/secman-sync
-    fi
+    ${vrb}
 }
 
 checkWget() {
     if [ -x "$(command -v wget)" ]; then
-        installSecman
-
-        installSecman_un
-
-        installSecman_sy
+        installSecman_&_Tools
     else
         brew install wget
 
         if [ -x "$(command -v wget)" ]; then
-            installSecman
-
-            installSecman_un
-
-            installSecman_sy
+            installSecman_&_Tools
         fi
     fi
 }
