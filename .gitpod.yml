@@ -2,7 +2,7 @@ image:
   file: Dockerfile
 
 tasks:
-  - init: git config pull.ff only && cd core && go get && cd ..
+  - init: git config pull.ff only && cd core && go get && go mod tidy && cd .. && zsh
     command: go build
 
 vscode:

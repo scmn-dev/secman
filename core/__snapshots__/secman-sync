@@ -7,7 +7,7 @@ SECDIR=~/.secman
 cd_SECDIR="cd $SECDIR"
 
 # pkgs
-url="/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com$1)""
+url="/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com)""
 install_cgit="$url/Dev-x-Team/corgit/main/setup"
 install_brew="$url/Homebrew/install/HEAD/install.sh"
 install_verx="$url/abdfnx/verx/HEAD/install.sh"
@@ -21,7 +21,6 @@ function usage() {
         "   cn | clone: clone .secman repo"
         "   ph | push: push and commit a new secret"
         "   pl | pull: pull secret/s"
-        "   sg | signin: signin by gh auth login"
     )
 
     printf "%s\n" "${u[@]}"
@@ -99,14 +98,12 @@ function corgit-pl() {
 }
 
 function clonex() {
-    local clone="gh repo clone $SM_GH_UN/.secman"
+    local clone="gh repo clone $SM_GH_UN/.secman $SECDIR"
 
     if [ -d $SECDIR ]; then
         rm -rf $SECDIR
-        cd
         ${clone}
     else
-        cd
         ${clone}
     fi
 }
@@ -158,11 +155,6 @@ while (($#)); do
 
     clone | cn)
         clonex
-        exit 0
-        ;;
-
-    sg | signin)
-        secman signin
         exit 0
         ;;
 
