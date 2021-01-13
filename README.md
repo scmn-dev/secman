@@ -189,10 +189,10 @@ if you want yo update/uninstall `secman`, you should type
 
 ### Update
 
-> `update by secman-up`
+> `update by secman upd`
 
 ```sh
-❯ secman-up
+❯ secman upd
 ```
 
 ### Uninstall
