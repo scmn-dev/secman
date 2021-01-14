@@ -65,6 +65,7 @@ ENV PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/"
 RUN curl -sL https://deb.nodesource.com/setup_15.x -o nodesource_setup.sh && \
     sudo bash nodesource_setup.sh && \
     $INS_s nodejs build-essential -y && \
+    sudo rm -rf nodesource_setup.sh && \
     $UPD_s
 
 # install pkgs
@@ -99,6 +100,4 @@ RUN zsh && \
 RUN echo 'ZSH_THEME="af-magic"' >> $src && \
     echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src
 
-RUN /bin/bash -c "source $src"
-
-ENTRYPOINT ["zsh"]
+ENTRYPOINT ["zsh", "source ~/.zshrc"]

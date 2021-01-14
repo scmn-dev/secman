@@ -1,4 +1,4 @@
-#!/usr/bin/ruby -W
+require 'optparse'
 require 'colorize'
 
 $l = `verx abdfnx/secman -l`
@@ -17,3 +17,10 @@ def check()
         _n
     end
 end
+
+options = {}
+OptionParser.new do |opts|
+  opts.on("-ck", "--check", "check the version") do |l|
+    check
+  end
+end.parse!

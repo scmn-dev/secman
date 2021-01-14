@@ -14,9 +14,9 @@ OptionParser.new do |opts|
 
     if image == ""
         system("docker pull abdcodedoc/secman:latest")
-        system("docker run -t -i --privileged abdcodedoc/secman")
+        # system("docker run -t -i --privileged abdcodedoc/secman")
     else
-        system("docker run -t -i --privileged abdcodedoc/secman")
+        # system("docker run -t -i --privileged abdcodedoc/secman")
     end
   end
   opts.on("-q", "--quit", "quit from secman vm") do |q|
