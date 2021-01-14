@@ -2,11 +2,11 @@ require 'optparse'
 require 'colorize'
 
 $l = `verx abdfnx/secman -l`
-$c = `verx -c`
+$c = `secman ver`
 
 def _n()
-    ly = $l.cyan.bold
     nr = "there's a new release of secman is avalaible:".yellow
+    ly = $l.cyan.bold
     up = "to update it run".yellow
     smu = "secman upd".blue
     puts new_r = "#{nr} #{ly}#{up} #{smu}"
@@ -20,7 +20,7 @@ end
 
 options = {}
 OptionParser.new do |opts|
-  opts.on("-ck", "--check", "check the version") do |l|
+  opts.on("-c", "--check", "check the version") do |c|
     check
   end
 end.parse!

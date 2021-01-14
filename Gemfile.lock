@@ -2,16 +2,16 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorize (0.8.1)
-    micro-optparse (1.2.1)
     open-uri (0.1.0)
+    optparse (0.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   colorize
-  micro-optparse
   open-uri (~> 0.1.0)
+  optparse
 
 BUNDLED WITH
    2.2.4

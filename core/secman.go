@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"os/exec"
+	// "os/exec"
 	"strconv"
 
 	"github.com/abdfnx/secman/v4/edit"
@@ -17,6 +17,7 @@ import (
 
 var (
 	copyPass bool
+	version string
 	RootCmd  = &cobra.Command{
 		Use:   "secman",
 		Short: "Print the contents of the vault.",
@@ -37,15 +38,7 @@ directory, and initialize your cryptographic keys.`,
 		Use:   "ver",
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			v := exec.Command("verx", "-c")
-			stdout, err := v.Output()
-
-			if err != nil {
-				fmt.Println(err.Error())
-				return
-			}
-
-			fmt.Print(string(stdout))
+			fmt.Println(version)
 		},
 	}
 

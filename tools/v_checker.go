@@ -3,6 +3,7 @@ package checker
 import (
 	"fmt"
 	"os/exec"
+	// "github.com/abdfnx/secman/v4/ver"
 )
 
 func Checker() {
