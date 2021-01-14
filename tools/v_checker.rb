@@ -13,12 +13,8 @@ def _n()
 end
 
 def check()
-    if "#{$l}" != "#{$c}"
+    if $l != $c
         _n
-    end
-
-    if "#{$l}" == "#{$c}"
-        puts ""
     end
 end
 
