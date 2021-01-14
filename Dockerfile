@@ -101,4 +101,3 @@ RUN echo 'ZSH_THEME="af-magic"' >> $src && \
     echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src
 
 ENTRYPOINT ["zsh"]
-CMD ["source ~/.zshrc"]
