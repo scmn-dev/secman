@@ -1,13 +1,24 @@
 # [<img src=".github/assets/secman.svg" align="center">][smUrl]
 
 [!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/abdfnx/secman/discussions)
-[![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/abdfnx/secman/blob/main/LICENSE)
 
 > stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 `secman is meant to be secure enough that you can publicly post your vault.`
 
-## Installation
+## Installation ⬇
+
+## secman with [docker][dkUrl]  (_Recommended_)
+
+> you can create secman virtual machine by [docker][dkUrl]
+
+```sh
+❯ docker pull abdcodedoc/secman:latest
+❯ docker run -t -i --privileged abdcodedoc/secman
+```
+
+## without docker
 
 `secman` requires [Go][goUrl] version 1.11 or later.
 
@@ -142,7 +153,7 @@ secman can also create randomly generated passwords. The default length of secma
 
 ### Deleting a vault entry
 
-```sh
+```code
 ❯ secman
 ├──bb
 |  └──ff
@@ -169,6 +180,62 @@ remove is used for removing sites from the password vault. `secman rm` is an ali
 ```
 
 All subcommands support the `--help` flag.
+
+## `secman-sync`
+
+#### auth
+
+you should authenticate by [`gh cli`](https://cli.github.com) to use **sync** feature
+
+```sh
+❯ gh auth login
+```
+
+#### sync
+
+```sh
+❯ secman-sync sync
+```
+
+if you sync your passwords for first time, `create` command will create a private github repo and store the passwords on it
+
+`secman-sync sy` is an alias of `secman-sync sync`
+
+#### clone
+
+```sh
+❯ secman-sync clone
+```
+
+if you lose your passwords, or you use more than device, you can clone your private repo
+
+`secman-sync cn` is an alias of `secman-sync clone`
+
+#### push
+
+```sh
+❯ secman-sync push
+```
+
+if there's a new password/s, it's well push it to the repo, like git
+
+`secman-sync ph` is an alias of `secman-sync push`
+
+#### pull
+
+```sh
+❯ secman-sync pull
+```
+
+we know what `pull` do
+
+alias: `secman-sync pl`
+
+#### getting help
+
+```sh
+❯ secman-sync --help | -h
+```
 
 ## CRYPTOGRAPHY DETAILS
 
@@ -236,3 +303,4 @@ SOFTWARE.
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.web.app
+[dkUrl]: https://docker.com
