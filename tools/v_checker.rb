@@ -16,6 +16,10 @@ def check()
     if "#{$l}" != "#{$c}"
         _n
     end
+        
+    if "#{$l}" == "#{$c}"
+        puts "same"
+    end
 end
 
 options = {}
