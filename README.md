@@ -1,9 +1,9 @@
-# [<img src=".github/assets/secman.svg" align="center">][smUrl]
+# [<img src="https://raw.githubusercontent.com/abdfnx/secman/HEAD/.github/assets/secman.svg" align="center">][smUrl]
 
 [!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/abdfnx/secman/discussions)
 [![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/abdfnx/secman/blob/main/LICENSE)
 
-> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src="https://raw.githubusercontent.com/abdfnx/secman/HEAD/.github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 `secman is meant to be secure enough that you can publicly post your vault.`
 
