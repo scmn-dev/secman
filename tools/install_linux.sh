@@ -21,7 +21,7 @@ installBrew() {
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 }
 
-installSecman_&_Tools() {
+installSecman_Tools() {
     # secman
     sudo wget -P $smLocLD $smUrl
 
@@ -42,12 +42,12 @@ installSecman_&_Tools() {
 
 checkWget() {
     if [ -x "$(command -v wget)" ]; then
-        installSecman_&_Tools
+        installSecman_Tools
     else
         brew install wget
 
         if [ -x "$(command -v wget)" ]; then
-            installSecman_&_Tools
+            installSecman_Tools
         fi
     fi
 }
