@@ -12,6 +12,7 @@ import (
 	"github.com/abdfnx/secman/v5/pio"
 	"github.com/abdfnx/secman/v5/show"
 	"github.com/abdfnx/secman/v5/tools"
+	"github.com/abdfnx/secman/v5/update"
 	"github.com/spf13/cobra"
 )
 
@@ -60,6 +61,14 @@ directory, and initialize your cryptographic keys.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			initialize.Init()
 			checker.Checker()
+		},
+	}
+
+	updCmd = &cobra.Command{
+		Use:   "upd",
+		Short: "Update your secman if there's a new release.",
+		Run: func(cmd *cobra.Command, args []string) {
+			upd.Update()
 		},
 	}
 

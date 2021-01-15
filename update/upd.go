@@ -6,7 +6,7 @@ import (
 )
 
 func Update() {
-	cmd := exec.Command("gh", "auth", "login")
+	cmd := exec.Command("verx", "--upd")
 	stdout, err := cmd.Output()
 
 	if err != nil {

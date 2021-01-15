@@ -30,7 +30,8 @@ end
 sm = "secman".blue
 
 if $l == $c
-    puts "#{sm} #{$l} is already up-to-date and it's the latest release".cyan
+    al = "is already up-to-date and it's the latest release"
+    puts "#{sm} #{al} #{$l.yellow}"
     
 elsif $l != $c
     system("sudo rm -rf #{smLoc}")
