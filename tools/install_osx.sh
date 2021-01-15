@@ -8,7 +8,7 @@
 GH_RAW_URL=https://raw.githubusercontent.com/abdfnx
 smUrl=$GH_RAW_URL/secman/HEAD/release/linux/secman
 sm_unUrl=$GH_RAW_URL/secman/HEAD/packages/secman-un
-sm_syUrl=$GH_RAW_URL/secman/HEAD/api/secman-sync
+sm_syUrl=$GH_RAW_URL/secman/HEAD/api/sync/secman-sync
 smLocLD=/usr/local/bin
 
 successInstall() {
