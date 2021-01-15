@@ -10,7 +10,7 @@ def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
         shared_gh_url = "https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install"
-        
+
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
@@ -33,7 +33,7 @@ if $l == $c
     puts "#{sm} #{$l} is already up-to-date and it's the latest release".cyan
     
 elsif $l != $c
-    system("rm -rf #{smLoc}")
+    system("sudo rm -rf #{smLoc}")
 
     os
 
