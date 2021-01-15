@@ -82,7 +82,7 @@ RUN brew install gh && \
     $UPD_s
 
 COPY Gemfile ./
-RUN sudo bundle install && sudo rm -rf Gemfile*
+RUN bundle install && sudo rm -rf Gemfile*
 
 ### secman ###
 RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/abdfnx/secman/HEAD/tools/install_linux.sh)" && \
