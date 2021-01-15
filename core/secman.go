@@ -197,6 +197,7 @@ func init() {
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(verxCmd)
+	RootCmd.AddCommand(updCmd)
 }
 
 // main
