@@ -48,7 +48,6 @@ directory, and initialize your cryptographic keys.`,
 
 	verxCmd = &cobra.Command{
 		Use:   "verx",
-		Short: "this command is only for abdfn.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println(version)
 		},
@@ -196,8 +195,8 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
-	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(updCmd)
+	RootCmd.AddCommand(verxCmd)
 }
 
 // main
