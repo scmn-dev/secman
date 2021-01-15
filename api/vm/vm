@@ -27,6 +27,7 @@ function login() {
         docker_start
     else
         _create
+        source ~/.secman/.sm_docker
         docker_start
     fi
 }
@@ -46,6 +47,12 @@ function badUsage() {
 
     printf "%s\n" "${txt[@]}"
 }
+
+if [ $# -eq 0 ]; then
+    echo "Missing options!"
+    echo "(run secman vm -h for help)"
+    exit 0
+fi
 
 while (($#)); do
     case "$1" in
