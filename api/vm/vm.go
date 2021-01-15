@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func Checker() {
+func Main() {
 	cmd := exec.Command("cgit", "--smd")
 	stdout, err := cmd.Output()
 

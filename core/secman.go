@@ -110,7 +110,7 @@ Will prompt for confirmation when a site path is not unique.`,
 		Short:   "Generate a secure password",
 		Example: "secman generate",
 		Long: `Prints a randomly generated password. The length of this password defaults
-to 24. If a password length is specified as greater than 2048 then generate
+to (24). If a password length is specified as greater than 2048 then generate
 will fail.`,
 		Args: cobra.RangeArgs(0, 1),
 		Run: func(cmd *cobra.Command, args []string) {

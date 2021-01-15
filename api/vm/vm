@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function _help() {
-    cgit --smd -s
+    cgit --smd_s
     local u=(
         "Flags:"
         "   -h | --help: help about any command"
@@ -14,7 +14,7 @@ function _help() {
 }
 
 function login() {
-    cgit --smd -w
+    cgit --smd_w
     sm_docker_dir=~/.secman/.sm_docker
 
     docker_start() {
@@ -62,7 +62,7 @@ while (($#)); do
     
     -c | --cid)
         _create
-        cgit --smd -c
+        cgit --smd_c
         exit 0
         ;;
 
