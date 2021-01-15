@@ -4,7 +4,7 @@ require 'rbconfig'
 $l = `verx abdfnx/secman -l`
 $c = `secman verx`
 
-smLoc = "/usr/local/bin/secman"
+smLoc = "/usr/local/bin/secman*"
 
 def os
     @os ||= (
