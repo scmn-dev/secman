@@ -26,7 +26,6 @@ function usage() {
     printf "%s\n" "${u[@]}"
 }
 
-
 function repo_work() {
     local csi="cgit secman-i"
     local rdm="echo \"# My secman passwords - $SM_GH_UN\" >> README.md"
@@ -120,8 +119,7 @@ function badUsage() {
 }
 
 version() {
-    r="abdfnx/secman"
-    v="verx $r -l"
+    v="secman ver"
 
     if [ -x "$(command -v verx)" ]; then
         ${v}
