@@ -13,6 +13,7 @@ import (
 	"github.com/abdfnx/secman/v5/show"
 	"github.com/abdfnx/secman/v5/tools"
 	"github.com/abdfnx/secman/v5/update"
+	"github.com/abdfnx/secman/v5/api/vm"
 	"github.com/spf13/cobra"
 )
 
@@ -46,6 +47,14 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
+	vmCmd = &cobra.Command{
+		Use:   "vm",
+		Short: "secman virtaul machine (with docker).",
+		Run: func(cmd *cobra.Command, args []string) {
+			vm.Main()
+		},
+	}
+
 	verxCmd = &cobra.Command{
 		Use:   "verx",
 		Run: func(cmd *cobra.Command, args []string) {
@@ -55,8 +64,8 @@ directory, and initialize your cryptographic keys.`,
 
 	initCmd = &cobra.Command{
 		Use:   "init",
-		Short: "Initialize your secman vault",
-		Long:  "Initialize the .secman directory, and generate your secret keys",
+		Short: "Initialize your secman vault.",
+		Long:  "Initialize the .secman directory, and generate your secret keys.",
 		Run: func(cmd *cobra.Command, args []string) {
 			initialize.Init()
 			checker.Checker()
@@ -73,7 +82,7 @@ directory, and initialize your cryptographic keys.`,
 
 	insertCmd = &cobra.Command{
 		Use:     "insert",
-		Short:   "Insert a file or password in to your vault",
+		Short:   "Insert a file or password in to your vault.",
 		Example: "secman insert core/docker.com",
 		Args:    cobra.RangeArgs(1, 2),
 		Long: `Add a site to your password store. This site can optionally be a part
@@ -107,7 +116,7 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	generateCmd = &cobra.Command{
 		Use:     "generate",
-		Short:   "Generate a secure password",
+		Short:   "Generate a secure password.",
 		Example: "secman generate",
 		Long: `Prints a randomly generated password. The length of this password defaults
 to (24). If a password length is specified as greater than 2048 then generate
@@ -136,7 +145,7 @@ will fail.`,
 		Example: "secman find bank.com",
 		Short:   "Find a site that contains the site-path.",
 		Long: `Prints all sites that contain the site-path. Used to print just
-one group or all sites that contain a certain word in the group or name`,
+one group or all sites that contain a certain word in the group or name.`,
 		Args: cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
@@ -147,7 +156,7 @@ one group or all sites that contain a certain word in the group or name`,
 
 	renameCmd = &cobra.Command{
 		Use:     "rename",
-		Short:   "Rename an entry in the password vault",
+		Short:   "Rename an entry in the password vault.",
 		Example: "secman rename core/docker.com",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
@@ -196,6 +205,7 @@ func init() {
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(updCmd)
+	RootCmd.AddCommand(vmCmd)
 	RootCmd.AddCommand(verxCmd)
 }
 

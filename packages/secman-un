@@ -4,8 +4,7 @@ goodBye() {
     echo "secman was uninstalled successfully... thanks you to trying secman"
 }
 
-smLoc=/usr/local/bin/secman
-sm_unLoc=/usr/local/bin/secman-un
+smLoc=/usr/local/bin/secman*
 SECDIR=~/.secman
 
 clearAllData() {
@@ -25,6 +24,7 @@ clearAllData() {
                 fi
             fi
         fi
+    
     elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
         echo "ok"
     fi
@@ -42,9 +42,9 @@ installManx() {
 
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc $sm_unLoc
+        sudo manx $smLoc
     else
-        manx $smLoc $sm_unLoc
+        manx $smLoc
     fi
 
     clearAllData
@@ -52,9 +52,9 @@ manxopa() {
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc $sm_unLoc
+        sudo rm -rf $smLoc
     else
-        rm -rf $smLoc $sm_unLoc
+        rm -rf $smLoc
     fi
 
     clearAllData
@@ -87,6 +87,7 @@ if [ -x "$(command -v secman)" ]; then
                 manxopa
             fi
         fi
+    
     elif [ "$un" == "rm" ]; then
         rmOpa
     fi
@@ -96,6 +97,7 @@ if [ -x "$(command -v secman)" ]; then
     else
         echo "there's error while uninstalling secman"
     fi
+
 else
     echo "there's no secman 😐"
 fi
