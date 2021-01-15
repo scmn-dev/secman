@@ -28,7 +28,7 @@ function usage() {
 
 function repo_work() {
     local csi="cgit secman-i"
-    local rdm="echo \"# My secman passwords - $SM_GH_UN\" >> README.md"
+    local rdm="echo \"# My secman passwords - $SM_GH_UN\" >> $SECDIR/README.md"
 
     ${cd_SECDIR}
 
