@@ -23,4 +23,3 @@ OptionParser.new do |opts|
     check
   end
 end.parse!
-
