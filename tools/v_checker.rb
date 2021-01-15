@@ -1,9 +1,9 @@
 require 'optparse'
 $l = `verx abdfnx/secman -l`
-# $c = "./test"
+$c = `secman ver`
 
 def check()
-    if $l == ""
+    if `\"#{$l}\"` == `\"#{$c}\"`
         # _n
         puts "same"
     else

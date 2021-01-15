@@ -11,7 +11,7 @@ import (
 	"github.com/abdfnx/secman/v4/insert"
 	"github.com/abdfnx/secman/v4/pio"
 	"github.com/abdfnx/secman/v4/show"
-	"github.com/abdfnx/secman/v4/tools"
+	// "github.com/abdfnx/secman/v4/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -172,5 +172,5 @@ func init() {
 // main
 func main() {
 	RootCmd.Execute()
-	checker.Checker()
+	// checker.Checker()
 }

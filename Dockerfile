@@ -98,6 +98,7 @@ RUN zsh && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 RUN echo 'ZSH_THEME="af-magic"' >> $src && \
-    echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src
+    echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src && \
+    alias s="source $src"
 
 ENTRYPOINT ["zsh"]
