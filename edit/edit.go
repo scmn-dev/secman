@@ -16,8 +16,8 @@ import (
 
 	"golang.org/x/crypto/nacl/box"
 
-	"github.com/abdfnx/secman/v4/pc"
-	"github.com/abdfnx/secman/v4/pio"
+	"github.com/abdfnx/secman/v5/pc"
+	"github.com/abdfnx/secman/v5/pio"
 )
 
 // Remove is used to remove a site entry from the password vault given a path.

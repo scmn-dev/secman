@@ -5,13 +5,13 @@ import (
 	// "os/exec"
 	"strconv"
 
-	"github.com/abdfnx/secman/v4/edit"
-	"github.com/abdfnx/secman/v4/generate"
-	"github.com/abdfnx/secman/v4/initialize"
-	"github.com/abdfnx/secman/v4/insert"
-	"github.com/abdfnx/secman/v4/pio"
-	"github.com/abdfnx/secman/v4/show"
-	// "github.com/abdfnx/secman/v4/tools"
+	"github.com/abdfnx/secman/v5/edit"
+	"github.com/abdfnx/secman/v5/generate"
+	"github.com/abdfnx/secman/v5/initialize"
+	"github.com/abdfnx/secman/v5/insert"
+	"github.com/abdfnx/secman/v5/pio"
+	"github.com/abdfnx/secman/v5/show"
+	"github.com/abdfnx/secman/v5/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -31,12 +31,23 @@ directory, and initialize your cryptographic keys.`,
 			} else {
 				cmd.Help()
 			}
+
+			checker.Checker()
 		},
 	}
 
 	versionCmd = &cobra.Command{
 		Use:   "ver",
 		Short: "Print the version of your secman binary.",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println(version)
+			checker.Checker()
+		},
+	}
+
+	verxCmd = &cobra.Command{
+		Use:   "verx",
+		Short: "this command is only for abdfn.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println(version)
 		},
@@ -48,6 +59,7 @@ directory, and initialize your cryptographic keys.`,
 		Long:  "Initialize the .secman directory, and generate your secret keys",
 		Run: func(cmd *cobra.Command, args []string) {
 			initialize.Init()
+			checker.Checker()
 		},
 	}
 
@@ -68,6 +80,8 @@ Will prompt for confirmation when a site path is not unique.`,
 				pathName := args[0]
 				insert.Password(pathName)
 			}
+
+			checker.Checker()
 		},
 	}
 
@@ -79,6 +93,7 @@ Will prompt for confirmation when a site path is not unique.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			show.Site(path, copyPass)
+			checker.Checker()
 		},
 	}
 
@@ -103,6 +118,7 @@ will fail.`,
 			}
 			pass := generate.Generate(pwlen)
 			fmt.Println(pass)
+			checker.Checker()
 		},
 	}
 
@@ -117,6 +133,7 @@ one group or all sites that contain a certain word in the group or name`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			show.Find(path)
+			checker.Checker()
 		},
 	}
 
@@ -128,6 +145,7 @@ one group or all sites that contain a certain word in the group or name`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.Rename(path)
+			checker.Checker()
 		},
 	}
 
@@ -140,6 +158,7 @@ one group or all sites that contain a certain word in the group or name`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.Edit(path)
+			checker.Checker()
 		},
 	}
 
@@ -152,6 +171,7 @@ one group or all sites that contain a certain word in the group or name`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.RemovePassword(path)
+			checker.Checker()
 		},
 	}
 )
@@ -167,10 +187,10 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
+	RootCmd.AddCommand(verxCmd)
 }
 
 // main
 func main() {
 	RootCmd.Execute()
-	// checker.Checker()
 }

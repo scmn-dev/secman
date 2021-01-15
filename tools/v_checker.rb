@@ -1,13 +1,13 @@
 require 'optparse'
 $l = `verx abdfnx/secman -l`
-$c = `secman ver`
+$c = `secman verx`
 
 def check()
-    if `\"#{$l}\"` == `\"#{$c}\"`
+    if $l != $c
         # _n
-        puts "same"
-    else
         puts "not same"
+    else
+        puts "same"
     end
 end
 

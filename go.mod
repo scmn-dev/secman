@@ -1,9 +1,8 @@
-module github.com/abdfnx/secman/v4
+module github.com/abdfnx/secman/v5
 
 go 1.15
 
 require (
-	github.com/ahmetb/govvv v0.3.0 // indirect
 	github.com/atotto/clipboard v0.1.2
 	github.com/spf13/cobra v1.1.1
 	golang.org/x/crypto v0.0.0-20201221181555-eec23a3978ad
