@@ -9,16 +9,7 @@
 
 ## Installation ⬇
 
-## secman with [docker][dkUrl]  (_Recommended_)
 
-> you can create secman virtual machine by [docker][dkUrl]
-
-```sh
-❯ docker pull abdcodedoc/secman:latest
-❯ docker run -t -i --privileged abdcodedoc/secman
-```
-
-## without docker
 
 `secman` requires [Go][goUrl] version 1.11 or later.
 
