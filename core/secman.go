@@ -142,7 +142,7 @@ will fail.`,
 	findCmd = &cobra.Command{
 		Use:     "find",
 		Aliases: []string{"ls"},
-		Example: "secman find bank.com",
+		Example: "secman find code.com",
 		Short:   "Find a site that contains the site-path.",
 		Long: `Prints all sites that contain the site-path. Used to print just
 one group or all sites that contain a certain word in the group or name.`,
