@@ -1,8 +1,7 @@
 #!/bin/bash
 
 SM_GH_UN=$(git config user.name)
-desc="your greate secman passwords in github repo"
-create="gh repo create $SM_GH_UN/.secman -y --private -d $desc"
+create="gh repo create $SM_GH_UN/.secman -y --private"
 brew_gh="brew install gh"
 SECDIR=~/.secman
 cd_SECDIR="cd $SECDIR"
@@ -29,9 +28,11 @@ function usage() {
 
 function repo_work() {
     local csi="cgit secman-i"
-    local rdm="touch $SECDIR/README.md && echo '# My secman passwords - $SM_GH_UN' >> $SECDIR/README.md"
+    local rdm="echo '# My secman passwords - $SM_GH_UN' >> $SECDIR/README.md"
 
     ${cd_SECDIR}
+
+    touch $SECDIR/README.md
 
     ${rdm}
 
