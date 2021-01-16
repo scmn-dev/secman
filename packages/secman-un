@@ -4,7 +4,10 @@ goodBye() {
     echo "secman was uninstalled successfully... thanks you to trying secman"
 }
 
-smLoc=/usr/local/bin/secman*
+usrLoc=/usr/local/bin
+smLoc=$usrLoc/secman*
+cgitLoc=$usrLoc/cgit
+verxLoc=$usrLoc/verx
 SECDIR=~/.secman
 
 clearAllData() {
@@ -35,6 +38,7 @@ clearAllData() {
 installManx() {
     if [ -x "$(command -v sudo)" ]; then
         sudo npm i -g @abdfnx/manx
+    
     else
         npm i -g @abdfnx/manx
     fi
@@ -42,9 +46,10 @@ installManx() {
 
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc
+        sudo manx $smLoc $cgitLoc $verxLoc
+    
     else
-        manx $smLoc
+        manx $smLoc $cgitLoc $verxLoc
     fi
 
     clearAllData
@@ -52,9 +57,10 @@ manxopa() {
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc
+        sudo rm -rf $smLoc $cgitLoc $verxLoc
+    
     else
-        rm -rf $smLoc
+        rm -rf $smLoc $cgitLoc $verxLoc
     fi
 
     clearAllData
@@ -67,6 +73,7 @@ if [ -x "$(command -v secman)" ]; then
     if [ "$un" == "manx" ]; then
         if [ -x "$(command -v manx)" ]; then
             manxopa
+        
         else
             # if [ -x "$(command -v sudo)" ]; then
             #     sudo npm i -g @abdfnx/manx
@@ -83,6 +90,7 @@ if [ -x "$(command -v secman)" ]; then
             # fi
 
             installManx
+
             if [ -x "$(command -v manx)" ]; then
                 manxopa
             fi
@@ -94,6 +102,7 @@ if [ -x "$(command -v secman)" ]; then
 
     if ! [ -f "$smLoc" ]; then
         goodBye
+    
     else
         echo "there's error while uninstalling secman"
     fi
