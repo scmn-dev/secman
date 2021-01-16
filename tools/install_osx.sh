@@ -20,6 +20,10 @@ installBrew() {
 }
 
 installSecman_&_Tools() {
+    # install deps
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
+    
     # secman
     sudo wget -P $smLocLD $smUrl
 
