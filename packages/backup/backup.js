@@ -72,11 +72,11 @@ const mkdir = () => {
 }
 
 function repo_work () {
-    mkdir();
-    rdm();
-    create();
+    // mkdir();
+    // rdm();
+    // create();
     executeCommand(
-        `cp -r ~/.secman ~/.secman.bk && gh repo create ${SM_GH_UN}/.secman.bk -y --private && cd ~/.secman.bk && cgit secman-ibk`
+        `cp -r ~/.secman ~/.secman.bk && gh repo create ${exec(`git config user.name`)}/.secman.bk -y --private && cd ~/.secman.bk && cgit secman-ibk`
     );
 }
 
