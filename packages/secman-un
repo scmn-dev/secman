@@ -31,8 +31,10 @@ clearAllData() {
     elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
         echo "ok"
     fi
+    
+    SM_GH_UN=$(git config user.name)
 
-    echo "after clear, you can find your old .secman in ~/.local/share/Trash if you want to restore it"
+    echo "after clear, you can find your old .secman in ~/.local/share/Trash if you want to restore it\nor you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 }
 
 installManx() {
