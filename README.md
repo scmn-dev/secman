@@ -8,7 +8,7 @@
 `secman is meant to be secure enough that you can publicly post your vault.`
 
 ## Installation ⬇
-
+_working on add `secman` to linux package managers_
 
 
 `secman` requires [Go][goUrl] version 1.11 or later.
