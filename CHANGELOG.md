@@ -2,7 +2,7 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
-## [v5.0.2] 2021-01-15
+## [[v5.0.2] 2021-01-15](#)
 
 ### Added
 
@@ -20,7 +20,7 @@ M **backup** command
   - Github url
 - Fix **vm** command with `CID`
 
-## [v5.0.1] 2021-01-15
+## [[v5.0.1] 2021-01-15](#)
 
 ### Added
 
@@ -35,7 +35,7 @@ M **backup** command
 
 - Fix secman version command
 
-## [v5.0.0] 2021-01-14
+## [[v5.0.0] 2021-01-14](#)
 
 ### Added
 
@@ -53,7 +53,7 @@ M **backup** command
 
 Nothing
 
-## [v4.0.0] 2021-01-12
+## [[v4.0.0] 2021-01-12](#)
 
 ### Added
 
@@ -68,11 +68,11 @@ Nothing
 
 - Fix secman installers
 
-## [v3.0.1] 2021-01-12
+## [[v3.0.1] 2021-01-12](#)
 
 Release for tests
 
-## [v3.0.0] 2021-01-10
+## [[v3.0.0] 2021-01-10](#)
 
 ### Added
 
@@ -87,7 +87,7 @@ Release for tests
 
 Nothing
 
-## [v2.0.0] 2020-12-27
+## [[v2.0.0] 2020-12-27](#)
 
 ### Added
 
