@@ -99,6 +99,6 @@ RUN zsh && \
 
 RUN echo 'ZSH_THEME="af-magic"' >> $src && \
     echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src && \
-    alias s="source $src"
+    echo 'alias s="source $src"' >> $src
 
-ENTRYPOINT ["zsh"]
+ENTRYPOINT ["zsh", "source $src"]
