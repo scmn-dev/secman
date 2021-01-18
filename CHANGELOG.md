@@ -35,7 +35,7 @@ M **backup** command
 
 - Fix secman version command
 
-## [[v5.0.0] 2021-01-14](#v501-2021-01-15)
+## [[v5.0.0] 2021-01-14](#v500-2021-01-14)
 
 ### Added
 
