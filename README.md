@@ -188,7 +188,7 @@ you should authenticate by [`gh cli`](https://cli.github.com) to use **sync** fe
 ❯ secman-sync sync
 ```
 
-if you sync your passwords for first time, `create` command will create a private github repo and store the passwords on it
+if you sync your passwords for first time, `sync` command will create a private github repo and store the passwords on it
 
 `secman-sync sy` is an alias of `secman-sync sync`
 
@@ -224,7 +224,7 @@ alias: `secman-sync pl`
 
 #### getting help
 
-```sh
+```code
 ❯ secman-sync --help | -h
 ```
 
