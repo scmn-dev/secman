@@ -39,7 +39,7 @@ Finally, to learn more you can either read about the commands listed in this REA
 
 The `--help` argument can be used on any subcommand to describe it and see documentation or examples 😉.
 
-## Configuring secman
+## Configuring secman with _*`.secman`*_
 
 The `SECDIR` environment variable specifies the directory that your vault is in.
 
