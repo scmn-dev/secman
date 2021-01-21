@@ -15,10 +15,10 @@ _working on add `secman` to linux package managers_
 
 ```sh
 # wsl/linux
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install_linux.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
 
 # macOS
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install_osx.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh)"
 ```
 
 ## Getting started with secman
