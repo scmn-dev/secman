@@ -2,6 +2,31 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
+## [[v5.1.0] 2021-01-22](#v502-2021-01-22)
+
+### Added
+
+- Finish from `vm` command
+- Finish from `backup` command
+- Add [Dockerfile](https://github.com/secman-team/secman/blob/main/api/vm/Dockerfile) for `vm`
+- Create _**docs**_ folder in secman repo
+- Create **secman-team** org
+- **.secman.yml**
+- builds files
+
+### Changed
+
+- MV installer files to another repo: [install repo](https://github.com/secman-team/install)
+- Change secman logo [<img src=".github/assets/icon.svg" align="center" width="15">](#)
+- Transfer secman from `abdfnx/secman` to `secman-team/secman`
+- Update README.md
+
+### Fixed
+
+- Fix a lot of backup errors
+- Fix urls errors in `secman` installers & tools, `cgit` & `verx`
+- Fix all sync problems & errors
+
 ## [[v5.0.2] 2021-01-15](#v502-2021-01-15)
 
 ### Added
