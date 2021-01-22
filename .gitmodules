@@ -12,3 +12,8 @@
 	path = api/cgit
 	url = https://github.com/secman-team/corgit.git
 	ignore = dirty
+
+[submodule "verx"]
+	path = api/verx
+	url = https://github.com/abdfnx/verx.git
+	ignore = dirty
