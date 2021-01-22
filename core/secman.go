@@ -14,6 +14,7 @@ import (
 	"github.com/abdfnx/secman/v5/tools"
 	"github.com/abdfnx/secman/v5/update"
 	"github.com/abdfnx/secman/v5/api/vm"
+	"github.com/abdfnx/secman/v5/api/sync"
 	"github.com/spf13/cobra"
 )
 
@@ -99,6 +100,7 @@ Will prompt for confirmation when a site path is not unique.`,
 			}
 
 			checker.Checker()
+			sync.PushSync()
 		},
 	}
 

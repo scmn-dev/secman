@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func Update() {
+func PushSync() {
 	cmd := exec.Command("secman-sync", "ph")
 	stdout, err := cmd.Output()
 
