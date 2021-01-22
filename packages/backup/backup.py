@@ -82,7 +82,7 @@ def _clone():
     os.system(clone)
 
 def badUsage():
-    print("Flag not recognized.\nFor an overview of the command, execute: secman backup -h")
+    print("Flag not recognized.\nFor an overview of the command, execute: secman-sync backup -h")
 
 def version():
     os.system("secman ver")

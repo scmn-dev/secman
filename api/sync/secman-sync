@@ -120,6 +120,10 @@ function badUsage() {
     printf "%s\n" "${txt[@]}"
 }
 
+bkp() {
+    python3 <(wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/backup/backup.py) $1
+}
+
 version() {
     v="secman ver"
 
@@ -167,6 +171,10 @@ while (($#)); do
         exit 0
         ;;
 
+    backup)
+        bkp $2
+        exit 0
+        ;;
     *)
         badUsage "flag/command not recognized."
         exit 0
