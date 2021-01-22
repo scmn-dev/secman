@@ -7,7 +7,7 @@ import (
 
 func PushSync() {
 	fmt.Println("syncing...")
-	cmd := exec.Command("secman-sync", "ph")
+	cmd := exec.Command("secman-sync", "phx")
 	stdout, err := cmd.Output()
 
 	if err != nil {

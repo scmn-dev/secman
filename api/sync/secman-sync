@@ -124,6 +124,12 @@ bkp() {
     python3 <(wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/backup/backup.py) $1
 }
 
+_phx() {
+    git add .
+    git commit -m "new secman password"
+    git push
+}
+
 version() {
     v="secman ver"
 
@@ -163,6 +169,11 @@ while (($#)); do
 
     push | ph)
         corgit-ph
+        exit 0
+        ;;
+
+    phx)
+        _phx
         exit 0
         ;;
 
