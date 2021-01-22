@@ -6,6 +6,7 @@ import (
 )
 
 func PushSync() {
+	fmt.Println("syncing...")
 	cmd := exec.Command("secman-sync", "ph")
 	stdout, err := cmd.Output()
 
