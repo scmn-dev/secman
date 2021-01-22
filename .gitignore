@@ -17,8 +17,7 @@
 tests
 !tools/tests
 
-# js
-node_modules/
+build/
 
 # secret_key
 secret_key.rb
