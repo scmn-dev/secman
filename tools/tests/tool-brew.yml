@@ -1,0 +1,9 @@
+- desc: it should run
+  command: [brew, --version]
+  assert:
+  - status == 0
+  - stdout.indexOf("Homebrew") != -1
+- desc: it should pass the selftest
+  command: [brew, doctor]
+  assert:
+  - stderr.indexOf("error") == -1

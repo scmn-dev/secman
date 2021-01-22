@@ -1,4 +1,14 @@
 [submodule "web"]
 	path = web
-	url = https://github.com/abdfnx/secman-site.git
+	url = https://github.com/secman-team/web.git
+	ignore = dirty
+
+[submodule "install"]
+	path = tools/install
+	url = https://github.com/secman-team/install.git
+	ignore = dirty
+
+[submodule "cgit"]
+	path = api/cgit
+	url = https://github.com/secman-team/corgit.git
 	ignore = dirty

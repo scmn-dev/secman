@@ -4,7 +4,7 @@ require 'rbconfig'
 $l = `verx abdfnx/secman -l`
 $c = `secman verx`
 
-smLoc = "/usr/local/bin/secman*"
+smLoc = "/usr/local/bin/secman"
 
 def os
     @os ||= (
@@ -34,7 +34,7 @@ if $l == $c
     puts "#{sm} #{al} #{$l.yellow}"
     
 elsif $l != $c
-    system("sudo rm -rf #{smLoc}")
+    system("sudo rm -rf #{smLoc}*")
 
     os
 

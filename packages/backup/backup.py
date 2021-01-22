@@ -27,8 +27,8 @@ def repo_work():
     rdm = 'touch {}/README.md && echo "# My secman backup passwords - {}" >> {}/README.md'.format(SECDIR, SM_GH_UN, SECDIR)
 
     # copy ~/.secman to ~/.secman.bk
-    sp.getoutput("cp -rf {} {}".format(SECDIR_primary, SECDIR))
-    sp.getoutput(cd_SECDIR)
+    sp.getoutput("cp -rf {} {} && cd {}".format(SECDIR_primary, SECDIR, SECDIR))
+    sp.getoutput("git init")
     sp.getoutput(rdm)
     sp.getoutput(create)
     sp.getoutput(csi)

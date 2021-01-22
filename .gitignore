@@ -15,6 +15,10 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 tests
+!tools/tests
 
 # js
 node_modules/
+
+# secret_key
+secret_key.rb

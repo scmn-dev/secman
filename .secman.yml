@@ -1,0 +1,4 @@
+.secman:
+  # name of the password
+  - Secman/Build-Go
+  - secret_key.rb

@@ -1,24 +1,23 @@
-# [<img src="https://raw.githubusercontent.com/abdfnx/secman/HEAD/.github/assets/secman.svg" align="center">][smUrl]
+# [<img src=".github/assets/secman.svg" width="300" align="center">][smUrl]
 
-[!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=purple)](https://github.com/abdfnx/secman/discussions)
-[![MIT LICENSE](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/abdfnx/secman/blob/main/LICENSE)
+[!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=blue&style=flat)](https://github.com/secman-team/secman/discussions)
+[![MIT LICENSE](https://img.shields.io/github/license/secman-team/secman?color=blue&label=License&style=flat)][mitUrl]
+![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)
 
-> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src="https://raw.githubusercontent.com/abdfnx/secman/HEAD/.github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 `secman is meant to be secure enough that you can publicly post your vault.`
 
 ## Installation ⬇
+
 _working on add `secman` to linux package managers_
-
-
-`secman` requires [Go][goUrl] version 1.11 or later.
 
 ```sh
 # wsl/linux
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install_linux.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
 
 # macOS
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install_osx.sh)"
+❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh)"
 ```
 
 ## Getting started with secman
@@ -33,7 +32,7 @@ Please enter a strong master password:
 
 Finally, to learn more you can either read about the commands listed in this README or run:
 
-```sh
+```code
 ❯ secman help
 ```
 
@@ -228,6 +227,8 @@ alias: `secman-sync pl`
 ❯ secman-sync --help | -h
 ```
 
+> for more go to [docs](https://github.com/secman-team/secman/tree/main/docs)
+
 ## CRYPTOGRAPHY DETAILS
 
 ### Generating Passwords
@@ -268,30 +269,9 @@ if you want yo update/uninstall `secman`, you should type
 
 [secman][smUrl] is licensed under the terms of [MIT](https://github.com/abdfnx/secman/blob/main/LICENSE) License
 
-```
-MIT License
-
-Copyright (c) 2020 abdfnx
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+[MIT][mitUrl]
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.web.app
 [dkUrl]: https://docker.com
+[mitUrl]: https://github.com/abdfnx/secman/blob/main/LICENSE

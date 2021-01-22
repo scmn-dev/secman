@@ -2,12 +2,17 @@
 
 function _help() {
     cgit --smd_s
+
     local u=(
         "Flags:"
-        "   -h | --help: help about any command"
-        "   -l | --login: login to secman vm"
-        "   -c | --cid: create secman docker container id"
-        "   -q | --quit: quit from secman vm"
+        "   h | help | --help: help about any command"
+        "   l | login: login to secman vm"
+        "   c | cid: create secman docker container id"
+        "   q | quit: quit from secman vm"
+        " "
+        "Steps:"
+        "   1- run secman vm c/cid to create docker container id"
+        "   2- after create cid, run secman vm l/login"
     )
 
     printf "%s\n" "${u[@]}"
@@ -18,29 +23,27 @@ function login() {
     sm_docker_dir=~/.secman/.sm_docker
 
     docker_start() {
-        source ~/.secman/.sm_docker
+        source $sm_docker_dir
         docker start -a -i $CID
     }
 
     if [ -f $sm_docker_dir ]; then
-        source ~/.secman/.sm_docker
         docker_start
     else
         _create
-        source ~/.secman/.sm_docker
         docker_start
     fi
 }
 
 _create() {
-    echo "CID=$(docker create -t -i abdcodedoc/secman)" >> ~/.secman/.sm_docker
+    echo "CID=$(docker create -t -i abdcodedoc/secman:vm)" >> $sm_docker_dir
 }
 
 function badUsage() {
     local msg="$1"
     local txt=(
         "For an overview of the command, execute:"
-        "secman vm -h"
+        "secman vm --help"
     )
 
     [[ $msg ]] && printf "$msg\n"
@@ -50,33 +53,33 @@ function badUsage() {
 
 if [ $# -eq 0 ]; then
     echo "Missing options!"
-    echo "(run secman vm -h for help)"
+    echo "(run secman vm --help for help)"
     exit 0
 fi
 
 while (($#)); do
     case "$1" in
 
-    --help | -h)
+    --help | -h | help)
         _help
         exit 0
         ;;
 
-    --login | -l)
+    login | l)
         login
         exit 0
         ;;
-    
-    -c | --cid)
+
+    cid | c)
         _create
         cgit --smd_c
         exit 0
         ;;
 
-    --quit | -q)
+    quit | q)
         exit
         ;;
-    
+
     *)
         badUsage "flag/command not recognized."
         exit 0
