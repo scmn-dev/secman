@@ -11,8 +11,8 @@ All notable changes to secman will be documented in **CHANGELOG.md**
 - Add [Dockerfile](https://github.com/secman-team/secman/blob/main/api/vm/Dockerfile) for `vm`
 - Create _**docs**_ folder in secman repo
 - Create **secman-team** org
-- **.secman.yml**
-- builds files
+- Add **.secman.yml**
+- Create builds files
 
 ### Changed
 
