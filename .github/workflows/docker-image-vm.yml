@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  CID: CID=$(docker create -t -i abdcodedoc/secman:vm)
+  CID: CID=$(docker create -t -i abdcodedoc/secman:vm) >> .sm_docker
 
 jobs:
   build:
@@ -18,9 +18,13 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
   
-  run:    
+  run:
+    needs: [build]
+    
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run the Docker image
-        run: docker start -a -i $CID
+        run: |
+          source .sm_docker
+          docker start -a -i $CID
