@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI (VM)
 
 on:
   push:
@@ -6,13 +6,32 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  # TODO: Change variable to your image's name.
+  CID: container
+
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
+    
+  create_cid:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create CID (Container ID)
+        run: echo "CID=$(docker create -t -i abdcodedoc/secman:vm)"
+  
+  run:
+    needs: [create_cid]
+    
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run the Docker image
+        run: docker start -a -i $CID
