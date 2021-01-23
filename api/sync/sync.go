@@ -6,14 +6,18 @@ import (
 )
 
 func PushSync() {
-	fmt.Println("syncing...")
-	cmd := exec.Command("secman-sync", "phx")
-	stdout, err := cmd.Output()
-
-	if err != nil {
-		fmt.Println(err.Error())
-		return
+	if _, err := os.Stat("~/.secman/.git"); err != nil {
+		if os.IsNotExist(err) {
+			fmt.Println("syncing...")
+			cmd := exec.Command("secman-sync", "phx")
+			stdout, err := cmd.Output()
+		
+			if err != nil {
+				fmt.Println(err.Error())
+				return
+			}
+		
+			fmt.Print(string(stdout))
+		}
 	}
-
-	fmt.Print(string(stdout))
 }

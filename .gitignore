@@ -5,6 +5,7 @@
 *.so
 *.dylib
 *.class
+*.lock
 
 # Test binary, built with `go test -c`
 *.test

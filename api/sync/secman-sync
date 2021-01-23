@@ -32,8 +32,6 @@ function repo_work() {
 
     ${cd_SECDIR}
 
-    touch $SECDIR/README.md
-
     ${rdm}
 
     ${create}
@@ -125,6 +123,7 @@ bkp() {
 }
 
 _phx() {
+    ${cd_SECDIR}
     git add .
     git commit -m "new secman password"
     git push

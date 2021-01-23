@@ -90,10 +90,12 @@ def version():
 def make_main():
     """
     1. check if ~/.secman is not exist
+     then
         1. copy ~/.secman.bk to ~/.secman
         2. change git remote
 
     2. if ~/.secman is exist
+     then
         execute this msg '~/.secman is exist'
     """
 
@@ -140,7 +142,7 @@ def main(argv):
             _pl()
             sys.exit()
 
-        elif opt in ("-M", "--Main"):
+        elif opt in ("-m", "-M", "--Main"):
             make_main()
             sys.exit()
 

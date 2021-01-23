@@ -117,7 +117,7 @@ Will prompt for confirmation when a site path is not unique.`,
 	}
 
 	generateCmd = &cobra.Command{
-		Use:     "generate",
+		Use:     "gen",
 		Short:   "Generate a secure password.",
 		Example: "secman generate",
 		Long: `Prints a randomly generated password. The length of this password defaults

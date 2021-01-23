@@ -6,8 +6,8 @@ goodBye() {
 
 usrLoc=/usr/local/bin
 smLoc=$usrLoc/secman*
-cgitLoc=$usrLoc/cgit
-verxLoc=$usrLoc/verx
+cgitLoc=$usrLoc/cgit*
+verxLoc=$usrLoc/verx*
 SECDIR=~/.secman
 
 clearAllData() {

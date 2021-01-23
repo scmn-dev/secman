@@ -2,6 +2,37 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
+## [[v5.1.1] 2021-01-23](#v511-2021-01-23)
+
+### Added
+
+- Add secman CI
+- Update **upd** command
+
+### Changed
+
+- Change `secman-sync` 👇
+
+```code
+secman insert hi/code
+Enter password for hi/code:
+
+syncing...
+[trunk 3b86a48] new secman password
+ 2 files changed, 40 insertions(+)
+ create mode 100644 files/hi/code
+```
+
+> When you insert or remove a password, `secman-sync` automatically well sync **.secman**
+
+- Update **backup** command
+- **genetate** command is changed, it's now **gen** command
+
+### Fixed
+
+- Fix url errors
+- Fix CI actions
+
 ## [[v5.1.0] 2021-01-22](#v510-2021-01-22)
 
 ### Added
@@ -10,7 +41,7 @@ All notable changes to secman will be documented in **CHANGELOG.md**
 - Finish from `backup` command
 - Add [Dockerfile](https://github.com/secman-team/secman/blob/main/api/vm/Dockerfile) for `vm`
 - Create _**docs**_ folder in secman repo
-- Create **secman-team** org
+- Create **[secman-team](https://github.com/secman-team)** org
 - Add **.secman.yml**
 - Create builds files
 
