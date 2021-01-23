@@ -76,7 +76,7 @@ RUN $UPD_s && \
 
 # install cli apps (gh, corgit, manx and verx) & install ruby deps from gemfile
 RUN brew install gh && \
-    /bin/bash -c "$(curl -fsSL $GITHUB_URL/Dev-x-Team/corgit/main/setup)" && \
+    /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/corgit/main/setup)" && \
     sudo npm i -g @abdfnx/manx && \
     /bin/bash -c "$(curl -fsSL $GITHUB_URL/abdfnx/verx/HEAD/install.sh)" && \
     $UPD_s
@@ -85,7 +85,7 @@ COPY Gemfile ./
 RUN bundle install && sudo rm -rf Gemfile*
 
 ### secman ###
-RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/abdfnx/secman/HEAD/tools/install_linux.sh)" && \
+RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/secman/HEAD/tools/install_linux.sh)" && \
     $UPD_s
 
 # zsh
