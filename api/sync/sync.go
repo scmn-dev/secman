@@ -2,6 +2,7 @@ package sync
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 )
 

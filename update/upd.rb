@@ -14,7 +14,7 @@ end
 def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
-        shared_gh_url = "https://raw.githubusercontent.com/abdfnx/secman/HEAD/tools/install"
+        shared_gh_url = "https://raw.githubusercontent.com/secman-team/install/HEAD/install"
 
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
