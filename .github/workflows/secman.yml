@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  install:
+  core:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -20,21 +20,9 @@ jobs:
           wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/Gemfile
           sudo gem install bundler
           bundle install
-    
-  build:
-    needs: [install]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
+        
       - name: Clone .secman (ex folder)
         run: git clone https://github.com/secman-team/.secman.ex .secman
-    
-  run_secman:
-    needs: [install, build]
-    runs-on: ubuntu-latest
-    
-    steps:
-      - uses: actions/checkout@v2
+        
       - name: Run secman
         run: secman
