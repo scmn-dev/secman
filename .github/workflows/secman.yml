@@ -1,0 +1,40 @@
+name: Secman CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: Install secman
+        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
+        
+      - name: Install ruby deps from secman Gemfile
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/secman-team/secman/Gemfile
+          sudo gem install bundler
+          bundle install
+    
+  build:
+    needs: [install]
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Clone .secman (ex folder)
+        run: git clone https://github.com/secman-team/.secman.ex .secman
+    
+  run_secman:
+    needs: [install, build]
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run secman
+        run: secman
