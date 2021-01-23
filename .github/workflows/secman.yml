@@ -22,7 +22,7 @@ jobs:
           bundle install
         
       - name: Clone .secman (ex folder)
-        run: git clone https://github.com/secman-team/.secman.ex .secman
+        run: git clone https://github.com/secman-team/.secman.ex ~/.secman
         
       - name: Run secman
         run: secman
