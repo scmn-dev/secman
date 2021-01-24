@@ -1,3 +1,0 @@
-[submodule "install"]
-	path = install
-	url = https://github.com/secman-team/install.git
