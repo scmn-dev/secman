@@ -2,19 +2,18 @@ package main
 
 import (
 	"fmt"
-	// "os/exec"
 	"strconv"
 
-	"github.com/abdfnx/secman/v5/edit"
-	"github.com/abdfnx/secman/v5/generate"
-	"github.com/abdfnx/secman/v5/initialize"
-	"github.com/abdfnx/secman/v5/insert"
-	"github.com/abdfnx/secman/v5/pio"
-	"github.com/abdfnx/secman/v5/show"
-	"github.com/abdfnx/secman/v5/tools"
-	"github.com/abdfnx/secman/v5/update"
-	"github.com/abdfnx/secman/v5/api/vm"
-	"github.com/abdfnx/secman/v5/api/sync"
+	"github.com/secman-team/secman/v5/edit"
+	"github.com/secman-team/secman/v5/gen"
+	"github.com/secman-team/secman/v5/initialize"
+	"github.com/secman-team/secman/v5/insert"
+	"github.com/secman-team/secman/v5/pio"
+	"github.com/secman-team/secman/v5/show"
+	checker "github.com/secman-team/tools"
+	"github.com/secman-team/secman/v5/update"
+	"github.com/secman-team/secman/v5/api/vm"
+	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/spf13/cobra"
 )
 

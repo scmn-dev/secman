@@ -10,8 +10,8 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/abdfnx/secman/v5/pc"
-	"github.com/abdfnx/secman/v5/pio"
+	"github.com/secman-team/secman/v5/pc"
+	"github.com/secman-team/secman/v5/pio"
 )
 
 type searchType int

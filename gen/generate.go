@@ -1,9 +1,8 @@
-package generate
+package gen
 
 import (
 	"log"
-
-	"github.com/abdfnx/secman/v5/pc"
+	"github.com/secman-team/secman/v5/pc"
 )
 
 var (
