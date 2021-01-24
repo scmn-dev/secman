@@ -13,9 +13,7 @@
 [![MIT LICENSE](https://img.shields.io/github/license/secman-team/secman?color=blue&label=License&style=flat)][mitUrl]
 ![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)
 
-> stores, retrieves, generates, and synchronizes passwords and files securely and is written in [<img src=".github/assets/go.svg" align="center" width="30">][goUrl] 💪! The most important difference is secman is not GPG based. Instead it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
-
-`secman is meant to be secure enough that you can publicly post your vault.`
+> `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in go! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 ## Installation ⬇
 
@@ -240,19 +238,7 @@ alias: `secman-sync pl`
 
 ## CRYPTOGRAPHY DETAILS
 
-### Generating Passwords
-
-Password generation takes place in the pc package by using the GeneratePassword function. GeneratePassword creates a random password by reading a large amount of randomness using the `func Read([]byte) (int, error)` function in the `crypto/rand` package.
-
-The block of randomness is then read byte-by-byte. Printable characters that match the desired password specification (uppercase, lowercase, symbols, and digits) are then included in the generated password.
-
-### Adding A Site
-
-When a site is added to the password store, a new public private key pair is generated. The newly generated private key, the user's master public key, and a securely generated nonce are used to encrypt the sites data.
-
-The encryption and key computation are done using the `golang.org/x/crypto/nacl/box` package which uses Curve25519, XSalsa20, and Poly1305 to encrypt and authenticate the site's data.
-
-After the site information is added, the site's generated private key is thrown away.
+- see [docs/cryptography](https://github.com/secman-team/secman/blob/main/docs/cryptography.md)
 
 ## Update/Uninstall [secman][smUrl]
 
