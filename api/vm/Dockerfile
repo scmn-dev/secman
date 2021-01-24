@@ -89,6 +89,6 @@ RUN zsh && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 RUN sudo rm -rf $src
-RUN wget $GITHUB_URL/secman-team/secman/HEAD/tools/.zshrc
+RUN wget $GITHUB_URL/secman-team/tools/core/.zshrc
 
 CMD /bin/bash -c "source .zshrc"

@@ -2,10 +2,6 @@
 	path = web
 	url = https://github.com/secman-team/web.git
 
-[submodule "install"]
-	path = tools/install
-	url = https://github.com/secman-team/install.git
-
 [submodule "cgit"]
 	path = api/cgit
 	url = https://github.com/secman-team/corgit.git
@@ -13,3 +9,7 @@
 [submodule "verx"]
 	path = api/verx
 	url = https://github.com/abdfnx/verx.git
+
+[submodule "tools"]
+	path = tools
+	url = https://github.com/secman-team/tools.git
