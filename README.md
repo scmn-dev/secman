@@ -13,7 +13,7 @@
 [![MIT LICENSE](https://img.shields.io/github/license/secman-team/secman?color=blue&label=License&style=flat)][mitUrl]
 ![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)
 
-> `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in go! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in [<img src=".github/assets/go.svg" width="23" align="center">][smUrl]! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 ## Installation ⬇
 
@@ -125,10 +125,10 @@ If you want to securely update a password for an already existing site, the edit
 ### Generating a password
 
 ```code
-❯ secman generate
+❯ secman gen
 %L4^!s,Rry!}s:U<QwliL{vQKow321-!tr}:232
 
-❯ secman generate 8
+❯ secman gen 8
 #%Xy1t7E
 ```
 
@@ -180,7 +180,7 @@ All subcommands support the `--help` flag.
 
 ## `secman-sync`
 
-#### auth
+### auth
 
 you should authenticate by [`gh cli`](https://cli.github.com) to use **sync** feature
 

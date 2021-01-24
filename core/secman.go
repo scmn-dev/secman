@@ -165,6 +165,7 @@ one group or all sites that contain a certain word in the group or name.`,
 			path := args[0]
 			edit.Rename(path)
 			checker.Checker()
+			sync.PushSync()
 		},
 	}
 
@@ -178,6 +179,7 @@ one group or all sites that contain a certain word in the group or name.`,
 			path := args[0]
 			edit.Edit(path)
 			checker.Checker()
+			sync.PushSync()
 		},
 	}
 
@@ -191,6 +193,7 @@ one group or all sites that contain a certain word in the group or name.`,
 			path := args[0]
 			edit.RemovePassword(path)
 			checker.Checker()
+			sync.PushSync()
 		},
 	}
 )

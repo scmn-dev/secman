@@ -58,7 +58,7 @@ if [ $# -eq 0 ]; then
 fi
 
 while (($#)); do
-    case "$1" in
+    case "$2" in
 
     --help | -h | help)
         _help

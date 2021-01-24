@@ -9,6 +9,11 @@ If `go` is not installed, follow steps on the [Go website](https://golang.org/do
     ```sh
     # gh cli
     gh repo clone secman-team/secman
+
+    # git
+    git clone https://github.com/secman-team/secman
+
+    # after clone
     cd secman
     ```
 
@@ -16,10 +21,7 @@ If `go` is not installed, follow steps on the [Go website](https://golang.org/do
 
     ```sh
     # by default, it's installs to '/usr/local'; maybe you'll need sudo
-    make install
-
-    # if you want to install it to a different location
-    make install prefix=/path/to/secman
+    make
     ```
 
 3. Run `secman ver` to check if it worked.

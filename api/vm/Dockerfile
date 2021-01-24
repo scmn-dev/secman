@@ -7,7 +7,7 @@ ARG INS="apt-get install"
 ARG INS_s="sudo $INS"
 ARG APT_REPO="add-apt-repository"
 ARG APT_REPO_s="sudo $APT_REPO"
-ENV GITHUB_URL="https://raw.githubusercontent.com"
+ARG GITHUB_URL="https://raw.githubusercontent.com"
 ENV PKGS="zip unzip multitail curl lsof wget ssl-cert asciidoctor apt-transport-https ca-certificates gnupg-agent bash-completion build-essential htop jq software-properties-common less llvm locales man-db nano vim ruby-full "
 ENV BUILDS="build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev libbz2-dev"
 
@@ -55,7 +55,7 @@ LABEL abdcodex/test=../../tools/tests/tool-brew.yml
 
 RUN $UPD_s
 ENV TRIGGER_BREW_REBUILD=1
-RUN mkdir ~/.cache && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+RUN mkdir ~/.cache && /bin/bash -c "$(curl -fsSL $GITHUB_URL/Homebrew/install/HEAD/install.sh)"
 ENV PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin/" \
     MANPATH="$MANPATH:/home/linuxbrew/.linuxbrew/share/man" \
     INFOPATH="$INFOPATH:/home/linuxbrew/.linuxbrew/share/info" \
@@ -71,18 +71,9 @@ RUN curl -sL https://deb.nodesource.com/setup_15.x -o nodesource_setup.sh && \
 # install pkgs
 RUN $UPD_s && \
     brew install dep && \
+    brew install gh && \
     sudo gem install bundler && \
     $UPD_s
-
-# install cli apps (gh, corgit, manx and verx) & install ruby deps from gemfile
-RUN brew install gh && \
-    /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/corgit/main/setup)" && \
-    sudo npm i -g @abdfnx/manx && \
-    /bin/bash -c "$(curl -fsSL $GITHUB_URL/abdfnx/verx/HEAD/install.sh)" && \
-    $UPD_s
-
-COPY Gemfile ./
-RUN bundle install && sudo rm -rf Gemfile*
 
 ### secman ###
 RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/secman/HEAD/tools/install_linux.sh)" && \
@@ -97,8 +88,7 @@ RUN zsh && \
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-RUN echo 'ZSH_THEME="af-magic"' >> $src && \
-    echo 'plugins=( git zsh-syntax-highlighting zsh-autosuggestions )' >> $src && \
-    echo 'alias s="source ~/$src"' >> $src
+RUN sudo rm -rf $src
+RUN wget $GITHUB_URL/secman-team/secman/HEAD/tools/.zshrc
 
-ENTRYPOINT ["zsh", "source .zshrc"]
+CMD /bin/bash -c "source .zshrc"
