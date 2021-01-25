@@ -6,6 +6,7 @@ git config user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
 
 ### core ###
 cd ~/build
+git init
 git add .
 git commit -m "secman mac build"
 git branch -M main
