@@ -4,7 +4,7 @@
 sh -c "git config --global user.name '${GITHUB_ACTOR}' \
     && git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com' \
     && cd ~/build \
-    && git init && \
+    && git init \
     && git add . \
     && git commit -m \"secman mac build\" \
     && git branch -M main \
