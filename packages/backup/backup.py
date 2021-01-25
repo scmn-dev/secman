@@ -6,12 +6,14 @@ import pathlib
 # dirs
 SECDIR = "~/.secman.bk"
 SECDIR_primary = "~/.secman"
+SECDIR_url = "secman.bk"
+SECDIR_primary_url = ".secman"
 cd_SECDIR = "cd {}".format(SECDIR)
 
 # git & github
 SM_GH_UN = sp.getoutput("git config user.name")
-create = "gh repo create {}/{} -y --private".format(SM_GH_UN, SECDIR)
-clone = "gh repo clone {}/.secman.bk {}".format(SM_GH_UN, SECDIR, SECDIR)
+create = "gh repo create {}/{} -y --private".format(SM_GH_UN, SECDIR_url)
+clone = "gh repo clone {}/{} {}".format(SM_GH_UN, SECDIR_url, SECDIR)
 remote = "git remote set-url origin https://github.com/{}/.secman".format(SM_GH_UN)
 
 # pkgs
@@ -103,11 +105,11 @@ def make_main():
     SECDIR_path = pathlib.Path(home)
 
     if not SECDIR_path.exists():
-        os.system("cp {} {}".format(SECDIR, SECDIR_primary))
+        os.system("cp -rf {} {}".format(SECDIR, SECDIR_primary))
         os.system("cd {} && {}".format(SECDIR_primary, remote))
     
     else:
-        print("~/.secman is exist")
+        print("{} is exist".format(SECDIR_primary))
 
 def main(argv):
     try:
