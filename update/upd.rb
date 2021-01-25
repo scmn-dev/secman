@@ -11,8 +11,8 @@ def deps()
     system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)\"")
 end
 
-def os
-    @os ||= (
+def _os
+    @_os ||= (
         host_os = RbConfig::CONFIG['host_os']
         shared_gh_url = "https://raw.githubusercontent.com/secman-team/install/HEAD/install"
 
@@ -42,11 +42,30 @@ if $l == $c
     puts "#{sm} #{al} #{$l.yellow}"
     
 elsif $l != $c
-    system("sudo rm -rf #{smLoc}/secman*")
-    system("sudo rm -rf #{smLoc}/cgit*")
-    system("sudo rm -rf #{smLoc}/verx*")
+    @os ||= (
+        host_os = RbConfig::CONFIG['host_os']
 
-    os()
+        case host_os
+        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+            :windows
+            smLoc_win = "/usr/bin"
+
+            system("rm -rf #{smLoc_win}/secman*")
+            system("rm -rf #{smLoc_win}/cgit*")
+            system("rm -rf #{smLoc_win}/verx*")
+            deps()
+        when /darwin|mac os|linux/
+            :macosx:linux
+            system("sudo rm -rf #{smLoc}/secman*")
+            system("sudo rm -rf #{smLoc}/cgit*")
+            system("sudo rm -rf #{smLoc}/verx*")
+            deps()
+        else
+            raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
+        end
+    )
+
+    _os()
 
     puts "#{sm} was updated successfully"
 end
