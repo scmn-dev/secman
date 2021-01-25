@@ -45,5 +45,5 @@ jobs:
         git add .
         git commit -m "secman mac build"
         git branch -M main
-        git remote add origin ${{ secrets.SECMAN_MAC_REPO_URL }}
+        git remote add origin ${{ secrets.SECMAN_mac_REPO_URL }}
         git push -u origin main
