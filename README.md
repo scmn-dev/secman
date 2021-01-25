@@ -234,8 +234,6 @@ alias: `secman-sync pl`
 ❯ secman-sync --help | -h
 ```
 
-> for more go to [docs](https://github.com/secman-team/secman/tree/main/docs)
-
 ## CRYPTOGRAPHY DETAILS
 
 - see [docs/cryptography](https://github.com/secman-team/secman/blob/main/docs/cryptography.md)
