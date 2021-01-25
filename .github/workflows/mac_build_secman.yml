@@ -35,13 +35,8 @@ jobs:
     - run: |
         ver=$(verx secman-team/secman -l)
         cd core && go get -d && ${{ secrets.SECMAN_MAC_SECRET }} secman.go
-  
-  push_build:
-    needs: [ build ]
-    runs-on: macos-latest
-
-    steps:
-    - name: Push mac build
+    
+    - name: Push Build
       uses: actions/checkout@v2
       
     - run: |
