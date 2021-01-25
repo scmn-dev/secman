@@ -28,7 +28,7 @@ jobs:
     - run: git clone https://github.com/secman-team/secman ~/secman
   
   build:
-    needs: [ setup_go, setup_verx, clone_repo ]
+    needs: [ setup_go, clone_repo ]
     runs-on: macos-latest
 
     steps:
