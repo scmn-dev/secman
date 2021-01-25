@@ -19,7 +19,7 @@ jobs:
     - run: go version
   
   build:
-    needs: [ setup_go, clone_repo ]
+    needs: [ setup_go ]
     runs-on: macos-latest
 
     steps:
