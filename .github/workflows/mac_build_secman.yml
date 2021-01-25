@@ -27,7 +27,14 @@ jobs:
       uses: actions/checkout@v2
 
     - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
+    
+    - name: Auth
+      uses: actions/checkout@v2
 
+    - run: |
+        git config user.name ${{ github.actor }}
+        git config user.email ${{ secrets.P_EMAIL }}
+    
     - name: Build
       uses: actions/checkout@v2
     
