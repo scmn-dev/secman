@@ -28,13 +28,6 @@ jobs:
 
     - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
     
-    - name: Auth
-      uses: actions/checkout@v2
-
-    - run: |
-        git config user.name ${{ github.actor }}
-        git config user.email ${{ secrets.P_EMAIL }}
-    
     - name: Build
       uses: actions/checkout@v2
     
@@ -46,11 +39,4 @@ jobs:
     - name: Push Build
       uses: actions/checkout@v2
       
-    - run: |
-        cd ~/build
-        git init
-        git add .
-        git commit -m "secman mac build"
-        git branch -M main
-        git remote add origin https://github.com/secman-team/macosx
-        git push -u origin main
+    - run: bash ./git_push.sh
