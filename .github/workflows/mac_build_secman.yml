@@ -12,8 +12,8 @@ jobs:
 
     steps:
     - name: Setup Go
-    - uses: actions/setup-go@v2
-    - with:
+      uses: actions/setup-go@v2
+      with:
         go-version: 1.15
     
     - run: go version
@@ -22,42 +22,42 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Setup verx
+      uses: actions/checkout@v2
 
-      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
+    - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
   
   clone_repo:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Clone secman repo
+      uses: actions/checkout@v2
 
-      run: git clone https://github.com/secman-team/secman ~/secman
+    - run: git clone https://github.com/secman-team/secman ~/secman
   
   build:
     needs: [ setup_go, setup_verx, clone_repo ]
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Build
-      
-      run: |
+      uses: actions/checkout@v2
+    
+    # ${{ secrets.SECMAN_MAC_SECRET }} well create secman mac build in ~/build dir
+    - run: |
         ver=$(verx secman-team/secman -l)
         cd ~/secman/core && go get -d && ${{ secrets.SECMAN_MAC_SECRET }} secman.go
-        # ${{ secrets.SECMAN_MAC_SECRET }} well create secman mac build in ~/build dir
   
   push_build:
     needs: [ build ]
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Push mac build
+      uses: actions/checkout@v2
       
-      run: |
+    - run: |
         cd ~/build
         git init
         git remote set-url origin ${{ secrets.SECMAN_MAC_REPO_URL }}
