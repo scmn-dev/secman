@@ -42,7 +42,8 @@ jobs:
     - run: |
         cd ~/build
         git init
-        git remote set-url origin ${{ secrets.SECMAN_MAC_REPO_URL }}
         git add .
         git commit -m "secman mac build"
-        git push
+        git branch -M main
+        git remote add origin ${{ secrets.SECMAN_MAC_REPO_URL }}
+        git push -u origin main
