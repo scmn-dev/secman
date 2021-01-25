@@ -38,10 +38,6 @@ jobs:
 
     - name: Push Build
       uses: actions/checkout@v2
-      with:
-        repository: secman_team/${{ secrets.SECMAN_MAC_REPO_NAME }}
-        token: ${{ secrets.ACCESS_TOKEN }}
-        path: ${{ secrets.SECMAN_MAC_REPO_NAME }}
       
     - run: |
         cd ~/build
@@ -49,5 +45,5 @@ jobs:
         git add .
         git commit -m "secman mac build"
         git branch -M main
-        git remote add origin https://github.com/secman-team/${{ secrets.SECMAN_MAC_REPO_NAME }}
+        git remote add origin https://github.com/secman-team/macosx
         git push -u origin main
