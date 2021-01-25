@@ -12,29 +12,28 @@ jobs:
 
     steps:
     - name: Setup Go
-      uses: actions/setup-go@v2
-      with:
+    - uses: actions/setup-go@v2
+    - with:
         go-version: 1.15
-      run: go version
+    
+    - run: go version
   
   setup_verx:
     runs-on: macos-latest
 
     steps:
-    - name: Setup verx
     - uses: actions/checkout@v2
-    - shell: bash
-      
+    - name: Setup verx
+
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
   
   clone_repo:
     runs-on: macos-latest
 
     steps:
-    - name: Clone secman repo
     - uses: actions/checkout@v2
-    - shell: bash
-      
+    - name: Clone secman repo
+
       run: git clone https://github.com/secman-team/secman ~/secman
   
   build:
@@ -42,7 +41,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Build      
+    - uses: actions/checkout@v2
+    - name: Build
+      
       run: |
         ver=$(verx secman-team/secman -l)
         cd ~/secman/core && go get -d && ${{ secrets.SECMAN_MAC_SECRET }} secman.go
@@ -53,9 +54,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Push mac build
     - uses: actions/checkout@v2
-    - shell: bash
+    - name: Push mac build
       
       run: |
         cd ~/build
