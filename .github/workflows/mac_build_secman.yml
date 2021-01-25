@@ -39,4 +39,4 @@ jobs:
     - name: Push Build
       uses: actions/checkout@v2
       
-    - run: bash ./git_push.sh
+    - run: bash .github/workflows/git_push.sh
