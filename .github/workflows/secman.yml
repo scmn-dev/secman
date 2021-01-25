@@ -15,12 +15,6 @@ jobs:
       - name: Install secman
         run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
         
-      - name: Install ruby deps from secman Gemfile
-        run: |
-          wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/Gemfile
-          sudo gem install bundler
-          bundle install
-        
       - name: Clone .secman (ex folder)
         run: git clone https://github.com/secman-team/.secman.ex ~/.secman
         

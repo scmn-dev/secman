@@ -134,7 +134,7 @@ will fail.`,
 					pwlen = pwlenint
 				}
 			}
-			pass := generate.Generate(pwlen)
+			pass := gen.Generate(pwlen)
 			fmt.Println(pass)
 			checker.Checker()
 		},
