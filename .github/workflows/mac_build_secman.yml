@@ -47,4 +47,6 @@ jobs:
     - name: Push Build
       uses: actions/checkout@v2
       
-    - run: crystal .github/workflows/git_push.cr
+    - run: |
+        ls -al
+        crystal .github/workflows/git_push.cr
