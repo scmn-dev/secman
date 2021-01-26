@@ -20,9 +20,6 @@ jobs:
   
   setup_crystal:
     runs-on: macos-latest
-
-    container:
-      image: crystallang/crystal
     
     steps:
       - name: Setup Crystall
