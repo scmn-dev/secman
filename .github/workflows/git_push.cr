@@ -3,3 +3,4 @@ system "git config --global user.email \"${GITHUB_ACTOR}@users.noreply.github.co
 system "git add secman-osx"
 system "git commit -m \"add secman mac build\""
 system "git push -u origin main"
+system "ls -al"
