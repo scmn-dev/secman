@@ -1,5 +1,5 @@
 system "git config --global user.name \"${GITHUB_ACTOR}\""
 system "git config --global user.email \"${GITHUB_ACTOR}@users.noreply.github.com\""
-system "git add -A"
+system "git add ."
 system "git commit -m \"add secman mac build\""
 system "git push -u origin HEAD"

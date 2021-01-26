@@ -7,22 +7,17 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
-  
-  push:
-    needs: [ build ]
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Push the Docker image
-        run: docker push abdcodedoc/secman:vm
+      uses: actions/checkout@v2
+    - run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
+    
+    - name: Push the Docker image
+      uses: actions/checkout@v2
+    - run: docker push abdcodedoc/secman:vm
   
   run:
     needs: [ build ]
