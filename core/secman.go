@@ -11,7 +11,7 @@ import (
 	"github.com/secman-team/secman/v5/pio"
 	"github.com/secman-team/secman/v5/show"
 	"github.com/secman-team/secman/v5/upgrade"
-	"github.com/secman-team/secman/v5/upgrade/plugins"
+	"github.com/secman-team/secman/v5/plugins"
 	"github.com/secman-team/secman/v5/api/vm"
 	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/spf13/cobra"

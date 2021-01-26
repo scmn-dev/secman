@@ -1,13 +1,13 @@
 require 'colorize'
 require 'rbconfig'
 
-$l = `verx abdfnx/secman -l`
+$l = `verx secman-team/secman -l`
 $c = `secman verx`
 
 smLoc = "/usr/local/bin"
 
 def deps()
-    system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Dev-x-Team/corgit/main/setup)\"")
+    system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/secman-team/corgit/main/setup)\"")
     system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)\"")
 end
 
@@ -53,13 +53,11 @@ elsif $l != $c
             system("rm -rf #{smLoc_win}/secman*")
             system("rm -rf #{smLoc_win}/cgit*")
             system("rm -rf #{smLoc_win}/verx*")
-            deps()
         when /darwin|mac os|linux/
             :macosx_linux
             system("sudo rm -rf #{smLoc}/secman*")
             system("sudo rm -rf #{smLoc}/cgit*")
             system("sudo rm -rf #{smLoc}/verx*")
-            deps()
         else
             raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
         end
