@@ -26,7 +26,7 @@ syncing...
 > When you insert or remove a password, `secman-sync` automatically well sync **.secman**
 
 - Update **backup** command
-- **genetate** command is changed, it's now **gen** command
+- **generate** command is changed, it's now **gen** command
 
 ### Fixed
 

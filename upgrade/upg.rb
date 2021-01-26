@@ -55,7 +55,7 @@ elsif $l != $c
             system("rm -rf #{smLoc_win}/verx*")
             deps()
         when /darwin|mac os|linux/
-            :macosx:linux
+            :macosx && :linux
             system("sudo rm -rf #{smLoc}/secman*")
             system("sudo rm -rf #{smLoc}/cgit*")
             system("sudo rm -rf #{smLoc}/verx*")

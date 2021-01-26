@@ -18,8 +18,20 @@ jobs:
     
     - run: go version
   
+  setup_crystal:
+    runs-on: macos-latest
+
+    container:
+      image: crystallang/crystal
+    
+    steps:
+      - name: Setup Crystall
+        uses: actions/checkout@v2
+      
+      - run: crystal -v
+  
   build:
-    needs: [ setup_go ]
+    needs: [ setup_go, setup_crystal ]
     runs-on: macos-latest
 
     steps:
@@ -39,4 +51,4 @@ jobs:
     - name: Push Build
       uses: actions/checkout@v2
       
-    - run: bash .github/workflows/git_push.sh
+    - run: crystal .github/workflows/git_push.cr
