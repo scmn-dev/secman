@@ -84,7 +84,7 @@ Enter password for accounts/ionic:
 
 Inserting a password in to your vault is easy. If you wish to group multiple entries together, it can be accomplished by prepending a group name followed by a slash to the pass-name.
 
-Here we are adding ionic to the password store within the money group.
+Here we are adding ionic to the password store within the accounts group.
 
 ### Inserting a file 📝
 
