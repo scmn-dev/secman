@@ -24,8 +24,8 @@ jobs:
     
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
       - name: Run the Docker image
-        run: |
+        uses: actions/checkout@v2
+      - run: |
           CID=$(docker create -t -i abdcodedoc/secman:vm)
           docker start -a -i $CID
