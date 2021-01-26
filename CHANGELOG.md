@@ -2,6 +2,20 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
+## [[v5.1.2] 2021-01-26](#v512-2021-01-26)
+
+### Added
+
+- Update `vm` command _in docker section_
+
+### Changed
+
+- **upd** command now is **upg** and it's alias is `upgrade`
+
+### Fixed
+
+- Fix verx urls in upgrade command
+
 ## [[v5.1.1] 2021-01-23](#v511-2021-01-23)
 
 ### Added
