@@ -20,7 +20,7 @@ jobs:
     - run: docker push abdcodedoc/secman:vm
   
   run:
-    needs: [ build ]
+    needs: [ build_and_push ]
     
     runs-on: ubuntu-latest
     steps:
