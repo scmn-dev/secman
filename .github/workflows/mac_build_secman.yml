@@ -18,20 +18,8 @@ jobs:
     
     - run: go version
   
-  setup_crystal:
-    runs-on: macos-latest
-    
-    steps:
-      - name: Setup Crystall
-        uses: MeilCli/setup-crystal-action@v4
-        with: 
-          crystal_version: 0.35.1
-          shards_version: 0.11.1
-      
-      - run: crystal -v
-  
   build:
-    needs: [ setup_go, setup_crystal ]
+    needs: [ setup_go ]
     runs-on: macos-latest
 
     steps:
@@ -40,6 +28,14 @@ jobs:
 
     - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)"
     
+    - name: Setup crystal
+      uses: MeilCli/setup-crystal-action@v4
+      with: 
+        crystal_version: 0.35.1
+        shards_version: 0.11.1
+      
+    - run: crystal -v
+
     - name: Build
       uses: actions/checkout@v2
     
