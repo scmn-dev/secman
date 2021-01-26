@@ -67,5 +67,5 @@ elsif $l != $c
 
     _os()
 
-    puts "#{sm} was updated successfully"
+    puts "#{sm} was upgraded successfully"
 end

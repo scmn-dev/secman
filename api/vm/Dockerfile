@@ -8,7 +8,7 @@ ARG INS_s="sudo $INS"
 ARG APT_REPO="add-apt-repository"
 ARG APT_REPO_s="sudo $APT_REPO"
 ARG GITHUB_URL="https://raw.githubusercontent.com"
-ENV PKGS="zip unzip multitail curl lsof wget ssl-cert asciidoctor apt-transport-https ca-certificates gnupg-agent bash-completion build-essential htop jq software-properties-common less llvm locales man-db nano vim ruby-full "
+ENV PKGS="zip unzip multitail curl lsof wget ssl-cert asciidoctor apt-transport-https ca-certificates gnupg-agent bash-completion build-essential htop jq software-properties-common less llvm locales man-db nano vim ruby-full"
 ENV BUILDS="build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libsqlite3-dev libreadline-dev libffi-dev libbz2-dev"
 
 RUN $UPD && $INS -y $PKGS && $UPD && \
@@ -72,14 +72,13 @@ RUN curl -sL https://deb.nodesource.com/setup_15.x -o nodesource_setup.sh && \
 RUN $UPD_s && \
     brew install dep && \
     brew install gh && \
-    sudo gem install bundler && \
     $UPD_s
 
 ### secman ###
 RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/secman/HEAD/tools/install_linux.sh)" && \
     $UPD_s
 
-# zsh
+### zsh ###
 RUN brew install zsh
 ENV src=".zshrc"
 RUN zsh && \
@@ -88,7 +87,12 @@ RUN zsh && \
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+# rm old files
 RUN sudo rm -rf $src
-RUN wget $GITHUB_URL/secman-team/tools/core/.zshrc
+RUN sudo rm -rf .oh-my-zsh/oh-my-zsh.sh
+
+# wget new files
+RUN wget $GITHUB_URL/secman-team/tools/HEAD/.zshrc && \
+    wget $GITHUB_URL/secman-team/tools/HEAD/oh-my-zsh.sh
 
 CMD /bin/bash -c "source .zshrc"

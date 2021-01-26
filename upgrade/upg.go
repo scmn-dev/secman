@@ -1,12 +1,12 @@
-package upd
+package upg
 
 import (
 	"fmt"
 	"os/exec"
 )
 
-func Update() {
-	cmd := exec.Command("verx", "--upd")
+func Upgrade() {
+	cmd := exec.Command("verx", "--upg")
 	stdout, err := cmd.Output()
 
 	if err != nil {

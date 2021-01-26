@@ -11,7 +11,7 @@ import (
 	"github.com/secman-team/secman/v5/pio"
 	"github.com/secman-team/secman/v5/show"
 	checker "github.com/secman-team/tools"
-	"github.com/secman-team/secman/v5/update"
+	"github.com/secman-team/secman/v5/upgrade"
 	"github.com/secman-team/secman/v5/api/vm"
 	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/spf13/cobra"
@@ -72,11 +72,12 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
-	updCmd = &cobra.Command{
-		Use:   "upd",
-		Short: "Update your secman if there's a new release.",
+	upgCmd = &cobra.Command{
+		Use:   "upg",
+		Aliases: []string{"upgrade"},
+		Short: "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
-			upd.Update()
+			upg.Upgrade()
 		},
 	}
 
@@ -117,6 +118,7 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	generateCmd = &cobra.Command{
 		Use:     "gen",
+		Aliases: []string{"generate"},
 		Short:   "Generate a secure password.",
 		Example: "secman generate",
 		Long: `Prints a randomly generated password. The length of this password defaults
@@ -208,7 +210,7 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
-	RootCmd.AddCommand(updCmd)
+	RootCmd.AddCommand(upgCmd)
 	RootCmd.AddCommand(vmCmd)
 	RootCmd.AddCommand(verxCmd)
 }
