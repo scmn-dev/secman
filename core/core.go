@@ -52,6 +52,7 @@ directory, and initialize your cryptographic keys.`,
 		Short: "secman virtaul machine (with docker).",
 		Run: func(cmd *cobra.Command, args []string) {
 			vm.Main()
+			checker.Checker()
 		},
 	}
 
@@ -136,6 +137,7 @@ will fail.`,
 					pwlen = pwlenint
 				}
 			}
+
 			pass := gen.Generate(pwlen)
 			fmt.Println(pass)
 			checker.Checker()
@@ -200,7 +202,7 @@ one group or all sites that contain a certain word in the group or name.`,
 )
 
 func init() {
-	showCmd.PersistentFlags().BoolVarP(&copyPass, "copy", "c", false, "Copy your password to the clipboard")
+	// showCmd.PersistentFlags().BoolVarP(&copyPass, "copy", "c", true, "Copy your password to the clipboard")
 	RootCmd.AddCommand(findCmd)
 	RootCmd.AddCommand(generateCmd)
 	RootCmd.AddCommand(initCmd)
