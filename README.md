@@ -1,14 +1,5 @@
 # [<img src=".github/assets/secman.svg" width="300" align="center">][smUrl]
 
-```sm
-███████╗╗███████╗ ██████╗███╗   ███╗ █████╗ ███╗    ███╗
-██╔════╝║██╔════╝██╔════╝████╗ ████║██╔══██╗█████   ███║
-███████╗║█████╗  ██║     ██╔████╔██║███████║███║███ ███║
-╚════██║║██╔══╝  ██║     ██║╚██╔╝██║██╔══██║███║  █████║
-███████║║███████╗╚██████╗██║ ╚═╝ ██║██║  ██║███║    ███║
-╚══════╝╚═══════╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚══╝    ╚══╝
-```
-
 [!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=blue&style=flat)](https://github.com/secman-team/secman/discussions)
 [![MIT LICENSE](https://img.shields.io/github/license/secman-team/secman?color=blue&label=License&style=flat)][mitUrl]
 ![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)
@@ -21,10 +12,10 @@ _working on add `secman` to linux package managers_
 
 ```sh
 # wsl/linux
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
+❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 
 # macOS
-❯ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh)"
+❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
 ```
 
 ## Getting started with secman

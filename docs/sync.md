@@ -13,9 +13,9 @@
 
 ## Backup
 
-> sometimes, you maybe forget your ~/.secman dir & you delete your USERNAME/.secman
+> sometimes, you maybe forget your `~/.secman` dir & you delete your USERNAME/.secman repo
 
-after sync your .secman, you should type `secman-sync backup init`
+after sync your `.secman`, you should type `secman-sync backup init`
 
 ### Commmands
 
