@@ -42,7 +42,7 @@ jobs:
     # ${{ secrets.SECMAN_MAC_SECRET }} well create secman mac build in ~/build dir
     - run: |
         ver=$(verx secman-team/secman -l)
-        cd core && go get -d && ${{ secrets.SECMAN_MAC_SECRET }} secman.go
+        cd core && go get -d && ${{ secrets.SECMAN_MAC_SECRET }} core.go
 
     - name: Push Build
       uses: actions/checkout@v2
