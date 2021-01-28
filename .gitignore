@@ -19,6 +19,7 @@ tests
 !tools/tests
 
 build/
+!build/build-workflows-status.md
 
 # secret_key
 secret_key.rb
