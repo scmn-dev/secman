@@ -7,11 +7,12 @@
     "guid": "b92bf70d-4605-494e-9cad-b201695220b2",
     "items": [
       "build/win/secman.exe",
-      "build/win/secman-sync.exe",
+      "api/sync/secman-sync",
       "api/verx/verx",
       "api/cgit/cgit",
-      "build/win/verx.bat",
-      "build/win/cgit.bat"
+      "build/win/secman-sync.exe",
+      "build/win/verx.exe",
+      "build/win/cgit.exe"
     ]
   },
   "env": {
