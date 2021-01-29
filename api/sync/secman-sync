@@ -1,126 +1,193 @@
-#!/usr/bin/env python
+#!/bin/bash
 
-import os
-import sys, getopt
-import subprocess as sp
-
-# dirs
-SECDIR = "~/.secman"
-SECDIR_url = ".secman"
-cd_SECDIR = "cd {}".format(SECDIR)
-
-# git & github
-SM_GH_UN = sp.getoutput("git config user.name")
-create = "gh repo create {}/{} -y --private".format(SM_GH_UN, SECDIR_url)
-clone = "gh repo clone {}/{} {}".format(SM_GH_UN, SECDIR_url, SECDIR)
+SM_GH_UN=$(git config user.name)
+create="gh repo create $SM_GH_UN/.secman -y --private"
+brew_gh="brew install gh"
+SECDIR=~/.secman
+cd_SECDIR="cd $SECDIR"
 
 # pkgs
-ghraw_url = "https://raw.githubusercontent.com"
+ghraw_url="https://raw.githubusercontent.com"
+install_cgit="/bin/bash -c "$(curl -fsSL $ghraw_url/secman-team/corgit/main/setup)""
+install_brew="/bin/bash -c "$(curl -fsSL $ghraw_url/Homebrew/install/HEAD/install.sh)""
+install_verx="/bin/bash -c "$(curl -fsSL $ghraw_url/abdfnx/verx/HEAD/install.sh)""
 
-def install(_url):
-    return "/bin/bash -c \"$(curl -fsSL {}/{})\"".format(ghraw_url, _url)
+function usage() {
+    local u=(
+        "Flags:"
+        "   -h | --help: help about any command"
+        "Commands:"
+        "   sy | sync: create private github repo and sync your passwords on it by git"
+        "   cn | clone: clone .secman repo"
+        "   ph | push: push and commit a new secret"
+        "   pl | pull: pull secret/s"
+    )
 
-install_brew = install("Homebrew/install/HEAD/install.sh")
-install_cgit = install("secman-team/corgit/main/setup")
-install_verx = install("abdfnx/verx/HEAD/install.sh")
+    printf "%s\n" "${u[@]}"
+}
 
-brew_gh = "brew install gh"
+function repo_work() {
+    local csi="cgit secman-i"
+    local rdm="echo '# My secman passwords - $SM_GH_UN' >> $SECDIR/README.md"
 
-def _help():
-    print("Flags:\n\t-h | --help: help about any command\n\t-s | --sync: create private github repo and sync your passwords on it by git\n\t-c | --clone: clone .secman repo\n\t-p | --push: push and commit a new secret\n\t-l | --pull: pull secret/s")
+    ${cd_SECDIR}
 
-def sync():
-    csi = "cgit secman-i"
-    rdm = 'touch {}/README.md && echo "# My secman passwords - {}" >> {}/README.md'.format(SECDIR, SM_GH_UN, SECDIR)
+    ${rdm}
 
-    os.system("{} && {} && {} && {}".format(cd_SECDIR, rdm, create, csi))
+    ${create}
 
-def repo():
-    try:
-        devnull = open(os.devnull)
-        sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
-        sync()
-    except OSError:
-        sp.getoutput(brew_gh)
+    ${csi}
+}
 
-        try:
-            devnull = open(os.devnull)
-            sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
-            sync()
-        
-        except OSError:
-            sp.getoutput(install_brew)
+function repo() {
+    if [ -x "$(command -v gh)" ]; then
+        repo_work
+    else
+        if [ -x "$(command -v brew)" ]; then
+            ${brew_gh}
 
-            try:
-                devnull = open(os.devnull)
-                sp.Popen(["brew"], stdout=devnull, stderr=devnull).communicate()
-                sp.getoutput(brew_gh)
+            if [ -x "$(command -v gh)" ]; then
+                repo_work
+            fi
+        else
+            ${install_brew}
 
-                try:
-                    devnull = open(os.devnull)
-                    sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
-                    sync()
-                
-                except OSError:
-                    print("sorry, there's an error while initialize a backup, try again")
-        
-            except OSError:
-                print("you should install brew\nhttps://brew.sh")
-        return False
-    
-    return True
+            if [ -x "$(command -v brew)" ]; then
+                ${brew_gh}
 
-def _ph():
-    os.system("{} && cgit ph".format(cd_SECDIR))
+                if [ -x "$(command -v gh)" ]; then
+                    repo_work
+                fi
+            fi
+        fi
+    fi
+}
 
-def _pl():
-    os.system("{} && cgit pl".format(cd_SECDIR))
+function corgit-ph() {
+    local push="cgit ph"
 
-def _clone():
-    os.system(clone)
+    if [ -x "$(command -v cgit)" ]; then
+        ${cd_SECDIR}
+        ${push}
+    else
+        ${install_cgit}
 
-def badUsage():
-    print("Flag not recognized.\nFor an overview of the command, execute: secman-sync -h")
+        if [ -x "$(command -v cgit)" ]; then
+            ${cd_SECDIR}
+            ${push}
+        fi
+    fi
+}
 
-def version():
-    os.system("secman ver")
+function corgit-pl() {
+    local pull="cgit pl"
 
-def main(argv):
-    try:
-      opts, args = getopt.getopt(argv, "hscvpl", ["help", "sync", "clone", "push", "pull"])
+    if [ -x "$(command -v cgit)" ]; then
+        ${cd_SECDIR}
+        ${pull}
+    else
+        ${install_cgit}
 
-    except getopt.GetoptError:
-      badUsage()
-      sys.exit(2)
-    
-    for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            _help()
-            sys.exit()
-        
-        elif opt in ("-s", "--sync"):
-            sync()
-            sys.exit()
+        if [ -x "$(command -v cgit)" ]; then
+            ${cd_SECDIR}
+            ${pull}
+        fi
+    fi
+}
 
-        elif opt in ("-c", "--clone"):
-            _clone()
-            sys.exit()
+function clonex() {
+    local clone="gh repo clone $SM_GH_UN/.secman $SECDIR"
 
-        elif opt in ("-v", "--version"):
-            version()
-            sys.exit()
-        
-        elif opt in ("-p", "--push"):
-            _ph()
-            sys.exit()
+    if [ -d $SECDIR ]; then
+        rm -rf $SECDIR
+        ${clone}
+    else
+        ${clone}
+    fi
+}
 
-        elif opt in ("-l", "--pull"):
-            _pl()
-            sys.exit()
+function badUsage() {
+    local msg="$1"
+    local txt=(
+        "For an overview of the command, execute:"
+        "secman-sync -h"
+    )
 
-        else:
-            badUsage()
-            sys.exit()
-        
-if __name__ == "__main__":
-   main(sys.argv[1:])
+    [[ $msg ]] && printf "$msg\n"
+
+    printf "%s\n" "${txt[@]}"
+}
+
+bkp() {
+    python3 <(wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/backup/backup.py) $1
+}
+
+_phx() {
+    ${cd_SECDIR}
+    git add .
+    git commit -m "new secman password"
+    git push
+}
+
+version() {
+    v="secman ver"
+
+    if [ -x "$(command -v verx)" ]; then
+        ${v}
+    else
+        ${install_verx}
+
+        if [ -x "$(command -v verx)" ]; then
+            ${v}
+        fi
+    fi
+}
+
+while (($#)); do
+    case "$1" in
+
+    --help | -h)
+        usage
+        exit 0
+        ;;
+
+    --version | -v)
+        version
+        exit 0
+        ;;
+
+    sync | sy)
+        repo
+        exit 0
+        ;;
+
+    clone | cn)
+        clonex
+        exit 0
+        ;;
+
+    push | ph)
+        corgit-ph
+        exit 0
+        ;;
+
+    phx)
+        _phx
+        exit 0
+        ;;
+
+    pull | pl)
+        corgit-pl
+        exit 0
+        ;;
+
+    backup)
+        bkp $2
+        exit 0
+        ;;
+    *)
+        badUsage "flag/command not recognized."
+        exit 0
+        ;;
+    esac
+done

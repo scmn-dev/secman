@@ -19,8 +19,7 @@ def _os
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_win.sh)\"")
-            deps()
+            puts "secman upd command is only supported for "
         when /darwin|mac os/
             :macosx
             system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_osx.sh)\"")

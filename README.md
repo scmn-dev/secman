@@ -18,27 +18,35 @@ _working on add `secman` to linux package managers_
 ❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
 ```
 
-### Windows
+## Windows
 
-`secman` is available via [scoop](https://scoop.sh), [chocolatey](https://chocolatey.org), and as downloadable MSI.
+`secman` is available via [scoop](https://scoop.sh), and as downloadable MSI.
 
-#### scoop
-
-> install:
+### scoop
 
 ```pwsh
 ❯ scoop install secman
 ```
 
-#### chocolatey
+Note: if you use `git bash`, you can write this command
 
-```pwsh
-❯ choco install secman
+```sh
+❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_win.sh | bash
 ```
 
-#### MSI
+### MSI
 
-MSI installers are available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
+> MSI installers are available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
+
+## Code Status
+
+![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
+![Docker](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20Image%20CI%20(VM)?color=blue&label=Docker%20Image%20Build&logo=docker)
+![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
+![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI)
+![CircleCI](https://img.shields.io/circleci/build/gh/secman-team/secman?color=blue&label=CircleCI&logo=circleci)
+
+---
 
 ## Getting started with secman
 
@@ -257,9 +265,9 @@ if you want yo update/uninstall `secman`, you should type
 
 ### Update
 
-Note: `secman upd` & `secman-un` are only supported in **linux/mac**
+Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you use `git bash` in windows, you can use **`upd`** command
 
-#### Linux/Mac
+#### Linux/Mac/Git Bash
 
 > `update by secman upd`
 
@@ -267,14 +275,10 @@ Note: `secman upd` & `secman-un` are only supported in **linux/mac**
 ❯ secman upd
 ```
 
-#### Windows
+#### in Windows
 
 ```pwsh
-# if you install secman by scoop
-❯ scoop update secman
-
-# by chocolatey
-❯ choco upgrade secman
+❯ scoop upgrade secman
 ```
 
 ### Uninstall
@@ -283,6 +287,16 @@ Note: `secman upd` & `secman-un` are only supported in **linux/mac**
 
 ```sh
 ❯ secman-un
+```
+
+#### For Windows
+
+> you can uninstall secman from your **control panel**
+
+**or you can uninstall it by `scoop`**
+
+```sh
+scoop uninstall secman
 ```
 
 ## License

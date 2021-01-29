@@ -1,0 +1,21 @@
+{
+  "version": "5.1.2",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/secman-team/secman/releases/download/v5.1.2/secman_windows_v5.1.2_x64.rar",
+      "bin": [
+        "core/secman.exe",
+        "core/secman-sync",
+        "core/verx",
+        "core/cgit",
+        "core/secman-sync.exe",
+        "core/verx.exe",
+        "core/cgit.exe"
+      ],
+      "hash": ""
+    }
+  },
+  "homepage": "https://github.com/secman-team/secman",
+  "license": "MIT",
+  "description": "Secman"
+}
