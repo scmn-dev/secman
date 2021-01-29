@@ -18,6 +18,28 @@ _working on add `secman` to linux package managers_
 ❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
 ```
 
+### Windows
+
+`secman` is available via [scoop](https://scoop.sh), [chocolatey](https://chocolatey.org), and as downloadable MSI.
+
+#### scoop
+
+> install:
+
+```pwsh
+❯ scoop install secman
+```
+
+#### chocolatey
+
+```pwsh
+❯ choco install secman
+```
+
+#### MSI
+
+MSI installers are available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
+
 ## Getting started with secman
 
 Create a vault and specify the directory to store passwords in. You will be prompted for your master password:
@@ -235,10 +257,24 @@ if you want yo update/uninstall `secman`, you should type
 
 ### Update
 
+Note: `secman upd` & `secman-un` are only supported in **linux/mac**
+
+#### Linux/Mac
+
 > `update by secman upd`
 
 ```sh
 ❯ secman upd
+```
+
+#### Windows
+
+```pwsh
+# if you install secman by scoop
+❯ scoop update secman
+
+# by chocolatey
+❯ choco upgrade secman
 ```
 
 ### Uninstall
