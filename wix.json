@@ -28,11 +28,5 @@
       }
     ]
   },
-  "shortcuts": {},
-  "choco": {
-    "description": "secure your password, sync it",
-    "project-url": "https://github.com/secman-team/secman",
-    "tags": "secman cli security password-manager",
-    "license-url": "https://github.com/secman-team/secman/blob/main/LICENSE"
-  }
+  "shortcuts": {}
 }

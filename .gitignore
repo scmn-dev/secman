@@ -19,7 +19,6 @@ tests
 !tools/tests
 
 build/
-__pycache__
 
 # ignored files
 # 1. build/secman-linux
