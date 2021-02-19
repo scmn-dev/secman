@@ -119,12 +119,12 @@ function badUsage() {
 }
 
 bkp() {
-    python3 <(wget -qO- https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/backup/backup.py) $1
+    python3 ~/sm/backup.py $1
 }
 
 _phx() {
     ${cd_SECDIR}
-    git add .
+    git add .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
     git commit -m "new secman password"
     git push
 }
@@ -132,12 +132,12 @@ _phx() {
 version() {
     v="secman ver"
 
-    if [ -x "$(command -v verx)" ]; then
+    if [ -f ~/sm/verx ]; then
         ${v}
     else
         ${install_verx}
 
-        if [ -x "$(command -v verx)" ]; then
+        if [ -f ~/sm/verx ]; then
             ${v}
         fi
     fi

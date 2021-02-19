@@ -9,6 +9,7 @@ smLoc=$usrLoc/secman*
 cgitLoc=$usrLoc/cgit*
 verxLoc=$usrLoc/verx*
 SECDIR=~/.secman
+SM_DIR=~/sm
 
 clearAllData() {
     echo -e "clear all data?\n[y/N]"
@@ -34,8 +35,7 @@ clearAllData() {
     
     SM_GH_UN=$(git config user.name)
 
-    echo "after clear, you can find your old .secman in ~/.local/share/Trash if you want to restore it"
-    echo "or you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
+    echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 }
 
 installManx() {
@@ -49,10 +49,10 @@ installManx() {
 
 manxopa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc $cgitLoc $verxLoc
-    
+        sudo manx $smLoc $cgitLoc $verxLoc $SM_DIR
+
     else
-        manx $smLoc $cgitLoc $verxLoc
+        manx $smLoc $cgitLoc $verxLoc $SM_DIR
     fi
 
     clearAllData
@@ -60,10 +60,10 @@ manxopa() {
 
 rmOpa() {
     if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc $cgitLoc $verxLoc
-    
+        sudo rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
+
     else
-        rm -rf $smLoc $cgitLoc $verxLoc
+        rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
     fi
 
     clearAllData
@@ -76,36 +76,22 @@ if [ -x "$(command -v secman)" ]; then
     if [ "$un" == "manx" ]; then
         if [ -x "$(command -v manx)" ]; then
             manxopa
-        
+
         else
-            # if [ -x "$(command -v sudo)" ]; then
-            #     sudo npm i -g @abdfnx/manx
-
-            #     if [ -x "$(command -v manx)" ]; then
-            #         manxopa
-            #     fi
-            # else
-            #     npm i -g @abdfnx/manx
-
-            #     if [ -x "$(command -v manx)" ]; then
-            #         manxopa
-            #     fi
-            # fi
-
             installManx
 
             if [ -x "$(command -v manx)" ]; then
                 manxopa
             fi
         fi
-    
+
     elif [ "$un" == "rm" ]; then
         rmOpa
     fi
 
     if ! [ -f "$smLoc" ]; then
         goodBye
-    
+
     else
         echo "there's error while uninstalling secman"
     fi

@@ -14,5 +14,6 @@ func Checker() {
 		return
 	}
 
+	fmt.Println("checking for updates...")
 	fmt.Print(string(stdout))
 }

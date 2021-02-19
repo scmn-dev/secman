@@ -1,0 +1,9 @@
+#!/bin/bash
+
+UNAME=$(uname)
+
+if [[ "$UNAME" == Linux || "$UNAME" == "Darwin" ]]; then
+    python3 ~/sm/backup.py $1
+elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+    python ~/sm/backup.py $1
+fi

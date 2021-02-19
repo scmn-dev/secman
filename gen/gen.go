@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	defaultPwLen = 24
+	minPwLin = 24
 )
 
 // Generate will return a securely generated password.
@@ -16,7 +16,7 @@ var (
 //     3. pwlen is greater than MaxPwLength
 func Generate(pwlen int) string {
 	if pwlen < 1 {
-		pwlen = defaultPwLen
+		pwlen = minPWLin
 	}
 	
 	// By default, we should generate a strong password that needs everything
