@@ -20,11 +20,9 @@ def _os
         when /darwin|mac os/
             :macosx
             system("$(curl -fsSL #{shared_gh_url}_osx.sh) | bash")
-            deps()
         when /linux/
             :linux
             system("$(curl -fsSL #{shared_gh_url}_linux.sh) | bash")
-            deps()
         else
             raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
         end
