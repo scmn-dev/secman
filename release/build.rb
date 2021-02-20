@@ -1,9 +1,9 @@
-require 'colorize'
+require "colorize"
 
 puts "Enter the SECRET_KEY"
 sk = gets.chomp
 
-require './secret_key'
+require "./secret_key"
 
 if sk == "#{$code}"
     core()

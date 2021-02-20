@@ -2,8 +2,8 @@
   "version": "5.1.2",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/secman-team/secman/releases/download/v5.1.2.1/secman_windows_v5.1.2.1_x64.rar",
-      "bin": ["core/secman.exe", "core/secman-sync.exe"],
+      "url": "https://github.com/secman-team/secman/releases/download/v5.1.21/secman_windows_v5.1.21_x64.rar",
+      "bin": ["core/secman.exe", "core/secman-sync.exe", "core/verx.exe"],
       "hash": ""
     }
   },

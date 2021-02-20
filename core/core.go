@@ -220,23 +220,12 @@ func init() {
 	RootCmd.AddCommand(verxCmd)
 }
 
-func corex() {
-	fmt.Println("███████╗╗███████╗ ██████╗███╗   ███╗ █████╗ ███╗    ███╗")
-	fmt.Println("██╔════╝║██╔════╝██╔════╝████╗ ████║██╔══██╗█████╗  ███║")
-	fmt.Println("███████╗║█████╗  ██║     ██╔████╔██║███████║███║███╗███║")
-	fmt.Println("╚════██║║██╔══╝  ██║     ██║╚██╔╝██║██╔══██║███║╚██████║")
-	fmt.Println("███████║║███████╗╚██████╗██║ ╚═╝ ██║██║  ██║███║  ╚═███║")
-	fmt.Println("╚══════╝╚═══════╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚══╝    ╚══╝")
-	fmt.Println("")
-	RootCmd.Execute()
-}
-
 // main
 func main() {
 	if runtime.GOOS == "windows" {
 		if _, err := os.Stat("~/sm"); err != nil {
 			if os.IsNotExist(err) {
-				corex()
+				RootCmd.Execute()
 			} else {
 				fmt.Println("installing windows deps...")
 				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm")
@@ -248,10 +237,10 @@ func main() {
 				}
 			
 				fmt.Print(string(stdout))
-				corex()
+				RootCmd.Execute()
 			}
 		}
 	} else {
-		corex()
+		RootCmd.Execute()
 	}
 }
