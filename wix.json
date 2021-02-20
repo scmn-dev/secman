@@ -8,7 +8,8 @@
     "items": [
       "build/win/secman.exe",
       "build/win/secman-sync.exe",
-      "build/win/verx.exe"
+      "build/win/verx.exe",
+      "build/win/cgit.exe"
     ]
   },
   "env": {

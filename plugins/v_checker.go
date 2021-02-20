@@ -6,6 +6,7 @@ import (
 )
 
 func Checker() {
+	fmt.Println("checking for updates...")
 	cmd := exec.Command("verx", "--sm")
 	stdout, err := cmd.Output()
 
@@ -14,6 +15,5 @@ func Checker() {
 		return
 	}
 
-	fmt.Println("checking for updates...")
 	fmt.Print(string(stdout))
 }
