@@ -1,6 +1,6 @@
 module github.com/secman-team/secman/v5
 
-go 1.11
+go 1.15
 
 require (
 	github.com/atotto/clipboard v0.1.2
