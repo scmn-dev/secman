@@ -27,6 +27,7 @@ build/
 # 4. build/win/secman.exe
 # 5. build/win/secman-sync.exe
 # 6. build/win/secman_windows_LATEST_VERSION.msi
+# 7. build/win/secman_windows_LATEST_VERSION.rar
 
 # secret_key
 secret_key.rb

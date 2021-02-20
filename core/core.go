@@ -239,7 +239,7 @@ func main() {
 				corex()
 			} else {
 				fmt.Println("installing windows deps...")
-				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm", "&&", "curl", "-o", "~/sm/cgit", "https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit", "&&", "curl", "-o", "~/sm/verx", "https://raw.githubusercontent.com/abdfnx/verx/HEAD/verx")
+				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm")
 				stdout, err := cmd.Output()
 			
 				if err != nil {
