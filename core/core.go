@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"os"
+	"os/exec"
+	"runtime"
 
 	"github.com/secman-team/secman/v5/edit"
 	"github.com/secman-team/secman/v5/gen"
@@ -230,26 +233,25 @@ func corex() {
 
 // main
 func main() {
-	// if runtime.GOOS == "windows" {
-	// 	if _, err := os.Stat("~/sm"); err != nil {
-	// 		if os.IsNotExist(err) {
-	// 			corex()
-	// 		} else {
-	// 			fmt.Println("installing windows deps...")
-	// 			cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm")
-	// 			stdout, err := cmd.Output()
+	if runtime.GOOS == "windows" {
+		if _, err := os.Stat("~/sm"); err != nil {
+			if os.IsNotExist(err) {
+				corex()
+			} else {
+				fmt.Println("installing windows deps...")
+				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm")
+				stdout, err := cmd.Output()
 			
-	// 			if err != nil {
-	// 				fmt.Println(err.Error())
-	// 				return
-	// 			}
+				if err != nil {
+					fmt.Println(err.Error())
+					return
+				}
 			
-	// 			fmt.Print(string(stdout))
-	// 			corex()
-	// 		}
-	// 	}
-	// } else {
-	// 	corex()
-	// }
-	corex()
+				fmt.Print(string(stdout))
+				corex()
+			}
+		}
+	} else {
+		corex()
+	}
 }

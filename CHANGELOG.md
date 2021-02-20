@@ -2,7 +2,7 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
-## [[v5.1.2.1] 2021-02-19](#v5121-2021-02-19)
+## [[v5.1.21] 2021-02-19](#v5121-2021-02-19)
 
 ### Added
 

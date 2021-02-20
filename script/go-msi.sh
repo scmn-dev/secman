@@ -1,10 +1,6 @@
 #!/bin/bash
 
-echo "Enter the new secman name: "
-read smn
-
-echo "Enter the version: "
-read smv
+smv=$(verx secman-team/secman -l)
 
 # thanks for @mh-cbon 🙏 and his greate repo https://github.com/mh-cbon/go-msi
-go-msi make --msi $smn.msi --version $smv -s ./hooks/templates --path ../wix.json
+go-msi make --msi secman_windows_${smv}.msi --version ${smv} -s ./hooks/templates --path ../wix.json

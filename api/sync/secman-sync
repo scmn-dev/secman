@@ -26,7 +26,7 @@ function usage() {
 }
 
 function repo_work() {
-    local csi="bash ~/sm/cgit secman-i"
+    local csi="cgit secman-i"
     local rdm="echo '# My secman passwords - $SM_GH_UN' >> $SECDIR/README.md"
 
     ${cd_SECDIR}
@@ -82,7 +82,7 @@ cgitLoc=~/sm/cgit
 installSMRepo="git clone https://github.com/secman-team/secman ~/sm"
 
 function corgit_ph() {
-    local push="bash ~/sm/cgit ph"
+    local push="cgit ph"
 
     if [ -f $cgitLoc ]; then
         ${cd_SECDIR}
@@ -98,7 +98,7 @@ function corgit_ph() {
 }
 
 function corgit_pl() {
-    local pull="bash ~/sm/cgit pl"
+    local pull="cgit pl"
 
     if [ -f $cgitLoc ]; then
         ${cd_SECDIR}

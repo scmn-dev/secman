@@ -1,7 +1,7 @@
 require "rbconfig"
 require "colorize"
 
-$l = `bash ~/sm/verx secman-team/secman -l`
+$l = `verx secman-team/secman -l`
 $c = `secman verx`
 
 smLoc = "/usr/local/bin"

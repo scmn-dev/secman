@@ -6,7 +6,7 @@ import (
 )
 
 func Checker() {
-	cmd := exec.Command("bash", "~/sm/verx", "--sm")
+	cmd := exec.Command("verx", "--sm")
 	stdout, err := cmd.Output()
 
 	if err != nil {
