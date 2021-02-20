@@ -2,13 +2,16 @@
   "product": "secman",
   "company": "Secman.",
   "license": "LICENSE",
-  "upgrade-code": "f5efa6ba-939a-4cb7-9eb8-012ea045aa76",
+  "upgrade-code": "d07abc4a-c5c3-4a6b-984c-f37049e315aa",
   "files": {
-    "guid": "b92bf70d-4605-494e-9cad-b201695220b2",
-    "items": ["build/win/secman.exe", "build/win/secman-sync.exe"]
+    "guid": "eff487cb-3c59-48ad-8e49-1ecf28ce1a46",
+    "items": [
+      "build/win/secman.exe",
+      "build/win/secman-sync.exe"
+    ]
   },
   "env": {
-    "guid": "04db06e7-a4fd-4394-887b-d1bbec99e3ea",
+    "guid": "c912cdf9-3343-4c93-8985-1a7d1c8791f0",
     "vars": [
       {
         "name": "PATH",

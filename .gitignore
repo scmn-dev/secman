@@ -23,8 +23,10 @@ build/
 # ignored files
 # 1. build/secman-linux
 # 2. build/secman-osx
-# 3. build/win/secman.exe
-# 4. build/win/secman-windows-LATEST_VERSION.msi
+# 3. build/secman-win-git
+# 4. build/win/secman.exe
+# 5. build/win/secman-sync.exe
+# 6. build/win/secman_windows_LATEST_VERSION.msi
 
 # secret_key
 secret_key.rb
