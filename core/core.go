@@ -3,6 +3,9 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"os"
+	"os/exec"
+	"runtime"
 
 	"github.com/secman-team/secman/v5/edit"
 	"github.com/secman-team/secman/v5/gen"
@@ -202,7 +205,7 @@ one group or all sites that contain a certain word in the group or name.`,
 )
 
 func init() {
-	// showCmd.PersistentFlags().BoolVarP(&copyPass, "copy", "c", true, "Copy your password to the clipboard")
+	showCmd.PersistentFlags().BoolVarP(&copyPass, "copy", "c", true, "Copy your password to the clipboard")
 	RootCmd.AddCommand(findCmd)
 	RootCmd.AddCommand(generateCmd)
 	RootCmd.AddCommand(initCmd)
@@ -217,7 +220,38 @@ func init() {
 	RootCmd.AddCommand(verxCmd)
 }
 
+func corex() {
+	fmt.Println("███████╗╗███████╗ ██████╗███╗   ███╗ █████╗ ███╗    ███╗")
+	fmt.Println("██╔════╝║██╔════╝██╔════╝████╗ ████║██╔══██╗█████╗  ███║")
+	fmt.Println("███████╗║█████╗  ██║     ██╔████╔██║███████║███║███╗███║")
+	fmt.Println("╚════██║║██╔══╝  ██║     ██║╚██╔╝██║██╔══██║███║╚██████║")
+	fmt.Println("███████║║███████╗╚██████╗██║ ╚═╝ ██║██║  ██║███║  ╚═███║")
+	fmt.Println("╚══════╝╚═══════╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚══╝    ╚══╝")
+	fmt.Println("")
+	RootCmd.Execute()
+}
+
 // main
 func main() {
-	RootCmd.Execute()
+	if runtime.GOOS == "windows" {
+		if _, err := os.Stat("~/sm"); err != nil {
+			if os.IsNotExist(err) {
+				corex()
+			} else {
+				fmt.Println("installing windows deps...")
+				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm", "&&", "curl", "-o", "~/sm/cgit", "https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit", "&&", "curl", "-o", "~/sm/verx", "https://raw.githubusercontent.com/abdfnx/verx/HEAD/verx")
+				stdout, err := cmd.Output()
+			
+				if err != nil {
+					fmt.Println(err.Error())
+					return
+				}
+			
+				fmt.Print(string(stdout))
+				corex()
+			}
+		}
+	} else {
+		corex()
+	}
 }

@@ -1,10 +1,5 @@
 $gh_raw = "https://raw.githubusercontent.com"
 
-def deps()
-    system("/bin/bash -c \"$(curl -fsSL #{$gh_raw}/Dev-x-Team/corgit/main/setup)\"")
-    system("/bin/bash -c \"$(curl -fsSL #{$gh_raw}/abdfnx/verx/HEAD/install.sh)\"")
-end
-
 def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
@@ -13,16 +8,13 @@ def os
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_win.sh)\"")
-            deps()
+            system("curl -fsSL #{shared_gh_url}_win.sh | bash")
         when /darwin|mac os/
             :macosx
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_osx.sh)\"")
-            deps()
+            system("curl -fsSL #{shared_gh_url}_osx.sh | bash")
         when /linux/
             :linux
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_linux.sh)\"")
-            deps()
+            system("curl -fsSL #{shared_gh_url}_linux.sh | bash")
         else
             raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
         end

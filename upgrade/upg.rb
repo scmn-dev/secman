@@ -1,32 +1,29 @@
-require 'colorize'
-require 'rbconfig'
+require "rbconfig"
+require "colorize"
 
-$l = `verx secman-team/secman -l`
+$l = `bash ~/sm/verx secman-team/secman -l`
 $c = `secman verx`
 
 smLoc = "/usr/local/bin"
-
-def deps()
-    system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/secman-team/corgit/main/setup)\"")
-    system("/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh)\"")
-end
 
 def _os
     @_os ||= (
         host_os = RbConfig::CONFIG['host_os']
         shared_gh_url = "https://raw.githubusercontent.com/secman-team/install/HEAD/install"
+        lin = "linux".yellow
+        osx = "osx".black
 
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
-            puts "secman upd command is only supported for "
+            puts "secman upd command is only supported for #{lin} and #{osx}"
         when /darwin|mac os/
             :macosx
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_osx.sh)\"")
+            system("$(curl -fsSL #{shared_gh_url}_osx.sh) | bash")
             deps()
         when /linux/
             :linux
-            system("/bin/bash -c \"$(curl -fsSL #{shared_gh_url}_linux.sh)\"")
+            system("$(curl -fsSL #{shared_gh_url}_linux.sh) | bash")
             deps()
         else
             raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
@@ -45,13 +42,6 @@ elsif $l != $c
         host_os = RbConfig::CONFIG['host_os']
 
         case host_os
-        when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-            :windows
-            smLoc_win = "/usr/bin"
-
-            system("rm -rf #{smLoc_win}/secman*")
-            system("rm -rf #{smLoc_win}/cgit*")
-            system("rm -rf #{smLoc_win}/verx*")
         when /darwin|mac os|linux/
             :macosx_linux
             system("sudo rm -rf #{smLoc}/secman*")

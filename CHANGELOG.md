@@ -2,6 +2,22 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
+## [[v5.1.2.1] 2021-02-19](#v5121-2021-02-19)
+
+### Added
+
+- Create **sm** repo and on it all secman deps files
+
+### Changed
+
+- The check update way now is local and faster
+
+### Fixed
+
+- Fix all installations errors
+- Fix `secman-sync` URLs
+- Fix Github CIs/CDs
+
 ## [[v5.1.2] 2021-01-26](#v512-2021-01-26)
 
 ### Added

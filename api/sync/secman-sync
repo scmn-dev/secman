@@ -8,9 +8,8 @@ cd_SECDIR="cd $SECDIR"
 
 # pkgs
 ghraw_url="https://raw.githubusercontent.com"
-install_cgit="/bin/bash -c "$(curl -fsSL $ghraw_url/secman-team/corgit/main/setup)""
+
 install_brew="/bin/bash -c "$(curl -fsSL $ghraw_url/Homebrew/install/HEAD/install.sh)""
-install_verx="/bin/bash -c "$(curl -fsSL $ghraw_url/abdfnx/verx/HEAD/install.sh)""
 
 function usage() {
     local u=(
@@ -27,7 +26,7 @@ function usage() {
 }
 
 function repo_work() {
-    local csi="cgit secman-i"
+    local csi="bash ~/sm/cgit secman-i"
     local rdm="echo '# My secman passwords - $SM_GH_UN' >> $SECDIR/README.md"
 
     ${cd_SECDIR}
@@ -39,56 +38,75 @@ function repo_work() {
     ${csi}
 }
 
+UNAME=$(uname)
+
 function repo() {
     if [ -x "$(command -v gh)" ]; then
         repo_work
     else
-        if [ -x "$(command -v brew)" ]; then
-            ${brew_gh}
-
-            if [ -x "$(command -v gh)" ]; then
-                repo_work
-            fi
-        else
-            ${install_brew}
-
+        if [[ "$UNAME" == Linux || "$UNAME" == Darwin ]]; then
             if [ -x "$(command -v brew)" ]; then
                 ${brew_gh}
 
                 if [ -x "$(command -v gh)" ]; then
                     repo_work
                 fi
+            else
+                ${install_brew}
+
+                if [ -x "$(command -v brew)" ]; then
+                    ${brew_gh}
+
+                    if [ -x "$(command -v gh)" ]; then
+                        repo_work
+                    fi
+                fi
+            fi
+        elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
+            choco_gh="choco install gh"
+
+            if [ -x "$(command -v choco)" ]; then
+                ${choco_gh}
+
+                if [ -x "$(command -v gh)" ]; then
+                    repo_work
+                fi
+            else
+                echo "you should install Chocolatey from this url https://chocolatey.org/install"
             fi
         fi
     fi
 }
 
-function corgit-ph() {
-    local push="cgit ph"
+cgitLoc=~/sm/cgit
+installSMRepo="git clone https://github.com/secman-team/secman ~/sm"
 
-    if [ -x "$(command -v cgit)" ]; then
+function corgit_ph() {
+    local push="bash ~/sm/cgit ph"
+
+    if [ -f $cgitLoc ]; then
         ${cd_SECDIR}
         ${push}
     else
-        ${install_cgit}
+        ${installSMRepo}
 
-        if [ -x "$(command -v cgit)" ]; then
+        if [ -f $cgitLoc ]; then
             ${cd_SECDIR}
             ${push}
         fi
     fi
 }
 
-function corgit-pl() {
-    local pull="cgit pl"
+function corgit_pl() {
+    local pull="bash ~/sm/cgit pl"
 
-    if [ -x "$(command -v cgit)" ]; then
+    if [ -f $cgitLoc ]; then
         ${cd_SECDIR}
         ${pull}
     else
-        ${install_cgit}
+        ${installSMRepo}
 
-        if [ -x "$(command -v cgit)" ]; then
+        if [ -f $cgitLoc ]; then
             ${cd_SECDIR}
             ${pull}
         fi
@@ -124,7 +142,7 @@ bkp() {
 
 _phx() {
     ${cd_SECDIR}
-    git add .                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    git add .
     git commit -m "new secman password"
     git push
 }
@@ -135,7 +153,7 @@ version() {
     if [ -f ~/sm/verx ]; then
         ${v}
     else
-        ${install_verx}
+        ${installSMRepo}
 
         if [ -f ~/sm/verx ]; then
             ${v}
@@ -167,7 +185,7 @@ while (($#)); do
         ;;
 
     push | ph)
-        corgit-ph
+        corgit_ph
         exit 0
         ;;
 
@@ -177,7 +195,7 @@ while (($#)); do
         ;;
 
     pull | pl)
-        corgit-pl
+        corgit_pl
         exit 0
         ;;
 

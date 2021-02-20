@@ -2,6 +2,7 @@ import os
 import sys, getopt
 import subprocess as sp
 import pathlib
+import platform
 
 # dirs
 SECDIR = "~/.secman.bk"
@@ -14,30 +15,40 @@ cd_SECDIR = "cd {}".format(SECDIR)
 SM_GH_UN = sp.getoutput("git config user.name")
 create = "gh repo create {}/{} -y --private".format(SM_GH_UN, SECDIR_url)
 clone = "gh repo clone {}/{} {}".format(SM_GH_UN, SECDIR_url, SECDIR)
-remote = "git remote set-url origin https://github.com/{}/.secman".format(SM_GH_UN)
+remote = "git remote set-url origin https://github.com/{}/.secman".format(
+    SM_GH_UN)
 
 # pkgs
 ghraw_url = "https://raw.githubusercontent.com"
 
 def install(_url):
-    return "/bin/bash -c \"$(curl -fsSL {}/{})\"".format(ghraw_url, _url)
+    return "curl -fsSL {}/{} | bash".format(ghraw_url, _url)
 
 install_brew = install("Homebrew/install/HEAD/install.sh")
-install_cgit = install("secman-team/corgit/main/setup")
-install_verx = install("abdfnx/verx/HEAD/install.sh")
 
 brew_gh = "brew install gh"
+choco_gh = "choco install gh"
 
 def _help():
-    print("Flags:\n\t-h: help\n\t-i: init ~/.secman.bk folder\n\t-c: clone the backup repo\n\t-p: push new backup passwords\n\t-l: pull passwords\n\t-M: make ~/.secman.bk is the main folder\n")
+    print(
+        "Flags:\n\t-h: help\n\t-i: init ~/.secman.bk folder\n\t-c: clone the backup repo\n\t-p: push new backup passwords\n\t-l: pull passwords\n\t-M: make ~/.secman.bk is the main folder\n"
+    )
 
 def repo_work():
-    csi = "cgit secman-ibk"
-    rdm = 'touch {}/README.md && echo "# My secman backup passwords - {}" >> {}/README.md'.format(SECDIR, SM_GH_UN, SECDIR)
+    csi = "bash ~/sm/cgit secman-ibk"
+    rdm = 'touch {}/README.md && echo "# My secman backup passwords - {}" >> {}/README.md'.format(
+        SECDIR, SM_GH_UN, SECDIR)
 
     # copy ~/.secman to ~/.secman.bk
     sp.getoutput("cp -rf {} {}".format(SECDIR_primary, SECDIR))
-    os.system("{} && rm -rf .git && git init && {} && {} && {}".format(cd_SECDIR, rdm, create, csi))
+    os.system("{} && rm -rf .git && git init && {} && {} && {}".format(
+        cd_SECDIR, rdm, create, csi))
+
+def install_installer():
+    if platform.system() == "Linux" or platform.system() == "Darwin":
+        sp.getoutput(brew_gh)
+    elif platform.system() == "Windows":
+        sp.getoutput(choco_gh)
 
 def repo():
     try:
@@ -45,46 +56,70 @@ def repo():
         sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
         repo_work()
     except OSError:
-        sp.getoutput(brew_gh)
+        install_installer()
 
         try:
             devnull = open(os.devnull)
             sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
             repo_work()
-        
+
         except OSError:
-            sp.getoutput(install_brew)
+            if platform.system() == "Linux" or platform.system() == "Darwin":
+                sp.getoutput(install_brew)
+            elif platform.system() == "Windows":
+                print(
+                    "you should install Chocolatey from this url https://chocolatey.org/install"
+                )
 
             try:
                 devnull = open(os.devnull)
-                sp.Popen(["brew"], stdout=devnull, stderr=devnull).communicate()
-                sp.getoutput(brew_gh)
+
+                if platform.system() == "Linux" or platform.system(
+                ) == "Darwin":
+                    sp.Popen(["brew"], stdout=devnull,
+                             stderr=devnull).communicate()
+                elif platform.system() == "Windows":
+                    sp.Popen(["choco"], stdout=devnull,
+                             stderr=devnull).communicate()
+
+                install_installer()
 
                 try:
                     devnull = open(os.devnull)
-                    sp.Popen(["gh"], stdout=devnull, stderr=devnull).communicate()
+                    sp.Popen(["gh"], stdout=devnull,
+                             stderr=devnull).communicate()
                     repo_work()
-                
+
                 except OSError:
-                    print("sorry, there's an error while initialize a backup, try again")
-        
+                    print(
+                        "sorry, there's an error while initialize a backup, try again"
+                    )
+
             except OSError:
-                print("you should install brew\nhttps://brew.sh")
+                if platform.system() == "Linux" or platform.system(
+                ) == "Darwin":
+                    print("you should install brew\nhttps://brew.sh")
+                elif platform.system() == "Windows":
+                    print(
+                        "you should install Chocolatey from this url https://chocolatey.org/install"
+                    )
         return False
-    
+
     return True
 
 def _ph():
-    os.system("{} && cgit ph".format(cd_SECDIR))
+    os.system("{} && bash ~/sm/cgit ph".format(cd_SECDIR))
 
 def _pl():
-    os.system("{} && cgit pl".format(cd_SECDIR))
+    os.system("{} && bash ~/sm/cgit pl".format(cd_SECDIR))
 
 def _clone():
     os.system(clone)
 
 def badUsage():
-    print("Flag not recognized.\nFor an overview of the command, execute: secman-sync backup -h")
+    print(
+        "Flag not recognized.\nFor an overview of the command, execute: secman-sync backup -h"
+    )
 
 def version():
     os.system("secman ver")
@@ -107,23 +142,24 @@ def make_main():
     if not SECDIR_path.exists():
         os.system("cp -rf {} {}".format(SECDIR, SECDIR_primary))
         os.system("cd {} && {}".format(SECDIR_primary, remote))
-    
+
     else:
         print("{} is exist".format(SECDIR_primary))
 
 def main(argv):
     try:
-      opts, args = getopt.getopt(argv, "hicvplM", ["help", "init", "clone", "push", "pull", "Main"])
+        opts, args = getopt.getopt(
+            argv, "hicvplM", ["help", "init", "clone", "push", "pull", "Main"])
 
     except getopt.GetoptError:
-      badUsage()
-      sys.exit(2)
-    
+        badUsage()
+        sys.exit(2)
+
     for opt, arg in opts:
         if opt in ("-h", "--help"):
             _help()
             sys.exit()
-        
+
         elif opt in ("-i", "--init"):
             repo_work()
             sys.exit()
@@ -135,7 +171,7 @@ def main(argv):
         elif opt in ("-v", "--version"):
             version()
             sys.exit()
-        
+
         elif opt in ("-p", "--push"):
             _ph()
             sys.exit()
@@ -151,6 +187,6 @@ def main(argv):
         else:
             badUsage()
             sys.exit()
-        
+
 if __name__ == "__main__":
-   main(sys.argv[1:])
+    main(sys.argv[1:])

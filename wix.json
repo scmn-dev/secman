@@ -5,15 +5,7 @@
   "upgrade-code": "f5efa6ba-939a-4cb7-9eb8-012ea045aa76",
   "files": {
     "guid": "b92bf70d-4605-494e-9cad-b201695220b2",
-    "items": [
-      "build/win/secman.exe",
-      "plugins/cgit",
-      "plugins/verx",
-      "plugins/secman-sync",
-      "build/win/cgit.exe",
-      "build/win/verx.exe",
-      "build/win/secman-sync.exe"
-    ]
+    "items": ["build/win/secman.exe", "build/win/secman-sync.exe"]
   },
   "env": {
     "guid": "04db06e7-a4fd-4394-887b-d1bbec99e3ea",

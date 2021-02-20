@@ -11,21 +11,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Build the Docker image
-      uses: actions/checkout@v2
-    - run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
-    
-    - name: Push the Docker image
-      uses: actions/checkout@v2
-    - run: docker push abdcodedoc/secman:vm
-  
+      - name: Build the Docker image
+        uses: actions/checkout@v2
+      - run: docker build . --file ./api/vm/Dockerfile --tag abdcodedoc/secman:vm
+
+      - name: Push the Docker image
+        uses: actions/checkout@v2
+        with:
+          username: ${{ secrets.DOCKER_ID }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - run: docker push abdcodedoc/secman:vm
+
   run:
     needs: [ build_and_push ]
-    
+
     runs-on: ubuntu-latest
     steps:
       - name: Run the Docker image
         uses: actions/checkout@v2
+
       - run: |
           CID=$(docker create -t -i abdcodedoc/secman:vm)
           docker start -a -i $CID

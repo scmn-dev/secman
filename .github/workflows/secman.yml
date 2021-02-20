@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        
+
       - name: Install secman
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh)"
-        
+        run: curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
+
       - name: Clone .secman (ex folder)
         run: git clone https://github.com/secman-team/.secman.ex ~/.secman
-        
+
       - name: Run secman
         run: secman

@@ -1,4 +1,4 @@
-require 'rbconfig'
+require "rbconfig"
 
 def os
     @os ||= (

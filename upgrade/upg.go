@@ -6,7 +6,7 @@ import (
 )
 
 func Upgrade() {
-	cmd := exec.Command("verx", "--upg")
+	cmd := exec.Command("bash", "~/sm/verx", "--upg")
 	stdout, err := cmd.Output()
 
 	if err != nil {
