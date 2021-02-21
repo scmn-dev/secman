@@ -217,6 +217,7 @@ one group or all sites that contain a certain word in the group or name.`,
 )
 
 func init() {
+	RootCmd.AddCommand(fetchCmd)
 	RootCmd.AddCommand(findCmd)
 	RootCmd.AddCommand(generateCmd)
 	RootCmd.AddCommand(initCmd)

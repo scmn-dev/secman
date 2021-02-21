@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func Checker() {
+func FetchSECDIR() {
 	s := spinner.New(spinner.CharSets[36], 100*time.Millisecond)
 	s.Suffix = " Fetching..."
 	s.Start()
