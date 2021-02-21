@@ -3,44 +3,16 @@ version: 2.1
 install_secman: &install_secman
   name: Install Secman
   command: |
-    if [ "${PLATFORM}" == "macos" ]; then
-      curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
-    elif [ "${PLATFORM}" == "linux" ]; then
-      curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
-    fi
+    curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 
 orbs:
   secrethub: secrethub/cli@1.1.0
 
-linux_env: &linux_env
-  PLATFORM: "linux"
-
-osx_env: &osx_env
-  PLATFORM: "osx"
-
 jobs:
   secman_linux:
-    environment:
-      <<: *linux_env
     machine:
-      # linux VM
       image: ubuntu-2004:202010-01
     
-    steps:
-      - checkout
-      - run:
-          <<: *install_secman
-      - run:
-          name: Clone .secman EX
-          command: |
-            git clone https://github.com/secman-team/.secman.ex ~/.secman
-  
-  secman_mac:
-    environment:
-      <<: *osx_env
-    macos:
-      xcode: "12.4.0"
-
     steps:
       - checkout
       - run:
@@ -68,6 +40,17 @@ jobs:
             curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
             export ver=$(verx secman-team/secman -l)
             cd core && go build {{ buildCmd }} core.go
+  
+  test:
+    machine:
+      # linux VM
+      image: ubuntu-2004:202010-01
+
+    steps:
+      - run:
+          name: Run secman
+          command: |
+            secman
 
 workflows:
   version: 2.1
@@ -76,6 +59,10 @@ workflows:
     jobs:
       - secman_linux
   
-  osx_jobs:
+  build_secman:
     jobs:
-      - secman_mac
+      - build
+  
+  test_secman:
+    jobs:
+      - test
