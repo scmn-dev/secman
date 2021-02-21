@@ -208,7 +208,6 @@ one group or all sites that contain a certain word in the group or name.`,
 		Use:     "fetch",
 		Example: "secman fetch",
 		Short:   "Fetch if there is a new password/s in ~/.secman.",
-		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			fetch.FetchSECDIR()
 			checker.Checker()
