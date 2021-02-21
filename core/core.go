@@ -205,7 +205,6 @@ one group or all sites that contain a certain word in the group or name.`,
 )
 
 func init() {
-	showCmd.PersistentFlags().BoolVarP(&copyPass, "copy", "c", true, "Copy your password to the clipboard")
 	RootCmd.AddCommand(findCmd)
 	RootCmd.AddCommand(generateCmd)
 	RootCmd.AddCommand(initCmd)

@@ -3,7 +3,15 @@
   "architecture": {
     "64bit": {
       "url": "https://github.com/secman-team/secman/releases/download/v5.1.21/secman_windows_v5.1.21_x64.rar",
-      "bin": ["core/secman.exe", "core/secman-sync.exe", "core/verx.exe", "core/cgit.exe"],
+      "bin": [
+        "core/secman.exe",
+        "core/secman-sync.exe",
+        "core/verx.exe",
+        "core/cgit.exe",
+        "core/ct",
+        "core/vx",
+        "core/ssc"
+      ],
       "hash": ""
     }
   },
