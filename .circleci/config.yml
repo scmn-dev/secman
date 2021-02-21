@@ -1,6 +1,3 @@
-# Golang CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2.1
 
 install_secman: &install_secman
@@ -25,9 +22,6 @@ jobs:
   secman_linux:
     environment:
       <<: *linux_env
-    
-    working_directory: "/home"
-    
     machine:
       # linux VM
       image: ubuntu-2004:202010-01
@@ -36,18 +30,14 @@ jobs:
       - checkout
       - run:
           <<: *install_secman
-      
       - run:
           name: Clone .secman EX
           command: |
-            git clone https://github.com/secman-team/.secman.ex .secman
+            git clone https://github.com/secman-team/.secman.ex ~/.secman
   
   secman_mac:
     environment:
       <<: *osx_env
-    
-    working_directory: "/home"
-
     macos:
       xcode: "12.4.0"
 
@@ -55,11 +45,10 @@ jobs:
       - checkout
       - run:
           <<: *install_secman
-      
       - run:
           name: Clone .secman EX
           command: |
-            git clone https://github.com/secman-team/.secman.ex .secman
+            git clone https://github.com/secman-team/.secman.ex ~/.secman
 
   build:
     docker:
@@ -78,7 +67,7 @@ jobs:
           command: |
             curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
             export ver=$(verx secman-team/secman -l)
-            cd core && go build {{ env }} core.go
+            cd core && go build {{ buildCmd }} core.go
 
 workflows:
   version: 2.1
