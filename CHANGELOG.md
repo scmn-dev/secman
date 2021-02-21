@@ -2,7 +2,21 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
-## [[v5.1.21] 2021-02-19](#v5121-2021-02-19)
+## [[v5.2.0] 2021-02-21](#v520-2021-02-21)
+
+### Added
+
+- Add **fetch** command, and it's checking if there's a new password/s in _~/.secman_
+
+### Changed
+
+nothing
+
+### Fixed
+
+nothing
+
+## [[v5.1.21] 2021-02-20](#v5121-2021-02-20)
 
 ### Added
 
