@@ -7,6 +7,19 @@ on:
     branches: [ main ]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+      
+      - name: Build secman
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
+          cd core
+          go build {{ secrets.GO_BUILD }} core.go
+
   core:
     runs-on: ubuntu-latest
     steps:
