@@ -26,8 +26,6 @@ jobs:
     docker:
       # specify the version
       - image: circleci/golang:1.9
-    environment:
-      buildCmd: secrethub://abdfncodex/secman/go-build
 
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
@@ -38,8 +36,7 @@ jobs:
           name: Build Secman
           command: |
             curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
-            export ver=$(verx secman-team/secman -l)
-            cd core && go build {{ buildCmd }} core.go
+            cd core && go build $(secrethub read abdfncodex/secman/go-build) core.go
   
   test:
     machine:
