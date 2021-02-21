@@ -78,19 +78,16 @@ function repo() {
     fi
 }
 
-cgitLoc=~/sm/cgit
-installSMRepo="git clone https://github.com/secman-team/secman ~/sm"
-
 function corgit_ph() {
     local push="cgit ph"
 
-    if [ -f $cgitLoc ]; then
+    if [ -x "$(command -v cgit)" ]; then
         ${cd_SECDIR}
         ${push}
     else
-        ${installSMRepo}
+        curl -fsSL $ghraw_url/secman-team/corgit/main/setup | bash
 
-        if [ -f $cgitLoc ]; then
+        if [ -x "$(command -v cgit)" ]; then
             ${cd_SECDIR}
             ${push}
         fi
@@ -100,13 +97,13 @@ function corgit_ph() {
 function corgit_pl() {
     local pull="cgit pl"
 
-    if [ -f $cgitLoc ]; then
+    if [ -x "$(command -v cgit)" ]; then
         ${cd_SECDIR}
         ${pull}
     else
-        ${installSMRepo}
+        curl -fsSL $ghraw_url/secman-team/corgit/main/setup | bash
 
-        if [ -f $cgitLoc ]; then
+        if [ -x "$(command -v cgit)" ]; then
             ${cd_SECDIR}
             ${pull}
         fi
@@ -150,12 +147,12 @@ _phx() {
 version() {
     v="secman ver"
 
-    if [ -f ~/sm/verx ]; then
+    if [ -x "$(command -v verx)" ]; then
         ${v}
     else
-        ${installSMRepo}
+        curl -fsSL $ghraw_url/abdfnx/verx/HEAD/install.sh | bash
 
-        if [ -f ~/sm/verx ]; then
+        if [ -x "$(command -v verx)" ]; then
             ${v}
         fi
     fi
