@@ -9,7 +9,10 @@
       "build/win/secman.exe",
       "build/win/secman-sync.exe",
       "build/win/verx.exe",
-      "build/win/cgit.exe"
+      "build/win/cgit.exe",
+      "build/win/ssc",
+      "build/win/vx",
+      "build/win/ct"
     ]
   },
   "env": {

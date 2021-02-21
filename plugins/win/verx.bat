@@ -1,3 +1,3 @@
 @echo off
 
-bash ~\sm\verx %~1
+bash vx %~1

@@ -1,3 +1,3 @@
 @echo off
 
-bash ~\sm\secman-sync %~1
+bash ssc %~1
