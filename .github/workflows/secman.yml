@@ -17,7 +17,7 @@ jobs:
       - name: Build secman
         run: |
           curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
-          go build -v ./... {{ secrets.GO_BUILD }} core.go
+          go build -v ./... ${{ secrets.GO_BUILD }} core.go
 
   core:
     runs-on: ubuntu-latest
