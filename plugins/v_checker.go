@@ -8,18 +8,18 @@ import (
 )
 
 func Checker() {
-	fmt.Println("checking for updates...")
-	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
+	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
+	s.Suffix = " Checking for updates..."
 	s.Start()
-	time.Sleep(time.Second)
-	s.Stop()
+	
 	cmd := exec.Command("verx", "--sm")
 	stdout, err := cmd.Output()
-
+	
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
-
+	
 	fmt.Print(string(stdout))
+	s.Stop()
 }
