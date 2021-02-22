@@ -81,33 +81,13 @@ function repo() {
 function corgit_ph() {
     local push="cgit ph"
 
-    if [ -x "$(command -v cgit)" ]; then
-        ${cd_SECDIR}
-        ${push}
-    else
-        curl -fsSL $ghraw_url/secman-team/corgit/main/setup | bash
-
-        if [ -x "$(command -v cgit)" ]; then
-            ${cd_SECDIR}
-            ${push}
-        fi
-    fi
+    ${cd_SECDIR}
+    ${push}
 }
 
 function corgit_pl() {
-    local pull="git pull"
-
-    if [ -x "$(command -v cgit)" ]; then
-        ${cd_SECDIR}
-        ${pull}
-    else
-        curl -fsSL $ghraw_url/secman-team/corgit/main/setup | bash
-
-        if [ -x "$(command -v cgit)" ]; then
-            ${cd_SECDIR}
-            ${pull}
-        fi
-    fi
+    ${cd_SECDIR}
+    git pull
 }
 
 function clonex() {
