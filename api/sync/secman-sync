@@ -95,7 +95,7 @@ function corgit_ph() {
 }
 
 function corgit_pl() {
-    local pull="cgit pl"
+    local pull="git pull"
 
     if [ -x "$(command -v cgit)" ]; then
         ${cd_SECDIR}
