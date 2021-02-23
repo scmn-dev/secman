@@ -20,4 +20,13 @@ jobs:
 
       # specify any bash command here prefixed with `run: `
       - run: go get -d ./...
-      - run: go test -v ./...
+    
+  install_secman:
+    machine:
+      image: ubuntu-1604:202004-01
+
+    steps:
+      - run:
+          name: Install Secman
+          command: |
+            curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
