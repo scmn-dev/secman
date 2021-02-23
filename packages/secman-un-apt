@@ -1,0 +1,107 @@
+#!/bin/bash
+
+goodBye() {
+    echo "secman was uninstalled successfully... thanks you to trying secman"
+}
+
+usrLoc=/usr/local/bin
+smLoc=$usrLoc/secman*
+cgitLoc=$usrLoc/cgit*
+verxLoc=$usrLoc/verx*
+SECDIR=~/.secman
+SM_DIR=~/sm
+
+clearAllData() {
+    echo -e "clear all data?\n[y/N]"
+    read -n 1 accept
+
+    if [[ $accept == "Y" || $accept == "y" ]]; then
+        if [ -x "$(command -v sudo)" ]; then
+            if [ -x "$(command -v manx)" ]; then
+                sudo manx $SECDIR
+
+            else
+                installManx
+
+                if [ -x "$(command -v manx)" ]; then
+                    sudo manx $SECDIR
+                fi
+            fi
+        fi
+    
+    elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
+        echo "ok"
+    fi
+    
+    SM_GH_UN=$(git config user.name)
+
+    echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
+}
+
+installManx() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo npm i -g @abdfnx/manx
+    
+    else
+        npm i -g @abdfnx/manx
+    fi
+}
+
+manxopa() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo manx $smLoc $cgitLoc $verxLoc $SM_DIR
+
+    else
+        manx $smLoc $cgitLoc $verxLoc $SM_DIR
+    fi
+
+    clearAllData
+}
+
+rmOpa() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
+
+    else
+        rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
+    fi
+
+    clearAllData
+}
+
+aptRemove() {
+    sudo apt remove secman
+}
+
+if [ -x "$(command -v secman)" ]; then
+    echo "do you want to uninstall it by manx or rm"
+    read un
+
+    if [ "$un" == "manx" ]; then
+        if [ -x "$(command -v manx)" ]; then
+            manxopa
+            aptRemove
+        else
+            installManx
+
+            if [ -x "$(command -v manx)" ]; then
+                manxopa
+                aptRemove
+            fi
+        fi
+
+    elif [ "$un" == "rm" ]; then
+        rmOpa
+        aptRemove
+    fi
+
+    if ! [ -f "$smLoc" ]; then
+        goodBye
+
+    else
+        echo "there's error while uninstalling secman"
+    fi
+
+else
+    echo "there's no secman 😐"
+fi
