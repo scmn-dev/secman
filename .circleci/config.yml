@@ -47,7 +47,9 @@ jobs:
       - run:
           name: Test Secman
           command: |
+            curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
             secman
+
 workflows:
   test_install_secman:
     jobs:
@@ -55,6 +57,5 @@ workflows:
   
   test__secman:
     jobs:
-      - install_secman
       - clone_dot_secman_ex
       - test_secman
