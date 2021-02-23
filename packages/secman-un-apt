@@ -70,7 +70,7 @@ rmOpa() {
 }
 
 aptRemove() {
-    sudo apt remove secman
+    sudo apt remove secman -y
 }
 
 if [ -x "$(command -v secman)" ]; then
