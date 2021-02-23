@@ -55,5 +55,6 @@ workflows:
   
   test__secman:
     jobs:
+      - install_secman
       - clone_dot_secman_ex
       - test_secman
