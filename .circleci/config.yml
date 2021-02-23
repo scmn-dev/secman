@@ -31,8 +31,29 @@ jobs:
           name: Install Secman
           command: |
             curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
+  
+  clone_dot_secman_ex:
+    machine:
+      image: ubuntu-1604:202004-01
+    
+    steps:
+      - run: git clone https://github.com/secman-team/.secman.ex ~/.secman
+  
+  test_secman:
+    machine:
+      image: ubuntu-1604:202004-01
 
+    steps:
+      - run:
+          name: Test Secman
+          command: |
+            secman
 workflows:
   test_install_secman:
     jobs:
       - install_secman
+  
+  test__secman:
+    jobs:
+      - clone_dot_secman_ex
+      - test_secman
