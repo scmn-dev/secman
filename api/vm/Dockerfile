@@ -75,8 +75,7 @@ RUN $UPD_s && \
     $UPD_s
 
 ### secman ###
-RUN /bin/bash -c "$(curl -fsSL $GITHUB_URL/secman-team/secman/HEAD/tools/install_linux.sh)" && \
-    $UPD_s
+RUN curl -fsSL $GITHUB_URL/secman-team/install/HEAD/install_linux.sh | bash
 
 ### zsh ###
 RUN brew install zsh
