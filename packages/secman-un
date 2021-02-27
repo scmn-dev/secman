@@ -40,22 +40,12 @@ clearAllData() {
 
 installManx() {
     if [ -x "$(command -v sudo)" ]; then
+        echo "installing manx..."
         sudo npm i -g @abdfnx/manx
     
     else
         npm i -g @abdfnx/manx
     fi
-}
-
-manxopa() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo manx $smLoc $cgitLoc $verxLoc $SM_DIR
-
-    else
-        manx $smLoc $cgitLoc $verxLoc $SM_DIR
-    fi
-
-    clearAllData
 }
 
 rmOpa() {
@@ -70,30 +60,13 @@ rmOpa() {
 }
 
 if [ -x "$(command -v secman)" ]; then
-    echo "do you want to uninstall it by manx or rm"
-    read un
-
-    if [ "$un" == "manx" ]; then
-        if [ -x "$(command -v manx)" ]; then
-            manxopa
-
-        else
-            installManx
-
-            if [ -x "$(command -v manx)" ]; then
-                manxopa
-            fi
-        fi
-
-    elif [ "$un" == "rm" ]; then
-        rmOpa
-    fi
+    rmOpa
 
     if ! [ -f "$smLoc" ]; then
         goodBye
 
     else
-        echo "there's error while uninstalling secman"
+        echo "there's error while uninstalling secman, try again"
     fi
 
 else
