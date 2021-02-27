@@ -31,7 +31,7 @@ jobs:
           context: ./
           file: ./api/vm/Dockerfile
           push: true
-          tags: abdcodedoc/secman:vm
+          tags: ${{ secrets.DOCKER_ID }}/secman:vm
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
@@ -43,5 +43,5 @@ jobs:
       - name: Run the Docker image
         uses: actions/checkout@v2
       - run: |
-          CID=$(docker create -t -i abdcodedoc/secman:vm)
+          CID=$(docker create -t -i ${{ secrets.DOCKER_ID }}/secman:vm)
           docker start -a -i $CID
