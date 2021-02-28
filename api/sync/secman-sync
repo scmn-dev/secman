@@ -114,7 +114,7 @@ function badUsage() {
 }
 
 bkp() {
-    python3 ~/sm/backup.py $1
+    python3 /home/sm/backup.py $1
 }
 
 _phx() {
