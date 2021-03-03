@@ -13,3 +13,11 @@
 [submodule "tools"]
 	path = tools
 	url = https://github.com/secman-team/tools.git
+
+[submodule "homebrew-assets"]
+	path = plugins/homebrew-assets
+	url = https://github.com/secman-team/homebrew-assets
+
+[submodule "formula"]
+	path = plugins/formula
+	url = https://github.com/secman-team/sm-formula

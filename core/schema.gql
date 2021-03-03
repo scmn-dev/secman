@@ -1,0 +1,20 @@
+type Password {
+    value: String!
+    hasParentID: Boolean
+    parentCollection: ParentCollection
+}
+
+type ParentCollection {
+    name: String!
+    passwords: [Password]
+}
+
+type Query {
+    passwords: [Password]
+    parentCollection(name: String): ParentCollection
+}
+
+type Mutation {
+    createPassword(value: String): Password
+    deletePassword(name: String): String
+}

@@ -16,7 +16,6 @@ import (
 	"github.com/secman-team/secman/v5/upgrade"
 	"github.com/secman-team/secman/v5/plugins"
 	"github.com/secman-team/secman/v5/fetch"
-	"github.com/secman-team/secman/v5/api/vm"
 	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/spf13/cobra"
 )
@@ -47,15 +46,6 @@ directory, and initialize your cryptographic keys.`,
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println(version)
-			checker.Checker()
-		},
-	}
-
-	vmCmd = &cobra.Command{
-		Use:   "vm",
-		Short: "secman virtaul machine (with docker).",
-		Run: func(cmd *cobra.Command, args []string) {
-			vm.Main()
 			checker.Checker()
 		},
 	}
@@ -227,7 +217,6 @@ func init() {
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(upgCmd)
-	RootCmd.AddCommand(vmCmd)
 	RootCmd.AddCommand(verxCmd)
 }
 

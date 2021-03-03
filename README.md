@@ -15,17 +15,84 @@
 - ![go](https://img.shields.io/static/v1?label=go&message=v1.11%20and%20above&color=blue&logo=go)
 - ![git](https://img.shields.io/static/v1?label=git&message=any%20version&color=blue&logo=git)
 - ![ruby](https://img.shields.io/static/v1?label=ruby&message=any%20version&color=blue&logo=ruby)
-- ![gh cli](https://img.shields.io/static/v1?label=gh-cli&message=any%20version&color=blue&logo=github)
+- ![gh cli](https://img.shields.io/static/v1?label=gh%20cli&message=any%20version&color=blue&logo=github)
 
-_working on add `secman` to linux package managers_
-
-```sh
+<!-- ```sh
 # wsl/linux
-❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 
 # macOS
-❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
+curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
+``` -->
+
+## Linux
+
+- by [**curl**](#)
+- by [**Linux package managers**](#)
+   - [Ubuntu/Debian](#)
+   - [Fedora/CentOS/Red Hat Enterprise Linux](#)
+- by [**brew**](#)
+
+### curl
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 ```
+
+### Linux package managers
+
+> secman is avaliable for linux package managers
+
+### _Ubuntu/Debian_
+
+download `secman_latest_version.deb` from https://github.com/secman-team/secman/releases/latest
+
+and install secman by `apt`
+
+```sh
+sudo apt install ./secman_latest_version.deb
+```
+
+### _Fedora/CentOS/Red Hat Enterprise Linux_
+
+install `secman_latest_version.rpm` from https://github.com/secman-team/secman/releases/latest
+
+and install secman by `rpm`
+
+```sh
+sudo rpm install ./secman_latest_version.rpm
+```
+
+for more see [docs/linux.md](https://github.com/secman-team/secman/blob/main/docs/linux.md)
+
+### brew
+
+```sh
+brew tap secman-team/sm-tap
+brew install secman
+```
+
+---
+
+## MacOS
+
+- by [**curl**](#)
+- by [**brew**](#)
+
+### curl
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
+```
+
+### brew
+
+```sh
+brew tap secman-team/sm-tap
+brew install secman
+```
+
+---
 
 ## Windows
 
@@ -34,18 +101,24 @@ _working on add `secman` to linux package managers_
 ### scoop
 
 ```pwsh
-❯ scoop install secman
+scoop install secman
 ```
 
 Note: if you use `git bash`, you can write this command
 
 ```sh
-❯ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_win.sh | bash
+curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_win.sh | bash
 ```
 
 ### MSI
 
 > MSI installers are available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
+
+## Build from source
+
+see [docs/from_source.md](https://github.com/secman-team/secman/blob/main/docs/from_source.md)
+
+---
 
 ## Code Status
 
@@ -62,7 +135,7 @@ Note: if you use `git bash`, you can write this command
 Create a vault and specify the directory to store passwords in. You will be prompted for your master password:
 
 ```sh
-❯ secman init
+secman init
 Please enter a strong master password:
 2020/12/23 09:54:31 Created directory to store passwords: ~/.secman
 ```
@@ -70,7 +143,7 @@ Please enter a strong master password:
 Finally, to learn more you can either read about the commands listed in this README or run:
 
 ```code
-❯ secman help
+secman help
 ```
 
 The `--help` argument can be used on any subcommand to describe it and see documentation or examples 😉.
@@ -86,7 +159,7 @@ it's store the vault in the default location `~/.secman`. All subcommands will r
 ### Listing Passwords
 
 ```code
-❯ secman
+secman
 ├──ionic
 |  └──pass
 └──dev
@@ -98,7 +171,7 @@ This basic command is used to print out the contents of your password vault. It 
 ### Initializing Vault
 
 ```sh
-❯ secman init
+secman init
 ```
 
 Init should only be run one time, before running any other command. It is used for generating your master public private keypair.
@@ -108,7 +181,7 @@ By default, secman will create your password vault in the `.secman` directory wi
 ### Inserting a password
 
 ```code
-❯ secman insert accounts/ionic
+secman insert accounts/ionic
 Enter password for accounts/ionic: 
 ```
 
@@ -119,7 +192,7 @@ Here we are adding ionic to the password store within the accounts group.
 ### Inserting a file 📝
 
 ```sh
-❯ secman insert money/budget.csv budget.csv
+secman insert money/budget.csv budget.csv
 ```
 
 Adding a file works almost the same as insert. Instead it has an extra argument. The file that you want to add to your vault is the final argument.
@@ -127,7 +200,7 @@ Adding a file works almost the same as insert. Instead it has an extra argument.
 ### Retrieving a password
 
 ```code
-❯ secman show accounts/ionic
+secman show accounts/ionic
 Enter master password:
 ionic_is_😎_js_platform
 ```
@@ -137,7 +210,7 @@ Show is used to display a password in standard out.
 ### Rename a password
 
 ```code
-❯ secman rename accounts/ionic-hub
+secman rename accounts/ionic-hub
 Enter new site name for accounts/ionic-hub: accounts/ionic
 ```
 
@@ -146,7 +219,7 @@ If a password is added with the wrong name it can be updated later. Here we rena
 ### Updating/Editing a password
 
 ```code
-❯ secman edit dev/dev.to
+secman edit dev/dev.to
 Enter new password for dev/dev.to:
 ```
 
@@ -155,10 +228,10 @@ If you want to securely update a password for an already existing site, the edit
 ### Generating a password
 
 ```code
-❯ secman gen
+secman gen
 %L4^!s,Rry!}s:U<QwliL{vQKow321-!tr}:232
 
-❯ secman gen 8
+secman gen 8
 #%Xy1t7E
 ```
 
@@ -167,11 +240,11 @@ secman can also create randomly generated passwords. The default length of secma
 ### Searching the vault
 
 ```code
-❯ secman find git
+secman find git
 └──git
    └──github.com
 
-❯ secman ls dev
+secman ls dev
 └──dev
    └──dev.to
 ```
@@ -181,7 +254,7 @@ secman can also create randomly generated passwords. The default length of secma
 ### Deleting a vault entry
 
 ```code
-❯ secman
+secman
 ├──bb
 |  └──ff
 ├──something
@@ -189,9 +262,9 @@ secman can also create randomly generated passwords. The default length of secma
 └──code.com
    └──dex.io
 
-❯ secman remove bb/ff
+secman remove bb/ff
 
-❯ secman
+secman
 ├──something
 |  └──somethingelse.com
 └──code.com
@@ -203,7 +276,7 @@ remove is used for removing sites from the password vault. `secman rm` is an ali
 ### Getting Help
 
 ```code
-❯ secman --help
+secman --help
 ```
 
 All subcommands support the `--help` flag.
@@ -215,13 +288,13 @@ All subcommands support the `--help` flag.
 you should authenticate by [`gh cli`](https://cli.github.com) to use **sync** feature
 
 ```sh
-❯ gh auth login
+gh auth login
 ```
 
 #### sync
 
 ```sh
-❯ secman-sync sync
+secman-sync sync
 ```
 
 if you sync your passwords for first time, `sync` command will create a private github repo and store the passwords on it
@@ -231,7 +304,7 @@ if you sync your passwords for first time, `sync` command will create a private 
 #### clone
 
 ```sh
-❯ secman-sync clone
+secman-sync clone
 ```
 
 if you lose your passwords, or you use more than device, you can clone your private repo
@@ -241,7 +314,7 @@ if you lose your passwords, or you use more than device, you can clone your priv
 #### push
 
 ```sh
-❯ secman-sync push
+secman-sync push
 ```
 
 if there's a new password/s, it's well push it to the repo, like git
@@ -251,7 +324,7 @@ if there's a new password/s, it's well push it to the repo, like git
 #### pull
 
 ```sh
-❯ secman-sync pull
+secman-sync pull
 ```
 
 we know what `pull` do
@@ -261,7 +334,7 @@ alias: `secman-sync pl`
 #### getting help
 
 ```code
-❯ secman-sync --help | -h
+secman-sync --help | -h
 ```
 
 ## CRYPTOGRAPHY DETAILS
@@ -281,13 +354,13 @@ Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you
 > `update by secman upd`
 
 ```sh
-❯ secman upd
+secman upd
 ```
 
 #### in Windows
 
 ```pwsh
-❯ scoop upgrade secman
+scoop upgrade secman
 ```
 
 ### Uninstall
@@ -295,7 +368,7 @@ Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you
 > `uninstall by secman-un`
 
 ```sh
-❯ secman-un
+secman-un
 ```
 
 #### For Windows

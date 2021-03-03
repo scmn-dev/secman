@@ -31,6 +31,8 @@ function repo_work() {
 
     ${cd_SECDIR}
 
+    git init
+
     ${rdm}
 
     ${create}
