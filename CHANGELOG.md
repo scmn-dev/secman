@@ -2,6 +2,33 @@
 
 All notable changes to secman will be documented in **CHANGELOG.md**
 
+## [[v5.2.1] 2021-03-03](#v521-2021-03-03)
+
+### Added
+
+- Add **error** dir, it's contain falied commands
+- Create secman schema by graphql
+- Create secman formula for homebrew 🍺,
+  <br>
+  and homebrew-assets repo
+
+### Changed
+
+- Remove **vm** command, because it's not very important thing
+- Location of **sm** was changed, from **~** to **/home/**
+
+### Fixed
+
+- Fix the bug in `secman-sync`, the bug is
+  when you sync your **~/.secman**
+  it's should create a private repo under the username, and push all files to branch
+  but in fact, it's create a private repo without push files to branch
+  so we fix it...
+
+- Fix installation errors in secman_latest_version.deb
+- Fix and Remove virues in **secman-sync.exe**, so **secman-sync.ps1**  was created
+- Fix `Docker CI` in github actions
+
 ## [[v5.2.0] 2021-02-21](#v520-2021-02-21)
 
 ### Added

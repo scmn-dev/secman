@@ -3,7 +3,7 @@
 Hi there, The developers always use the terminal, but it is boring and has no colors or shapes.
 Today we will transform our terminals into a wonderful, colorful, supportive terminal that offers suggestions and has a memory, we'll do it by [OMZ][omzUrl] and design it by [PowerLevel10k][p10kUrl]...
 
-# Pre-requisites
+## Pre-requisites
 
 > if you're using [Windows](https://www.microsoft.com/en-us/windows), you can install and configure [WSL][wslUrl]
 
@@ -33,7 +33,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 
 ## [PowerLevel10k][p10kUrl]
 
-- Install Powerlevel10k using the following command
+* Install Powerlevel10k using the following command
 
 ```sh
 # gh cli
@@ -51,7 +51,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 > ### Configure Powerlevel10k Theme
 
-- Make sure your terminal font is `MesloLGS NF` or `Hack Nerd Font`.
+* Make sure your terminal font is `MesloLGS NF` or `Hack Nerd Font`.
 
 ![Alt Text](https://dev-to-uploads.s3.amazonaws.com/i/vb56rxkxktyjaocbrh6s.png)
 
@@ -73,12 +73,11 @@ assign it to `MesloLGS NF` or `Hack Nerd Font`.
 ```
 
 > Windows Terminal url in Microsoft Store: [url](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701)
-
 > Windows Terminal repo: [url](https://github.com/microsoft/terminal)
 
 ### **p10k configure**
 
-type 
+type
 
 ```sh
 p10k configure
@@ -92,7 +91,7 @@ you can choose your style...
 
 ### Clone plugins
 
-- zsh-syntax-highlighting - It enables highlighting of commands whilst they are typed at a zsh prompt into an interactive terminal. This helps in reviewing commands before running them, particularly in catching syntax errors.
+* zsh-syntax-highlighting - It enables highlighting of commands whilst they are typed at a zsh prompt into an interactive terminal. This helps in reviewing commands before running them, particularly in catching syntax errors.
 
 ```sh
 # gh cli
@@ -102,7 +101,7 @@ gh repo clone zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custo
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-- zsh-autosuggestions - It suggests commands as you type based on history and completions.
+* zsh-autosuggestions - It suggests commands as you type based on history and completions.
 
 ```sh
 # gh cli
@@ -119,6 +118,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 * [exa](https://the.exa.website): is a modern replacement for _ls_
 
 #### colorls
+
 ```sh
 sudo gem install colorls
 ```
@@ -127,7 +127,7 @@ sudo gem install colorls
 
 #### maybe you'll get some `gem` errors, you should fix it
 
-_Linux_
+> _Linux_
 
 ```sh
 sudo apt install ruby-full
@@ -187,4 +187,3 @@ That's it, see you next time 👋
 [p10kUrl]: https://github.com/romkatv/powerlevel10k
 [wslUrl]: https://docs.microsoft.com/en-us/windows/wsl/
 [szpUrl]: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
- 
