@@ -14,7 +14,7 @@ type Query {
     parentCollection(name: String): ParentCollection
 }
 
-type Mutation {
+mutation {
     createPassword(value: String): Password
     deletePassword(name: String): String
 }
