@@ -221,16 +221,16 @@ func init() {
 	RootCmd.AddCommand(verxCmd)
 }
 
-const clone string = "git clone https://github.com/secman-team/"
-const winCmd string = clone + "sm-win ~/sm"
-const cmd string = clone + "sm /home/sm"
-
 func loading(text string) {
 	s := spinner.New(spinner.CharSets[35], 100*time.Millisecond)
 	s.Suffix = " " + text
 	s.Start()
 	s.Stop()
 }
+
+const clone string = "git clone https://github.com/secman-team/"
+const winCmd string = clone + "sm-win ~/sm"
+const cmd string = clone + "sm /home/sm"
 
 // main
 func main() {
@@ -241,7 +241,7 @@ func main() {
 			} else {
 				loading("installing windows deps...")
 
-				SHCore(cmd, winCmd)
+				shell.SHCore(cmd, winCmd)
 
 				RootCmd.Execute()
 			}
@@ -253,7 +253,7 @@ func main() {
 			} else {
 				loading("installing linux/macos deps...")
 
-				SHCore(cmd, winCmd)
+				shell.SHCore(cmd, winCmd)
 
 				RootCmd.Execute()
 			}

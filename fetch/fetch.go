@@ -1,8 +1,6 @@
 package fetch
 
 import (
-	"fmt"
-	"os/exec"
 	"time"
 
 	"github.com/briandowns/spinner"
@@ -14,7 +12,7 @@ func FetchSECDIR() {
 	s.Suffix = " Fetching..."
 	s.Start()
 
-	SHCore("secman-sync pl", "bash ssc pl")
+	shell.SHCore("secman-sync pl", "bash ssc pl")
 
 	s.Stop()
 }
