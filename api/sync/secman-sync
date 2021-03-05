@@ -3,7 +3,7 @@
 SM_GH_UN=$(git config user.name)
 create="gh repo create $SM_GH_UN/.secman -y --private"
 brew_gh="brew install gh"
-SECDIR=~/.secman
+SECDIR="$HOME/.secman"
 cd_SECDIR="cd $SECDIR"
 
 # pkgs
@@ -93,7 +93,7 @@ function corgit_pl() {
 }
 
 function clonex() {
-    local clone="gh repo clone $SM_GH_UN/.secman $SECDIR"
+    local clone="git clone https://github.com/$SM_GH_UN/.secman $SECDIR"
 
     if [ -d $SECDIR ]; then
         rm -rf $SECDIR
