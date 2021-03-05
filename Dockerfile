@@ -86,12 +86,4 @@ RUN zsh && \
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting && \
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# rm old files
-RUN sudo rm -rf $src
-RUN sudo rm -rf .oh-my-zsh/oh-my-zsh.sh
-
-# wget new files
-RUN wget $GITHUB_URL/secman-team/tools/HEAD/.zshrc && \
-    wget $GITHUB_URL/secman-team/tools/HEAD/oh-my-zsh.sh
-
 CMD /bin/bash -c "source .zshrc"
