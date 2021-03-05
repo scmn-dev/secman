@@ -1,25 +1,17 @@
 package checker
 
 import (
-	"fmt"
-	"os/exec"
-	"github.com/briandowns/spinner"
 	"time"
+	"github.com/briandowns/spinner"
+	"github.com/secman-team/shell"
 )
 
 func Checker() {
 	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
 	s.Suffix = " Checking for updates..."
 	s.Start()
-	
-	cmd := exec.Command("verx", "--sm")
-	stdout, err := cmd.Output()
-	
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-	
-	fmt.Print(string(stdout))
+
+	SHCore("verx --sm", "bash vx --sm")
+
 	s.Stop()
 }

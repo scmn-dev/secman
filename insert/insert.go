@@ -38,7 +38,7 @@ func Password(name string) {
 	}
 
 	err = json.Unmarshal(configContents, &c)
-	
+
 	if err != nil {
 		log.Fatalf("Could not unmarshal config file contents: %s", err.Error())
 	}

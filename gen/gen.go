@@ -2,6 +2,7 @@ package gen
 
 import (
 	"log"
+
 	"github.com/secman-team/secman/v5/pc"
 )
 
@@ -18,7 +19,7 @@ func Generate(pwlen int) string {
 	if pwlen < 1 {
 		pwlen = defaultPwLen
 	}
-	
+
 	// By default, we should generate a strong password that needs everything
 	specs := &pc.PasswordSpecs{
 		NeedsUpper:  true,

@@ -2,27 +2,28 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"os"
-	"os/exec"
 	"runtime"
+	"strconv"
+	"time"
 
+	"github.com/briandowns/spinner"
+	"github.com/secman-team/shell"
+
+	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/secman-team/secman/v5/edit"
+	"github.com/secman-team/secman/v5/fetch"
 	"github.com/secman-team/secman/v5/gen"
 	"github.com/secman-team/secman/v5/initialize"
 	"github.com/secman-team/secman/v5/insert"
 	"github.com/secman-team/secman/v5/pio"
 	"github.com/secman-team/secman/v5/show"
-	"github.com/secman-team/secman/v5/upgrade"
-	"github.com/secman-team/secman/v5/plugins"
-	"github.com/secman-team/secman/v5/fetch"
-	"github.com/secman-team/secman/v5/api/sync"
 	"github.com/spf13/cobra"
 )
 
 var (
 	copyPass bool
-	version string
+	version  string
 	RootCmd  = &cobra.Command{
 		Use:   "secman",
 		Short: "Print the contents of the vault.",
@@ -51,7 +52,7 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	verxCmd = &cobra.Command{
-		Use:   "verx",
+		Use: "verx",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println(version)
 		},
@@ -68,9 +69,9 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	upgCmd = &cobra.Command{
-		Use:   "upg",
+		Use:     "upg",
 		Aliases: []string{"upgrade"},
-		Short: "Upgrade your secman if there's a new release.",
+		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
 			upg.Upgrade()
 		},
@@ -220,6 +221,17 @@ func init() {
 	RootCmd.AddCommand(verxCmd)
 }
 
+const clone string = "git clone https://github.com/secman-team/"
+const winCmd string = clone + "sm-win ~/sm"
+const cmd string = clone + "sm /home/sm"
+
+func loading(text string) {
+	s := spinner.New(spinner.CharSets[35], 100*time.Millisecond)
+	s.Suffix = " " + text
+	s.Start()
+	s.Stop()
+}
+
 // main
 func main() {
 	if runtime.GOOS == "windows" {
@@ -227,20 +239,24 @@ func main() {
 			if os.IsNotExist(err) {
 				RootCmd.Execute()
 			} else {
-				fmt.Println("installing windows deps...")
-				cmd := exec.Command("git", "clone", "https://github.com/secman-team/sm-win", "~/sm")
-				stdout, err := cmd.Output()
-			
-				if err != nil {
-					fmt.Println(err.Error())
-					return
-				}
-			
-				fmt.Print(string(stdout))
+				loading("installing windows deps...")
+
+				SHCore(cmd, winCmd)
+
 				RootCmd.Execute()
 			}
 		}
 	} else {
-		RootCmd.Execute()
+		if _, err := os.Stat("/home/sm"); err != nil {
+			if os.IsNotExist(err) {
+				RootCmd.Execute()
+			} else {
+				loading("installing linux/macos deps...")
+
+				SHCore(cmd, winCmd)
+
+				RootCmd.Execute()
+			}
+		}
 	}
 }

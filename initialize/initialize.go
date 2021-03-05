@@ -118,7 +118,7 @@ func Init() {
 	// Create a new salt for encrypting public key.
 	var hmacSalt [32]byte
 	_, err = rand.Read(hmacSalt[:])
-	
+
 	if err != nil {
 		log.Fatalf("Could not generate random salt: %s", err.Error())
 	}
@@ -138,7 +138,7 @@ func Init() {
 
 	// Encrypt master private key with master password key.
 	sealedMasterPrivKey, err := pc.Seal(&passKey, priv[:])
-	
+
 	if err != nil {
 		log.Fatalf("Could not encrypt master key: %s", err.Error())
 	}

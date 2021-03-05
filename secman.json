@@ -5,9 +5,6 @@
       "url": "https://github.com/secman-team/secman/releases/download/v5.2.1/secman_windows_v5.2.1_x64.zip",
       "bin": [
         "core/secman.exe",
-        "core/secman-sync.ps1",
-        "core/verx.ps1",
-        "core/cgit.ps1",
         "core/ct",
         "core/vx",
         "core/ssc"

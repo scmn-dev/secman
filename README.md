@@ -27,11 +27,11 @@ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_os
 
 ## Linux
 
-- by [**curl**](#)
-- by [**Linux package managers**](#)
-   - [Ubuntu/Debian](#)
-   - [Fedora/CentOS/Red Hat Enterprise Linux](#)
-- by [**brew**](#)
+- by [**curl**](#curl)
+- by [**linux package managers**](#linux-package-managers)
+   - [ubuntu/debian](#ubuntudebian)
+   - [fedora/centOS/red hat enterprise linux](#fedoracentosred-hat-enterprise-linux)
+- by [**brew**](#brew)
 
 ### curl
 
@@ -39,7 +39,7 @@ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_os
 curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 ```
 
-### Linux package managers
+### linux package managers
 
 > secman is avaliable for linux package managers
 
@@ -76,8 +76,8 @@ brew install secman
 
 ## MacOS
 
-- by [**curl**](#)
-- by [**brew**](#)
+- by [**curl**](#curl-1)
+- by [**brew**](#brew-1)
 
 ### curl
 

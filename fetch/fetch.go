@@ -3,23 +3,18 @@ package fetch
 import (
 	"fmt"
 	"os/exec"
-	"github.com/briandowns/spinner"
 	"time"
+
+	"github.com/briandowns/spinner"
+	"github.com/secman-team/shell"
 )
 
 func FetchSECDIR() {
 	s := spinner.New(spinner.CharSets[36], 100*time.Millisecond)
 	s.Suffix = " Fetching..."
 	s.Start()
-	
-	cmd := exec.Command("secman-sync", "pl")
-	stdout, err := cmd.Output()
-	
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
-	
-	fmt.Print(string(stdout))
+
+	SHCore("secman-sync pl", "bash ssc pl")
+
 	s.Stop()
 }
