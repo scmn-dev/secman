@@ -18,6 +18,8 @@ import (
 	"github.com/secman-team/secman/v5/insert"
 	"github.com/secman-team/secman/v5/pio"
 	"github.com/secman-team/secman/v5/show"
+	"github.com/secman-team/secman/v5/plugins"
+	"github.com/secman-team/secman/v5/upgrade"
 	"github.com/spf13/cobra"
 )
 
@@ -235,28 +237,24 @@ const cmd string = clone + "sm /home/sm"
 // main
 func main() {
 	if runtime.GOOS == "windows" {
-		if _, err := os.Stat("~/sm"); err != nil {
-			if os.IsNotExist(err) {
-				RootCmd.Execute()
-			} else {
-				loading("installing windows deps...")
+		if _, err := os.Stat("~/sm"); !os.IsNotExist(err) {
+			RootCmd.Execute()
+		} else {
+			loading("installing windows deps...")
 
-				shell.SHCore(cmd, winCmd)
+			shell.SHCore(cmd, winCmd)
 
-				RootCmd.Execute()
-			}
+			RootCmd.Execute()
 		}
 	} else {
-		if _, err := os.Stat("/home/sm"); err != nil {
-			if os.IsNotExist(err) {
-				RootCmd.Execute()
-			} else {
-				loading("installing linux/macos deps...")
+		if _, err := os.Stat("/home/sm"); !os.IsNotExist(err) {
+			RootCmd.Execute()
+		} else {
+			loading("installing linux/macos deps...")
 
-				shell.SHCore(cmd, winCmd)
+			shell.SHCore(cmd, winCmd)
 
-				RootCmd.Execute()
-			}
+			RootCmd.Execute()
 		}
 	}
 }
