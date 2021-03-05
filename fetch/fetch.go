@@ -12,7 +12,7 @@ func FetchSECDIR() {
 	s.Suffix = " Fetching..."
 	s.Start()
 
-	shell.SHCore("secman-sync pl", "bash ssc pl")
+	shell.SHCore("secman-sync pl", "bash $HOME/sm/ssc pl")
 
 	s.Stop()
 }

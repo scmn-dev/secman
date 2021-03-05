@@ -6,10 +6,7 @@
   "files": {
     "guid": "eff487cb-3c59-48ad-8e49-1ecf28ce1a46",
     "items": [
-      "build/win/secman.exe",
-      "build/win/ssc",
-      "build/win/vx",
-      "build/win/ct"
+      "build/win/secman.exe"
     ]
   },
   "env": {

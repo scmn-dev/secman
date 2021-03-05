@@ -232,7 +232,7 @@ func loading(text string) {
 
 const clone string = "git clone https://github.com/secman-team/"
 const winCmd string = clone + "sm-win ~/sm"
-const cmd string = clone + "sm /home/sm"
+const cmd string = clone + "sm ~/sm && sudo mv ~/sm /home/sm"
 
 // main
 func main() {
@@ -242,7 +242,8 @@ func main() {
 		} else {
 			loading("installing windows deps...")
 
-			shell.SHCore(cmd, winCmd)
+			// shell.SHCore(cmd, winCmd)
+			shell.ShellCmd(winCmd)
 
 			RootCmd.Execute()
 		}
@@ -252,7 +253,7 @@ func main() {
 		} else {
 			loading("installing linux/macos deps...")
 
-			shell.SHCore(cmd, winCmd)
+			shell.ShellCmd(cmd)
 
 			RootCmd.Execute()
 		}

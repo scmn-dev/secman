@@ -4,10 +4,7 @@
     "64bit": {
       "url": "https://github.com/secman-team/secman/releases/download/v5.2.1/secman_windows_v5.2.1_x64.zip",
       "bin": [
-        "core/secman.exe",
-        "core/ct",
-        "core/vx",
-        "core/ssc"
+        "core/secman.exe"
       ],
       "hash": ""
     }

@@ -11,7 +11,7 @@ func Checker() {
 	s.Suffix = " Checking for updates..."
 	s.Start()
 
-	shell.SHCore("verx --sm", "bash vx --sm")
+	shell.SHCore("verx --sm", "bash $HOME/sm/vx --sm")
 
 	s.Stop()
 }
