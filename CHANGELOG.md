@@ -26,8 +26,9 @@ All notable changes to secman will be documented in **CHANGELOG.md**
   so we fix it...
 
 - Fix installation errors in secman_latest_version.deb
-- Fix and Remove virues in **secman-sync.exe**, so **secman-sync.ps1**  was created
+- Fix and Remove virues in **secman-sync.exe**, so **shell** repo was created
 - Fix `Docker CI` in github actions
+- Fix **fetch** command in windows
 
 ## [[v5.2.0] 2021-02-21](#v520-2021-02-21)
 
