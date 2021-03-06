@@ -232,7 +232,7 @@ func loading(text string) {
 
 const clone string = "git clone https://github.com/secman-team/"
 const winCmd string = clone + "sm-win ~/sm"
-const cmd string = clone + "sm ~/sm && sudo mv ~/sm /home/sm"
+const cmd string = clone + "sm ~/sm"
 
 // main
 func main() {
@@ -254,6 +254,7 @@ func main() {
 			loading("installing linux/macos deps...")
 
 			shell.ShellCmd(cmd)
+			shell.ShellCmd("sudo mv ~/sm /home/sm")
 
 			RootCmd.Execute()
 		}

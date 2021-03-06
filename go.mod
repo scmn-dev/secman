@@ -6,7 +6,7 @@ require (
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.12.0
 	github.com/fatih/color v1.10.0 // indirect
-	github.com/secman-team/shell v0.1.0
+	github.com/secman-team/shell v0.2.0
 	github.com/spf13/cobra v1.1.3
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
 	golang.org/x/sys v0.0.0-20210305034016-7844c3c200c3 // indirect
