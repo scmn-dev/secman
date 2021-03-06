@@ -50,7 +50,7 @@ download `secman_latest_version.deb` from https://github.com/secman-team/secman/
 and install secman by `apt`
 
 ```sh
-sudo apt install ./secman_latest_version.deb
+sudo apt install ./secman_latest_version_x64.deb
 ```
 
 ### _Fedora/CentOS/Red Hat Enterprise Linux_
@@ -60,7 +60,7 @@ install `secman_latest_version.rpm` from https://github.com/secman-team/secman/r
 and install secman by `rpm`
 
 ```sh
-sudo rpm install ./secman_latest_version.rpm
+sudo rpm install ./secman_latest_version_x64.rpm
 ```
 
 for more see [docs/linux.md](https://github.com/secman-team/secman/blob/main/docs/linux.md)
