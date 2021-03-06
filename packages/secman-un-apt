@@ -76,7 +76,7 @@ if [ -x "$(command -v secman)" ]; then
         goodBye
 
     else
-        echo "there's error while uninstalling secman, try again"
+        echo "there's an error while uninstalling secman, try again"
     fi
 
 else

@@ -16,45 +16,35 @@ clearAllData() {
     read -n 1 accept
 
     if [[ $accept == "Y" || $accept == "y" ]]; then
-        if [ -x "$(command -v sudo)" ]; then
+        if [ -x "$(command -v manx)" ]; then
+            manx $SECDIR
+
+        else
+            installManx
+
             if [ -x "$(command -v manx)" ]; then
-                sudo manx $SECDIR
-
-            else
-                installManx
-
-                if [ -x "$(command -v manx)" ]; then
-                    sudo manx $SECDIR
-                fi
+                manx $SECDIR
             fi
         fi
-    
-    elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
+
+    elif
+        [[ $accept == "" || $accept == "N" || $accept == "n" ]]
+    then
         echo "ok"
     fi
-    
+
     SM_GH_UN=$(git config user.name)
 
     echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 }
 
 installManx() {
-    if [ -x "$(command -v sudo)" ]; then
-        echo "installing manx..."
-        sudo npm i -g @abdfnx/manx
-    
-    else
-        npm i -g @abdfnx/manx
-    fi
+    echo "installing manx..."
+    npm i -g @abdfnx/manx
 }
 
 rmOpa() {
-    if [ -x "$(command -v sudo)" ]; then
-        sudo rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
-
-    else
-        rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
-    fi
+    rm -rf $smLoc $cgitLoc $verxLoc $SM_DIR
 
     clearAllData
 }
@@ -66,7 +56,7 @@ if [ -x "$(command -v secman)" ]; then
         goodBye
 
     else
-        echo "there's error while uninstalling secman, try again"
+        echo "there's an error while uninstalling secman, try again"
     fi
 
 else

@@ -59,14 +59,24 @@ rmOpa() {
     clearAllData
 }
 
+rmMan() {
+    if [ -x "$(command -v sudo)" ]; then
+        sudo rm /usr/share/man/man1/secman*.1.gz
+
+    else
+        rm /usr/share/man/man1/secman*.1.gz
+    fi
+}
+
 if [ -x "$(command -v secman)" ]; then
     rmOpa
+    rmMan
 
     if ! [ -f "$smLoc" ]; then
         goodBye
 
     else
-        echo "there's error while uninstalling secman, try again"
+        echo "there's an error while uninstalling secman, try again"
     fi
 
 else

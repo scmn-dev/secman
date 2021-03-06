@@ -6,7 +6,7 @@
   "files": {
     "guid": "eff487cb-3c59-48ad-8e49-1ecf28ce1a46",
     "items": [
-      "build/win/secman.exe"
+      "build/win/bin/secman.exe"
     ]
   },
   "env": {

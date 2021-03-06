@@ -16,10 +16,10 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 tests
-!tools/tests
 
 build/
 dist/
+/share/man/man1
 
 # ignored files
 # 1. build/secman-linux
