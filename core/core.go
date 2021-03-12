@@ -242,7 +242,6 @@ func main() {
 		`
 			_cmd() {
 				if ! [ -x "$(command -v $1)" ]; then
-					echo "$1 was not found";
 					echo "installing $1..."
 					$2
 					sudo chmod 755 /usr/local/bin/secman*
@@ -264,9 +263,11 @@ func main() {
 
 			_cmd secman-sync "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/api/sync/secman-sync"
 			
-			if [ [ -d /home/sm ] && [ -x "$(command -v verx)" ] && [ -x "$(command -v cgit)" ] && [ -x "$(command -v secman-un)" ] && [ -x "$(command -v secman-sync)" ] ]; then
+			if [ -d /home/sm ] && [ -x "$(command -v verx)" ] && [ -x "$(command -v cgit)" ] && [ -x "$(command -v secman-un)" ] && [ -x "$(command -v secman-sync)" ]; then
 				echo "secman was fixed successfully 👍"
 			fi
+
+			echo "run secman again after fix"
 		`
 
 	wCheck :=
@@ -274,13 +275,14 @@ func main() {
 			$directoyPath="$HOME\sm";
 
 			if(!(Test-Path -path $directoyPath)) {
-				echo "sm folder was not found"
 				echo "installing sm..."
 				git clone https://github.com/secman-team/sm-win $directoyPath
-				
-				echo "installing ruby deps..."
-				gem install colorize optparse
 			}
+
+			echo "installing ruby deps..."
+			gem install colorize optparse
+
+			echo "run secman again after fix"
 		`	
 
 	if runtime.GOOS == "windows" {
