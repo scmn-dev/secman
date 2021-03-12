@@ -5,5 +5,5 @@ import (
 )
 
 func Upgrade() {
-	shell.ShellCmd("verx --sm")
+	shell.ShellCmd("verx --upg")
 }
