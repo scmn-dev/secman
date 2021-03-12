@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"runtime"
 	"strconv"
-	"time"
+	"log"
 
-	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
 
 	"github.com/secman-team/secman/v5/api/sync"
@@ -17,9 +15,10 @@ import (
 	"github.com/secman-team/secman/v5/initialize"
 	"github.com/secman-team/secman/v5/insert"
 	"github.com/secman-team/secman/v5/pio"
-	"github.com/secman-team/secman/v5/show"
 	"github.com/secman-team/secman/v5/plugins"
+	"github.com/secman-team/secman/v5/show"
 	"github.com/secman-team/secman/v5/upgrade"
+	"github.com/secman-team/secman/v5/clean"
 	"github.com/spf13/cobra"
 )
 
@@ -60,6 +59,15 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
+	cleanCmd = &cobra.Command{
+		Use:   "clean",
+		Short: "Clean your ~/.secman (delete it).",
+		Run: func(cmd *cobra.Command, args []string) {
+			clean.Clean()
+			checker.Checker()
+		},
+	}
+
 	initCmd = &cobra.Command{
 		Use:   "init",
 		Short: "Initialize your secman vault.",
@@ -75,7 +83,11 @@ directory, and initialize your cryptographic keys.`,
 		Aliases: []string{"upgrade"},
 		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
-			upg.Upgrade()
+			if runtime.GOOS == "windows" {
+				fmt.Println("Sorry, the upg/upgrade command only supports MacOS/Linux.. Maybe in the future it may support windows")
+			} else {
+				upg.Upgrade()
+			}
 		},
 	}
 
@@ -97,8 +109,8 @@ Will prompt for confirmation when a site path is not unique.`,
 				insert.Password(pathName)
 			}
 
-			checker.Checker()
 			sync.PushSync()
+			checker.Checker()
 		},
 	}
 
@@ -164,8 +176,8 @@ one group or all sites that contain a certain word in the group or name.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.Rename(path)
-			checker.Checker()
 			sync.PushSync()
+			checker.Checker()
 		},
 	}
 
@@ -178,8 +190,8 @@ one group or all sites that contain a certain word in the group or name.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.Edit(path)
-			checker.Checker()
 			sync.PushSync()
+			checker.Checker()
 		},
 	}
 
@@ -192,8 +204,8 @@ one group or all sites that contain a certain word in the group or name.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			edit.RemovePassword(path)
-			checker.Checker()
 			sync.PushSync()
+			checker.Checker()
 		},
 	}
 
@@ -209,6 +221,7 @@ one group or all sites that contain a certain word in the group or name.`,
 )
 
 func init() {
+	RootCmd.AddCommand(cleanCmd)
 	RootCmd.AddCommand(fetchCmd)
 	RootCmd.AddCommand(findCmd)
 	RootCmd.AddCommand(generateCmd)
@@ -223,40 +236,79 @@ func init() {
 	RootCmd.AddCommand(verxCmd)
 }
 
-func loading(text string) {
-	s := spinner.New(spinner.CharSets[35], 100*time.Millisecond)
-	s.Suffix = " " + text
-	s.Start()
-	s.Stop()
-}
-
-const clone string = "git clone https://github.com/secman-team/"
-const winCmd string = clone + "sm-win ~/sm"
-const cmd string = clone + "sm ~/sm"
-
 // main
 func main() {
+	mlChecker :=
+		`
+			_cmd() {
+				if ! [ -x "$(command -v $1)" ]; then
+					echo "$1 was not found";
+					echo "installing $1..."
+					$2
+					sudo chmod 755 /usr/local/bin/secman*
+					sudo chmod 755 /usr/local/bin/cgit*
+					sudo chmod 755 /usr/local/bin/verx*
+				fi
+			}
+
+			if ! [ -d /home/sm ]; then
+				echo "sm folder was not found"
+				sudo git clone https://github.com/secman-team/sm /home/sm
+			fi
+
+			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/abdfnx/verx/HEAD/verx"
+
+			_cmd cgit "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit"
+
+			_cmd secman-un "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/secman-un"
+
+			_cmd secman-sync "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/api/sync/secman-sync"
+			
+			if [ [ -d /home/sm ] && [ -x "$(command -v verx)" ] && [ -x "$(command -v cgit)" ] && [ -x "$(command -v secman-un)" ] && [ -x "$(command -v secman-sync)" ] ]; then
+				echo "secman was fixed successfully 👍"
+			fi
+		`
+
+	wCheck :=
+		`
+			$directoyPath="$HOME\sm";
+
+			if(!(Test-Path -path $directoyPath)) {
+				echo "sm folder was not found"
+				echo "installing sm..."
+				git clone https://github.com/secman-team/sm-win $directoyPath
+				
+				echo "installing ruby deps..."
+				gem install colorize optparse
+			}
+		`	
+
 	if runtime.GOOS == "windows" {
-		if _, err := os.Stat("~/sm"); !os.IsNotExist(err) {
-			RootCmd.Execute()
+		err, out, errout := shell.PWSLOut(wCheck)
+
+		if err != nil {
+			log.Printf("error: %v\n", err)
+			fmt.Println(errout)
 		} else {
-			loading("installing windows deps...")
-
-			// shell.SHCore(cmd, winCmd)
-			shell.ShellCmd(winCmd)
-
-			RootCmd.Execute()
+			if out == "" {
+				RootCmd.Execute()
+			}
 		}
+
+		fmt.Println(out)
+		
 	} else {
-		if _, err := os.Stat("/home/sm"); !os.IsNotExist(err) {
-			RootCmd.Execute()
+		err, out, errout := shell.ShellOut(mlChecker)
+
+		if err != nil {
+			log.Printf("error: %v\n", err)
+			fmt.Println(errout)
 		} else {
-			loading("installing linux/macos deps...")
-
-			shell.ShellCmd(cmd)
-			shell.ShellCmd("sudo mv ~/sm /home/sm")
-
-			RootCmd.Execute()
+			if out == "" {
+				RootCmd.Execute()
+			}
 		}
+
+		fmt.Println(out)
 	}
 }

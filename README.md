@@ -1,8 +1,16 @@
 # [<img src=".github/assets/secman.svg" width="300" align="center">][smUrl]
 
-[!["GitHub Discussions"](https://img.shields.io/badge/%20GitHub-%20Discussions-gray.svg?longCache=true&logo=github&colorB=blue&style=flat)](https://github.com/secman-team/secman/discussions)
-[![MIT LICENSE](https://img.shields.io/github/license/secman-team/secman?color=blue&label=License&style=flat)][mitUrl]
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)](https://github.com/secman-team/secman/releases/latest)
+
+## Code Status
+
+![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
+![Docker](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20Image%20CI%20(VM)?color=blue&label=Docker%20Image%20Build&logo=docker)
+![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
+![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI)
+![CircleCI](https://img.shields.io/circleci/build/gh/secman-team/secman?color=blue&label=CircleCI&logo=circleci)
+
+---
 
 > `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in [<img src=".github/assets/go.svg" width="23" align="center">][smUrl]! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
@@ -27,7 +35,7 @@ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_os
 
 ## Linux
 
-- by [**curl**](#curl)
+- by [**curl**](#curl) (Recommended)
 - by [**linux package managers**](#linux-package-managers)
    - [ubuntu/debian](#ubuntudebian)
    - [fedora/centOS/red hat enterprise linux](#fedoracentosred-hat-enterprise-linux)
@@ -76,7 +84,7 @@ brew install secman
 
 ## MacOS
 
-- by [**curl**](#curl-1)
+- by [**curl**](#curl-1) (Recommended)
 - by [**brew**](#brew-1)
 
 ### curl
@@ -117,18 +125,6 @@ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_wi
 ## Build from source
 
 see [docs/from_source.md](https://github.com/secman-team/secman/blob/main/docs/from_source.md)
-
----
-
-## Code Status
-
-![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
-![Docker](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20Image%20CI%20(VM)?color=blue&label=Docker%20Image%20Build&logo=docker)
-![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
-![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI)
-![CircleCI](https://img.shields.io/circleci/build/gh/secman-team/secman?color=blue&label=CircleCI&logo=circleci)
-
----
 
 ## Getting started with secman
 

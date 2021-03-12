@@ -1,6 +1,29 @@
 # Secman CHANGELOG
 
-All notable changes to secman will be documented in **CHANGELOG.md**
+> All notable changes to secman will be documented in **CHANGELOG.md**
+
+---
+
+## [[v5.3.0] 2021-03-10](#v521-2021-03-10)
+
+### Added
+
+- Create `clean` command
+
+- In _sm-win_ folder
+  * Add [**vx.ps1**](https://github.com/secman-team/sm-win/blob/code/vx.ps1)
+  * Add [**ct.ps1**](https://github.com/secman-team/sm-win/blob/code/ct.ps1)
+  * Add [**secman-sync.ps1**](https://github.com/secman-team/sm-win/blob/code/secman-sync.ps1)
+
+### Changed
+
+- Secman Dockerfile
+- New version of shell plugin **v3.0.0**
+
+### Fixed
+
+- Fix instllation errors in secman_latest_version_x64.rpm
+- Fix update checker in windows
 
 ## [[v5.2.1] 2021-03-03](#v521-2021-03-03)
 

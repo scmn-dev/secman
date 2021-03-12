@@ -4,6 +4,9 @@ import (
 	"time"
 	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
+	"runtime"
+	"log"
+	"fmt"
 )
 
 func Checker() {
@@ -11,7 +14,19 @@ func Checker() {
 	s.Suffix = " Checking for updates..."
 	s.Start()
 
-	shell.SHCore("verx --sm", "bash $HOME/sm/vx --sm")
-
+	err, out, errout := shell.ShellOut("")
+	
+	if runtime.GOOS == "windows" {
+		err, out, errout = shell.PWSLOut("~/sm/vx.ps1 --sm")
+	} else {
+		err, out, errout = shell.ShellOut("verx --sm")
+	}
+		
+	if err != nil {
+		log.Printf("error: %v\n", err)
+		fmt.Println(errout)
+	}
+		
 	s.Stop()
+	fmt.Println(out)
 }
