@@ -252,7 +252,10 @@ func main() {
 
 			if ! [ -d /home/sm ]; then
 				echo "sm folder was not found"
+				echo "installing sm..."
 				sudo git clone https://github.com/secman-team/sm /home/sm
+				echo "installing ruby deps..."
+				gem install colorize optparse
 			fi
 
 			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/abdfnx/verx/HEAD/verx"
