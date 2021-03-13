@@ -19,6 +19,7 @@
 
 - Secman Dockerfile
 - New version of shell plugin **v3.0.0**
+- Remove backup command
 
 ### Fixed
 

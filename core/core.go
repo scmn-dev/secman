@@ -55,7 +55,7 @@ directory, and initialize your cryptographic keys.`,
 	verxCmd = &cobra.Command{
 		Use: "verx",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(version)
+			fmt.Print(version)
 		},
 	}
 

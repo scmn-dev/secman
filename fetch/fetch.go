@@ -18,16 +18,16 @@ func FetchSECDIR() {
 	err, out, errout := shell.ShellOut("")
 	
 	if runtime.GOOS == "windows" {
-		err, out, errout = shell.PWSLOut("~/sm/secman-sync.ps1 --sm")
+		err, out, errout = shell.PWSLOut("& ~/sm/secman-sync.ps1 pl")
 	} else {
 		err, out, errout = shell.ShellOut("secman-sync pl")
 	}
 		
 	if err != nil {
 		log.Printf("error: %v\n", err)
-		fmt.Println(errout)
+		fmt.Print(errout)
 	}
 		
 	s.Stop()
-	fmt.Println(out)
+	fmt.Print(out)
 }

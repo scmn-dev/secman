@@ -7,7 +7,6 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"runtime"
 	"strings"
 
 	"github.com/secman-team/secman/v5/pc"
@@ -34,13 +33,7 @@ const (
 	Search
 )
 
-func init() {
-	/* Windows doesn't work with ambiguous width characters */
-	if runtime.GOOS == "windows" {
-		lastPrefix = "+--"
-		regPrefix = "+--"
-	}
-}
+// func init() {}
 
 func handleErrors(allErrors []error) {
 	errorStr := "Error"

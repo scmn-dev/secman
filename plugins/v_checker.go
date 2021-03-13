@@ -17,16 +17,16 @@ func Checker() {
 	err, out, errout := shell.ShellOut("")
 	
 	if runtime.GOOS == "windows" {
-		err, out, errout = shell.PWSLOut("~/sm/vx.ps1 --sm")
+		err, out, errout = shell.PWSLOut("& ~/sm/vx.ps1 --sm")
 	} else {
 		err, out, errout = shell.ShellOut("verx --sm")
 	}
 		
 	if err != nil {
 		log.Printf("error: %v\n", err)
-		fmt.Println(errout)
+		fmt.Print(errout)
 	}
 		
 	s.Stop()
-	fmt.Println(out)
+	fmt.Print(out)
 }
