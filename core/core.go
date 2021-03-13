@@ -276,6 +276,7 @@ func main() {
 				git clone https://github.com/secman-team/sm-win $directoyPath
 				echo "installing ruby deps..."
 				gem install colorize optparse
+				curl https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.sh -outfile $directoyPath\sm.sh
 			}
 		`	
 
