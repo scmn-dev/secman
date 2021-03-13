@@ -22,7 +22,7 @@
 
 - ![go](https://img.shields.io/static/v1?label=go&message=v1.11%20and%20above&color=blue&logo=go)
 - ![git](https://img.shields.io/static/v1?label=git&message=any%20version&color=blue&logo=git)
-- ![ruby](https://img.shields.io/static/v1?label=ruby&message=any%20version&color=blue&logo=ruby)
+- ![ruby](https://img.shields.io/static/v1?label=ruby&message=any%20version&color=blue&logo=ruby&logoColor=red)
 - ![gh cli](https://img.shields.io/static/v1?label=gh%20cli&message=any%20version&color=blue&logo=github)
 
 <!-- ```sh
