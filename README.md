@@ -20,10 +20,11 @@
 
 > secman needs [**go**][goUrl], [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
 
-- ![go](https://img.shields.io/static/v1?label=go&message=v1.11%20and%20above&color=blue&logo=go)
-- ![git](https://img.shields.io/static/v1?label=git&message=any%20version&color=blue&logo=git)
-- ![ruby](https://img.shields.io/static/v1?label=ruby&message=any%20version&color=blue&logo=ruby)
-- ![gh cli](https://img.shields.io/static/v1?label=gh%20cli&message=any%20version&color=blue&logo=github)
+- ![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=blue&logo=go)
+- ![git](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=git)
+- ![ruby](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=ruby&logoColor=red)
+- ![gh cli](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=github)
+- ![windows](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=windows) ![bash](https://img.shields.io/static/v1?label=bash&message=any%20version&color=white&logo=gnu-bash&logoColor=white)
 
 <!-- ```sh
 # wsl/linux
