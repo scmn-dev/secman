@@ -1,14 +1,14 @@
-$gh_raw = "https://raw.githubusercontent.com"
+$gh_raw = "https://raw.githubusercontent.com/secman-team/install/HEAD"
 
 def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
-        shared_gh_url = "#{$gh_raw}/secman-team/install/HEAD/install"
+        shared_gh_url = "#{$gh_raw}/install"
 
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
-            system("curl -fsSL #{shared_gh_url}_win.sh | bash")
+            system("powershell.exe iwr -useb #{$gh_raw/HEAD}/win/install.ps1 | iex")
         when /darwin|mac os/
             :macosx
             system("curl -fsSL #{shared_gh_url}_osx.sh | bash")
