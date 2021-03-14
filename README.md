@@ -25,29 +25,21 @@
 - ![gh cli](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=github)
 - ![windows](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=windows) ![bash](https://img.shields.io/static/v1?label=bash&message=any%20version&color=white&logo=gnu-bash&logoColor=white)
 
-<!-- ```sh
-# wsl/linux
-curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
-
-# macOS
-curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
-``` -->
-
 ## Linux
 
-- by [**curl**](#curl) (Recommended)
-- by [**linux package managers**](#linux-package-managers)
-   - [ubuntu/debian](#ubuntudebian)
-   - [fedora/centOS/red hat enterprise linux](#fedoracentosred-hat-enterprise-linux)
-- by [**brew**](#brew)
+- by [**Curl**](#curl) (Recommended)
+- by [**Linux Package Managers**](#linux-package-managers)
+   - [Ubuntu/Debian](#ubuntudebian)
+   - [Fedora/CentOS/Red Hat Enterprise Linux](#fedoracentosred-hat-enterprise-linux)
+- by [**Brew**](#brew)
 
-### curl
+### Curl
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
 ```
 
-### linux package managers
+### Linux Package Managers
 
 > secman is avaliable for linux package managers
 
@@ -73,7 +65,7 @@ sudo rpm -ivh ./secman_latest_version_x64.rpm --nodeps
 
 for more see [docs/linux.md](https://github.com/secman-team/secman/blob/main/docs/linux.md)
 
-### brew
+### Brew
 
 ```sh
 brew tap secman-team/sm-tap
@@ -84,16 +76,16 @@ brew install secman
 
 ## MacOS
 
-- by [**curl**](#curl-1) (Recommended)
-- by [**brew**](#brew-1)
+- by [**Curl**](#curl-1) (Recommended)
+- by [**Brew**](#brew-1)
 
-### curl
+### Curl
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
 ```
 
-### brew
+### Brew
 
 ```sh
 brew tap secman-team/sm-tap
@@ -104,23 +96,29 @@ brew install secman
 
 ## Windows
 
+- by [**Invoke-Expression**](#invoke-expression)
+- by [**Scoop**](#scoop)
+- by [**MSI Installer**](#msi-installer)
+
 `secman` is available via [scoop](https://scoop.sh), and as downloadable MSI.
 
-### scoop
+### Invoke-Expression
+
+Make sure [PowerShell 5](https://aka.ms/wmf5download) (or later, include [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6)) and [.NET Framework 4.5](https://www.microsoft.com/net/download) (or later) are installed.
+
+```pwsh
+iwr -useb https://raw.githubusercontent.com/secman-team/install/HEAD/win/install.ps1 | iex
+```
+
+### Scoop
 
 ```pwsh
 scoop install secman
 ```
 
-Note: if you use `git bash`, you can write this command
+### MSI Installer
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_win.sh | bash
-```
-
-### MSI
-
-> MSI installers are available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
+> MSI installer is available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
 
 ## Build from source
 
@@ -268,6 +266,30 @@ secman
 ```
 
 remove is used for removing sites from the password vault. `secman rm` is an alias of `secman remove`.
+
+### Cleaning
+
+clean your secman by delete `~/.secman`
+
+```code
+secman clean
+```
+
+### Fetching
+
+if you're syncing your **~/.secman**, you can fetch if there're a new passowrd(s)
+
+```code
+secman fetch
+```
+
+### Show secman version
+
+```sh
+secman ver
+```
+
+[![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)](https://github.com/secman-team/secman/releases/latest)
 
 ### Getting Help
 
