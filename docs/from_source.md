@@ -20,7 +20,8 @@ If `go` is not installed, follow steps on the [Go website](https://golang.org/do
 2. Build and install it
 
     ```sh
-    # by default, it's installs to '/usr/local'; maybe you'll need sudo
+    # linux/macOS: by default, it's installs to '/usr/local'; maybe you'll need sudo
+    # windows: it's installs to '%AppData\Local%';
     make
     ```
 
