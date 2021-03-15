@@ -1,4 +1,4 @@
-# [<img src=".github/assets/secman.svg" width="300" align="center">][smUrl]
+# [<img src="https://github.com/secman-team/secman/blob/main/.github/assets/secman.svg" width="300" align="center">][smUrl]
 
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)](https://github.com/secman-team/secman/releases/latest)
 
