@@ -2,7 +2,6 @@ before:
   hooks:
     - go mod download
     - go generate ./...
-    - curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
 
 env:
   - GO111MODULE=on
@@ -20,7 +19,7 @@ builds:
 
     env:
       - CGO_ENABLED=0
-      - Version=$(verx secman-team/secman -l)
+      - Version=$(bash api/sm.sh)
 
     ldflags:
      - -X main.build={{.Env.Version}}
