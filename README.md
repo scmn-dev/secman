@@ -367,18 +367,18 @@ if you want yo update/uninstall `secman`, you should type
 
 Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you use `git bash` in windows, you can use **`upd`** command
 
-#### Linux/Mac/Git Bash
+#### Linux/MacOS
 
-> `update by secman upd`
+> `update by secman upg`
 
 ```sh
-secman upd
+secman upg
 ```
 
 #### in Windows
 
 ```pwsh
-scoop upgrade secman
+scoop update secman
 ```
 
 ### Uninstall
@@ -391,7 +391,13 @@ secman-un
 
 #### For Windows
 
-> you can uninstall secman from your **control panel**
+> if you install secman by [Invoke Expression](#invoke-expression), then run:
+
+```pwsh
+& $HOME\AppData\Local\secman\bin\uninstall.ps1
+```
+
+> or if you install it by [MSI Installer](#msi-installer), you can uninstall secman from your **control panel**
 
 **or you can uninstall it by `scoop`**
 
@@ -401,11 +407,10 @@ scoop uninstall secman
 
 ## License
 
-[secman][smUrl] is licensed under the terms of [MIT](https://github.com/abdfnx/secman/blob/main/LICENSE) License
+[secman][smUrl] is licensed under the terms of [MIT][mitUrl] License
 
 [MIT][mitUrl]
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.web.app
-[dkUrl]: https://docker.com
 [mitUrl]: https://github.com/abdfnx/secman/blob/main/LICENSE

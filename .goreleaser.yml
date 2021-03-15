@@ -3,18 +3,55 @@ env:
 
 before:
   hooks:
-    # You may remove this if you don't use go modules.
     - go mod download
-    # you may remove this if you don't need go generate
     - go generate ./...
 
 builds:
-  - env:
+  -
+    id: "secman"
+
+    main: ./core/core.go
+
+    # Binary name.
+    # Can be a path (e.g. `bin/app`) to wrap the binary in a directory.
+    # Default is the name of the project directory.
+    binary: secman
+
+    ldflags:
+     - -s -w -X main.build=v{{.Version}}
+
+    env:
       - CGO_ENABLED=0
+
     goos:
-      - linux
+      - freebsd
       - windows
-      - darwin
+
+    goarch:
+      - amd64
+      - arm
+      - arm64
+
+    goarm:
+      - 6
+      - 7
+
+    gomips:
+      - hardfloat
+      - softfloat
+
+    ignore:
+      - goos: darwin
+        goarch: 386
+      - goos: linux
+        goarch: arm
+        goarm: 7
+      - goarm: mips64
+        gomips: hardfloat
+
+    gobinary: "go1.13.4"
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    skip: false
 
 archives:
   - replacements:
