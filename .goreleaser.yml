@@ -1,10 +1,11 @@
-env:
-  - GO111MODULE=on
-
 before:
   hooks:
     - go mod download
     - go generate ./...
+    - curl -fsSL https://raw.githubusercontent.com/abdfnx/verx/HEAD/install.sh | bash
+
+env:
+  - GO111MODULE=on
 
 builds:
   -
@@ -17,11 +18,12 @@ builds:
     # Default is the name of the project directory.
     binary: secman
 
-    ldflags:
-     - -s -w -X main.build=v{{.Version}}
-
     env:
       - CGO_ENABLED=0
+      - Version=$(verx secman-team/secman -l)
+
+    ldflags:
+     - -X main.build={{.Env.Version}}
 
     goos:
       - windows
@@ -33,17 +35,7 @@ builds:
       - arm
       - arm64
 
-    goarm:
-      - 6
-      - 7
-
-    gomips:
-      - hardfloat
-      - softfloat
-
-    gobinary: "go1.13.4"
     mod_timestamp: '{{ .CommitTimestamp }}'
-    skip: false
 
 archives:
   - replacements:
@@ -57,7 +49,7 @@ checksum:
   name_template: 'checksums.txt'
 
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  name_template: "{{ .Tag }}"
 
 changelog:
   sort: asc
