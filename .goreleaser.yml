@@ -24,8 +24,9 @@ builds:
       - CGO_ENABLED=0
 
     goos:
-      - freebsd
       - windows
+      - darwin
+      - linux
 
     goarch:
       - amd64
@@ -39,15 +40,6 @@ builds:
     gomips:
       - hardfloat
       - softfloat
-
-    ignore:
-      - goos: darwin
-        goarch: 386
-      - goos: linux
-        goarch: arm
-        goarm: 7
-      - goarm: mips64
-        gomips: hardfloat
 
     gobinary: "go1.13.4"
     mod_timestamp: '{{ .CommitTimestamp }}'
