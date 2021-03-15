@@ -15,8 +15,8 @@
 	url = https://github.com/secman-team/tools.git
 
 [submodule "formula"]
-	path = plugins/formula
-	url = https://github.com/secman-team/sm-tap.git
+	path = plugins/smx
+	url = https://github.com/secman-team/smx.git
 
 [submodule "shell"]
 	path = plugins/shell

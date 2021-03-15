@@ -68,7 +68,7 @@ for more see [docs/linux.md](https://github.com/secman-team/secman/blob/main/doc
 ### Brew
 
 ```sh
-brew tap secman-team/sm-tap
+brew tap secman-team/smx
 brew install secman
 ```
 
@@ -88,7 +88,7 @@ curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_os
 ### Brew
 
 ```sh
-brew tap secman-team/sm-tap
+brew tap secman-team/smx
 brew install secman
 ```
 
@@ -361,11 +361,11 @@ secman-sync --help | -h
 
 ## Update/Uninstall [secman][smUrl]
 
-if you want yo update/uninstall `secman`, you should type
+if you want to update/uninstall `secman`, you should type
 
 ### Update
 
-Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you use `git bash` in windows, you can use **`upd`** command
+Note: `secman upg` & `secman-un` are only supported in **linux/mac**
 
 #### Linux/MacOS
 
@@ -373,6 +373,12 @@ Note: `secman upd` & `secman-un` are only supported in **linux/mac**, but if you
 
 ```sh
 secman upg
+```
+
+> `by brew`
+
+```sh
+brew upgrade secman
 ```
 
 #### in Windows
@@ -387,6 +393,26 @@ scoop update secman
 
 ```sh
 secman-un
+```
+
+> `uninstall by brew`
+
+```sh
+brew uninstall secman
+```
+
+### For Linux
+
+### **Apt**
+
+```sh
+sudo apt remove secman
+```
+
+### **Rpm**
+
+```sh
+sudo rpm -e secman
 ```
 
 #### For Windows
