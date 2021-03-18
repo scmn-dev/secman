@@ -79,6 +79,8 @@ secman insert MY_SECRET_TOKEN
 secman-sync sync
 ```
 
+> see [commands](https://github.com/secman-team/secman/blob/main/docs/commands.md)
+
 ## License
 
 [secman][smUrl] is licensed under the terms of [MIT][mitUrl] License
