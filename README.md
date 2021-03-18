@@ -355,7 +355,7 @@ sudo rpm -e secman
 > if you install secman by [From Script](#from-script), then run:
 
 ```pwsh
-& $HOME\AppData\Local\secman\bin\uninstall.ps1
+secman-un
 ```
 
 > or if you install it by [MSI Installer](#msi-installer), you can uninstall secman from your **control panel**
