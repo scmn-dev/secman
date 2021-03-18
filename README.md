@@ -19,11 +19,11 @@
 
 > secman needs [**go**][goUrl], [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
 
-- ![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=blue&logo=go)
-- ![git](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=git)
-- ![ruby](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=ruby&logoColor=red)
-- ![gh cli](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=github)
-- ![windows](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=windows) ![bash](https://img.shields.io/static/v1?label=bash&message=any%20version&color=white&logo=gnu-bash&logoColor=white)
+- ![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=9cf&logo=go)
+- ![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git)
+- ![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red)
+- ![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black)
+- ![windows needs bash](https://img.shields.io/static/v1?label=%20&message=windows%20needs%20bash&color=9cf&logo=gnu-bash&logoColor=black)
 
 ### Using Shell (macOS and Linux)
 
