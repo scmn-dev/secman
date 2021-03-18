@@ -6,7 +6,7 @@
 
 ![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
 ![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
-![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI)
+![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white)
 ![CircleCI](https://img.shields.io/circleci/build/gh/secman-team/secman?color=blue&label=CircleCI&logo=circleci)
 
 ---
@@ -96,13 +96,13 @@ brew install secman
 
 ## Windows
 
-- by [**Invoke-Expression**](#invoke-expression)
+- by [**From Script**](#from-script)
 - by [**Scoop**](#scoop)
 - by [**MSI Installer**](#msi-installer)
 
 `secman` is available via [scoop](https://scoop.sh), and as downloadable MSI.
 
-### Invoke-Expression
+### From Script
 
 Make sure [PowerShell 5](https://aka.ms/wmf5download) (or later, include [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6)) and [.NET Framework 4.5](https://www.microsoft.com/net/download) (or later) are installed.
 
@@ -113,6 +113,7 @@ iwr -useb https://raw.githubusercontent.com/secman-team/install/HEAD/win/install
 ### Scoop
 
 ```pwsh
+scoop bucket add secman https://github.com/secman-team/secman
 scoop install secman
 ```
 
@@ -417,7 +418,7 @@ sudo rpm -e secman
 
 #### For Windows
 
-> if you install secman by [Invoke Expression](#invoke-expression), then run:
+> if you install secman by [From Script](#from-script), then run:
 
 ```pwsh
 & $HOME\AppData\Local\secman\bin\uninstall.ps1
