@@ -25,92 +25,26 @@
 - ![gh cli](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=github)
 - ![windows](https://img.shields.io/static/v1?label=%20&message=%20&color=blue&logo=windows) ![bash](https://img.shields.io/static/v1?label=bash&message=any%20version&color=white&logo=gnu-bash&logoColor=white)
 
-## Linux
-
-- by [**Curl**](#curl) (Recommended)
-- by [**Linux Package Managers**](#linux-package-managers)
-   - [Ubuntu/Debian](#ubuntudebian)
-   - [Fedora/CentOS/Red Hat Enterprise Linux](#fedoracentosred-hat-enterprise-linux)
-- by [**Brew**](#brew)
-
-### Curl
+### Using Shell (macOS and Linux)
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_linux.sh | bash
+curl -fsSL https://secman-team.github.io/install/install.sh | bash
 ```
 
-### Linux Package Managers
-
-> secman is avaliable for linux package managers
-
-### _Ubuntu/Debian_
-
-download `secman_latest_version.deb` from https://github.com/secman-team/secman/releases/latest
-
-and install secman by `apt`
+### Using PowerShell (Windows)
 
 ```sh
-sudo apt install ./secman_latest_version_x64.deb
+iwr -useb https://secman-team.github.io/install/install.ps1 | iex
 ```
 
-### _Fedora/CentOS/Red Hat Enterprise Linux_
-
-install `secman_latest_version.rpm` from https://github.com/secman-team/secman/releases/latest
-
-and install secman by `rpm`
-
-```sh
-sudo rpm -ivh ./secman_latest_version_x64.rpm --nodeps
-```
-
-for more see [docs/linux.md](https://github.com/secman-team/secman/blob/main/docs/linux.md)
-
-### Brew
+### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
 ```sh
 brew tap secman-team/smx
 brew install secman
 ```
 
----
-
-## MacOS
-
-- by [**Curl**](#curl-1) (Recommended)
-- by [**Brew**](#brew-1)
-
-### Curl
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/secman-team/install/HEAD/install_osx.sh | bash
-```
-
-### Brew
-
-```sh
-brew tap secman-team/smx
-brew install secman
-```
-
----
-
-## Windows
-
-- by [**From Script**](#from-script)
-- by [**Scoop**](#scoop)
-- by [**MSI Installer**](#msi-installer)
-
-`secman` is available via [scoop](https://scoop.sh), and as downloadable MSI.
-
-### From Script
-
-Make sure [PowerShell 5](https://aka.ms/wmf5download) (or later, include [PowerShell Core](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows?view=powershell-6)) and [.NET Framework 4.5](https://www.microsoft.com/net/download) (or later) are installed.
-
-```pwsh
-iwr -useb https://raw.githubusercontent.com/secman-team/install/HEAD/win/install.ps1 | iex
-```
-
-### Scoop
+### Using [Scoop](https://scoop.sh) (Windows)
 
 ```pwsh
 scoop bucket add secman https://github.com/secman-team/secman

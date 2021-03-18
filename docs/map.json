@@ -1,0 +1,13 @@
+{
+  "introduction": {
+    "name": "Introduction"
+  },
+
+  "getting_started": {
+    "name": "Getting Started",
+    "children": {
+      "installation": "Installation",
+      "first_steps": "First steps"
+    }
+  }
+}
