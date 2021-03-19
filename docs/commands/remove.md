@@ -10,7 +10,7 @@ Examples:
   `secman remove core/docker.com`
 
 Flags:
-  -h, --help   help for remove
+  **-h**, **--help**   help for remove
 
 ```code
 secman

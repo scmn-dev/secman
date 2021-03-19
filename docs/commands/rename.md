@@ -7,7 +7,7 @@ Examples:
   `secman rename core/docker.com`
 
 Flags:
-  -h, --help   help for rename
+  **-h**, **--help**   help for rename
 
 ```code
 secman rename accounts/ionic-hub

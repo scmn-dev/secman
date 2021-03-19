@@ -4,15 +4,15 @@
 
 ## Commands
 
-- [auth](./secman-sync/auth.md)
-- [clone](./secman-sync/clone.md)
-- [pull](./secman-sync/pull.md)
-- [push](./secman-sync/push.md)
-- [sync](./secman-sync/sync.md)
+- **auth**
+- **clone**
+- **pull**
+- **push**
+- **sync**
 
 ## How it's works ?
 
-1. init .git dir in ~/.secman
+1. init **`.git`** dir in ~/.secman
 
     ```sh
     cd ~/.secman

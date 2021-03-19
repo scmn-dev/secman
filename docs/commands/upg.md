@@ -7,7 +7,7 @@ Aliases:
   **upg**, **upgrade**
 
 Flags:
-  -h, --help   help for upg
+  **-h**, **--help**   help for upg
 
 Note: `secman upg` & `secman-un` are only supported in **linux/mac**
 

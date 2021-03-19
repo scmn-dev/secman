@@ -7,7 +7,7 @@ Examples:
   `secman insert core/docker.com`
 
 Flags:
-  -h, --help   help for insert
+  **-h**, **--help**   help for insert
 
 ## Inserting a password
 

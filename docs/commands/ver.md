@@ -4,7 +4,7 @@ Usage:
   `secman ver [flags]`
 
 Flags:
-  -h, --help   help for ver
+  **-h**, **--help**   help for ver
 
 ```sh
 secman ver

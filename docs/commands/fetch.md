@@ -7,4 +7,4 @@ Examples:
   `secman fetch`
 
 Flags:
-  -h, --help   help for fetch
+  **-h**, **--help**   help for fetch

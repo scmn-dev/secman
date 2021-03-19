@@ -7,7 +7,7 @@ Examples:
   `secman show core/docker.com`
 
 Flags:
-  -h, --help   help for show
+  **-h**, **--help**   help for show
 
 ```code
 secman show accounts/ionic

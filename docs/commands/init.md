@@ -4,7 +4,7 @@ Usage:
   `secman init [flags]`
 
 Flags:
-  -h, --help   help for init
+  **-h**, **--help**   help for init
 
 ```sh
 secman init

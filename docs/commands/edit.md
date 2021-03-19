@@ -10,7 +10,7 @@ Examples:
 `secman edit core/docker.com`
 
 Flags:
-  -h, --help   help for edit
+  **-h**, **--help**   help for edit
 
 ```code
 secman edit dev/dev.to

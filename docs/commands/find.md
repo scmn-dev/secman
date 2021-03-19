@@ -5,13 +5,13 @@ Usage:
   secman find [flags]
 
 Aliases:
-  find, ls
+  **find**, **ls**
 
 Examples:
 secman find code.com
 
 Flags:
-  -h, --help   help for find
+  **-h**, **--help**   help for find
 
 ```code
 secman find git
