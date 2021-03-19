@@ -15,7 +15,6 @@
     "name": "Commands",
     "children": {
       "clean": "Clean",
-      "commands": "Commands",
       "edit": "Edit",
       "fetch": "Fetch",
       "find": "Find",
@@ -24,7 +23,7 @@
       "insert": "Insert",
       "remove": "Remove",
       "rename": "Rename",
-      "secman-ync": "Secman-sync",
+      "secman-sync": "Secman-sync",
       "show": "Show",
       "upg": "Upg",
       "ver": "Ver"
