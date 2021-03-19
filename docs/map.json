@@ -10,7 +10,7 @@
       "first_steps": "First steps"
     }
   },
-  
+
   "commands": {
     "name": "Commands",
     "children": {
@@ -29,5 +29,9 @@
       "upg": "Upg",
       "ver": "Ver"
     }
+  },
+
+  "cryptography": {
+    "name": "Cryptography"
   }
 }

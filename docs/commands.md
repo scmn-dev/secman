@@ -231,4 +231,4 @@ secman-sync --help | -h
 
 ## CRYPTOGRAPHY DETAILS
 
-- see [docs/cryptography](https://github.com/secman-team/secman/blob/main/docs/cryptography.md)
+- see [docs/cryptography](./cryptography.md)
