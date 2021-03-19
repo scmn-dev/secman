@@ -23,7 +23,16 @@
       "insert": "Insert",
       "remove": "Remove",
       "rename": "Rename",
-      "secman-sync": "Secman-sync",
+      "secman-sync": {
+        "name": "Secman-sync",
+        "children": {
+          "auth": "Auth by gh cli",
+          "clone": "Clone",
+          "pull": "Pull",
+          "push": "Push",
+          "sync": "Sync"
+        }
+      },
       "show": "Show",
       "upg": "Upg",
       "ver": "Ver"

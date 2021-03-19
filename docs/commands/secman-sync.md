@@ -1,56 +1,48 @@
-# secman-sync
+# Secman-sync
 
-by `secman-sync`, you can sync your passwords
+> by `secman-sync`, you can sync your passwords
 
-## auth
+## Commands
 
-you should authenticate by [`gh cli`](https://cli.github.com) to use **sync** feature
+- [auth](./auth)
+- [clone](./clone)
+- [pull](./pull)
+- [push](./push)
+- [sync](./sync)
 
-```sh
-gh auth login
-```
+## How it's works ?
 
-## sync
+1. init .git dir in ~/.secman
 
-```sh
-secman-sync sync
-```
+    ```sh
+    cd ~/.secman
+    git init
+    ```
 
-if you sync your passwords for first time, `sync` command will create a private github repo and store the passwords on it
+2. create a private repo by **gh cli**
+    before create repo, `secman-sync` gets git user name
 
-`secman-sync sy` is an alias of `secman-sync sync`
+    ```sh
+    SM_GH_UN=$(git config user.name)
+    ```
 
-## clone
+    ```sh
+    git init
+    gh repo create $SM_GH_UN/.secman -y --private
+    ```
 
-```sh
-secman-sync clone
-```
+3. push the passwords
+    after create the private repo, secman-sync add passwords, and push it
 
-if you lose your passwords, or you use more than device, you can clone your private repo
+    ```sh
+    git add .
+    git commit -m "new .secman repo"
+    git branch -M trunk
+    git remote add origin https://github.com/$SM_GH_UN/.secman
+    git push -u origin trunk
+    ```
 
-`secman-sync cn` is an alias of `secman-sync clone`
-
-## push
-
-```sh
-secman-sync push
-```
-
-if there's a new password/s, it's well push it to the repo, like git
-
-`secman-sync ph` is an alias of `secman-sync push`
-
-## pull
-
-```sh
-secman-sync pull
-```
-
-we know what `pull` do
-
-alias: `secman-sync pl`
-
-### getting help
+## getting help
 
 ```code
 secman-sync --help | -h

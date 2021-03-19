@@ -9,4 +9,4 @@
 ╚══════╝╚═══════╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚══╝    ╚══╝
 ```
 
-secman is a password manager, can create, edit, generate, and sync passwords
+secman is a password manager, can create, edit, generate, and sync passwords.
