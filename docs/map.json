@@ -12,6 +12,22 @@
   },
   
   "commands": {
-    "name": "Commands"
+    "name": "Commands",
+    "children": {
+      "clean": "Clean",
+      "commands": "Commands",
+      "edit": "Edit",
+      "fetch": "Fetch",
+      "find": "Find",
+      "gen": "Gen",
+      "init": "Init",
+      "insert": "Insert",
+      "remove": "Remove",
+      "rename": "Rename",
+      "secman-ync": "Secman-sync",
+      "show": "Show",
+      "upg": "Upg",
+      "ver": "Ver"
+    }
   }
 }
