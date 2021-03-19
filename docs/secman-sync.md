@@ -19,7 +19,8 @@
     git init
     ```
 
-2. create a private repo by **gh cli**
+2. create a private repo by [**gh cli**](https://cli.github.com)
+
     before create repo, `secman-sync` gets git user name
 
     ```sh
@@ -41,7 +42,7 @@
     git push -u origin trunk
     ```
 
-## getting help
+## Getting Help
 
 ```code
 secman-sync --help | -h
