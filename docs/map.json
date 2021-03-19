@@ -29,6 +29,10 @@
     }
   },
 
+  "cryptography": {
+    "name": "Cryptography"
+  },
+
   "secman-sync": {
     "name": "Secman-sync",
     "children": {
@@ -38,9 +42,5 @@
       "push": "Push",
       "sync": "Sync"
     }
-  },
-
-  "cryptography": {
-    "name": "Cryptography"
   }
 }
