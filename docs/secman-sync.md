@@ -27,7 +27,6 @@
     ```
 
     ```sh
-    git init
     gh repo create $SM_GH_UN/.secman -y --private
     ```
 
