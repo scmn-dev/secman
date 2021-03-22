@@ -4,11 +4,11 @@
 
 ## Commands
 
-- **auth**
-- **clone**
-- **pull**
-- **push**
-- **sync**
+- [**auth**](./secman-sync/auth.md)
+- [**clone**](./secman-sync/clone.md)
+- [**pull**](./secman-sync/pull.md)
+- [**push**](./secman-sync/push.md)
+- [**sync**](./secman-sync/sync.md)
 
 ## How it's works ?
 
