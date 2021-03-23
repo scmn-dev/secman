@@ -7,7 +7,7 @@
 ![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
 ![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
 ![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white)
-![CircleCI](https://img.shields.io/circleci/build/gh/secman-team/secman?color=blue&label=CircleCI&logo=circleci)
+![CircleCI](https://circleci.com/gh/secman-team/secman.svg?style=svg)
 
 ---
 
