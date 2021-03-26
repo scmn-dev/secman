@@ -258,7 +258,7 @@ func main() {
 				gem install colorize optparse
 			fi
 
-			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/abdfnx/verx/HEAD/verx"
+			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/verx/HEAD/verx"
 
 			_cmd cgit "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit"
 
