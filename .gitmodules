@@ -1,7 +1,3 @@
-# [submodule "web"]
-# 	path = web
-# 	url = https://github.com/secman-team/web.git
-
 [submodule "cgit"]
 	path = api/cgit
 	url = https://github.com/secman-team/corgit.git
@@ -21,3 +17,7 @@
 [submodule "shell"]
 	path = plugins/shell
 	url = https://github.com/secman-team/shell.git
+
+[submodule "docs"]
+	path = docs
+	url = https://github.com/secman-team/docs.git
