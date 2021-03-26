@@ -292,8 +292,10 @@ func main() {
 			}
 		}
 
+		fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		fmt.Println(out)
-		
+		fmt.Println("after install dependencies, run secman again")
+
 	} else {
 		err, out, errout := shell.ShellOut(mlChecker)
 
@@ -306,6 +308,8 @@ func main() {
 			}
 		}
 
+		fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		fmt.Println(out)
+		fmt.Println("after install dependencies, run secman again")
 	}
 }
