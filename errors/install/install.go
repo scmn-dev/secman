@@ -1,10 +1,5 @@
 package install
 
-import (
-	"fmt"
-	"github.com/secman-team/shell"
-)
-
 /**********************************************************
 ** install
 	1. clone the package
