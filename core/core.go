@@ -240,6 +240,10 @@ func init() {
 func main() {
 	mlChecker :=
 		`
+			end() {
+				echo "after install dependencies, run secman again"
+			}
+
 			_cmd() {
 				if ! [ -x "$(command -v $1)" ]; then
 					echo "installing $1..."
@@ -247,6 +251,7 @@ func main() {
 					sudo chmod 755 /usr/local/bin/secman*
 					sudo chmod 755 /usr/local/bin/cgit*
 					sudo chmod 755 /usr/local/bin/verx*
+					end
 				fi
 			}
 
@@ -256,6 +261,7 @@ func main() {
 				sudo git clone https://github.com/secman-team/sm /home/sm
 				echo "installing ruby deps..."
 				gem install colorize optparse
+				end
 			fi
 
 			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/verx/HEAD/verx"
@@ -272,11 +278,12 @@ func main() {
 			$directoyPath="$HOME\sm";
 
 			if(!(Test-Path -path $directoyPath)) {
-				echo "installing sm..."
+				Write-Host "installing sm..."
 				git clone https://github.com/secman-team/sm-win $directoyPath
-				echo "installing ruby deps..."
+				Write-Host "installing ruby deps..."
 				gem install colorize optparse
-				curl https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.sh -outfile $directoyPath\sm.sh
+				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.sh -outfile $directoyPath\sm.sh
+				Write-Host "after install dependencies, run secman again"
 			}
 		`	
 
@@ -286,15 +293,15 @@ func main() {
 		if err != nil {
 			log.Printf("error: %v\n", err)
 			fmt.Println(errout)
+		} else if out != "" {
+			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		} else {
 			if out == "" {
 				RootCmd.Execute()
 			}
 		}
 
-		fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		fmt.Println(out)
-		fmt.Println("after install dependencies, run secman again")
 
 	} else {
 		err, out, errout := shell.ShellOut(mlChecker)
@@ -302,14 +309,14 @@ func main() {
 		if err != nil {
 			log.Printf("error: %v\n", err)
 			fmt.Println(errout)
+		} else if out != "" {
+			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		} else {
 			if out == "" {
 				RootCmd.Execute()
 			}
 		}
 
-		fmt.Println("some of secman dependencies're not found, secman is going to fix it")
 		fmt.Println(out)
-		fmt.Println("after install dependencies, run secman again")
 	}
 }
