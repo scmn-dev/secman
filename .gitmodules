@@ -8,7 +8,7 @@
 
 [submodule "verx"]
 	path = api/verx
-	url = https://github.com/abdfnx/verx.git
+	url = https://github.com/secman-team/verx.git
 
 [submodule "tools"]
 	path = tools
