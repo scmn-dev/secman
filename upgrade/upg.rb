@@ -16,7 +16,6 @@ end
 def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
-        shared_gh_url = "https://raw.githubusercontent.com/secman-team/install/HEAD/install"
         lin = "linux".yellow
         osx = "osx".black
 
@@ -24,12 +23,10 @@ def os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
             :windows
             puts "secman upg command is only supported for #{lin} and #{osx}"
-        when /darwin|mac os/
-            :macosx
-            system("curl -fsSL #{shared_gh_url}_osx.sh | bash")
-        when /linux/
-            :linux
-            system("curl -fsSL #{shared_gh_url}_linux.sh | bash")
+
+        when /linux|darwin|mac os/
+            :linux_macos
+            system("curl -fsSL https://secman-team.github.io/install/install.sh | bash")
         else
             raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
         end
