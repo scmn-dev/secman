@@ -1,15 +1,15 @@
 #!/bin/bash
 
-SM_GH_UN=$(git config user.name)
+ghraw_url="https://raw.githubusercontent.com"
 create="gh repo create $SM_GH_UN/.secman -y --private"
-brew_gh="brew install gh"
 SECDIR="$HOME/.secman"
 cd_SECDIR="cd $SECDIR"
+SM_GH_UN=$(git config user.name)
+UNAME=$(uname)
 
-# pkgs
-ghraw_url="https://raw.githubusercontent.com"
-
-install_brew="/bin/bash -c "$(curl -fsSL $ghraw_url/Homebrew/install/HEAD/install.sh)""
+# package managers
+brew_gh="brew install gh"
+choco_gh="choco install gh"
 
 function usage() {
     local u=(
@@ -40,8 +40,6 @@ function repo_work() {
     ${csi}
 }
 
-UNAME=$(uname)
-
 function repo() {
     if [ -x "$(command -v gh)" ]; then
         repo_work
@@ -54,19 +52,9 @@ function repo() {
                     repo_work
                 fi
             else
-                ${install_brew}
-
-                if [ -x "$(command -v brew)" ]; then
-                    ${brew_gh}
-
-                    if [ -x "$(command -v gh)" ]; then
-                        repo_work
-                    fi
-                fi
+                echo "you must install Homebrew, https://brew.sh"
             fi
         elif [[ "$UNAME" == CYGWIN* || "$UNAME" == MINGW* ]]; then
-            choco_gh="choco install gh"
-
             if [ -x "$(command -v choco)" ]; then
                 ${choco_gh}
 
@@ -74,7 +62,7 @@ function repo() {
                     repo_work
                 fi
             else
-                echo "you should install Chocolatey from this url https://chocolatey.org/install"
+                echo "you must install Chocolatey, https://chocolatey.org/install"
             fi
         fi
     fi
@@ -115,10 +103,6 @@ function badUsage() {
     printf "%s\n" "${txt[@]}"
 }
 
-bkp() {
-    python3 /home/sm/backup.py $1
-}
-
 _phx() {
     ${cd_SECDIR}
     git add .
@@ -139,6 +123,12 @@ version() {
         fi
     fi
 }
+
+if [ $# -eq 0 ]; then
+    echo "Missing options!"
+    echo "(run secman-sync --help for help)"
+    exit 0
+fi
 
 while (($#)); do
     case "$1" in
@@ -178,10 +168,6 @@ while (($#)); do
         exit 0
         ;;
 
-    backup)
-        bkp $2
-        exit 0
-        ;;
     *)
         badUsage "flag/command not recognized."
         exit 0

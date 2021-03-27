@@ -27,5 +27,5 @@ elsif $l != $c
     pre_upgrade()
     core()
 
-    puts "#{sm} was upgraded successfully"
+    puts "#{sm} was upgraded successfully 🎊"
 end
