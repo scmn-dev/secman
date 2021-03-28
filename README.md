@@ -88,5 +88,5 @@ secman-sync sync
 [MIT][mitUrl]
 
 [goUrl]: https://goland.org
-[smUrl]: https://secman.web.app
+[smUrl]: https://secman.vercel.app
 [mitUrl]: https://github.com/abdfnx/secman/blob/main/LICENSE
