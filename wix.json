@@ -6,7 +6,7 @@
   "files": {
     "guid": "eff487cb-3c59-48ad-8e49-1ecf28ce1a46",
     "items": [
-      "build/win/bin/secman.exe"
+      "build/v5.3.1/win/bin/secman.exe"
     ]
   },
   "env": {
@@ -21,6 +21,5 @@
         "part": "last"
       }
     ]
-  },
-  "shortcuts": {}
+  }
 }

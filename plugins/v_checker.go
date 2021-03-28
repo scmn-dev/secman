@@ -11,7 +11,7 @@ import (
 
 func Checker() {
 	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
-	s.Suffix = " Checking for updates..."
+	s.Suffix = " 🔍 Checking for updates..."
 	s.Start()
 
 	err, out, errout := shell.ShellOut("")

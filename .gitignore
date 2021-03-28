@@ -41,3 +41,6 @@ secret_key.rb
 
 # spec
 *.spec
+
+# beta folder
+/api/sync/beta
