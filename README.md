@@ -24,6 +24,7 @@
 - ![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red)
 - ![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black)
 - ![windows needs bash](https://img.shields.io/static/v1?label=%20&message=windows%20needs%20bash&color=9cf&logo=gnu-bash&logoColor=black)
+- ![windows needs ruby](https://img.shields.io/static/v1?label=%20&message=also%20windows%20needs%20ruby&color=9cf&logo=ruby&logoColor=red)
 
 ### Using Shell (macOS and Linux)
 
