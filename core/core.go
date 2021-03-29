@@ -83,11 +83,7 @@ directory, and initialize your cryptographic keys.`,
 		Aliases: []string{"upgrade"},
 		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
-			if runtime.GOOS == "windows" {
-				fmt.Println("Sorry, the upg/upgrade command only supports MacOS/Linux.. Maybe in the future it may support windows")
-			} else {
-				upg.Upgrade()
-			}
+			upg.Upgrade()
 		},
 	}
 
