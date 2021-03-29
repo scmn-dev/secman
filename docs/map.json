@@ -1,0 +1,46 @@
+{
+  "introduction": {
+    "name": "Introduction"
+  },
+
+  "getting_started": {
+    "name": "Getting Started",
+    "children": {
+      "installation": "Installation",
+      "first_steps": "First steps"
+    }
+  },
+
+  "commands": {
+    "name": "Commands",
+    "children": {
+      "clean": "Clean",
+      "edit": "Edit",
+      "fetch": "Fetch",
+      "find": "Find",
+      "gen": "Gen",
+      "init": "Init",
+      "insert": "Insert",
+      "remove": "Remove",
+      "rename": "Rename",
+      "show": "Show",
+      "upg": "Upg",
+      "ver": "Ver"
+    }
+  },
+
+  "cryptography": {
+    "name": "Cryptography"
+  },
+
+  "secman-sync": {
+    "name": "Secman-sync",
+    "children": {
+      "auth": "Auth by gh cli",
+      "clone": "Clone",
+      "pull": "Pull",
+      "push": "Push",
+      "sync": "Sync"
+    }
+  }
+}
