@@ -2,7 +2,7 @@
   "version": "5.3.1",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/secman-team/secman/releases/download/v5.3.1/secman_windows_v5.3.1_x64.zip",
+      "url": "https://github.com/secman-team/secman-scoop/releases/download/v5.3.1/secman_windows_v5.3.1_x64.zip",
       "bin": [
         "bin/secman.exe"
       ],
