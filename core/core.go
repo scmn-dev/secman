@@ -8,17 +8,17 @@ import (
 
 	"github.com/secman-team/shell"
 
-	"github.com/secman-team/secman/v5/api/sync"
-	"github.com/secman-team/secman/v5/edit"
-	"github.com/secman-team/secman/v5/fetch"
-	"github.com/secman-team/secman/v5/gen"
-	"github.com/secman-team/secman/v5/initialize"
-	"github.com/secman-team/secman/v5/insert"
-	"github.com/secman-team/secman/v5/pio"
-	"github.com/secman-team/secman/v5/plugins"
-	"github.com/secman-team/secman/v5/show"
-	"github.com/secman-team/secman/v5/upgrade"
-	"github.com/secman-team/secman/v5/clean"
+	"github.com/secman-team/secman/api/sync"
+	"github.com/secman-team/secman/edit"
+	"github.com/secman-team/secman/fetch"
+	"github.com/secman-team/secman/gen"
+	"github.com/secman-team/secman/initialize"
+	"github.com/secman-team/secman/insert"
+	"github.com/secman-team/secman/pio"
+	"github.com/secman-team/secman/plugins"
+	"github.com/secman-team/secman/show"
+	"github.com/secman-team/secman/upgrade"
+	"github.com/secman-team/secman/clean"
 	"github.com/spf13/cobra"
 )
 

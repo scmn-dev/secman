@@ -1,4 +1,4 @@
-module github.com/secman-team/secman/v5
+module github.com/secman-team/secman
 
 go 1.11
 
