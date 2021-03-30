@@ -32,6 +32,10 @@
 curl -fsSL https://secman-team.github.io/install/install.sh | bash
 ```
 
+Important Note 💡: read this post before use these commands to have a nice experience
+
+https://secman.vercel.app/posts/windows
+
 ### Using PowerShell (Windows)
 
 ```sh
