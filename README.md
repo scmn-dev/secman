@@ -77,7 +77,7 @@ secman insert MY_SECRET_TOKEN
 > Sync your passwords
 
 ```sh
-secman start_sync
+secman start-sync
 ```
 
 > see [commands](https://github.com/secman-team/secman/blob/main/docs/commands.md)
