@@ -30,7 +30,7 @@ jobs:
       - run:
           name: Install Secman
           command: |
-            curl -fsSL https://secman-team.github.io/install/install.sh | bash
+            curl -fsSL https://secman-team.github.io/install.sh | bash
   
   clone_dot_secman_ex:
     machine:
@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Test Secman
           command: |
-            curl -fsSL https://secman-team.github.io/install/install.sh | bash
+            curl -fsSL https://secman-team.github.io/install.sh | bash
             secman
 
 workflows:
