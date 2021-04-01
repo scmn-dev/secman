@@ -27,32 +27,24 @@
 
 ### Using Shell (macOS and Linux)
 
-```sh
-curl -fsSL https://secman-team.github.io/install/install.sh | bash
+```bash
+curl -fsSL https://secman-team.github.io/install.sh | bash
 ```
 
-**Important Note 💡:**
-
-> read this post before use these commands to have a nice experience
-
-https://secman.vercel.app/posts/windows
-
-### Using PowerShell (Windows)
-
-```sh
-iwr -useb https://secman-team.github.io/install/install.ps1 | iex
+```powershell
+iwr -useb https://secman-team.github.io/install.ps1 | iex
 ```
 
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
-```sh
+```bash
 brew tap secman-team/smx
 brew install secman
 ```
 
 ### Using [Scoop](https://scoop.sh) (Windows)
 
-```pwsh
+```powershell
 scoop bucket add secman https://github.com/secman-team/secman
 scoop install secman
 ```
@@ -69,23 +61,23 @@ see [docs/from_source.md](https://github.com/secman-team/secman/blob/main/docs/f
 
 > Initializing Vault
 
-```sh
+```bash
 secman init
 ```
 
 > Start using `secman`
 
-```sh
+```bash
 secman insert MY_SECRET_TOKEN
 ```
 
 > Sync your passwords
 
-```sh
+```bash
 secman start-sync
 ```
 
-> see [commands](https://github.com/secman-team/secman/blob/main/docs/commands.md)
+> see [commands](https://secman.vercel.app/manual/commands)
 
 ## License
 

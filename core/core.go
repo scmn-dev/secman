@@ -78,9 +78,9 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
-	upgCmd = &cobra.Command{
-		Use:     "upg",
-		Aliases: []string{"upgrade"},
+	upgradeCmd = &cobra.Command{
+		Use:     "upgrade",
+		Aliases: []string{"upg"},
 		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
 			upg.Upgrade()
@@ -243,7 +243,7 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
-	RootCmd.AddCommand(upgCmd)
+	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(start_syncCmd)
 }
