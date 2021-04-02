@@ -10,6 +10,21 @@ linux_environment: &linux_environment
 windows_environment: &windows_environment
   PLATFORM: "windows"
 
+install_secman_linux: &install_secman_linux
+  name: Install Secman (Linux)
+  command: curl -fsSL https://secman-team.github.io/install.sh | bash
+
+install_secman_windows: &install_secman_windows
+  name: Install Secman (Windows)
+  command: iwr -useb https://secman-team.github.io/install.ps1 | iex
+
+test_secman: &test_secman
+  name: Run Secman && Test It
+  command: |
+    secman
+    git clone https://github.com/secman-team/.secman.ex ~/.secman
+    secman
+
 jobs:
   build:
     docker:
@@ -26,15 +41,12 @@ jobs:
       <<: *linux_environment
 
     machine:
-      # linux VM
       image: ubuntu-1604:201903-01
 
     steps:
       - checkout
       - run:
-          name: Install Secman (Linux)
-          command: |
-            curl -fsSL https://secman-team.github.io/install.sh | bash
+          <<: *install_secman_linux
   
   linux_test:
     environment:
@@ -46,11 +58,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Secman && Test It
-          command: |
-            secman
-            git clone https://github.com/secman-team/.secman.ex ~/.secman
-            secman
+          <<: *install_secman_linux
+      
+      - run:
+         <<: *test_secman
 
   windows_build:
     environment:
@@ -61,10 +72,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Secman (Windows)
-          command: iwr -useb https://secman-team.github.io/install.ps1 | iex
+          <<: *install_secman_windows
           shell: powershell.exe
-  
+
   windows_test:
     environment:
       <<: *windows_environment
@@ -74,11 +84,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run Secman && Test It
-          command: |
-            secman
-            git clone https://github.com/secman-team/.secman.ex ~/.secman
-            secman
+          <<: *install_secman_windows
+          shell: powershell.exe
+
+      - run:
+          <<: *test_secman
           shell: powershell.exe
 
 workflows:
@@ -87,7 +97,7 @@ workflows:
     jobs:
       - linux_build
       - linux_test
-  
+
   windows_jobs:
     jobs:
       - windows_build
