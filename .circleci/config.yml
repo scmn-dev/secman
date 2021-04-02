@@ -21,7 +21,7 @@ install_secman_windows: &install_secman_windows
 test_secman: &test_secman
   name: Run Secman && Test It
   command: |
-    git clone https://github.com/secman-team/.secman.ex ~/.secman
+    git clone https://github.com/secman-team/.secman.ex $HOME/.secman
     secman
 
 jobs:
