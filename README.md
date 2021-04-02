@@ -23,7 +23,6 @@
 - ![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git&style=for-the-badge)
 - ![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red&style=for-the-badge)
 - ![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black&style=for-the-badge)
-- ![windows needs bash](https://img.shields.io/static/v1?label=%20&message=windows%20needs%20bash&color=9cf&logo=gnu-bash&logoColor=black&style=for-the-badge)
 
 ### Using Shell (macOS and Linux)
 
