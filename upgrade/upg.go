@@ -1,7 +1,14 @@
 package upg
 
-import "github.com/secman-team/shell"
+import (
+	"github.com/secman-team/shell"
+	"runtime"
+)
 
 func Upgrade() {
-	shell.ShellCmd("verx --upg")
+	if runtime.GOOS == "windows" {
+		shell.PWSLCmd("& ~/sm/vx.ps1 --upg")
+	} else {
+		shell.ShellCmd("verx --upg")
+	}
 }

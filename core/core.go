@@ -8,17 +8,17 @@ import (
 
 	"github.com/secman-team/shell"
 
-	"github.com/secman-team/secman/v5/api/sync"
-	"github.com/secman-team/secman/v5/edit"
-	"github.com/secman-team/secman/v5/fetch"
-	"github.com/secman-team/secman/v5/gen"
-	"github.com/secman-team/secman/v5/initialize"
-	"github.com/secman-team/secman/v5/insert"
-	"github.com/secman-team/secman/v5/pio"
-	"github.com/secman-team/secman/v5/plugins"
-	"github.com/secman-team/secman/v5/show"
-	"github.com/secman-team/secman/v5/upgrade"
-	"github.com/secman-team/secman/v5/clean"
+	"github.com/secman-team/secman/api/sync"
+	"github.com/secman-team/secman/edit"
+	"github.com/secman-team/secman/fetch"
+	"github.com/secman-team/secman/gen"
+	"github.com/secman-team/secman/initialize"
+	"github.com/secman-team/secman/insert"
+	"github.com/secman-team/secman/pio"
+	"github.com/secman-team/secman/plugins"
+	"github.com/secman-team/secman/show"
+	"github.com/secman-team/secman/upgrade"
+	"github.com/secman-team/secman/clean"
 	"github.com/spf13/cobra"
 )
 
@@ -78,16 +78,12 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
-	upgCmd = &cobra.Command{
-		Use:     "upg",
-		Aliases: []string{"upgrade"},
+	upgradeCmd = &cobra.Command{
+		Use:     "upgrade",
+		Aliases: []string{"upg"},
 		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
-			if runtime.GOOS == "windows" {
-				fmt.Println("Sorry, the upg/upgrade command only supports MacOS/Linux.. Maybe in the future it may support windows")
-			} else {
-				upg.Upgrade()
-			}
+			upg.Upgrade()
 		},
 	}
 
@@ -122,6 +118,36 @@ Will prompt for confirmation when a site path is not unique.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			show.Site(path, copyPass)
+			checker.Checker()
+		},
+	}
+
+
+	slashCmd = &cobra.Command{
+		Use:"/",
+		Example:"clone your .secman",
+		Run:func(cmd *cobra.Command,args []string){
+			if runtime.GOOS=="windows"{
+				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")
+			} else {
+				shell.ShellCmd("secman-sync cn")
+			}
+			
+			checker.Checker()
+		},
+	}
+
+	start_syncCmd = &cobra.Command{
+		Use:     "start-sync",
+		Example: "secman start-sync",
+		Short:   "Start Sync your passwords.",
+		Run: func(cmd *cobra.Command, args []string) {
+			if runtime.GOOS == "windows" {
+				shell.PWSLCmd("& ~/sm/secman-sync.ps1 sync")
+			} else {
+				shell.ShellCmd("secman-sync sync")
+			}
+
 			checker.Checker()
 		},
 	}
@@ -232,8 +258,10 @@ func init() {
 	RootCmd.AddCommand(renameCmd)
 	RootCmd.AddCommand(showCmd)
 	RootCmd.AddCommand(versionCmd)
-	RootCmd.AddCommand(upgCmd)
+	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
+	RootCmd.AddCommand(start_syncCmd)
+	RootCmd.AddCommand(slashCmd)
 }
 
 // main

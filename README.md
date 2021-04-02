@@ -1,13 +1,13 @@
 # [<img src="https://github.com/secman-team/secman/blob/main/.github/assets/secman.svg" width="300" align="center">][smUrl]
 
-[![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=flat)](https://github.com/secman-team/secman/releases/latest)
+[![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
 
 ## Code Status
 
 ![CircleCI](https://circleci.com/gh/secman-team/secman.svg?style=svg)
-![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github)
-![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go)
-![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white)
+![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=for-the-badge)
+![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go&style=for-the-badge)
+![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)
 
 ---
 
@@ -19,35 +19,34 @@
 
 > secman needs [**go**][goUrl], [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
 
-- ![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=9cf&logo=go)
-- ![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git)
-- ![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red)
-- ![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black)
-- ![windows needs bash](https://img.shields.io/static/v1?label=%20&message=windows%20needs%20bash&color=9cf&logo=gnu-bash&logoColor=black)
+- [![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=9cf&logo=go&style=for-the-badge)](https://golang.org)
+- just if you want to [download secman from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
+- [![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git&style=for-the-badge)](https://git-scm.com)
+- [![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red&style=for-the-badge)](https://www.ruby-lang.org/en/)
+- _ruby for windows_: **https://rubyinstaller.org/**
+- [![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black&style=for-the-badge)](https://cli.github.com)
 
 ### Using Shell (macOS and Linux)
 
-```sh
-curl -fsSL https://secman-team.github.io/install/install.sh | bash
+```bash
+curl -fsSL https://secman-team.github.io/install.sh | bash
 ```
 
-### Using PowerShell (Windows)
-
-```sh
-iwr -useb https://secman-team.github.io/install/install.ps1 | iex
+```powershell
+iwr -useb https://secman-team.github.io/install.ps1 | iex
 ```
 
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
-```sh
+```bash
 brew tap secman-team/smx
 brew install secman
 ```
 
 ### Using [Scoop](https://scoop.sh) (Windows)
 
-```pwsh
-scoop bucket add secman https://github.com/secman-team/secman
+```powershell
+scoop bucket add secman https://github.com/secman-team/sm-scoop
 scoop install secman
 ```
 
@@ -57,29 +56,29 @@ scoop install secman
 
 ## Build from source
 
-see [docs/from_source.md](https://github.com/secman-team/secman/blob/main/docs/from_source.md)
+see [installing from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
 
 ## Getting started with secman
 
 > Initializing Vault
 
-```sh
+```bash
 secman init
 ```
 
 > Start using `secman`
 
-```sh
+```bash
 secman insert MY_SECRET_TOKEN
 ```
 
 > Sync your passwords
 
-```sh
-secman-sync sync
+```bash
+secman start-sync
 ```
 
-> see [commands](https://github.com/secman-team/secman/blob/main/docs/commands.md)
+> see [commands](https://secman.vercel.app/docs/commands)
 
 ## License
 
@@ -88,5 +87,5 @@ secman-sync sync
 [MIT][mitUrl]
 
 [goUrl]: https://goland.org
-[smUrl]: https://secman.web.app
+[smUrl]: https://secman.vercel.app
 [mitUrl]: https://github.com/abdfnx/secman/blob/main/LICENSE

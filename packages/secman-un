@@ -1,7 +1,7 @@
 #!/bin/bash
 
 goodBye() {
-    echo "secman was uninstalled successfully... thanks you to trying secman"
+    echo "secman was uninstalled successfully... thank you for using secman 👋"
 }
 
 usrLoc=/usr/local/bin
@@ -17,35 +17,16 @@ clearAllData() {
 
     if [[ $accept == "Y" || $accept == "y" ]]; then
         if [ -x "$(command -v sudo)" ]; then
-            if [ -x "$(command -v manx)" ]; then
-                sudo manx $SECDIR
+            sudo rm -rf $SECDIR
 
-            else
-                installManx
-
-                if [ -x "$(command -v manx)" ]; then
-                    sudo manx $SECDIR
-                fi
-            fi
+            echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
         fi
-    
+
     elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
-        echo "ok"
+        echo "OK"
     fi
-    
+
     SM_GH_UN=$(git config user.name)
-
-    echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
-}
-
-installManx() {
-    if [ -x "$(command -v sudo)" ]; then
-        echo "installing manx..."
-        sudo npm i -g @abdfnx/manx
-    
-    else
-        npm i -g @abdfnx/manx
-    fi
 }
 
 rmOpa() {

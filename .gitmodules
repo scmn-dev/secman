@@ -17,7 +17,3 @@
 [submodule "shell"]
 	path = plugins/shell
 	url = https://github.com/secman-team/shell.git
-
-[submodule "docs"]
-	path = docs
-	url = https://github.com/secman-team/docs.git

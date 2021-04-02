@@ -1,61 +1,103 @@
 version: 2.1
 
+orbs:
+  ruby: circleci/ruby@1.0
+  win: circleci/windows@2.2.0
+
+linux_environment: &linux_environment
+  PLATFORM: "linux"
+
+windows_environment: &windows_environment
+  PLATFORM: "windows"
+
+install_secman_linux: &install_secman_linux
+  name: Install Secman (Linux)
+  command: curl -fsSL https://secman-team.github.io/install.sh | bash
+
+install_secman_windows: &install_secman_windows
+  name: Install Secman (Windows)
+  command: iwr -useb https://secman-team.github.io/install.ps1 | iex
+
+test_secman: &test_secman
+  name: Run Secman && Test It
+  command: |
+    git clone https://github.com/secman-team/.secman.ex $HOME/.secman
+    secman
+
 jobs:
   build:
     docker:
       # specify the version
       - image: circleci/golang:1.9
 
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    #### TEMPLATE_NOTE: go expects specific checkout path representing url
-    #### expecting it in the form of
-    ####   /go/src/github.com/circleci/go-tool
-    ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
     steps:
       - checkout
-
-      # specify any bash command here prefixed with `run: `
       - run: go get -d ./...
-    
-  install_secman:
+
+  linux_build:
+    environment:
+      <<: *linux_environment
+
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-1604:201903-01
 
     steps:
+      - checkout
       - run:
-          name: Install Secman
-          command: |
-            curl -fsSL https://secman-team.github.io/install/install.sh | bash
+          <<: *install_secman_linux
   
-  clone_dot_secman_ex:
-    machine:
-      image: ubuntu-1604:202004-01
+  linux_test:
+    environment:
+      <<: *linux_environment
     
-    steps:
-      - run: git clone https://github.com/secman-team/.secman.ex ~/.secman
-  
-  test_secman:
     machine:
-      image: ubuntu-1604:202004-01
+      image: ubuntu-1604:201903-01
 
     steps:
+      - checkout
       - run:
-          name: Test Secman
-          command: |
-            curl -fsSL https://secman-team.github.io/install/install.sh | bash
-            secman
+          <<: *install_secman_linux
+      
+      - run:
+         <<: *test_secman
+
+  windows_build:
+    environment:
+      <<: *windows_environment
+
+    executor: win/default
+
+    steps:
+      - checkout
+      - run:
+          <<: *install_secman_windows
+          shell: powershell.exe
+
+  windows_test:
+    environment:
+      <<: *windows_environment
+    
+    executor: win/default
+
+    steps:
+      - checkout
+      - run:
+          <<: *install_secman_windows
+          shell: powershell.exe
+
+      - run:
+          <<: *test_secman
+          shell: powershell.exe
 
 workflows:
-  test_install_secman:
+  version: 2.1
+  linux_jobs:
     jobs:
-      - install_secman
-  
-  test__secman:
+      - linux_build
+      - linux_test
+
+  windows_jobs:
     jobs:
-      - clone_dot_secman_ex
-      - test_secman
+      - windows_build
+      - windows_test

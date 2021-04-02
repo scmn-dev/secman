@@ -1,12 +1,12 @@
 package checker
 
 import (
-	"time"
-	"github.com/briandowns/spinner"
-	"github.com/secman-team/shell"
-	"runtime"
-	"log"
 	"fmt"
+	"log"
+	"time"
+	"runtime"
+	"github.com/secman-team/shell"
+	"github.com/briandowns/spinner"
 )
 
 func Checker() {
