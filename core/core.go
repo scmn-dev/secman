@@ -122,6 +122,21 @@ Will prompt for confirmation when a site path is not unique.`,
 		},
 	}
 
+
+	slashCmd=&cobra.Command{
+		Use:"/",
+		Example:"clone your .secman",
+		Run:func(cmd *cobra.Command,args []string){
+			if runtime.GOOS=="windows"{
+				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")
+			}else{
+				shell.ShellCmd("secman-sync cn")
+			}
+			checker.Checker()
+
+		},
+	}
+
 	start_syncCmd = &cobra.Command{
 		Use:     "start-sync",
 		Example: "secman start-sync",
@@ -246,6 +261,7 @@ func init() {
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(start_syncCmd)
+	RootCmd.AddCommand(slashCmd)
 }
 
 // main

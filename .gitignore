@@ -44,3 +44,4 @@ secret_key.rb
 
 # beta folder
 /api/sync/beta
+go.sum
