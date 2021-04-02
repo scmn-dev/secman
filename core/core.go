@@ -123,17 +123,17 @@ Will prompt for confirmation when a site path is not unique.`,
 	}
 
 
-	slashCmd=&cobra.Command{
+	slashCmd = &cobra.Command{
 		Use:"/",
 		Example:"clone your .secman",
 		Run:func(cmd *cobra.Command,args []string){
 			if runtime.GOOS=="windows"{
 				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")
-			}else{
+			} else {
 				shell.ShellCmd("secman-sync cn")
 			}
+			
 			checker.Checker()
-
 		},
 	}
 
