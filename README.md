@@ -54,7 +54,7 @@ scoop install secman
 
 ## Build from source
 
-see [docs/from_source.md](https://github.com/secman-team/secman/blob/main/docs/from_source.md)
+see [installing from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
 
 ## Getting started with secman
 
@@ -76,7 +76,7 @@ secman insert MY_SECRET_TOKEN
 secman start-sync
 ```
 
-> see [commands](https://secman.vercel.app/manual/commands)
+> see [commands](https://secman.vercel.app/docs/commands)
 
 ## License
 
