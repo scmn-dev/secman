@@ -19,7 +19,7 @@ tests
 
 build/
 dist/
-/share/man/man1
+/share/man
 
 # ignored files
 # 1. build/secman-linux
