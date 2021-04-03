@@ -19,8 +19,6 @@
 
 > secman needs [**go**][goUrl], [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
 
-- [![go](https://img.shields.io/static/v1?label=%20&message=v1.11%20and%20above&color=9cf&logo=go&style=for-the-badge)](https://golang.org)
-- just if you want to [download secman from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
 - [![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git&style=for-the-badge)](https://git-scm.com)
 - [![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red&style=for-the-badge)](https://www.ruby-lang.org/en/)
 - _ruby for windows_: **https://rubyinstaller.org/**
