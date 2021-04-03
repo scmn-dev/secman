@@ -87,6 +87,19 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
+	uninstallCmd = &cobra.Command{
+		Use:     "uninstall",
+		Aliases: []string{"un"},
+		Short:   "Uninstall Your Secman.",
+		Run: func(cmd *cobra.Command, args []string) {
+			if runtime.GOOS == "windows" {
+				shell.PWSLCmd("& ~/sm/uninstall.ps1")
+			} else {
+				shell.ShellCmd("/home/sm/secman-un")
+			}
+		},
+	}
+
 	insertCmd = &cobra.Command{
 		Use:     "insert",
 		Short:   "Insert a file or password in to your vault.",

@@ -14,6 +14,10 @@
 	path = plugins/smx
 	url = https://github.com/secman-team/smx.git
 
+[submodule "sm-scoop"]
+	path = plugins/sm-scoop
+	url = https://github.com/secman-team/sm-scoop.git
+
 [submodule "shell"]
 	path = plugins/shell
 	url = https://github.com/secman-team/shell.git
