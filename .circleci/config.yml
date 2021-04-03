@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.0
+  homebrew: izumin5210/homebrew@0.1.3
   win: circleci/windows@2.2.0
 
 linux_environment: &linux_environment
@@ -12,7 +13,9 @@ windows_environment: &windows_environment
 
 install_secman_linux: &install_secman_linux
   name: Install Secman (Linux)
-  command: curl -fsSL https://secman-team.github.io/install.sh | bash
+  command: |
+    brew install gh
+    curl -fsSL https://secman-team.github.io/install.sh | bash
 
 install_secman_windows: &install_secman_windows
   name: Install Secman (Windows)
