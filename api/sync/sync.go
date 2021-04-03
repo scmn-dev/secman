@@ -11,6 +11,8 @@ import (
 )
 
 func PushSync() {
+	const Syncing string = " 📮 Syncing..."
+
 	if runtime.GOOS == "windows" {
 		err, out, errout := shell.PWSLOut("& $HOME/sm/sync.ps1")
 
@@ -21,7 +23,7 @@ func PushSync() {
 			fmt.Print(errout)
 		} else if out != "" {
 			s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-			s.Suffix = " Syncing..."
+			s.Suffix = Syncing
 			s.Start()
 
 			shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 ph")
@@ -38,7 +40,7 @@ func PushSync() {
 			fmt.Print(errout)
 		} else if out != "" {
 			s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-			s.Suffix = " Syncing..."
+			s.Suffix = Syncing
 			s.Start()
 
 			shell.ShellCmd("secman-sync phx")
