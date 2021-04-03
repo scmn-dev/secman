@@ -312,8 +312,6 @@ func main() {
 
 			_cmd cgit "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit"
 
-			_cmd secman-un "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/secman-un"
-
 			_cmd secman-sync "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/api/sync/secman-sync"
 		`
 
