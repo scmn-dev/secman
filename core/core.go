@@ -140,6 +140,7 @@ Will prompt for confirmation when a site path is not unique.`,
 		Use: "/",
 		Short: "Clone your .secman.",
 		Example: "secman /",
+		Aliases: []string{"cn"},
 		Run: func(cmd *cobra.Command,args []string){
 			if runtime.GOOS=="windows"{
 				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")

@@ -4,6 +4,31 @@
 
 ---
 
+## [[v5.3.2] 2021-04-03](#v532-2021-04-03)
+
+### Added
+
+- Create / command (cn), creator [@iMRxM7mD](https://github.com/iMRxM7mD)
+- Configure upgrade command for windows, creator [@abdfnx](https://github.com/abdfnx)
+- Create deps website **https://secman-team.github.io**, creator: [@Timothee](https://github.com/Timothee-Cardoso)
+- Create uninstall command, creator: [@abdfnx](https://github.com/abdfnx)
+- When install secman in windows, now it's creates env path variable, creator: [@abdfnx](https://github.com/abdfnx)
+- Add special build for scoop, creator: [@abdfnx](https://github.com/abdfnx)
+
+### Changed
+
+- Make upgrade is main, upg is alias
+- Now secman-un is not a subprogram, it's in sm folder
+- When there's a new release, the message was changed
+- Improve CircelCI Actions in secman
+- Change the url of install secman from script
+- Now secman doesn't need bash in windows 👍
+
+### Fixed
+
+- Fix syncing in windows
+- Fix installing for windows
+
 ## [[v5.3.1] 2021-03-26](#v531-2021-03-26)
 
 ### Added
