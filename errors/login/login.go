@@ -1,9 +1,7 @@
 package login
 
 import (
-	"fmt"
 	"runtime"
-
 	"github.com/secman-team/shell"
 )
 

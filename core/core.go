@@ -19,7 +19,6 @@ import (
 	"github.com/secman-team/secman/show"
 	"github.com/secman-team/secman/upgrade"
 	"github.com/secman-team/secman/clean"
-	"github.com/secman-team/secman/login"
 	"github.com/spf13/cobra"
 )
 
@@ -152,17 +151,6 @@ Will prompt for confirmation when a site path is not unique.`,
 		},
 	}
 
-	slashCmd = &cobra.Command{
-		Use: "login",
-		Short: "Login to use sync command.",
-		Example: "secman login",
-		Run: func(cmd *cobra.Command,args []string){
-			login.Core()
-
-			checker.Checker()
-		},
-	}
-
 	start_syncCmd = &cobra.Command{
 		Use:     "start-sync",
 		Example: "secman start-sync",
@@ -289,7 +277,6 @@ func init() {
 	RootCmd.AddCommand(start_syncCmd)
 	RootCmd.AddCommand(slashCmd)
 	RootCmd.AddCommand(uninstallCmd)
-	RootCmd.AddCommand(loginCmd)
 }
 
 // main
