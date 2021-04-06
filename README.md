@@ -84,8 +84,8 @@ secman start-sync
 
 ## Our Websites
 
-- [**main website**](https://secman.vercel.app)
-- [**deps website**](https://secman-team.github.io)
+- <a href="https://secman.vercel.app" target="_blank">**main website**</a>
+- <a href="https://secman-team.github.io" target="_blank">**deps website**</a>
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.vercel.app
