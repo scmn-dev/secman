@@ -1,4 +1,4 @@
-# [<img src="https://github.com/secman-team/secman/blob/main/.github/assets/secman.svg" width="300" align="center">][smUrl]
+# [<img src="https://imgs-secman.web.app/logo.png" align="center">][smUrl] **Secman**
 
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
 
@@ -9,7 +9,7 @@
 ![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go&style=for-the-badge)
 ![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)
 
-> `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in [<img src=".github/assets/go.svg" width="23" align="center">][smUrl]! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in **go! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 ## Installation ⬇
 
@@ -84,8 +84,8 @@ secman start-sync
 
 ## Our Websites
 
-- <a href="https://secman.vercel.app" target="_blank">**main website**</a>
-- <a href="https://secman-team.github.io" target="_blank">**deps website**</a>
+- [**main website**](https://secman.vercel.app)
+- [**deps website**](https://secman-team.github.io)
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.vercel.app

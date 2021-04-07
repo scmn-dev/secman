@@ -125,6 +125,7 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	showCmd = &cobra.Command{
 		Use:     "show",
+		Aliases: []string{"read"},
 		Example: "secman show core/docker.com",
 		Short:   "Print the password of a secman entry.",
 		Args:    cobra.ExactArgs(1),
