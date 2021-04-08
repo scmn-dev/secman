@@ -14,11 +14,15 @@ install_homebrew: &install_homebrew
   name: Install HomeBrew
   command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+gh: &gh
+  name: Install gh
+  command: |
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/circleci/.bash_profile
+    brew install gh
+
 install_secman_linux: &install_secman_linux
   name: Install Secman (Linux)
   command: |
-    export PATH="$HOME/.linuxbrew/bin:$PATH"
-    brew install gh
     curl -fsSL https://secman-team.github.io/install.sh | bash
 
 install_secman_windows: &install_secman_windows
@@ -51,6 +55,10 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          <<: *install_homebrew
+      - run:
+          <<: *gh
       - run:
           <<: *install_secman_linux
   
