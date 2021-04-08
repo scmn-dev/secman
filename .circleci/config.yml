@@ -10,17 +10,14 @@ linux_environment: &linux_environment
 windows_environment: &windows_environment
   PLATFORM: "windows"
 
-install_homebrew_and_gh: &install_homebrew_and_gh
-  name: Install HomeBrew
+install_gh: &install_gh
+  name: Install Github CLI
   command: |
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/circleci/.bash_profile
     brew install gh
 
 install_secman_linux: &install_secman_linux
   name: Install Secman (Linux)
-  command: |
-    curl -fsSL https://secman-team.github.io/install.sh | bash
+  command: curl -fsSL https://secman-team.github.io/install.sh | bash
 
 install_secman_windows: &install_secman_windows
   name: Install Secman (Windows)
@@ -53,7 +50,7 @@ jobs:
     steps:
       - checkout
       - run:
-          <<: *install_homebrew_and_gh
+          <<: *install_gh
       - run:
           <<: *install_secman_linux
   
@@ -67,7 +64,7 @@ jobs:
     steps:
       - checkout
       - run:
-          <<: *install_homebrew_and_gh
+          <<: *install_gh
       - run:
           <<: *install_secman_linux
       - run:
