@@ -74,6 +74,8 @@ jobs:
       - run:
           <<: *install_homebrew
       - run:
+          <<: *gh
+      - run:
           <<: *install_secman_linux
       - run:
          <<: *test_secman
