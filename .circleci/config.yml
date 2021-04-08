@@ -3,7 +3,6 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.0
   win: circleci/windows@2.2.0
-  docker: circleci/docker@1.4.0
 
 linux_environment: &linux_environment
   PLATFORM: "linux"
@@ -11,14 +10,9 @@ linux_environment: &linux_environment
 windows_environment: &windows_environment
   PLATFORM: "windows"
 
-install_gh: &install_gh
-  name: Install Github CLI
-  command: |
-    brew install gh
-
 install_secman_linux: &install_secman_linux
   name: Install Secman (Linux)
-  command: curl -fsSL https://secman-team.github.io/install.sh | bash
+  command: curl -fsSL https://secman-team.github.io/ci/install.sh | bash
 
 install_secman_windows: &install_secman_windows
   name: Install Secman (Windows)
@@ -50,10 +44,6 @@ jobs:
 
     steps:
       - checkout
-      - docker/pull:
-          images: 'homebrew/brew'
-      - run:
-          <<: *install_gh
       - run:
           <<: *install_secman_linux
 
@@ -66,10 +56,6 @@ jobs:
 
     steps:
       - checkout
-      - docker/pull:
-          images: 'homebrew/brew'
-      - run:
-          <<: *install_gh
       - run:
           <<: *install_secman_linux
       - run:
