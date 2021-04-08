@@ -10,13 +10,10 @@ linux_environment: &linux_environment
 windows_environment: &windows_environment
   PLATFORM: "windows"
 
-install_homebrew: &install_homebrew
+install_homebrew_and_gh: &install_homebrew_and_gh
   name: Install HomeBrew
-  command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-gh: &gh
-  name: Install gh
   command: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/circleci/.bash_profile
     brew install gh
 
@@ -56,9 +53,7 @@ jobs:
     steps:
       - checkout
       - run:
-          <<: *install_homebrew
-      - run:
-          <<: *gh
+          <<: *install_homebrew_and_gh
       - run:
           <<: *install_secman_linux
   
@@ -72,9 +67,7 @@ jobs:
     steps:
       - checkout
       - run:
-          <<: *install_homebrew
-      - run:
-          <<: *gh
+          <<: *install_homebrew_and_gh
       - run:
           <<: *install_secman_linux
       - run:

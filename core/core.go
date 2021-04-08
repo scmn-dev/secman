@@ -44,10 +44,11 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	versionCmd = &cobra.Command{
-		Use:   "ver",
+		Use:   "version",
+		Aliases: []string{"ver"},
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(version + " " + runtime.GOOS + " " + runtime.GOARCH)
+			fmt.Println("secman" + " " + version + " " + runtime.GOOS + " " + runtime.GOARCH)
 			checker.Checker()
 		},
 	}
