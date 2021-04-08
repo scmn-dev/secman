@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.0
   win: circleci/windows@2.2.0
+  docker: circleci/docker@1.4.0
 
 linux_environment: &linux_environment
   PLATFORM: "linux"
@@ -45,24 +46,28 @@ jobs:
       <<: *linux_environment
 
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202010-01
 
     steps:
       - checkout
+      - docker/pull:
+          images: 'homebrew/brew'
       - run:
           <<: *install_gh
       - run:
           <<: *install_secman_linux
-  
+
   linux_test:
     environment:
       <<: *linux_environment
-    
+
     machine:
-      image: ubuntu-1604:201903-01
+      image: ubuntu-2004:202010-01
 
     steps:
       - checkout
+      - docker/pull:
+          images: 'homebrew/brew'
       - run:
           <<: *install_gh
       - run:
@@ -85,7 +90,7 @@ jobs:
   windows_test:
     environment:
       <<: *windows_environment
-    
+
     executor: win/default
 
     steps:
