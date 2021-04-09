@@ -86,6 +86,7 @@ secman start-sync
 
 - [**main website**](https://secman.vercel.app)
 - [**deps website**](https://secman-team.github.io)
+- [**changelog website**](https://secman-chlog.web.app)
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.vercel.app
