@@ -21,3 +21,7 @@
 [submodule "shell"]
 	path = plugins/shell
 	url = https://github.com/secman-team/shell.git
+
+[submodule "version-checker"]
+	path = plugins/version-checker
+	url = https://github.com/secman-team/version-checker.git

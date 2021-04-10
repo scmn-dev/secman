@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/secman-team/shell"
+	checker "github.com/secman-team/version-checker"
 
 	"github.com/secman-team/secman/api/sync"
 	"github.com/secman-team/secman/clean"
@@ -16,7 +17,6 @@ import (
 	"github.com/secman-team/secman/initialize"
 	"github.com/secman-team/secman/insert"
 	"github.com/secman-team/secman/pio"
-	"github.com/secman-team/secman/plugins"
 	"github.com/secman-team/secman/show"
 	"github.com/secman-team/secman/upgrade"
 	"github.com/spf13/cobra"

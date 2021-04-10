@@ -7,6 +7,7 @@ require (
 	github.com/briandowns/spinner v1.12.0
 	github.com/fatih/color v1.10.0
 	github.com/secman-team/shell v0.3.1
+	github.com/secman-team/version-checker v0.1.1
 	github.com/spf13/cobra v1.1.3
 	golang.org/x/crypto v0.0.0-20210220033148-5ea612d1eb83
 	golang.org/x/sys v0.0.0-20210305034016-7844c3c200c3
