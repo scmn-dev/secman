@@ -3,20 +3,62 @@ name: Secman CI
 on:
   push:
     branches: [ main ]
+
   pull_request:
     branches: [ main ]
 
+env:
+  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex ~/.secman
+
 jobs:
-  core:
+  ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install secman
+      - name: Install secman (Linux)
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
-        run: git clone https://github.com/secman-team/.secman.ex ~/.secman
+        run: $CLONE_DOT_SECMAN
 
       - name: Run secman
         run: secman
+
+      - name: Run secman version
+        run: secman ver
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install secman (MacOS)
+        run: curl -fsSL https://secman-team.github.io/install.sh | bash
+
+      - name: Clone .secman (ex folder)
+        run: $CLONE_DOT_SECMAN
+
+      - name: Run secman
+        run: secman
+
+      - name: Run secman version
+        run: secman ver
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install secman (Windows)
+        shell: powershell
+        run: iwr -useb https://secman-team.github.io/install.ps1 | iex
+
+      - name: Clone .secman (ex folder)
+        run: $CLONE_DOT_SECMAN
+
+      - name: Run secman
+        run: secman
+
+      - name: Run secman version
+        run: secman ver
