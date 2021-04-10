@@ -11,7 +11,7 @@ end
 
 def core
     system("powershell.exe Remove-Item $HOME/sm -Recurse -Force")
-    system("powershell.exe iwr -useb https://secman-team.github.io/install/install.ps1 | iex")
+    system("powershell.exe iwr -useb https://secman-team.github.io/install.ps1 | iex")
 end
 
 sm = "secman".cyan

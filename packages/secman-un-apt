@@ -9,7 +9,7 @@ smLoc=$usrLoc/secman*
 cgitLoc=$usrLoc/cgit*
 verxLoc=$usrLoc/verx*
 SECDIR=~/.secman
-SM_DIR=/home/sm
+SM_DIR=~/sm
 
 clearAllData() {
     echo -e "clear all data?\n[y/N]"

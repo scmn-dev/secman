@@ -9,6 +9,6 @@ func Clean() {
 	if runtime.GOOS == "windows" {
 		shell.PWSLCmd("~/sm/clean.ps1")
 	} else {
-		shell.ShellCmd("ruby /home/sm/clean.rb")
+		shell.ShellCmd("ruby ~/sm/clean.rb")
 	}
 }

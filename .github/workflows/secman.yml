@@ -61,8 +61,10 @@ jobs:
 
       - name: Run secman
         run: |
-          ls ~/AppData/Local
-          echo "##[add-path]C:\Users\runneradmin\AppData\Local\secman\bin\;"
+          ls ~/AppData/Local/secman
+          ls ~/AppData/Local/secman/bin
+          Write-Host "##[add-path]~\AppData\Local\secman\bin\;"
+          Write-Host $Env:Path
           secman
 
       - name: Run secman version

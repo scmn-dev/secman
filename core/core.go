@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"strconv"
-	"log"
 
 	"github.com/secman-team/shell"
 
 	"github.com/secman-team/secman/api/sync"
+	"github.com/secman-team/secman/clean"
 	"github.com/secman-team/secman/edit"
 	"github.com/secman-team/secman/fetch"
 	"github.com/secman-team/secman/gen"
@@ -18,7 +19,6 @@ import (
 	"github.com/secman-team/secman/plugins"
 	"github.com/secman-team/secman/show"
 	"github.com/secman-team/secman/upgrade"
-	"github.com/secman-team/secman/clean"
 	"github.com/spf13/cobra"
 )
 
@@ -96,7 +96,7 @@ directory, and initialize your cryptographic keys.`,
 			if runtime.GOOS == "windows" {
 				shell.PWSLCmd("& ~/sm/uninstall.ps1")
 			} else {
-				shell.ShellCmd("/home/sm/secman-un")
+				shell.ShellCmd("~/sm/secman-un")
 			}
 		},
 	}
@@ -136,7 +136,6 @@ Will prompt for confirmation when a site path is not unique.`,
 			checker.Checker()
 		},
 	}
-
 
 	slashCmd = &cobra.Command{
 		Use: "/",
@@ -301,10 +300,9 @@ func main() {
 				fi
 			}
 
-			if ! [ -d /home/sm ]; then
-				echo "sm folder was not found"
+			if ! [ -d ~/sm ]; then
 				echo "installing sm..."
-				sudo git clone https://github.com/secman-team/sm /home/sm
+				sudo git clone https://github.com/secman-team/sm ~/sm
 				echo "installing ruby deps..."
 				gem install colorize optparse
 				end
@@ -326,40 +324,66 @@ func main() {
 				git clone https://github.com/secman-team/sm-win $directoyPath
 				Write-Host "installing ruby deps..."
 				gem install colorize optparse
-				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.sh -outfile $directoyPath\sm.sh
+				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.ps1 -outfile $directoyPath\sm.ps1
 				Write-Host "after install dependencies, run secman again"
 			}
-		`	
+		`
+
+	mlSMCheck :=
+		`
+			if ! [ -d ~/sm ]; then
+				echo "some of secman dependencies're not found, secman is going to fix it 🔨"
+			fi
+		`
+
+	wSMCheck :=
+		`
+			$directoyPath="$HOME\sm";
+
+			if(!(Test-Path -path $directoyPath)) {
+				Write-Host "some of secman dependencies're not found, secman is going to fix it 🔨"
+			}
+		`
 
 	if runtime.GOOS == "windows" {
-		err, out, errout := shell.PWSLOut(wCheck)
+		err, out2, errout2 := shell.PWSLOut(wSMCheck)
+
+		fmt.Println(out2)
 
 		if err != nil {
 			log.Printf("error: %v\n", err)
-			fmt.Println(errout)
-		} else if out != "" {
-			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
+			fmt.Println(errout2)
 		} else {
-			if out == "" {
+			_errx, out, errout := shell.PWSLOut(wCheck)
+			
+			if _errx != nil {
+				log.Printf("error: %v\n", _errx)
+				fmt.Println(errout)
+			} else if out == "" {
 				RootCmd.Execute()
 			}
-		}
 
-		fmt.Println(out)
+			fmt.Println(out)
+		}
 	} else {
-		err, out, errout := shell.ShellOut(mlChecker)
+		err, out2, errout2 := shell.ShellOut(mlSMCheck)
+
+		fmt.Println(out2)
 
 		if err != nil {
 			log.Printf("error: %v\n", err)
-			fmt.Println(errout)
-		} else if out != "" {
-			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
+			fmt.Println(errout2)
 		} else {
-			if out == "" {
+			_errx, out, errout := shell.ShellOut(mlChecker)
+
+			if _errx != nil {
+				log.Printf("error: %v\n", _errx)
+				fmt.Println(errout)
+			} else if out == "" {
 				RootCmd.Execute()
 			}
-		}
 
-		fmt.Println(out)
+			fmt.Println(out)
+		}
 	}
 }

@@ -31,7 +31,7 @@ func PushSync() {
 			s.Stop()
 		}
 	} else {
-		err, out, errout := shell.ShellOut("/home/sm/sync.sh")
+		err, out, errout := shell.ShellOut("~/sm/sync.sh")
 
 		fmt.Print(out)
 
