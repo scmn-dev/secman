@@ -9,6 +9,7 @@ on:
 
 env:
   CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex ~/.secman
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
   ubuntu:
