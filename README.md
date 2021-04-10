@@ -28,6 +28,8 @@
 curl -fsSL https://secman-team.github.io/install.sh | bash
 ```
 
+### Powershell (Windows)
+
 ```powershell
 iwr -useb https://secman-team.github.io/install.ps1 | iex
 ```
