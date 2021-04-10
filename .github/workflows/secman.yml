@@ -51,12 +51,15 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install secman (Windows)
+        shell: powershell
         run: iwr -useb https://secman-team.github.io/install.ps1 | iex
 
       - name: Clone .secman (ex folder)
+        shell: powershell
         run: $CLONE_DOT_SECMAN
 
       - name: Run secman
+        shell: powershell
         run: secman
 
       - name: Run secman version
