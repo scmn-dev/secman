@@ -32,7 +32,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - shell: bash
 
       - name: Install secman (MacOS)
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
@@ -50,7 +49,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - shell: powershell
 
       - name: Install secman (Windows)
         run: iwr -useb https://secman-team.github.io/install.ps1 | iex
