@@ -20,6 +20,7 @@
 - Also Add usage message in cgit
 - Clean up _cgit_ and _verx_
 - Move sm folder location from **/home** to **~**
+- Remove secman_windows_LATEST_VERSION_x64.msi for security reasons.
 
 ### Fixed
 
