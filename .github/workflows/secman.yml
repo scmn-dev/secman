@@ -69,3 +69,11 @@ jobs:
 
       - name: Run secman version
         run: secman ver
+  
+  test:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Test Git Config
+        run: git config user.name
+
