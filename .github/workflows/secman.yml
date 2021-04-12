@@ -79,8 +79,9 @@ jobs:
         run: |
           ls ~/AppData/Local/secman
           ls ~/AppData/Local/secman/bin
-          Write-Host "##[add-path]~\AppData\Local\secman\bin\;"
+          Write-Host "##[add-path]C:\Users\runnderadmin\AppData\Local\secman\bin\;"
           Write-Host $Env:Path
+          Write-Host $HOME
           secman
 
       - name: Run secman version
