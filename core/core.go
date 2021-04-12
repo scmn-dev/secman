@@ -5,13 +5,13 @@ import (
 	"log"
 	"runtime"
 	"strconv"
-	"strings"
 
 	"github.com/secman-team/shell"
 	checker "github.com/secman-team/version-checker"
 
 	"github.com/secman-team/secman/api/sync"
 	"github.com/secman-team/secman/clean"
+	"github.com/secman-team/secman/clone"
 	"github.com/secman-team/secman/edit"
 	"github.com/secman-team/secman/fetch"
 	"github.com/secman-team/secman/gen"
@@ -22,35 +22,6 @@ import (
 	"github.com/secman-team/secman/upgrade"
 	"github.com/spf13/cobra"
 )
-
-func cloneHELP() string {
-	const msg string = "Clone your .secman from your private repo at https://github.com/"
-	repo := "/.secman ."
-
-	if runtime.GOOS == "windows" {
-		err, username, errout := shell.PWSLOut("git config user.name")
-
-		uname := strings.TrimSuffix(username, "\n")
-	
-		if err != nil {
-			log.Printf("error: %v\n", err)
-			fmt.Print(errout)
-		}
-
-		return msg + uname + repo
-	} else {
-		err, username, errout := shell.ShellOut("git config user.name")
-
-		uname := strings.TrimSuffix(username, "\n")
-
-		if err != nil {
-			log.Printf("error: %v\n", err)
-			fmt.Print(errout)
-		}
-	
-		return msg + uname + repo
-	}
-}
 
 var (
 	copyPass bool
@@ -169,24 +140,11 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	cloneCmd = &cobra.Command{
 		Use: "clone",
-		Short: cloneHELP(),
-		Example: "secman /",
+		Short: clone.Help(),
+		Example: "secman clone",
 		Aliases: []string{"cn", "/"},
 		Run: func(cmd *cobra.Command, args []string){
-			if runtime.GOOS == "windows"{
-				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")
-				shell.PWSLCmd(
-					`
-						if (Test-Path -path ~/.secman) {
-							$E = [System.Char]::ConvertFromUtf32([System.Convert]::toInt32("2705", 16));
-							Write-Host "cloned successfully $E"
-						}
-					`,
-				)
-			} else {
-				shell.ShellCmd("secman-sync cn")
-				shell.ShellCmd(`if [ -d ~/.secman ]; then echo "cloned successfully ✅"; fi`)
-			}
+			clone.Core()
 
 			checker.Checker()
 		},

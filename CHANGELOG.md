@@ -4,20 +4,41 @@
 
 ---
 
+## [[v5.3.3] 2021-04-12](#v532-2021-04-12)
+
+### Added
+
+- Create imgs website **https://imgs-secman.web.app**, creator: @abdfnx
+- Add [version-checker](https://github.com/secman-team/version-checker) package, creator: @abdfnx
+
+### Changed
+
+- Make version is main, ver is an alias
+- Make clone is main, cn and / are aliases
+- Change clone message, now it's shows the private repo at **https://github.com/:USERNAME/.secman**
+- Add usage message in secman-sync
+- Also Add usage message in cgit
+- Clean up _cgit_ and _verx_
+- Move sm folder location from **/home** to **~**
+
+### Fixed
+
+- Fix upgrade command
+
 ## [[v5.3.2] 2021-04-03](#v532-2021-04-03)
 
 ### Added
 
-- Create / command (cn), creator [@iMRxM7mD](https://github.com/iMRxM7mD)
-- Configure upgrade command for windows, creator [@abdfnx](https://github.com/abdfnx)
-- Create deps website **https://secman-team.github.io**, creator: [@Timothee](https://github.com/Timothee-Cardoso)
-- Create uninstall command, creator: [@abdfnx](https://github.com/abdfnx)
-- When install secman in windows, now it's creates env path variable, creator: [@abdfnx](https://github.com/abdfnx)
-- Add special build for scoop, creator: [@abdfnx](https://github.com/abdfnx)
+- Create / command (cn), creator @iMRxM7mD
+- Configure upgrade command for windows, creator @abdfnx
+- Create deps website **https://secman-team.github.io**, creator: @Timothee
+- Create uninstall command, creator: @abdfnx
+- When install secman in windows, now it's creates env path variable, creator: @abdfnx
+- Add special build for scoop, creator: @abdfnx
 
 ### Changed
 
-- Make upgrade is main, upg is alias
+- Make upgrade is main, upg is an alias
 - Now secman-un is not a subprogram, it's in sm folder
 - When there's a new release, the message was changed
 - Improve CircelCI Actions in secman
