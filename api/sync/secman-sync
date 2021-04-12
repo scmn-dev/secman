@@ -116,7 +116,7 @@ version() {
     if [ -x "$(command -v verx)" ]; then
         ${v}
     else
-        curl -fsSL $ghraw_url/abdfnx/verx/HEAD/install.sh | bash
+        curl -fsSL $ghraw_url/secman-team/verx/HEAD/install.sh | bash
 
         if [ -x "$(command -v verx)" ]; then
             ${v}
@@ -125,8 +125,7 @@ version() {
 }
 
 if [ $# -eq 0 ]; then
-    echo "Missing options!"
-    echo "(run secman-sync --help for help)"
+    usage
     exit 0
 fi
 

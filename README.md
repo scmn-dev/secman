@@ -17,10 +17,10 @@
 
 > secman needs [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
 
-- [![git](https://img.shields.io/static/v1?label=%20&message=git&color=9cf&logo=git&style=for-the-badge)](https://git-scm.com)
-- [![ruby](https://img.shields.io/static/v1?label=%20&message=ruby&color=9cf&logo=ruby&logoColor=red&style=for-the-badge)](https://www.ruby-lang.org/en/)
+- [![git](https://imgs-secman.web.app/badges/git.svg)](https://git-scm.com)
+- [![ruby](https://imgs-secman.web.app/badges/ruby.svg)](https://www.ruby-lang.org/en/)
 - _ruby for windows_: **https://rubyinstaller.org**
-- [![gh cli](https://img.shields.io/static/v1?label=%20&message=gh%20cli&color=9cf&logo=github&logoColor=black&style=for-the-badge)](https://cli.github.com)
+- [![gh cli](https://imgs-secman.web.app/badges/gh_cli.svg)](https://cli.github.com)
 
 ### Using Shell (macOS and Linux)
 

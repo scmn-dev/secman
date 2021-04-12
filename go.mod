@@ -5,7 +5,6 @@ go 1.11
 require (
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.12.0
-	github.com/fatih/color v1.10.0
 	github.com/secman-team/shell v0.3.1
 	github.com/secman-team/version-checker v0.1.1
 	github.com/spf13/cobra v1.1.3

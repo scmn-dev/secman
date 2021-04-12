@@ -10,6 +10,10 @@
 	path = tools
 	url = https://github.com/secman-team/tools.git
 
+[submodule "docs"]
+	path = docs
+	url = https://github.com/secman-team/docs.git
+
 [submodule "formula"]
 	path = plugins/smx
 	url = https://github.com/secman-team/smx.git
