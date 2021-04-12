@@ -69,7 +69,9 @@ jobs:
           $CONFIG_EMAIL
 
       - name: Install secman (Windows)
-        run: iwr -useb https://secman-team.github.io/install.ps1 | iex
+        run: |
+          iwr -useb https://secman-team.github.io/install.ps1 | iex
+          echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
 
       - name: Clone .secman (ex folder)
         shell: powershell
@@ -78,9 +80,7 @@ jobs:
       - name: Run secman
         run: |
           ls ~/AppData/Local/secman/bin
-          echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
           Write-Host $Env:Path
-          Write-Host $HOME
           secman
 
       - name: Run secman version
