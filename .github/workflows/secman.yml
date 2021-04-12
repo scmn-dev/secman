@@ -10,12 +10,19 @@ on:
 env:
   CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex ~/.secman
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CONFIG_NAME: git config user.name "secman_yo"
+  CONFIG_EMAIL: git config user.email "yo@secman.vercel.app"
 
 jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Config
+        run: |
+          $CONFIG_NAME
+          $CONFIG_EMAIL
 
       - name: Install secman (Linux)
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
@@ -34,8 +41,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Config
+        run: |
+          $CONFIG_NAME
+          $CONFIG_EMAIL
+
       - name: Install secman (MacOS)
-        shell: bash
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
@@ -51,6 +62,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Config
+        run: |
+          $CONFIG_NAME
+          $CONFIG_EMAIL
 
       - name: Install secman (Windows)
         run: iwr -useb https://secman-team.github.io/install.ps1 | iex
@@ -69,11 +85,3 @@ jobs:
 
       - name: Run secman version
         run: secman ver
-  
-  test:
-    runs-on: macos-latest
-    
-    steps:
-      - name: Test Git Config
-        run: git config user.name
-
