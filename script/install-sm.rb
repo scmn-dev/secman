@@ -1,7 +1,7 @@
 def os
     @os ||= (
         host_os = RbConfig::CONFIG['host_os']
-        shared = "https://secman-team.github.io/install/install"
+        shared = "https://secman-team.github.io/install"
 
         case host_os
         when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
