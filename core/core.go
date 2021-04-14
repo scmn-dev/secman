@@ -8,6 +8,8 @@ import (
 
 	"github.com/secman-team/shell"
 	checker "github.com/secman-team/version-checker"
+	"github.com/secman-team/gh-api/pkg/cmd/factory"
+	"github.com/spf13/cobra"
 
 	"github.com/secman-team/secman/api/sync"
 	"github.com/secman-team/secman/clean"
@@ -20,7 +22,8 @@ import (
 	"github.com/secman-team/secman/pio"
 	"github.com/secman-team/secman/show"
 	"github.com/secman-team/secman/upgrade"
-	"github.com/spf13/cobra"
+	"github.com/secman-team/secman/utils/repo"
+	"github.com/secman-team/secman/utils/auth"
 )
 
 var (
@@ -257,9 +260,14 @@ one group or all sites that contain a certain word in the group or name.`,
 			checker.Checker()
 		},
 	}
+
+	repoCmd = repox.Repo(factory.New("x"))
+	authCmd = authx.Auth(factory.New("x"))
 )
 
 func init() {
+	RootCmd.AddCommand(authCmd)
+	RootCmd.AddCommand(repoCmd)
 	RootCmd.AddCommand(cleanCmd)
 	RootCmd.AddCommand(fetchCmd)
 	RootCmd.AddCommand(findCmd)

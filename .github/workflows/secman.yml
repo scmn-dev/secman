@@ -64,6 +64,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Config
+        shell: powershell
         run: |
           $CONFIG_NAME
           $CONFIG_EMAIL
@@ -78,10 +79,7 @@ jobs:
         run: $CLONE_DOT_SECMAN
 
       - name: Run secman
-        run: |
-          ls ~/AppData/Local/secman/bin
-          Write-Host $Env:Path
-          secman
+        run: secman
 
       - name: Run secman version
         run: secman ver
