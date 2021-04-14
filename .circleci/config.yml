@@ -12,7 +12,7 @@ windows_environment: &windows_environment
 
 install_secman_linux: &install_secman_linux
   name: Install Secman (Linux)
-  command: curl -fsSL https://secman-team.github.io/ci/install.sh | bash
+  command: curl -fsSL https://secman-team.github.io/install.sh | bash
 
 install_secman_windows: &install_secman_windows
   name: Install Secman (Windows)

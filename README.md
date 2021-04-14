@@ -15,12 +15,11 @@
 
 ### Pre-requisites
 
-> secman needs [**git**](https://git-scm.com), [**ruby**](https://www.ruby-lang.org) and [**gh cli**](https://cli.github.com)
+> secman needs [**git**](https://git-scm.com) and [**ruby**](https://www.ruby-lang.org)
 
 - [![git](https://imgs-secman.web.app/badges/git.svg)](https://git-scm.com)
 - [![ruby](https://imgs-secman.web.app/badges/ruby.svg)](https://www.ruby-lang.org/en/)
 - _ruby for windows_: **https://rubyinstaller.org**
-- [![gh cli](https://imgs-secman.web.app/badges/gh_cli.svg)](https://cli.github.com)
 
 ### Using Shell (macOS and Linux)
 

@@ -24,6 +24,7 @@ import (
 	"github.com/secman-team/secman/upgrade"
 	"github.com/secman-team/secman/utils/repo"
 	"github.com/secman-team/secman/utils/auth"
+	"github.com/secman-team/secman/utils/config"
 )
 
 var (
@@ -261,13 +262,16 @@ one group or all sites that contain a certain word in the group or name.`,
 		},
 	}
 
+	// with github
 	repoCmd = repox.Repo(factory.New("x"))
 	authCmd = authx.Auth(factory.New("x"))
+	configCmd = configx.Config(factory.New("x"))
 )
 
 func init() {
 	RootCmd.AddCommand(authCmd)
 	RootCmd.AddCommand(repoCmd)
+	RootCmd.AddCommand(configCmd)
 	RootCmd.AddCommand(cleanCmd)
 	RootCmd.AddCommand(fetchCmd)
 	RootCmd.AddCommand(findCmd)
