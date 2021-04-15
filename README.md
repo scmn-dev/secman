@@ -47,10 +47,6 @@ scoop bucket add secman https://github.com/secman-team/sm-scoop
 scoop install secman
 ```
 
-### MSI Installer
-
-> MSI installer is available for download on the [releases](https://github.com/secman-team/secman/releases/latest).
-
 ## Build from source
 
 see [installing from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
