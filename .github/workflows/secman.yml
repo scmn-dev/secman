@@ -47,6 +47,8 @@ jobs:
           $CONFIG_EMAIL
 
       - name: Install secman (MacOS)
+        # shell: bash
+        shell: bash
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
