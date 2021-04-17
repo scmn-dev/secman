@@ -1,0 +1,29 @@
+name: Secman Docker CI
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+
+  pull_request:
+
+env:
+  IMAGE: ghcr.io/secman-team/secman
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Login to Github Packages
+        run: |
+          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+      - name: Run Build
+        run: |
+          docker pull $IMAGE:latest
+          docker build -t $IMAGE:$GITHUB_SHA --cache-from $IMAGE:latest .
+          docker push $IMAGE:$GITHUB_SHA
