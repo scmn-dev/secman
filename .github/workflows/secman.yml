@@ -8,7 +8,7 @@ on:
     branches: [ main ]
 
 env:
-  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex ~/.secman
+  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex $HOME/.secman
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   CONFIG_NAME: git config user.name secman_yo
   CONFIG_EMAIL: git config user.email yo@secman.vercel.app
