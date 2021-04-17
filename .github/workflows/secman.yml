@@ -10,8 +10,8 @@ on:
 env:
   CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex $HOME/.secman
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  CONFIG_NAME: git --global config user.name secman_yo
-  CONFIG_EMAIL: git --global config user.email yo@secman.vercel.app
+  CONFIG_NAME: git config --global user.name secman_yo
+  CONFIG_EMAIL: git config --global user.email yo@secman.vercel.app
 
 jobs:
   ubuntu:
