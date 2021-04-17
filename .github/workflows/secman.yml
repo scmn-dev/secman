@@ -8,7 +8,6 @@ on:
     branches: [ main ]
 
 env:
-  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex $HOME/.secman
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   CONFIG_NAME: git config --global user.name secman_yo
   CONFIG_EMAIL: git config --global user.email yo@secman.vercel.app
@@ -28,7 +27,7 @@ jobs:
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
-        run: $CLONE_DOT_SECMAN
+        run: git clone https://github.com/secman-team/.secman.ex /home/runner/.secman
 
       - name: Run secman
         run: secman
@@ -52,7 +51,7 @@ jobs:
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
-        run: $CLONE_DOT_SECMAN
+        run: git clone https://github.com/secman-team/.secman.ex /Users/runner/.secman
 
       - name: Run secman
         run: secman
@@ -78,7 +77,7 @@ jobs:
 
       - name: Clone .secman (ex folder)
         shell: powershell
-        run: $CLONE_DOT_SECMAN
+        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
 
       - name: Run secman
         run: secman
