@@ -10,4 +10,6 @@ build:
 setup: core/secman
 		@sudo gem install colorize && \
 		git clone https://github.com/secman-team/sm ~/sm && \
+		sudo wget -P ~/sm https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/secman-un \
+		sudo chmod 755 ~/sm/* \
 		sudo cp core/secman /usr/local/bin
