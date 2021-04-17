@@ -332,7 +332,7 @@ func main() {
 				Write-Host "installing sm..."
 				git clone https://github.com/secman-team/sm-win $directoyPath
 				Write-Host "installing ruby deps..."
-				gem install colorize optparse
+				gem install colorize
 				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.ps1 -outfile $directoyPath\sm.ps1
 				Write-Host "after install dependencies, run secman again"
 			}
