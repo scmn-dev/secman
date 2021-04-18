@@ -30,10 +30,12 @@ jobs:
           docker push $IMAGE
   
   run:
+    needs: [ build ]
+
     runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Run the image
-        run: docker run -i $IMAGE
+        run: docker run $IMAGE

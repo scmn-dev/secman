@@ -36,29 +36,6 @@ jobs:
       - name: Run secman version
         run: secman ver
 
-  macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Config
-        run: $CONFIG_NAME
-
-      - name: Install secman (MacOS)
-        run: curl -fsSL https://secman-team.github.io/install.sh | bash
-
-      - name: Clone .secman (ex folder)
-        run: $CLONE_DOT_SECMAN /Users/runner/.secman
-
-      - name: Run secman
-        run: secman
-
-      - name: Run secman Help
-        run: secman -h
-
-      - name: Run secman version
-        run: secman ver
-
   windows:
     runs-on: windows-latest
     steps:
