@@ -39,3 +39,4 @@ jobs:
       - name: Run the image
         run: |
           docker run $IMAGE
+          secman
