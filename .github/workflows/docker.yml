@@ -26,5 +26,5 @@ jobs:
         run: |
           docker pull $IMAGE:latest
           git clone https://github.com/secman-team/secman-docker
-          docker build -t $IMAGE:$GITHUB_SHA --cache-from $IMAGE:latest --file ./secman-docker/Dockerfile .
-          docker push $IMAGE:$GITHUB_SHA
+          docker build -t $IMAGE --cache-from $IMAGE:latest --file ./secman-docker/Dockerfile .
+          docker push $IMAGE

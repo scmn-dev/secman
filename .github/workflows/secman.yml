@@ -10,7 +10,7 @@ on:
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   CONFIG_NAME: git config --global user.name secman_yo
-  CONFIG_EMAIL: git config --global user.email yo@secman.vercel.app
+  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex
 
 jobs:
   ubuntu:
@@ -19,15 +19,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Config
-        run: |
-          $CONFIG_NAME
-          $CONFIG_EMAIL
+        run: $CONFIG_NAME
 
       - name: Install secman (Linux)
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
-        run: git clone https://github.com/secman-team/.secman.ex /home/runner/.secman
+        run: $CLONE_DOT_SECMAN /home/runner/.secman
 
       - name: Run secman
         run: secman
@@ -44,17 +42,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Config
-        run: |
-          $CONFIG_NAME
-          $CONFIG_EMAIL
+        run: $CONFIG_NAME
 
-      - name: Install secman (MacOS)
-        # shell: bash
+      - name: Build secman (MacOS)
         shell: bash
-        run: curl -fsSL https://secman-team.github.io/install.sh | bash
+        run: make
 
       - name: Clone .secman (ex folder)
-        run: git clone https://github.com/secman-team/.secman.ex /Users/runner/.secman
+        run: $CLONE_DOT_SECMAN /Users/runner/.secman
 
       - name: Run secman
         run: secman
@@ -72,9 +67,7 @@ jobs:
 
       - name: Config
         shell: powershell
-        run: |
-          $CONFIG_NAME
-          $CONFIG_EMAIL
+        run: $CONFIG_NAME
 
       - name: Install secman (Windows)
         run: |
@@ -83,7 +76,7 @@ jobs:
 
       - name: Clone .secman (ex folder)
         shell: powershell
-        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
+        run: $CLONE_DOT_SECMAN C:\Users\runneradmin\.secman
 
       - name: Run secman
         run: secman
