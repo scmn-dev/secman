@@ -46,7 +46,9 @@ jobs:
 
       - name: Build secman (MacOS)
         shell: bash
-        run: make
+        run: |
+          make
+          make setup
 
       - name: Clone .secman (ex folder)
         run: $CLONE_DOT_SECMAN /Users/runner/.secman
@@ -76,7 +78,7 @@ jobs:
 
       - name: Clone .secman (ex folder)
         shell: powershell
-        run: $CLONE_DOT_SECMAN C:\Users\runneradmin\.secman
+        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
 
       - name: Run secman
         run: secman
