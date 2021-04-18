@@ -36,4 +36,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run the image
-        run: docker run -it $IMAGE
+        run: docker run -i $IMAGE
