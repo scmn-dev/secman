@@ -37,8 +37,6 @@ jobs:
       image: ghcr.io/secman-team/secman:latest
 
     steps:
-      - uses: actions/checkout@v2
-
       - name: Run Secman in Docker Container
         run:
           secman
