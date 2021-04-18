@@ -19,8 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Login to Github Packages
-        run: |
-          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       - name: Run Build
         run: |
@@ -39,5 +38,4 @@ jobs:
 
       - name: Run the image
         run: |
-          CID=$(docker create -t -i $IMAGE)
-          docker start -a -i $CID
+          docker run $IMAGE
