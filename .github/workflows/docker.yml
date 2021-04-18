@@ -32,11 +32,13 @@ jobs:
     needs: [ build ]
 
     runs-on: ubuntu-20.04
+    
+    container:
+      image: $IMAGE
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Run the image
-        run: |
-          docker run $IMAGE
+      - name: Run Secman in Docker Container
+        run:
           secman
