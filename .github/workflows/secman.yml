@@ -32,6 +32,9 @@ jobs:
       - name: Run secman
         run: secman
 
+      - name: Run secman Help
+        run: secman -h
+
       - name: Run secman version
         run: secman ver
 
@@ -55,6 +58,9 @@ jobs:
 
       - name: Run secman
         run: secman
+
+      - name: Run secman Help
+        run: secman -h
 
       - name: Run secman version
         run: secman ver
@@ -81,6 +87,9 @@ jobs:
 
       - name: Run secman
         run: secman
+
+      - name: Run secman Help
+        run: secman -h
 
       - name: Run secman version
         run: secman ver
