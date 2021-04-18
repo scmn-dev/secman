@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v2
@@ -28,3 +28,12 @@ jobs:
           git clone https://github.com/secman-team/secman-docker
           docker build -t $IMAGE --cache-from $IMAGE:latest --file ./secman-docker/Dockerfile .
           docker push $IMAGE
+  
+  run:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run the image
+        run: docker run -it $IMAGE

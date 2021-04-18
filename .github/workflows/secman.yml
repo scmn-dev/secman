@@ -44,11 +44,9 @@ jobs:
       - name: Config
         run: $CONFIG_NAME
 
-      - name: Build secman (MacOS)
-        shell: bash
-        run: |
-          make
-          make setup
+      - name: Install secman (MacOS)
+        shell: sh
+        run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
         run: $CLONE_DOT_SECMAN /Users/runner/.secman
