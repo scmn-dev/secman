@@ -38,7 +38,12 @@ func Help() string {
 			fmt.Print(errout)
 		}
 
-		return msg + uname + repo
+		if uname != "" {
+			return msg + uname + repo
+		} else {
+			return msg + ":USERNAME" + repo
+		}
+
 	} else {
 		err, username, errout := shell.ShellOut("git config user.name")
 
@@ -48,7 +53,11 @@ func Help() string {
 			log.Printf("error: %v\n", err)
 			fmt.Print(errout)
 		}
-	
-		return msg + uname + repo
+
+		if uname != "" {
+			return msg + uname + repo
+		} else {
+			return msg + ":USERNAME" + repo
+		}
 	}
 }
