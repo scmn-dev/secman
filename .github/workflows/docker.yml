@@ -38,5 +38,7 @@ jobs:
 
     steps:
       - name: Run Secman in Docker Container
-        run:
+        run: |
+          git config --global user.name secman_yo
+          secman
           secman
