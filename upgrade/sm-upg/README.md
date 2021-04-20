@@ -3,9 +3,9 @@ sm-upg
 
 sub-app of secman for windows
 
-[![Version](https://img.shields.io/npm/v/sm-upg.svg)](https://npmjs.org/package/sm-upg)
 ![CircleCI](https://circleci.com/gh/secman-team/secman.svg?style=svg)
-[![Downloads/week](https://img.shields.io/npm/dw/sm-upg.svg)](https://npmjs.org/package/sm-upg)
+![sm-upg version](https://img.shields.io/npm/v/@secman/sm-upg?color=blue&label=version&logo=npm&style=flat-square)
+![npm](https://img.shields.io/npm/dw/@secman/sm-upg?style=flat-square)
 
 <!-- toc -->
 * [Usage](#usage)
