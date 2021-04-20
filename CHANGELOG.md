@@ -24,7 +24,7 @@
     - List
 - Configure Gitpod for secman, creator: @abdfnx
 - Docker CI, creator: @abdfnx
-- Add Contributing Guids at [**./github/CONTRIBUTING.md**](./github/CONTRIBUTING.md), creator: @abdfnx
+- Add Contributing Guids at [**./.github/CONTRIBUTING.md**](./.github/CONTRIBUTING.md), creator: @abdfnx
 - Create Github API with secman, creator: @abdfnx
 
 ### Changed
