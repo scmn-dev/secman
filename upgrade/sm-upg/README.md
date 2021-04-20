@@ -18,7 +18,7 @@ $ npm install -g @secman/sm-upg
 $ sm-upg COMMAND
 running command...
 $ sm-upg (-v|--version|version)
-@secman/sm-upg/0.1.0 linux-x64 node-v15.10.0
+@secman/sm-upg/0.1.1 linux-x64 node-v15.10.0
 $ sm-upg --help [COMMAND]
 USAGE
   $ sm-upg COMMAND
@@ -56,7 +56,7 @@ USAGE
   $ sm-upg start
 ```
 
-_See code: [src/commands/start.js](https://github.com/secman-team/secman/blob/v0.1.0/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/secman-team/secman/blob/v0.1.1/src/commands/start.js)_
 <!-- commandsstop -->
 * [`sm-upg help [COMMAND]`](#sm-upg-help-command)
 * [`sm-upg start`](#sm-upg-start)
