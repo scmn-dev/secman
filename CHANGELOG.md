@@ -26,6 +26,7 @@
 - Docker CI, creator: @abdfnx
 - Add Contributing Guids at [**./.github/CONTRIBUTING.md**](./.github/CONTRIBUTING.md), creator: @abdfnx
 - Create Github API with secman, creator: @abdfnx
+- Create [sm-upg](https://www.npmjs.com/package/@secman/sm-upg) package for windows
 
 ### Changed
 
