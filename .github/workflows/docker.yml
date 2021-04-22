@@ -19,8 +19,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Login to Github Packages
-        run: |
-          echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       - name: Run Build
         run: |
@@ -28,14 +27,18 @@ jobs:
           git clone https://github.com/secman-team/secman-docker
           docker build -t $IMAGE --cache-from $IMAGE:latest --file ./secman-docker/Dockerfile .
           docker push $IMAGE
-  
+
   run:
     needs: [ build ]
 
     runs-on: ubuntu-20.04
+    
+    container:
+      image: ghcr.io/secman-team/secman:latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Run the image
-        run: docker run $IMAGE
+      - name: Run Secman in Docker Container
+        run: |
+          sudo git config --global user.name secman_yo
+          secman
+          secman

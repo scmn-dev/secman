@@ -4,6 +4,39 @@
 
 ---
 
+## [[v5.3.4] 2021-04-19](#v532-2021-04-19)
+
+### Added
+
+- Add Secman Docker Image, creator: @abdfnx
+  * in [Docker Hub](https://hub.docker.com/r/smcr/secman)
+  * in [Github Packages](https://github.com/orgs/secman-team/packages/container/package/secman)
+- Add Github Commands, creator: @abdfnx
+  * Auth
+    - Login
+    - Logout
+    - Refresh
+    - Status
+  * Repo
+    - Clone
+    - Create
+    - Fork
+    - List
+- Configure Gitpod for secman, creator: @abdfnx
+- Docker CI, creator: @abdfnx
+- Add Contributing Guids at [**./.github/CONTRIBUTING.md**](./.github/CONTRIBUTING.md), creator: @abdfnx
+- Create Github API with secman, creator: @abdfnx
+- Create [sm-upg](https://www.npmjs.com/package/@secman/sm-upg) package for windows
+
+### Changed
+
+- Remove Macos Job at Secman CI
+- Improve **Makefile** and make it more practical
+
+### Fixed
+
+- Fix **error: exit status 1 when type `secman -h`**
+
 ## [[v5.3.3] 2021-04-12](#v532-2021-04-12)
 
 ### Added
