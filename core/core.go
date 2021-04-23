@@ -2,24 +2,29 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"strconv"
-	"log"
 
 	"github.com/secman-team/shell"
+	checker "github.com/secman-team/version-checker"
+	"github.com/secman-team/gh-api/pkg/cmd/factory"
+	"github.com/spf13/cobra"
 
 	"github.com/secman-team/secman/api/sync"
+	"github.com/secman-team/secman/clean"
+	"github.com/secman-team/secman/clone"
 	"github.com/secman-team/secman/edit"
 	"github.com/secman-team/secman/fetch"
 	"github.com/secman-team/secman/gen"
 	"github.com/secman-team/secman/initialize"
 	"github.com/secman-team/secman/insert"
 	"github.com/secman-team/secman/pio"
-	"github.com/secman-team/secman/plugins"
 	"github.com/secman-team/secman/show"
 	"github.com/secman-team/secman/upgrade"
-	"github.com/secman-team/secman/clean"
-	"github.com/spf13/cobra"
+	"github.com/secman-team/secman/utils/repo"
+	"github.com/secman-team/secman/utils/auth"
+	"github.com/secman-team/secman/utils/config"
 )
 
 var (
@@ -44,10 +49,11 @@ directory, and initialize your cryptographic keys.`,
 	}
 
 	versionCmd = &cobra.Command{
-		Use:   "ver",
+		Use:   "version",
+		Aliases: []string{"ver"},
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println(version + " " + runtime.GOOS + " " + runtime.GOARCH)
+			fmt.Println("secman" + " " + version + " " + runtime.GOOS + " " + runtime.GOARCH)
 			checker.Checker()
 		},
 	}
@@ -87,6 +93,19 @@ directory, and initialize your cryptographic keys.`,
 		},
 	}
 
+	uninstallCmd = &cobra.Command{
+		Use:     "uninstall",
+		Aliases: []string{"un"},
+		Short:   "Uninstall Your Secman.",
+		Run: func(cmd *cobra.Command, args []string) {
+			if runtime.GOOS == "windows" {
+				shell.PWSLCmd("& ~/sm/uninstall.ps1")
+			} else {
+				shell.ShellCmd("~/sm/secman-un")
+			}
+		},
+	}
+
 	insertCmd = &cobra.Command{
 		Use:     "insert",
 		Short:   "Insert a file or password in to your vault.",
@@ -112,7 +131,8 @@ Will prompt for confirmation when a site path is not unique.`,
 
 	showCmd = &cobra.Command{
 		Use:     "show",
-		Example: "secman show core/docker.com",
+		Aliases: []string{"read"},
+		Example: "secman show core/docker-password",
 		Short:   "Print the password of a secman entry.",
 		Args:    cobra.ExactArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
@@ -122,17 +142,14 @@ Will prompt for confirmation when a site path is not unique.`,
 		},
 	}
 
+	cloneCmd = &cobra.Command{
+		Use: "clone",
+		Short: clone.Help(),
+		Example: "secman clone",
+		Aliases: []string{"cn", "/"},
+		Run: func(cmd *cobra.Command, args []string){
+			clone.Core()
 
-	slashCmd = &cobra.Command{
-		Use:"/",
-		Example:"clone your .secman",
-		Run:func(cmd *cobra.Command,args []string){
-			if runtime.GOOS=="windows"{
-				shell.PWSLCmd("& $HOME/sm/secman-sync.ps1 cn")
-			} else {
-				shell.ShellCmd("secman-sync cn")
-			}
-			
 			checker.Checker()
 		},
 	}
@@ -244,9 +261,17 @@ one group or all sites that contain a certain word in the group or name.`,
 			checker.Checker()
 		},
 	}
+
+	// with github
+	repoCmd = repox.Repo(factory.New("x"))
+	authCmd = authx.Auth(factory.New("x"))
+	configCmd = configx.Config(factory.New("x"))
 )
 
 func init() {
+	RootCmd.AddCommand(authCmd)
+	RootCmd.AddCommand(repoCmd)
+	RootCmd.AddCommand(configCmd)
 	RootCmd.AddCommand(cleanCmd)
 	RootCmd.AddCommand(fetchCmd)
 	RootCmd.AddCommand(findCmd)
@@ -261,7 +286,8 @@ func init() {
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(start_syncCmd)
-	RootCmd.AddCommand(slashCmd)
+	RootCmd.AddCommand(cloneCmd)
+	RootCmd.AddCommand(uninstallCmd)
 }
 
 // main
@@ -283,10 +309,9 @@ func main() {
 				fi
 			}
 
-			if ! [ -d /home/sm ]; then
-				echo "sm folder was not found"
+			if ! [ -d ~/sm ]; then
 				echo "installing sm..."
-				sudo git clone https://github.com/secman-team/sm /home/sm
+				sudo git clone https://github.com/secman-team/sm ~/sm
 				echo "installing ruby deps..."
 				gem install colorize optparse
 				end
@@ -295,8 +320,6 @@ func main() {
 			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/verx/HEAD/verx"
 
 			_cmd cgit "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit"
-
-			_cmd secman-un "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/packages/secman-un"
 
 			_cmd secman-sync "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/api/sync/secman-sync"
 		`
@@ -309,42 +332,67 @@ func main() {
 				Write-Host "installing sm..."
 				git clone https://github.com/secman-team/sm-win $directoyPath
 				Write-Host "installing ruby deps..."
-				gem install colorize optparse
-				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.sh -outfile $directoyPath\sm.sh
+				gem install colorize
+				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.ps1 -outfile $directoyPath\sm.ps1
 				Write-Host "after install dependencies, run secman again"
 			}
-		`	
+		`
+
+	mlSMCheck :=
+		`
+			if ! [ -d ~/sm ]; then
+				echo "some of secman dependencies're not found, secman is going to fix it 🔨"
+			fi
+		`
+
+	wSMCheck :=
+		`
+			$directoyPath="$HOME\sm";
+
+			if(!(Test-Path -path $directoyPath)) {
+				Write-Host "some of secman dependencies're not found, secman is going to fix it 🔨"
+			}
+		`
 
 	if runtime.GOOS == "windows" {
-		err, out, errout := shell.PWSLOut(wCheck)
+		err, out2, errout2 := shell.PWSLOut(wSMCheck)
+
+		fmt.Println(out2)
 
 		if err != nil {
 			log.Printf("error: %v\n", err)
-			fmt.Println(errout)
-		} else if out != "" {
-			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
+			fmt.Println(errout2)
 		} else {
-			if out == "" {
+			_errx, out, errout := shell.PWSLOut(wCheck)
+			
+			if _errx != nil {
+				log.Printf("error: %v\n", _errx)
+				fmt.Println(errout)
+			} else if out == "" {
 				RootCmd.Execute()
 			}
+
+			fmt.Println(out)
 		}
-
-		fmt.Println(out)
-
 	} else {
-		err, out, errout := shell.ShellOut(mlChecker)
+		err, out2, errout2 := shell.ShellOut(mlSMCheck)
+
+		fmt.Println(out2)
 
 		if err != nil {
 			log.Printf("error: %v\n", err)
-			fmt.Println(errout)
-		} else if out != "" {
-			fmt.Println("some of secman dependencies're not found, secman is going to fix it")
+			fmt.Println(errout2)
 		} else {
-			if out == "" {
+			_errx, out, errout := shell.ShellOut(mlChecker)
+
+			if _errx != nil {
+				log.Printf("error: %v\n", _errx)
+				fmt.Println(errout)
+			} else if out == "" {
 				RootCmd.Execute()
 			}
-		}
 
-		fmt.Println(out)
+			fmt.Println(out)
+		}
 	}
 }

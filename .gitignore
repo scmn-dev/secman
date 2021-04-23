@@ -13,22 +13,15 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# Dependency (remove the comment below to include it)
+vendor/
+go.sum
+
 tests
 
 build/
 dist/
-/share/man/man1
-
-# ignored files
-# 1. build/secman-linux
-# 2. build/secman-osx
-# 3. build/secman-win-git
-# 4. build/win/secman.exe
-# 5. build/win/secman-sync.exe
-# 6. build/win/secman_windows_LATEST_VERSION.msi
-# 7. build/win/secman_windows_LATEST_VERSION.rar
+/share/man
 
 # secret_key
 secret_key.rb
@@ -44,4 +37,3 @@ secret_key.rb
 
 # beta folder
 /api/sync/beta
-go.sum

@@ -3,20 +3,62 @@ name: Secman CI
 on:
   push:
     branches: [ main ]
+
   pull_request:
     branches: [ main ]
 
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  CONFIG_NAME: git config --global user.name secman_yo
+  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex
+
 jobs:
-  core:
+  ubuntu:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install secman
+      - name: Config
+        run: $CONFIG_NAME
+
+      - name: Install secman (Linux)
         run: curl -fsSL https://secman-team.github.io/install.sh | bash
 
       - name: Clone .secman (ex folder)
-        run: git clone https://github.com/secman-team/.secman.ex ~/.secman
+        run: $CLONE_DOT_SECMAN /home/runner/.secman
 
       - name: Run secman
         run: secman
+
+      - name: Run secman Help
+        run: secman -h
+
+      - name: Run secman version
+        run: secman ver
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Config
+        shell: powershell
+        run: $CONFIG_NAME
+
+      - name: Install secman (Windows)
+        run: |
+          iwr -useb https://secman-team.github.io/install.ps1 | iex
+          echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
+
+      - name: Clone .secman (ex folder)
+        shell: powershell
+        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
+
+      - name: Run secman
+        run: secman
+
+      - name: Run secman Help
+        run: secman -h
+
+      - name: Run secman version
+        run: secman ver

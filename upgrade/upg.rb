@@ -10,11 +10,11 @@ def pre_upgrade
     system("sudo rm -rf #{$smLoc}/secman*")
     system("sudo rm -rf #{$smLoc}/cgit*")
     system("sudo rm -rf #{$smLoc}/verx*")
-    system("sudo rm -rf /home/sm")
+    system("sudo rm -rf ~/sm")
 end
 
 def core
-    system("curl -fsSL https://secman-team.github.io/install/install.sh | bash")
+    system("curl -fsSL https://secman-team.github.io/install.sh | bash")
 end
 
 sm = "secman".cyan

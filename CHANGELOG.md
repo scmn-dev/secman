@@ -4,6 +4,86 @@
 
 ---
 
+## [[v5.3.4] 2021-04-19](#v532-2021-04-19)
+
+### Added
+
+- Add Secman Docker Image, creator: @abdfnx
+  * in [Docker Hub](https://hub.docker.com/r/smcr/secman)
+  * in [Github Packages](https://github.com/orgs/secman-team/packages/container/package/secman)
+- Add Github Commands, creator: @abdfnx
+  * Auth
+    - Login
+    - Logout
+    - Refresh
+    - Status
+  * Repo
+    - Clone
+    - Create
+    - Fork
+    - List
+- Configure Gitpod for secman, creator: @abdfnx
+- Docker CI, creator: @abdfnx
+- Add Contributing Guids at [**./.github/CONTRIBUTING.md**](./.github/CONTRIBUTING.md), creator: @abdfnx
+- Create Github API with secman, creator: @abdfnx
+- Create [sm-upg](https://www.npmjs.com/package/@secman/sm-upg) package for windows
+
+### Changed
+
+- Remove Macos Job at Secman CI
+- Improve **Makefile** and make it more practical
+
+### Fixed
+
+- Fix **error: exit status 1 when type `secman -h`**
+
+## [[v5.3.3] 2021-04-12](#v532-2021-04-12)
+
+### Added
+
+- Create imgs website **https://imgs-secman.web.app**, creator: @abdfnx
+- Add [version-checker](https://github.com/secman-team/version-checker) package, creator: @abdfnx
+
+### Changed
+
+- Make version is main, ver is an alias
+- Make clone is main, cn and / are aliases
+- Change clone message, now it's shows the private repo at **https://github.com/:USERNAME/.secman**
+- Add usage message in secman-sync
+- Also Add usage message in cgit
+- Clean up _cgit_ and _verx_
+- Move sm folder location from **/home** to **~**
+- Remove secman_windows_LATEST_VERSION_x64.msi for security reasons.
+
+### Fixed
+
+- Fix upgrade command
+
+## [[v5.3.2] 2021-04-03](#v532-2021-04-03)
+
+### Added
+
+- Create / command (cn), creator @iMRxM7mD
+- Configure upgrade command for windows, creator @abdfnx
+- Create deps website **https://secman-team.github.io**, creator: @Timothee
+- Create uninstall command, creator: @abdfnx
+- When install secman in windows, now it's creates env path variable, creator: @abdfnx
+- Add special build for scoop, creator: @abdfnx
+
+### Changed
+
+- Make upgrade is main, upg is an alias
+- Now secman-un is not a subprogram, it's in sm folder
+- When there's a new release, the message was changed
+- Improve CircelCI Actions in secman
+- Change the url of install secman from script
+- Now secman doesn't need bash in windows 👍
+
+### Fixed
+
+- Fix syncing in windows
+- Fix installing for windows
+
 ## [[v5.3.1] 2021-03-26](#v531-2021-03-26)
 
 ### Added
