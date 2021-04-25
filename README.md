@@ -1,5 +1,6 @@
 # [<img src="https://imgs-secman.web.app/logo.png" align="center">][smUrl] **Secman**
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8c1ede5d80d2489c9c041e99d67a42f3)](https://app.codacy.com/gh/secman-team/secman?utm_source=github.com&utm_medium=referral&utm_content=secman-team/secman&utm_campaign=Badge_Grade_Settings)
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
 
 ## Code Status
