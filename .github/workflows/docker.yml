@@ -2,11 +2,12 @@ name: Secman Docker CI
 
 on:
   push:
-    # Publish `main` as Docker `latest` image.
     branches:
       - main
 
   pull_request:
+    branches:
+      - main
 
 env:
   IMAGE: ghcr.io/secman-team/secman
@@ -39,6 +40,5 @@ jobs:
     steps:
       - name: Run Secman in Docker Container
         run: |
-          sudo git config --global user.name secman_yo
           secman
           secman

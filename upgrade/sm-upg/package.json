@@ -1,7 +1,7 @@
 {
   "name": "@secman/sm-upg",
   "description": "sub-app of secman for windows",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "author": "@abdfnx",
   "bin": {
     "sm-upg": "./bin/run"
@@ -26,9 +26,11 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/secman-team/sm-upg",
+  "homepage": "https://sm.vercel.app/docs/sm-upg",
   "keywords": [
-    "oclif"
+    "upgrader",
+    "secman",
+    "windows"
   ],
   "license": "MIT",
   "main": "src/index.js",
