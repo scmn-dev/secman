@@ -99,7 +99,8 @@ directory, and initialize your cryptographic keys.`,
 		Short:   "Uninstall Your Secman.",
 		Run: func(cmd *cobra.Command, args []string) {
 			if runtime.GOOS == "windows" {
-				shell.PWSLCmd("& ~/sm/uninstall.ps1")
+				// shell.PWSLCmd("& ~/sm/uninstall.ps1")
+				fmt.Println("run sm-upg uninstall")
 			} else {
 				shell.ShellCmd("~/sm/secman-un")
 			}
