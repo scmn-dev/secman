@@ -29,6 +29,6 @@ We'd also love to hear about ideas for new features as issues or discussions.
 2. Make sure your changes and new fixes are without errors and bugs.
 3. Create pull request at https://github.com/secman-team/issues
 
-[hw]: https://github.com/cli/cli/labels/help%20wanted
-[gfi]: https://github.com/cli/cli/labels/good%20first%20issue
+[hw]: https://github.com/secman-team/secman/labels/help%20wanted
+[gfi]: https://github.com/secman-team/secman/labels/good%20first%20issue
 [code-of-conduct]: ./CODE-OF-CONDUCT.md
