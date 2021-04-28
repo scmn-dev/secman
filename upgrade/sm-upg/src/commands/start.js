@@ -1,4 +1,4 @@
-const { Command, flags } = require("@oclif/command");
+const { Command } = require("@oclif/command");
 const PowerShell = require("powershell");
 
 class StartCommand extends Command {
