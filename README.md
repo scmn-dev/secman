@@ -12,7 +12,8 @@
 ![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go%20CI?color=blue&label=Go%20Build&logo=go&style=for-the-badge)
 ![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)
 ![Secman Docker CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)
-[![Secman Codacy](https://api.codacy.com/project/badge/Grade/8c1ede5d80d2489c9c041e99d67a42f3)](https://app.codacy.com/gh/secman-team/secman?utm_source=github.com&utm_medium=referral&utm_content=secman-team/secman&utm_campaign=Badge_Grade_Settings&style=for-the-badge)
+<a href="https://gitpod.io/#https://github.com/secman-team/secman"><img src="https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge" alt="Gitpod Ready-to-Code" />
+![Codacy grade](https://img.shields.io/codacy/grade/8c1ede5d80d2489c9c041e99d67a42f3?color=blue&logo=codacy&style=for-the-badge)
 
 > `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in *go*! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
