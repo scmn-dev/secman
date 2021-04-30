@@ -1,4 +1,8 @@
-# [<img src="https://imgs-secman.web.app/logo.png" align="center">][smUrl] **Secman**
+# <img src="https://imgs-secman.web.app/logo.png" align="center" /> **Secman**
+
+<p align="center">
+   <img src="https://imgs-secman.web.app/assets/Secman.svg" />
+</p>
 
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
 
@@ -12,27 +16,14 @@
 
 > `secman` is a passowrd manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in *go*! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
-## Form
+## Featurs
 
-> example
+- Not GPG cored.
+- It uses a master password to securely store your passwords.
+- It syncs your passwords.
+- Supports encrypting arbitrary files.
 
-```x
-.
-├──Accounts
-|  ├──Twitter
-|  ├──Github
-|  └──CodeSandBox
-├──Firebase
-|  └──site-token
-├──DockerHub
-|  └──ACCESS-TOKEN
-├──HashiCorp
-|  └──secret_code
-└──GitHub-Access-Token
-⣻ 🔍 Checking for updates...
-```
-
-> How
+## Forms
 
 1. Password Form
 
