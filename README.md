@@ -1,4 +1,6 @@
-# <img src="https://imgs-secman.web.app/logo.png" align="center" /> **Secman**
+<p align="center">
+   <img src="https://imgs-secman.web.app/logo.svg" width="500" />
+</p>
 
 <p align="center">
    <img src="https://imgs-secman.web.app/assets/Secman.svg" />
