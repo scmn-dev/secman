@@ -3,7 +3,7 @@ image:
 
 tasks:
   - init: go get -d ./...
-    command: zsh
+    command: curl -fsSL https://secman-team.github.io/install.sh | bash
 
 vscode:
   extensions:
