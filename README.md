@@ -93,21 +93,15 @@ see [installing from source](https://secman.vercel.app/docs/getting_started/inst
 
 > Initializing Vault
 
-```bash
-secman init
-```
+<img src="https://imgs-secman.web.app/assets/Init.svg" />
 
 > Start using `secman`
 
-```bash
-secman insert MY_SECRET_TOKEN
-```
+<img src="https://imgs-secman.web.app/assets/Insert.svg" />
 
 > Sync your passwords
 
-```bash
-secman start-sync
-```
+<img src="https://imgs-secman.web.app/assets/Sync-Start.svg" />
 
 > see [commands](https://secman.vercel.app/docs/commands)
 
