@@ -99,6 +99,11 @@ see [installing from source](https://secman.vercel.app/docs/getting_started/inst
 
 <img src="https://imgs-secman.web.app/assets/Insert.svg" />
 
+> Authenticate With **Github**
+
+<img src="https://imgs-secman.web.app/assets/Auth-Login.svg" />
+
+
 > Sync your passwords
 
 <img src="https://imgs-secman.web.app/assets/Sync-Start.svg" />
