@@ -13,7 +13,3 @@
 [submodule "version-checker"]
 	path = plugins/version-checker
 	url = https://github.com/secman-team/version-checker.git
-
-[submodule "sm-upg"]
-	path = pkg/upgrade/sm-upg
-	url = https://github.com/secman-team/sm-upg.git
