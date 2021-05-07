@@ -1,20 +1,4 @@
-[submodule "cgit"]
-	path = api/cgit
-	url = https://github.com/secman-team/corgit.git
-
-[submodule "verx"]
-	path = api/verx
-	url = https://github.com/secman-team/verx.git
-
-[submodule "tools"]
-	path = tools
-	url = https://github.com/secman-team/tools.git
-
-[submodule "docs"]
-	path = docs
-	url = https://github.com/secman-team/docs.git
-
-[submodule "formula"]
+[submodule "smx"]
 	path = plugins/smx
 	url = https://github.com/secman-team/smx.git
 

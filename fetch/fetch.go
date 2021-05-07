@@ -3,25 +3,33 @@ package fetch
 import (
 	"fmt"
 	"time"
-	"runtime"
 	"log"
 
 	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
 )
 
+fetch_w := `
+	$lastDir = pwd
+	cd $HOME/.secman
+	git pull
+	cd $lastDir
+`
+
+fetch_ml := `
+	cd ~/.secman
+	git pull
+	cd -
+`
+
 func FetchSECDIR() {
 	s := spinner.New(spinner.CharSets[36], 100*time.Millisecond)
 	s.Suffix = " Fetching..."
 	s.Start()
 
-	err, out, errout := shell.ShellOut("")
+	err, out, errout := shell.ShellOut(fetch_ml, fetch_w)
 	
-	if runtime.GOOS == "windows" {
-		err, out, errout = shell.PWSLOut("& ~/sm/secman-sync.ps1 pl")
-	} else {
-		err, out, errout = shell.ShellOut("secman-sync pl")
-	}
+	shell.SHCore()
 		
 	if err != nil {
 		log.Printf("error: %v\n", err)

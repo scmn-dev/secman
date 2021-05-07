@@ -23,9 +23,6 @@ build/
 dist/
 /share/man
 
-# secret_key
-secret_key.rb
-
 # macOS
 .DS_Store
 
@@ -34,6 +31,3 @@ secret_key.rb
 
 # spec
 *.spec
-
-# beta folder
-/api/sync/beta

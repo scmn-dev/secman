@@ -1,14 +1,26 @@
 package clean
 
-import (
-	"runtime"
-	"github.com/secman-team/shell"
-)
+import "github.com/secman-team/shell"
+
+clean_w :=
+	`
+		$directoyPath = "~/.secman"
+
+		if (Test-Path -path $directoyPath) {
+			Remove-Item $directoyPath -Recurse -Force
+		}
+
+		if (!(Test-Path -path $directoyPath)) {
+			Write-Host "secman was cleaned successfully 🧹"
+		}
+	`
+
+clean_ml := 
+	`
+		if [ -d ~/.secman ]; then rm -rf ~/.secman; fi
+		if ! [ -d ~/.secman ]; echo "secman was cleaned successfully 🧹"; fi
+	`
 
 func Clean() {
-	if runtime.GOOS == "windows" {
-		shell.PWSLCmd("~/sm/clean.ps1")
-	} else {
-		shell.ShellCmd("ruby ~/sm/clean.rb")
-	}
+	shell.SHCore(clean_ml, clean_w)
 }

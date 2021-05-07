@@ -3,6 +3,7 @@ module github.com/secman-team/secman
 go 1.11
 
 require (
+	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.12.0
 	github.com/secman-team/gh-api v0.2.45

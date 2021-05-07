@@ -6,9 +6,9 @@ import (
 	"runtime"
 	"strconv"
 
+	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/secman-team/shell"
 	checker "github.com/secman-team/version-checker"
-	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/spf13/cobra"
 
 	"github.com/secman-team/secman/api/sync"
@@ -21,10 +21,10 @@ import (
 	"github.com/secman-team/secman/insert"
 	"github.com/secman-team/secman/pio"
 	"github.com/secman-team/secman/show"
+	"github.com/secman-team/secman/tools/auth"
+	"github.com/secman-team/secman/tools/config"
+	"github.com/secman-team/secman/tools/repo"
 	"github.com/secman-team/secman/upgrade"
-	"github.com/secman-team/secman/utils/repo"
-	"github.com/secman-team/secman/utils/auth"
-	"github.com/secman-team/secman/utils/config"
 )
 
 var (
@@ -139,33 +139,6 @@ Will prompt for confirmation when a site path is not unique.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			path := args[0]
 			show.Site(path, copyPass)
-			checker.Checker()
-		},
-	}
-
-	cloneCmd = &cobra.Command{
-		Use: "clone",
-		Short: clone.Help(),
-		Example: "secman clone",
-		Aliases: []string{"cn", "/"},
-		Run: func(cmd *cobra.Command, args []string){
-			clone.Core()
-
-			checker.Checker()
-		},
-	}
-
-	start_syncCmd = &cobra.Command{
-		Use:     "start-sync",
-		Example: "secman start-sync",
-		Short:   "Start Sync your passwords.",
-		Run: func(cmd *cobra.Command, args []string) {
-			if runtime.GOOS == "windows" {
-				shell.PWSLCmd("& ~/sm/secman-sync.ps1 sync")
-			} else {
-				shell.ShellCmd("secman-sync sync")
-			}
-
 			checker.Checker()
 		},
 	}
@@ -286,114 +259,11 @@ func init() {
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
-	RootCmd.AddCommand(start_syncCmd)
-	RootCmd.AddCommand(cloneCmd)
 	RootCmd.AddCommand(uninstallCmd)
+	RootCmd.AddCommand(sync.Sync)
 }
 
 // main
 func main() {
-	mlChecker :=
-		`
-			end() {
-				echo "after install dependencies, run secman again"
-			}
-
-			_cmd() {
-				if ! [ -x "$(command -v $1)" ]; then
-					echo "installing $1..."
-					$2
-					sudo chmod 755 /usr/local/bin/secman*
-					sudo chmod 755 /usr/local/bin/cgit*
-					sudo chmod 755 /usr/local/bin/verx*
-					end
-				fi
-			}
-
-			if ! [ -d ~/sm ]; then
-				echo "installing sm..."
-				sudo git clone https://github.com/secman-team/sm ~/sm
-				echo "installing ruby deps..."
-				gem install colorize optparse
-				end
-			fi
-
-			_cmd verx "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/verx/HEAD/verx"
-
-			_cmd cgit "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/corgit/HEAD/cgit"
-
-			_cmd secman-sync "sudo wget -P /usr/local/bin https://raw.githubusercontent.com/secman-team/secman/HEAD/api/sync/secman-sync"
-		`
-
-	wCheck :=
-		`
-			$directoyPath="$HOME\sm";
-
-			if(!(Test-Path -path $directoyPath)) {
-				Write-Host "installing sm..."
-				git clone https://github.com/secman-team/sm-win $directoyPath
-				Write-Host "installing ruby deps..."
-				gem install colorize
-				Invoke-WebRequest https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.ps1 -outfile $directoyPath\sm.ps1
-				Write-Host "after install dependencies, run secman again"
-			}
-		`
-
-	mlSMCheck :=
-		`
-			if ! [ -d ~/sm ]; then
-				echo "some of secman dependencies're not found, secman is going to fix it 🔨"
-			fi
-		`
-
-	wSMCheck :=
-		`
-			$directoyPath="$HOME\sm";
-
-			if(!(Test-Path -path $directoyPath)) {
-				Write-Host "some of secman dependencies're not found, secman is going to fix it 🔨"
-			}
-		`
-
-	if runtime.GOOS == "windows" {
-		err, out2, errout2 := shell.PWSLOut(wSMCheck)
-
-		fmt.Println(out2)
-
-		if err != nil {
-			log.Printf("error: %v\n", err)
-			fmt.Println(errout2)
-		} else {
-			_errx, out, errout := shell.PWSLOut(wCheck)
-			
-			if _errx != nil {
-				log.Printf("error: %v\n", _errx)
-				fmt.Println(errout)
-			} else if out == "" {
-				RootCmd.Execute()
-			}
-
-			fmt.Println(out)
-		}
-	} else {
-		err, out2, errout2 := shell.ShellOut(mlSMCheck)
-
-		fmt.Println(out2)
-
-		if err != nil {
-			log.Printf("error: %v\n", err)
-			fmt.Println(errout2)
-		} else {
-			_errx, out, errout := shell.ShellOut(mlChecker)
-
-			if _errx != nil {
-				log.Printf("error: %v\n", _errx)
-				fmt.Println(errout)
-			} else if out == "" {
-				RootCmd.Execute()
-			}
-
-			fmt.Println(out)
-		}
-	}
+	RootCmd.Execute()
 }
