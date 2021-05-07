@@ -53,11 +53,9 @@ secman insert FOLDERNAME/PASSWORDNAME
 
 ### Pre-requisites
 
-> secman needs [**git**](https://git-scm.com) and [**ruby**](https://www.ruby-lang.org)
-
+> secman needs [**git**](https://git-scm.com) (and just [**npm**](https://nodejs.org) for windows)
 - [![git](https://imgs-secman.web.app/badges/git.svg)](https://git-scm.com)
-- [![ruby](https://imgs-secman.web.app/badges/ruby.svg)](https://www.ruby-lang.org/en/)
-- _ruby for windows_: **https://rubyinstaller.org**
+- [![npm](https://imgs-secman.web.app/badges/npm.svg)](https://nodejs.org)
 
 ### Using Shell (macOS and Linux)
 
@@ -87,7 +85,7 @@ scoop install secman
 
 ## Build from source
 
-see [installing from source](https://secman.vercel.app/docs/getting_started/installation#installing-from-source)
+see [installing from source](https://secman.vercel.app/docs/secman/build_from_source)
 
 ## Getting started with secman
 
@@ -114,8 +112,6 @@ see [installing from source](https://secman.vercel.app/docs/getting_started/inst
 
 [secman][smUrl] is licensed under the terms of [MIT][mitUrl] License
 
-[MIT][mitUrl]
-
 ## Our Websites
 
 - [**main website**](https://secman.vercel.app)
@@ -124,4 +120,4 @@ see [installing from source](https://secman.vercel.app/docs/getting_started/inst
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.vercel.app
-[mitUrl]: https://github.com/abdfnx/secman/blob/main/LICENSE
+[mitUrl]: https://github.com/secman-team/secman/blob/main/LICENSE
