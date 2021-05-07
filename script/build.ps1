@@ -1,16 +1,13 @@
 $LOC = "$HOME\AppData\Local\secman"
 
-if ((Get-Command ruby -errorAction SilentlyContinue) -or (Get-Command git -errorAction SilentlyContinue)) {
+if ((Get-Command git -errorAction SilentlyContinue) -or (Get-Command npm -errorAction SilentlyContinue)) {
     $LATEST_VERSION=git describe --abbrev=0 --tags
-    $VCURL = "https://raw.githubusercontent.com/secman-team/tools/HEAD/sm.ps1"
     $BIN = "$LOC\bin"
 
     # Build
     cd core
     go get -d
     go build -o secman.exe -ldflags "-X main.version=$LATEST_VERSION"
-    git clone https://github.com/secman-team/sm-win $HOME/sm
-    Invoke-WebRequest $VCURL -outfile $HOME\sm\sm.ps1
 
     # Setup
     gem install colorize
@@ -20,9 +17,9 @@ if ((Get-Command ruby -errorAction SilentlyContinue) -or (Get-Command git -error
 
     cd ..
 } else {
-    Write-Host "Some of these apps must be installed: git, or ruby"
+    Write-Host "Some of these apps must be installed: git, or npm"
     Write-Host "git: https://git-scm.com"
-    Write-Host "ruby: https://rubyinstaller.org"
+    Write-Host "npm: https://nodejs.org"
 }
 
 if (Test-Path -path $LOC) {
