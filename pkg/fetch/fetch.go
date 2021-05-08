@@ -8,26 +8,14 @@ import (
 
 	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
+	commands "github.com/secman-team/secman/tools/constants"
 )
 
 func OS() string {
-	fetch_w := `
-		$lastDir = pwd
-		cd $HOME/.secman
-		git pull
-		cd $lastDir
-	`
-	
-	fetch_ml := `
-		cd ~/.secman
-		git pull
-		cd -
-	`
-
 	if runtime.GOOS == "windows" {
-		return fetch_w
+		return commands.Fetch_w()
 	} else {
-		return fetch_ml
+		return commands.Fetch_ml()
 	}
 }
 
