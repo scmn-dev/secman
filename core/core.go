@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"runtime"
 	"strconv"
 
@@ -11,9 +10,8 @@ import (
 	checker "github.com/secman-team/version-checker"
 	"github.com/spf13/cobra"
 
-	"github.com/secman-team/secman/pkg/api/sync"
+	"github.com/secman-team/secman/pkg/api"
 	"github.com/secman-team/secman/pkg/clean"
-	"github.com/secman-team/secman/pkg/clone"
 	"github.com/secman-team/secman/pkg/edit"
 	"github.com/secman-team/secman/pkg/fetch"
 	"github.com/secman-team/secman/pkg/gen"
@@ -102,7 +100,7 @@ directory, and initialize your cryptographic keys.`,
 				// shell.PWSLCmd("& ~/sm/uninstall.ps1")
 				fmt.Println("run sm-upg uninstall")
 			} else {
-				shell.ShellCmd("~/sm/secman-un")
+				shell.ShellCmd("")
 			}
 		},
 	}
@@ -260,7 +258,7 @@ func init() {
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(uninstallCmd)
-	RootCmd.AddCommand(sync.Sync)
+	RootCmd.AddCommand(sync.Sync())
 }
 
 // main

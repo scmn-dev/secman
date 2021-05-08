@@ -16,7 +16,7 @@ We'd also love to hear about ideas for new features as issues or discussions.
 ### Prerequisites:
 - `go +11`
 - `git`
-- `ruby`
+- `npm` (just for windows)
 
 ### Run
 

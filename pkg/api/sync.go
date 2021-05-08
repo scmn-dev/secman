@@ -5,39 +5,14 @@ import (
 	"log"
 	"runtime"
 	"time"
-	"strings"
 
 	"github.com/MakeNowJust/heredoc"
 	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
 	"github.com/spf13/cobra"
-	checker "github.com/secman-team/version-checker"
+	config "github.com/secman-team/secman/tools/config"
+	commands "github.com/secman-team/secman/tools/constants"
 )
-
-push_w :=
-	`
-		$lastDir = pwd
-		cd ~/.secman
-
-		if (Test-Path -path .git) {
-			git add .
-			git commit -m "new change"
-			git push
-		}
-
-		cd $lastDir
-	`
-
-push_ml :=
-	`
-		cd ~/.secman
-		git add .
-		git commit -m "new secman password"
-		git push
-		cd -
-	`
-			
 
 var (
 	NewCmdStart = &cobra.Command{
@@ -46,45 +21,7 @@ var (
 		Example: "secman sync start",
 		Short: "Start Sync your passwords.",
 		Run: func(cmd *cobra.Command, args []string) {
-			w :=
-				`
-					$SM_GH_UN = git config user.name
-					cd ~/.secman
-
-					git init
-
-					echo "# My secman passwords - $SM_GH_UN" >> ~/.secman\README.md
-
-					secman repo create $SM_GH_UN/.secman -y --private
-
-					git add .
-					git commit -m "new .secman repo"
-					git branch -M trunk
-					git remote add origin https://github.com/$SM_GH_UN/.secman
-					git push -u origin trunk
-
-					cd $lastDir
-				`
-			ml :=
-				`
-					SM_GH_UN=$(git config user.name)
-					cd ~/.secman
-					git init
-
-					echo "# My secman passwords - $SM_GH_UN" >> ~/.secman/README.md
-
-					secman repo create $SM_GH_UN/.secman -y --private
-
-					git add .
-					git commit -m "new .secman repo"
-					git branch -M trunk
-					git remote add origin https://github.com/$SM_GH_UN/.secman
-					git push -u origin trunk
-					cd -
-				`
-			
-			shell.SHCore(ml, w)
-			checker.Checker()
+			shell.SHCore(commands.Start_ml(), commands.Start_w())
 		},
 	}
 
@@ -93,87 +30,35 @@ var (
 		Aliases: []string{"cn", "/"},
 		Short: CloneHelp(),
 		Run: func(cmd *cobra.Command, args []string) {
-			w := 
-				`
-					$SM_GH_UN = git config user.name
-					$clone=secman repo clone $SM_GH_UN/.secman ~/.secman
+			shell.SHCore(commands.Clone_ml(), commands.Clone_w())
+			shell.SHCore(commands.Clone_check_ml(), commands.Clone_w())
+		},
+	}
 
-					if (Test-Path -path ~/.secman) {
-						Remove-Item ~/.secman -Recurse -Force
-						$clone
-					} else {
-						$clone
-					}
-					`
-				ml :=
-					`
-						SM_GH_UN=$(git config user.name)
-						clone="secman repo clone $SM_GH_UN/.secman ~/.secman"
-	
-						if [ -d ~/.secman ]; then
-							rm -rf ~/.secman
-							${clone}
-						else
-							${clone}
-						fi
-					`
-				check_w :=
-					`
-						if (Test-Path -path ~/.secman) {
-							Write-Host "cloned successfully"
-						}
-					`
-	
-				check_ml := `if [ -d ~/.secman ]; then echo "cloned successfully ✅"; fi`
-	
-				shell.SHCore(ml, w)
-				shell.SHCore(check_ml, check_w)
-				checker.Checker()
-			},
-		}
-	
-		NewCmdPush = &cobra.Command{
-			Use:   "push",
-			Aliases: []string{"ph"},
-			Short: "Push The New Passwords in .secman .",
-			Run: func(cmd *cobra.Command, args []string) {
-			
-			shell.SHCore(push_ml, push_w)
-			checker.Checker()
+	NewCmdPush = &cobra.Command{
+		Use:   "push",
+		Aliases: []string{"ph"},
+		Short: "Push The New Passwords in .secman .",
+		Run: func(cmd *cobra.Command, args []string) {
+			shell.SHCore(commands.Push_ml(), commands.Push_w())
 		},
 	}
 
 	NewCmdPull = &cobra.Command{
 		Use:   "pull",
 		Aliases: []string{"pl"},
-		Short: "Pull The New Passwords from :USERNAME/.secman .",
+		Short: PullHelp(),
 		Run: func(cmd *cobra.Command, args []string) {
-			w := 
-				`
-					$lastDir = pwd
-					cd ~/.secman
-					git pull
-					cd -
-				`
-			
-			ml :=
-				`
-					cd ~/.secman
-					git pull
-					cd -
-				`
-
-			shell.SHCore(ml, w)
-			checker.Checker()
+			shell.SHCore(commands.Pull_ml(), commands.Pull_w())
 		},
 	}
 )
 
-func Sync(f *cmdutil.Factory) *cobra.Command {
+func Sync() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "sync <command>",
 		Short: "Sync Your Passwords.",
-		Long:  `Sync Your Passwords, by create a private repo at :USERNAME/.secman`,
+		Long:  SyncHelp(),
 		Example: heredoc.Doc(`
 			secman sync start
 			secman sync clone
@@ -188,19 +73,37 @@ func Sync(f *cmdutil.Factory) *cobra.Command {
 	return cmd
 }
 
+func PullHelp() string {
+	const msg string = "Pull The New Passwords from "
+	repo := "/.secman ."
+
+	uname := config.GitConfig()
+
+	if uname != "" {
+		return msg + uname + repo
+	} else {
+		return msg + ":USERNAME" + repo
+	}
+}
+
+func SyncHelp() string {
+	const msg string = "Sync Your Passwords, by create a private repo at "
+	repo := "/.secman ."
+
+	uname := config.GitConfig()
+
+	if uname != "" {
+		return msg + uname + repo
+	} else {
+		return msg + ":USERNAME" + repo
+	}
+}
+
 func CloneHelp() string {
 	const msg string = "Clone your .secman from your private repo at https://github.com/"
 	repo := "/.secman ."
-	cmd := "git config user.name"
 
-	err, username, errout := shell.SHCore(cmd, cmd)
-
-	uname := strings.TrimSuffix(username, "\n")
-
-	if err != nil {
-		log.Printf("error: %v\n", err)
-		fmt.Print(errout)
-	}
+	uname := config.GitConfig()
 
 	if uname != "" {
 		return msg + uname + repo
@@ -232,7 +135,7 @@ func PushSync() {
 			s.Suffix = Syncing
 			s.Start()
 
-			shell.PWSLCmd(push_w)
+			shell.PWSLCmd(commands.Push_w())
 
 			s.Stop()
 		}
@@ -254,7 +157,7 @@ func PushSync() {
 			s.Suffix = Syncing
 			s.Start()
 
-			shell.ShellCmd(push_ml)
+			shell.ShellCmd(commands.Push_ml())
 
 			s.Stop()
 		}

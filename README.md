@@ -1,9 +1,9 @@
 <p align="center">
-   <img src="https://imgs-secman.web.app/logo.svg" width="500" />
+   <img src="https://assets.secman.dev/logo.svg" width="500" />
 </p>
 
 <p align="center">
-   <img src="https://imgs-secman.web.app/assets/Secman.svg" />
+   <img src="https://assets.secman.dev/assets/Secman.svg" />
 </p>
 
 [![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
@@ -54,19 +54,19 @@ secman insert FOLDERNAME/PASSWORDNAME
 ### Pre-requisites
 
 > secman needs [**git**](https://git-scm.com) (and just [**npm**](https://nodejs.org) for windows)
-- [![git](https://imgs-secman.web.app/badges/git.svg)](https://git-scm.com)
-- [![npm](https://imgs-secman.web.app/badges/npm.svg)](https://nodejs.org)
+- [![git](https://assets.secman.dev/badges/git.svg)](https://git-scm.com)
+- [![npm](https://assets.secman.dev/badges/npm.svg)](https://nodejs.org)
 
 ### Using Shell (macOS and Linux)
 
 ```bash
-curl -fsSL https://secman-team.github.io/install.sh | bash
+curl -fsSL https://deps.secman.dev/install.sh | bash
 ```
 
 ### Powershell (Windows)
 
 ```powershell
-iwr -useb https://secman-team.github.io/install.ps1 | iex
+iwr -useb https://deps.secman.dev/install.ps1 | iex
 ```
 
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
@@ -85,28 +85,27 @@ scoop install secman
 
 ## Build from source
 
-see [installing from source](https://secman.vercel.app/docs/secman/build_from_source)
+see [installing from source](https://secman.dev/docs/secman/build_from_source)
 
 ## Getting started with secman
 
 > Initializing Vault
 
-<img src="https://imgs-secman.web.app/assets/Init.svg" />
+<img src="https://assets.secman.dev/assets/Init.svg" />
 
 > Start using `secman`
 
-<img src="https://imgs-secman.web.app/assets/Insert.svg" />
+<img src="https://assets.secman.dev/assets/Insert.svg" />
 
 > Authenticate With **Github**
 
-<img src="https://imgs-secman.web.app/assets/Auth-Login.svg" />
-
+<img src="https://assets.secman.dev/assets/Auth-Login.svg" />
 
 > Sync your passwords
 
-<img src="https://imgs-secman.web.app/assets/Sync-Start.svg" />
+<img src="https://assets.secman.dev/assets/Sync-Start.svg" />
 
-> see [commands](https://secman.vercel.app/docs/commands)
+> see [commands](https://secman.dev/docs/commands/all)
 
 ## License
 
@@ -114,10 +113,10 @@ see [installing from source](https://secman.vercel.app/docs/secman/build_from_so
 
 ## Our Websites
 
-- [**main website**](https://secman.vercel.app)
-- [**deps website**](https://secman-team.github.io)
-- [**changelog website**](https://secman-chlog.web.app)
+- [**main website**](https://secman.dev)
+- [**deps website**](https://deps.secman.dev)
+- [**changelog website**](https://changelog.secman.dev)
 
 [goUrl]: https://goland.org
-[smUrl]: https://secman.vercel.app
+[smUrl]: https://secman.dev
 [mitUrl]: https://github.com/secman-team/secman/blob/main/LICENSE
