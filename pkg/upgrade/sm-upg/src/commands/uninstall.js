@@ -1,6 +1,6 @@
 const { Command, flags } = require("@oclif/command");
 const PowerShell = require("powershell");
-const { LOC, CDCmd, lastCheck, mainCode } = require("./shared");
+const { LOC, MainCode, LastCheck, CDCmd } = require("../shared");
 
 class UninstallCommand extends Command {
   async run() {
@@ -8,35 +8,19 @@ class UninstallCommand extends Command {
     const deleteDataCmd = `
       ${LOC}
 
-      ${mainCode}
+      ${MainCode}
 
       ${CDCmd}
 
-      ${lastCheck}
+      ${LastCheck}
     `;
 
     const mainCmd = `
       ${LOC}
 
-      ${mainCode}
+      ${MainCode}
 
-      $ClearData = Read-Host -Prompt "Clear all data?/n[y/N]"
-
-      switch($ClearData) {
-        {($_ -eq "y") -or ($_ -eq "yes") -or ($_ -eq "Y") -or ($_ -eq "Yes")} {
-          ${CDCmd}
-        }
-
-        {($_ -eq "n") -or ($_ -eq "no") -or ($_ -eq "N") -or ($_ -eq "No") -or ($_ -eq "")} {
-          Write-Host "Ok" -ForegroundColor DarkGreen
-        }
-
-        default {
-          Write-Host "wrong input"
-        }
-      }
-
-      ${lastCheck}
+      ${LastCheck}
     `;
 
     if (flags["delete-data"]) {

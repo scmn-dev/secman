@@ -1,6 +1,6 @@
 const { Command } = require("@oclif/command");
 const PowerShell = require("powershell");
-const { LOC } = require("./shared");
+const { LOC } = require("../shared");
 
 class StartCommand extends Command {
   async run() {
