@@ -1,1 +1,3 @@
 package open
+
+func Open() {}
