@@ -1,3 +1,5 @@
+# just schema
+
 type Password {
     value: String!
     hasParentID: Boolean

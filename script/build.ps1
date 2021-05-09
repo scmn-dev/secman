@@ -1,16 +1,17 @@
+# Build From Source
 $LOC = "$HOME\AppData\Local\secman"
 
 if ((Get-Command git -errorAction SilentlyContinue) -or (Get-Command npm -errorAction SilentlyContinue)) {
     $LATEST_VERSION=git describe --abbrev=0 --tags
-    $BIN = "$LOC\bin"
+    $DATE=git tag -l --sort=-creatordate --format='%(creatordate:short)' $LATEST_VERSION
 
     # Build
     cd core
     go get -d
-    go build -o secman.exe -ldflags "-X main.version=$LATEST_VERSION"
+    go build -o secman.exe -ldflags "-X main.version=$LATEST_VERSION -X main.versionDate=($DATE)"
 
     # Setup
-    gem install colorize
+    $BIN = "$LOC\bin"
     New-Item -ItemType "directory" -Path $BIN
     Move-Item secman.exe -Destination $BIN
     [System.Environment]::SetEnvironmentVariable("Path", $Env:Path + ";$BIN", [System.EnvironmentVariableTarget]::User)

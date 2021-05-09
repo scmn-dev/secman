@@ -28,6 +28,7 @@ import (
 var (
 	copyPass bool
 	version  string
+	versionDate  string
 	RootCmd  = &cobra.Command{
 		Use:   "secman",
 		Short: "Print the contents of the vault.",
@@ -51,7 +52,8 @@ directory, and initialize your cryptographic keys.`,
 		Aliases: []string{"ver"},
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("secman" + " " + version + " " + runtime.GOOS + " " + runtime.GOARCH)
+			fmt.Println("secman version " + version + " " + versionDate)
+			fmt.Println("https://github.com/secman-team/secman/releases/tag/" + version)
 			checker.Checker()
 		},
 	}

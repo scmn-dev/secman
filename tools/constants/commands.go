@@ -13,7 +13,6 @@ func Fetch_ml() string {
 	return `
 		cd ~/.secman
 		git pull
-		cd -
 	`
 }
 
@@ -56,8 +55,9 @@ func Clean_w() string {
 
 func Clean_ml() string {
 	return `
+		#!/bin/bash
 		if [ -d ~/.secman ]; then rm -rf ~/.secman; fi
-		if ! [ -d ~/.secman ]; echo "secman was cleaned successfully 🧹"; fi
+		if ! [ -d ~/.secman ]; then echo "secman was cleaned successfully 🧹"; fi
 	`
 }
 
@@ -97,7 +97,6 @@ func Start_ml() string {
 		git branch -M trunk
 		git remote add origin https://github.com/$SM_GH_UN/.secman
 		git push -u origin trunk
-		cd -
 	`
 }
 
@@ -122,7 +121,6 @@ func Push_ml() string {
 		git add .
 		git commit -m "new secman password"
 		git push
-		cd -
 	`
 }
 
@@ -141,35 +139,12 @@ func Pull_ml() string {
 	return `
 		cd ~/.secman
 		git pull
-		cd -
 	`
 }
 
-func Clone_w() string {
+func Clone() string {
 	return `
-		$SM_GH_UN = git config user.name
-		$clone=secman repo clone $SM_GH_UN/.secman ~/.secman
-		
-		if (Test-Path -path ~/.secman) {
-			Remove-Item ~/.secman -Recurse -Force
-			$clone
-		} else {
-			$clone
-		}
-	`
-}
-		
-func Clone_ml() string {
-	return `
-		SM_GH_UN=$(git config user.name)
-		clone="secman repo clone $SM_GH_UN/.secman ~/.secman"
-		
-		if [ -d ~/.secman ]; then
-			rm -rf ~/.secman
-			${clone}
-		else
-			${clone}
-		fi
+		secman repo clone .secman $HOME/.secman
 	`
 }
 
@@ -200,7 +175,7 @@ func Check_w() string {
 
 			Write-Host ""
 			Write-Host -NoNewline $nr -ForegroundColor DarkYellow
-			Write-Host "$c -> $l" -ForegroundColor DarkCyan
+			Write-Host "$c → $l" -ForegroundColor DarkCyan
 			Write-Host -NoNewline $up -ForegroundColor DarkYellow
 			Write-Host $smu -ForegroundColor DarkCyan
 		}
@@ -218,7 +193,7 @@ func Check_ml() string {
 			smu="secman upgrade"
 
 			echo ""
-			echo "$nr $c -> $l"
+			echo "$nr $c → $l"
 			echo "$up $smu"
 		fi
 	`

@@ -30,8 +30,10 @@ var (
 		Aliases: []string{"cn", "/"},
 		Short: CloneHelp(),
 		Run: func(cmd *cobra.Command, args []string) {
-			shell.SHCore(commands.Clone_ml(), commands.Clone_w())
-			shell.SHCore(commands.Clone_check_ml(), commands.Clone_w())
+			cloneCmd := commands.Clone()
+
+			shell.SHCore(cloneCmd, cloneCmd)
+			shell.SHCore(commands.Clone_check_ml(), commands.Clone_check_w())
 		},
 	}
 
