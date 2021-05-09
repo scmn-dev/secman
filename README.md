@@ -60,13 +60,13 @@ secman insert FOLDERNAME/PASSWORDNAME
 ### Using Shell (macOS and Linux)
 
 ```bash
-curl -fsSL https://deps.secman.dev/install.sh | bash
+curl -fsSL https://get.secman.dev/install.sh | bash
 ```
 
 ### Powershell (Windows)
 
 ```powershell
-iwr -useb https://deps.secman.dev/install.ps1 | iex
+iwr -useb https://get.secman.dev/install.ps1 | iex
 ```
 
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
@@ -114,7 +114,7 @@ see [installing from source](https://secman.dev/docs/secman/build_from_source)
 ## Our Websites
 
 - [**main website**](https://secman.dev)
-- [**deps website**](https://deps.secman.dev)
+- [**deps website**](https://get.secman.dev)
 - [**changelog website**](https://changelog.secman.dev)
 
 [goUrl]: https://goland.org

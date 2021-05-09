@@ -12,6 +12,7 @@ import (
 	"github.com/spf13/cobra"
 	config "github.com/secman-team/secman/tools/config"
 	commands "github.com/secman-team/secman/tools/constants"
+	"github.com/secman-team/gh-api/pkg/cmd/factory"
 )
 
 var (
@@ -21,7 +22,11 @@ var (
 		Example: "secman sync start",
 		Short: "Start Sync your passwords.",
 		Run: func(cmd *cobra.Command, args []string) {
-			shell.SHCore(commands.Start_ml(), commands.Start_w())
+			startCmd := commands.Start_ml()
+			exCmd := commands.StartEX()
+
+			shell.SHCore(startCmd, startCmd)
+			shell.SHCore(exCmd, exCmd)
 		},
 	}
 
@@ -79,7 +84,7 @@ func PullHelp() string {
 	const msg string = "Pull The New Passwords from "
 	repo := "/.secman ."
 
-	uname := config.GitConfig()
+	uname := config.GitConfig(factory.New("x"))
 
 	if uname != "" {
 		return msg + uname + repo
@@ -92,7 +97,7 @@ func SyncHelp() string {
 	const msg string = "Sync Your Passwords, by create a private repo at "
 	repo := "/.secman ."
 
-	uname := config.GitConfig()
+	uname := config.GitConfig(factory.New("x"))
 
 	if uname != "" {
 		return msg + uname + repo
@@ -105,7 +110,7 @@ func CloneHelp() string {
 	const msg string = "Clone your .secman from your private repo at https://github.com/"
 	repo := "/.secman ."
 
-	uname := config.GitConfig()
+	uname := config.GitConfig(factory.New("x"))
 
 	if uname != "" {
 		return msg + uname + repo

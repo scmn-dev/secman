@@ -1,13 +1,14 @@
 package configx
 
 import (
-	"fmt"
-	"log"
 	configCmd "github.com/secman-team/gh-api/pkg/cmd/config"
 	"github.com/secman-team/gh-api/pkg/cmdutil"
 	"github.com/spf13/cobra"
-	"strings"
-	"github.com/secman-team/shell"
+	"github.com/secman-team/gh-api/api"
+	"github.com/secman-team/gh-api/core/ghinstance"
+	"net/http"
+	"github.com/secman-team/gh-api/pkg/iostreams"
+	"github.com/secman-team/gh-api/core/ghrepo"
 )
 
 func Config(f *cmdutil.Factory) *cobra.Command {
@@ -16,20 +17,32 @@ func Config(f *cmdutil.Factory) *cobra.Command {
 	return cmd
 }
 
-func GitConfig() string {
-	cmd := "git config user.name"
+type ConfStruct struct {
+	HttpClient func() (*http.Client, error)
+	IO         *iostreams.IOStreams
+	BaseRepo   func() (ghrepo.Interface, error)
+}
 
-	err, username, errout := shell.SHCoreOut(cmd, cmd)
-
-	uname := strings.TrimSuffix(username, "\n")
-
-	if err != nil {
-		log.Printf("error: %v\n", err)
-		fmt.Print(errout)
+func GitConfig(f *cmdutil.Factory) string {
+	opts := ConfStruct{
+		HttpClient: f.HttpClient,
 	}
 
-	if uname != "" {
-		return uname
+	httpClient, herr := opts.HttpClient()
+
+	if herr != nil {
+		return herr.Error()
+	}
+
+	apiClient := api.NewClientFromHTTP(httpClient)
+	currentUser, cerr := api.CurrentLoginName(apiClient, ghinstance.Default())
+
+	if cerr != nil {
+		return cerr.Error()
+	}
+	
+	if currentUser != "" {
+		return currentUser
 	} else {
 		return ":USERNAME"
 	}

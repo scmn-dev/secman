@@ -1,4 +1,4 @@
-name: Secman Docker CI
+name: Secman Docker CI (With Github Packages)
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
       - main
 
 env:
-  IMAGE: smcr/secman
+  IMAGE: ghcr.io/secman-team/secman
 
 jobs:
   build:
@@ -19,8 +19,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Log into registry
-        run: echo "${{ secrets.CR_PAT }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+      - name: Login to Github Packages
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       - name: Run Build
         run: |
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-20.04
     
     container:
-      image: smcr/secman:latest
+      image: ghcr.io/secman-team/secman:latest
 
     steps:
       - name: Run Secman in Docker Container

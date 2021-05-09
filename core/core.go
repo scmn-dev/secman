@@ -14,6 +14,7 @@ import (
 	"github.com/secman-team/secman/pkg/clean"
 	"github.com/secman-team/secman/pkg/edit"
 	"github.com/secman-team/secman/pkg/fetch"
+	"github.com/secman-team/secman/pkg/open"
 	"github.com/secman-team/secman/pkg/gen"
 	"github.com/secman-team/secman/pkg/initialize"
 	"github.com/secman-team/secman/pkg/insert"
@@ -236,6 +237,9 @@ one group or all sites that contain a certain word in the group or name.`,
 		},
 	}
 
+	syncCmd = sync.Sync()
+	openCmd = open.Open(factory.New("x"), nil)
+
 	// with github
 	repoCmd = repox.Repo(factory.New("x"))
 	authCmd = authx.Auth(factory.New("x"))
@@ -260,7 +264,8 @@ func init() {
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
 	RootCmd.AddCommand(uninstallCmd)
-	RootCmd.AddCommand(sync.Sync())
+	RootCmd.AddCommand(syncCmd)
+	RootCmd.AddCommand(openCmd)
 }
 
 // main

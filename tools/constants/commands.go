@@ -11,7 +11,7 @@ func Fetch_w() string {
 
 func Fetch_ml() string {
 	return `
-		cd ~/.secman
+		cd $HOME/.secman
 		git pull
 	`
 }
@@ -41,7 +41,7 @@ func Upgrade() string {
 
 func Clean_w() string {
 	return `
-		$directoyPath = "~/.secman"
+		$directoyPath = "$HOME\.secman"
 
 		if (Test-Path -path $directoyPath) {
 			Remove-Item $directoyPath -Recurse -Force
@@ -56,21 +56,22 @@ func Clean_w() string {
 func Clean_ml() string {
 	return `
 		#!/bin/bash
-		if [ -d ~/.secman ]; then rm -rf ~/.secman; fi
-		if ! [ -d ~/.secman ]; then echo "secman was cleaned successfully 🧹"; fi
+		if [ -d $HOME/.secman ]; then rm -rf $HOME/.secman; fi
+		if ! [ -d $HOME/.secman ]; then echo "secman was cleaned successfully 🧹"; fi
 	`
 }
 
 func Start_w() string {
 	return `
 		$SM_GH_UN = git config user.name
-		cd ~/.secman
+		$SECDIR = $HOME\.secman
+		cd $SECDIR
 
 		git init
 
-		echo "# My secman passwords - $SM_GH_UN" >> ~/.secman\README.md
+		Write-Host "# My secman passwords - $SM_GH_UN" >> $SECDIR\README.md
 
-		secman repo create $SM_GH_UN/.secman -y --private
+		secman repo create .secman -d "My secman passwords - $SM_GH_UN" --private -y
 
 		git add .
 		git commit -m "new .secman repo"
@@ -85,12 +86,12 @@ func Start_w() string {
 func Start_ml() string {
 	return `
 		SM_GH_UN=$(git config user.name)
-		cd ~/.secman
+		cd $HOME/.secman
 		git init
 
-		echo "# My secman passwords - $SM_GH_UN" >> ~/.secman/README.md
+		echo "# My secman passwords - $SM_GH_UN" >> $HOME/.secman/README.md
 
-		secman repo create $SM_GH_UN/.secman -y --private
+		secman repo create .secman -d "My secman passwords - $SM_GH_UN" --private -y
 
 		git add .
 		git commit -m "new .secman repo"
@@ -100,10 +101,14 @@ func Start_ml() string {
 	`
 }
 
+func StartEX() string {
+	return "echo '\n## Clone\n\n```\nsecman sync clone\n```\n\n## Open Your Repo\n\n```\nsecman open\n```\n\n> Open your repo in the browser\n\n```\nsecman open -w/--web\n```\n\n **for more about sync command, run `secman sync -h`**' >> $HOME/.secman/README.md"
+}
+
 func Push_w() string {
 	return `
 		$lastDir = pwd
-		cd ~/.secman
+		cd $HOME\.secman
 
 		if (Test-Path -path .git) {
 			git add .
@@ -117,7 +122,7 @@ func Push_w() string {
 
 func Push_ml() string {
 	return `
-		cd ~/.secman
+		cd $HOME/.secman
 		git add .
 		git commit -m "new secman password"
 		git push
@@ -127,7 +132,7 @@ func Push_ml() string {
 func Pull_w() string {
 	return `
 		$lastDir = pwd
-		cd ~/.secman
+		cd $HOME\.secman
 		
 		git pull
 		
@@ -137,7 +142,7 @@ func Pull_w() string {
 
 func Pull_ml() string {
 	return `
-		cd ~/.secman
+		cd $HOME/.secman
 		git pull
 	`
 }
@@ -150,14 +155,14 @@ func Clone() string {
 
 func Clone_check_w() string {
 	return `
-		if (Test-Path -path ~/.secman) {
+		if (Test-Path -path $HOME/.secman) {
 			Write-Host "cloned successfully"
 		}
 	`
 }
 
 func Clone_check_ml() string {
-	return `if [ -d ~/.secman ]; then echo "cloned successfully ✅"; fi`
+	return `if [ -d $HOME/.secman ]; then echo "cloned successfully ✅"; fi`
 }
 
 func Check_w() string {
@@ -181,11 +186,11 @@ func Check_w() string {
 		}
 	`
 }
-	
+
 func Check_ml() string {
 	return `
 		l=$(curl --silent "https://api.github.com/repos/secman-team/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-		c=$(secman verx | tr -d '\n')
+		c=$(secman verx | tr -d \n)
 
 		if [ $l != $c ]; then
 			nr="there's a new release of secman is avalaible:"
