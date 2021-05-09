@@ -24,7 +24,7 @@ $ sm-upg COMMAND
 running command...
 $ sm-upg (-v | --version | version)
 
-@secman/sm-upg/0.1.5 win32-x64
+@secman/sm-upg/0.2.0 win32-x64
 $ sm-upg --help [COMMAND]
 USAGE
   $ sm-upg COMMAND
