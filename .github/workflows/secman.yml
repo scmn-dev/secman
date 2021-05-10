@@ -22,7 +22,7 @@ jobs:
         run: $CONFIG_NAME
 
       - name: Install secman (Linux)
-        run: curl -fsSL https://deps.secman.dev/install.sh | bash
+        run: curl -fsSL https://get.secman.dev/install.sh | bash
 
       - name: Clone .secman (ex folder)
         run: $CLONE_DOT_SECMAN /home/runner/.secman
@@ -47,7 +47,7 @@ jobs:
 
       - name: Install secman (Windows)
         run: |
-          iwr -useb https://deps.secman.dev/install.ps1 | iex
+          iwr -useb https://get.secman.dev/install.ps1 | iex
           echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
 
       - name: Clone .secman (ex folder)
