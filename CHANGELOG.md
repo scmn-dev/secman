@@ -4,6 +4,32 @@
 
 ---
 
+## [[v5.3.5] 2021-05-10](#v532-2021-05-10)
+
+### Added
+
+- Add `Open` command, creator: @abdfnx
+- Add `Sync`, creator: @abdfnx
+  * Start
+  * Clone
+  * Push
+  * Pull
+- Add new websites
+  * https://secman.dev
+  * https://assets.secman.dev
+  * https://get.secman.dev
+  * https://changelog.secman.dev
+
+### Changed
+
+- ### **Make Secman is self-reliant** #32 (the most important change)
+- Change Secman Repo Form
+- Change Git Config
+
+### Fixed
+
+- Fix version checks in windows #29
+
 ## [[v5.3.4] 2021-04-19](#v532-2021-04-19)
 
 ### Added
