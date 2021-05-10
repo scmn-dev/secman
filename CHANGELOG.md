@@ -16,19 +16,20 @@
   * Pull
 - Add new websites
   * https://secman.dev
-  * https://assets.secman.dev
   * https://get.secman.dev
+  * https://assets.secman.dev
   * https://changelog.secman.dev
 
 ### Changed
 
-- ### **Make Secman is self-reliant** #32 (the most important change)
+- ### **Make Secman is self-reliant** [#32](https://github.com/secman-team/secman/issues/32) (the most important change), The author of the idea: @abdfnx
 - Change Secman Repo Form
 - Change Git Config
+- Move Our website from **next.js** to [**docusaurus**](https://docusaurus.io) [secman.dev#45](https://github.com/secman-team/secman.dev/issues/45), The author of the idea: @Timothee
 
 ### Fixed
 
-- Fix version checks in windows #29
+- Fix version checks in windows [#29](https://github.com/secman-team/secman/issues/29)
 
 ## [[v5.3.4] 2021-04-19](#v532-2021-04-19)
 
