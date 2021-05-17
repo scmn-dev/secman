@@ -17,3 +17,4 @@
 [submodule "sm-upg"]
 	path = pkg/upgrade/sm-upg
 	url = https://github.com/secman-team/sm-upg.git
+
