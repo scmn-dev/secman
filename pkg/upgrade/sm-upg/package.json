@@ -26,7 +26,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://sm.vercel.app/docs/sm-upg",
+  "homepage": "https://secman.dev/docs/secman/sm-upg",
   "keywords": [
     "upgrader",
     "secman",
