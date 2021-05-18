@@ -10,7 +10,7 @@ import (
 	checker "github.com/secman-team/version-checker"
 	"github.com/spf13/cobra"
 
-	"github.com/secman-team/secman/pkg/api"
+	sync "github.com/secman-team/secman/pkg/api"
 	"github.com/secman-team/secman/pkg/clean"
 	"github.com/secman-team/secman/pkg/edit"
 	"github.com/secman-team/secman/pkg/fetch"
@@ -20,11 +20,11 @@ import (
 	"github.com/secman-team/secman/pkg/insert"
 	"github.com/secman-team/secman/pkg/pio"
 	"github.com/secman-team/secman/pkg/show"
-	"github.com/secman-team/secman/pkg/upgrade"
-	"github.com/secman-team/secman/tools/auth"
-	"github.com/secman-team/secman/tools/config"
-	"github.com/secman-team/secman/tools/repo"
-	commands "github.com/secman-team/secman/tools/constants"
+	upg "github.com/secman-team/secman/pkg/upgrade"
+	uni "github.com/secman-team/secman/pkg/uninstall"
+	authx "github.com/secman-team/secman/tools/auth"
+	configx"github.com/secman-team/secman/tools/config"
+	repox "github.com/secman-team/secman/tools/repo"
 )
 
 var (
@@ -103,7 +103,7 @@ directory, and initialize your cryptographic keys.`,
 			if runtime.GOOS == "windows" {
 				fmt.Println("run sm-upg uninstall")
 			} else {
-				shell.ShellCmd(commands.Uninstall())
+				uni.Uninstall()
 			}
 		},
 	}

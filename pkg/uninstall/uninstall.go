@@ -1,0 +1,3 @@
+package uni
+
+func Uninstall() {}
