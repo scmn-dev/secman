@@ -12,7 +12,7 @@ nothing
 
 ### Changed
 
-- Compelte `Uninstall` command with
+- Complete `Uninstall` command with
   * `-d` & `--delete-data` flags (Just MacOS & Linux)
 
 ### Fixed
