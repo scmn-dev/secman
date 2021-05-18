@@ -52,28 +52,51 @@ func Uninstall() string {
 			fi
 		}
 
+		if [ -x "$(command -v secman)" ]; then
+			rmMain
+
+			if ! [ -f "$smLoc" ]; then
+				echo "secman was uninstalled successfully... thank you for using secman 👋"
+
+			else
+				echo "there's an error while uninstalling secman, try again"
+			fi
+
+		else
+			echo "there's no secman 😐"
+		fi
+	`
+}
+
+func Uninstall_DD() string {
+	return `
+		smLoc=/usr/local/bin/secman*
+		smManLoc=/usr/share/man/man1/secman*.1.gz
+
+		rmMain() {
+			if [ -x "$(command -v sudo)" ]; then
+				sudo rm $smManLoc
+				sudo rm $smLoc
+			else
+				rm $smManLoc
+				rm $smLoc
+			fi
+		}
+
 		afterClear() {
 			SM_GH_UN=$(git config user.name)
 			echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 		}
 
 		clearData() {
-			echo -e "clear all data?\n[y/N]"
-			read -n 1 accept
+			if [ -x "$(command -v sudo)" ]; then
+				sudo rm -rf $SECDIR
 
-			if [[ $accept == "Y" || $accept == "y" ]]; then
-				if [ -x "$(command -v sudo)" ]; then
-					sudo rm -rf $SECDIR
+				afterClear
+			else
+				rm -rf $SECDIR
 
-					afterClear
-				else
-					rm -rf $SECDIR
-
-					afterClear
-				fi
-
-			elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
-				echo "OK"
+				afterClear
 			fi
 		}
 
