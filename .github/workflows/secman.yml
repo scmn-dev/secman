@@ -52,7 +52,7 @@ jobs:
 
       - name: Clone .secman (ex folder)
         shell: powershell
-        run: $CLONE_DOT_SECMAN C:\Users\runneradmin\.secman
+        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
 
       - name: Run secman
         run: secman
