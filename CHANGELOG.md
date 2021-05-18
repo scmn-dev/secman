@@ -4,6 +4,21 @@
 
 ---
 
+## [[v5.3.6] 2021-05-18](#v532-2021-05-18)
+
+### Added
+
+nothing
+
+### Changed
+
+- Compelte `Uninstall` command with
+  * `-d` & `--delete-data` flags (Just MacOS & Linux)
+
+### Fixed
+
+- Fix `Upgrade` command
+
 ## [[v5.3.5] 2021-05-10](#v532-2021-05-10)
 
 ### Added
