@@ -24,6 +24,7 @@ import (
 	"github.com/secman-team/secman/tools/auth"
 	"github.com/secman-team/secman/tools/config"
 	"github.com/secman-team/secman/tools/repo"
+	commands "github.com/secman-team/secman/tools/constants"
 )
 
 var (
@@ -100,10 +101,9 @@ directory, and initialize your cryptographic keys.`,
 		Short:   "Uninstall Your Secman.",
 		Run: func(cmd *cobra.Command, args []string) {
 			if runtime.GOOS == "windows" {
-				// shell.PWSLCmd("& ~/sm/uninstall.ps1")
 				fmt.Println("run sm-upg uninstall")
 			} else {
-				shell.ShellCmd("")
+				shell.ShellCmd(commands.Uninstall())
 			}
 		},
 	}

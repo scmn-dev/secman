@@ -7,7 +7,7 @@ func Fetch_w() string {
 		git pull
 		cd $lastDir
 	`
-} 
+}
 
 func Fetch_ml() string {
 	return `
@@ -19,22 +19,77 @@ func Fetch_ml() string {
 func Upgrade() string {
 	return `
 		l=$(curl --silent "https://api.github.com/repos/secman-team/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
-		c=$(secman verx | tr -d '\n')
-		smLoc="/usr/local/bin"
+		c=$(secman verx | tr -d \n)
+		smLoc="/usr/local/bin/secman*"
 
 		if [ $l == $c ]; then
 			echo "secman is already up-to-date and it's the latest release $l"
 
 		elif [ $l != $c ]; then
-			sudo rm -rf $smLoc/secman*
-			sudo rm -rf $smLoc/cgit*
-			sudo rm -rf $smLoc/verx*
+			sudo rm $smLoc
 
-			curl -fsSL https://deps.secman.dev/install.sh | bash
+			curl -fsSL https://cli.secman.dev/install.sh | bash
 
 			if [ -x "command -v $(secman)" ]; then
 				echo "secman was upgraded successfully 🎊"
 			fi
+		fi
+	`
+}
+
+func Uninstall() string {
+	return `
+		smLoc=/usr/local/bin/secman*
+		smManLoc=/usr/share/man/man1/secman*.1.gz
+
+		rmMain() {
+			if [ -x "$(command -v sudo)" ]; then
+				sudo rm $smManLoc
+				sudo rm $smLoc
+			else
+				rm $smManLoc
+				rm $smLoc
+			fi
+		}
+
+		afterClear() {
+			SM_GH_UN=$(git config user.name)
+			echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
+		}
+
+		clearData() {
+			echo -e "clear all data?\n[y/N]"
+			read -n 1 accept
+
+			if [[ $accept == "Y" || $accept == "y" ]]; then
+				if [ -x "$(command -v sudo)" ]; then
+					sudo rm -rf $SECDIR
+
+					afterClear
+				else
+					rm -rf $SECDIR
+
+					afterClear
+				fi
+
+			elif [[ $accept == "" || $accept == "N" || $accept == "n" ]]; then
+				echo "OK"
+			fi
+		}
+
+		if [ -x "$(command -v secman)" ]; then
+			rmMain
+			clearData
+
+			if ! [ -f "$smLoc" ]; then
+				echo "secman was uninstalled successfully... thank you for using secman 👋"
+
+			else
+				echo "there's an error while uninstalling secman, try again"
+			fi
+
+		else
+			echo "there's no secman 😐"
 		fi
 	`
 }

@@ -8,7 +8,7 @@ class StartCommand extends Command {
       ${LOC}
       Remove-Item $loc
 
-      iwr -useb https://get.secman.dev/install.ps1 | iex
+      iwr -useb https://cli.secman.dev/install.ps1 | iex
     `);
 
     ps.on("output", (data) => {
