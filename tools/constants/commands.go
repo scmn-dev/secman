@@ -68,51 +68,26 @@ func Uninstall() string {
 	`
 }
 
-func Uninstall_DD() string {
+func ClearData() string {
 	return `
-		smLoc=/usr/local/bin/secman*
-		smManLoc=/usr/share/man/man1/secman*.1.gz
-
-		rmMain() {
-			if [ -x "$(command -v sudo)" ]; then
-				sudo rm $smManLoc
-				sudo rm $smLoc
-			else
-				rm $smManLoc
-				rm $smLoc
-			fi
-		}
+		SECDIR=~/.secman
 
 		afterClear() {
 			SM_GH_UN=$(git config user.name)
-			echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
-		}
 
-		clearData() {
-			if [ -x "$(command -v sudo)" ]; then
-				sudo rm -rf $SECDIR
-
-				afterClear
-			else
-				rm -rf $SECDIR
-
-				afterClear
+			if ! [ -d $SECDIR ]; then
+				echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 			fi
 		}
 
-		if [ -x "$(command -v secman)" ]; then
-			rmMain
-			clearData
+		if [ -x "$(command -v sudo)" ]; then
+			sudo rm -rf $SECDIR
 
-			if ! [ -f "$smLoc" ]; then
-				echo "secman was uninstalled successfully... thank you for using secman 👋"
-
-			else
-				echo "there's an error while uninstalling secman, try again"
-			fi
-
+			afterClear
 		else
-			echo "there's no secman 😐"
+			rm -rf $SECDIR
+
+			afterClear
 		fi
 	`
 }

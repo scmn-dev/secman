@@ -104,7 +104,6 @@ func openRun(opts *OpenOptions) error {
 		return opts.Browser.Browse(openURL)
 	}
 
-
 	fullName := ghrepo.FullName(toOpen)
 
 	readme, err := openx.RepositoryReadme(httpClient, toOpen, opts.Branch)

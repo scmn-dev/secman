@@ -2,11 +2,9 @@ package main
 
 import (
 	"fmt"
-	"runtime"
 	"strconv"
 
 	"github.com/secman-team/gh-api/pkg/cmd/factory"
-	"github.com/secman-team/shell"
 	checker "github.com/secman-team/version-checker"
 	"github.com/spf13/cobra"
 
@@ -92,19 +90,6 @@ directory, and initialize your cryptographic keys.`,
 		Short:   "Upgrade your secman if there's a new release.",
 		Run: func(cmd *cobra.Command, args []string) {
 			upg.Upgrade()
-		},
-	}
-
-	uninstallCmd = &cobra.Command{
-		Use:     "uninstall",
-		Aliases: []string{"un"},
-		Short:   "Uninstall Your Secman.",
-		Run: func(cmd *cobra.Command, args []string) {
-			if runtime.GOOS == "windows" {
-				fmt.Println("run sm-upg uninstall")
-			} else {
-				uni.Uninstall()
-			}
 		},
 	}
 
@@ -239,6 +224,7 @@ one group or all sites that contain a certain word in the group or name.`,
 
 	syncCmd = sync.Sync()
 	openCmd = open.Open(factory.New("x"), nil)
+	uniCmd  = uni.Uninstall(nil)
 
 	// with github
 	repoCmd = repox.Repo(factory.New("x"))
@@ -263,7 +249,7 @@ func init() {
 	RootCmd.AddCommand(versionCmd)
 	RootCmd.AddCommand(upgradeCmd)
 	RootCmd.AddCommand(verxCmd)
-	RootCmd.AddCommand(uninstallCmd)
+	RootCmd.AddCommand(uniCmd)
 	RootCmd.AddCommand(syncCmd)
 	RootCmd.AddCommand(openCmd)
 }
