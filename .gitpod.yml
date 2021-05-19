@@ -1,6 +1,6 @@
 tasks:
   - init: go get -d ./...
-    command: curl -fsSL https://get.secman.dev/install.sh | bash
+    command: curl -fsSL https://cli.secman.dev/install.sh | bash
 
 vscode:
   extensions:
