@@ -70,6 +70,12 @@ curl -fsSL https://cli.secman.dev/install.sh | bash
 iwr -useb https://cli.secman.dev/install.ps1 | iex
 ```
 
+> if you get an error you might need to change the **execution policy** _**(i.e. enable Powershell)**_ via
+
+```powershell
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+```
+
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
 ```bash
