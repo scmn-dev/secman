@@ -31,11 +31,8 @@ var (
 	versionDate  string
 	RootCmd  = &cobra.Command{
 		Use:   "secman",
-		Short: "Print the contents of the vault.",
-		Long: `Print the contents of the vault. If you have
-not yet initialized your vault, it is necessary to run
-the init subcommand in order to create your secman
-directory, and initialize your cryptographic keys.`,
+		Short: ".",
+		Long: `.`,
 		Run: func(cmd *cobra.Command, args []string) {
 			if exists, _ := pio.PassFileDirExists(); exists {
 				show.ListAll()
@@ -52,7 +49,7 @@ directory, and initialize your cryptographic keys.`,
 		Aliases: []string{"ver"},
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("secman version " + version + " " + versionDate)
+			fmt.Println("secman " + version + " " + versionDate)
 			fmt.Println("https://github.com/secman-team/secman/releases/tag/" + version)
 			checker.Checker()
 		},
