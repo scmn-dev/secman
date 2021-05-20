@@ -1,4 +1,4 @@
-[submodule "smx"]
+[submodule "secman-homebrew-formula"]
 	path = plugins/smx
 	url = https://github.com/secman-team/smx.git
 
