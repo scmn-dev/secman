@@ -14,7 +14,6 @@
 [![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go?color=blue&label=Go%20Build&logo=go&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/go.yml)
 [![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/secman.yml)
 [![Secman Docker CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/docker.yml)
-[![Secman Docker CI (With Github Packages)](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20CI%20(With%20Github%20Packages)?color=blue&label=Secman%20Docker%20CI%20(With%20Github%20Packages)&logo=docker&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/docker-gh-pkgs.yml)
 [![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/secman-team/secman)
 ![Codacy grade](https://img.shields.io/codacy/grade/d222c27c970f4dc086b77e83809bffde?color=blue&logo=codacy&style=for-the-badge)
 

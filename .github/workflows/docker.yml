@@ -10,10 +10,12 @@ on:
       - main
 
 env:
-  IMAGE: smcr/secman
+  DOCKERHUB_IMAGE: smcr/secman
+  GHCR_IMAGE: ghcr.io/secman-team/secman
 
 jobs:
-  build:
+  # DockerHub
+  dockerhub_build:
     runs-on: ubuntu-20.04
 
     steps:
@@ -27,13 +29,13 @@ jobs:
 
       - name: Run Build
         run: |
-          docker pull $IMAGE:latest
+          docker pull $DOCKERHUB_IMG:latest
           git clone https://github.com/secman-team/secman-docker
-          docker build -t $IMAGE --cache-from $IMAGE:latest --file ./secman-docker/Dockerfile .
-          docker push $IMAGE
+          docker build -t $DOCKERHUB_IMG --cache-from $DOCKERHUB_IMG:latest --file ./secman-docker/Dockerfile .
+          docker push $DOCKERHUB_IMG
 
-  run:
-    needs: [ build ]
+  dockerhub_run:
+    needs: [ dockerhub_build ]
 
     runs-on: ubuntu-20.04
     
@@ -42,5 +44,35 @@ jobs:
 
     steps:
       - name: Run Secman in Docker Container
+        run: |
+          secman
+  
+  # GitHub Packages
+  ghcr_build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to Github Packages
+        run: echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+      - name: Run Build
+        run: |
+          docker pull $GHCR_IMAGE:latest
+          git clone https://github.com/secman-team/secman-docker
+          docker build -t $GHCR_IMAGE --cache-from $GHCR_IMAGE:latest --file ./secman-docker/Dockerfile .
+          docker push $GHCR_IMAGE
+
+  ghcr_run:
+    needs: [ ghcr_build ]
+
+    runs-on: ubuntu-20.04
+    
+    container:
+      image: ghcr.io/secman-team/secman:latest
+
+    steps:
+      - name: Run Secman in Github Docker Container
         run: |
           secman
