@@ -29,10 +29,10 @@ jobs:
 
       - name: Run Build
         run: |
-          docker pull $DOCKERHUB_IMG:latest
+          docker pull $DOCKERHUB_IMAGE:latest
           git clone https://github.com/secman-team/secman-docker
-          docker build -t $DOCKERHUB_IMG --cache-from $DOCKERHUB_IMG:latest --file ./secman-docker/Dockerfile .
-          docker push $DOCKERHUB_IMG
+          docker build -t $DOCKERHUB_IMAGE --cache-from $DOCKERHUB_IMAGE:latest --file ./secman-docker/Dockerfile .
+          docker push $DOCKERHUB_IMAGE
 
   dockerhub_run:
     needs: [ dockerhub_build ]
