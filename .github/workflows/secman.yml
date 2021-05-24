@@ -9,7 +9,6 @@ on:
 
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  CONFIG_NAME: git config --global user.name secman_yo
   CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex
 
 jobs:
@@ -17,9 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Config
-        run: $CONFIG_NAME
 
       - name: Install secman (Linux)
         run: curl -fsSL https://cli.secman.dev/install.sh | bash
@@ -36,16 +32,40 @@ jobs:
       - name: Run secman version
         run: secman ver
   
+  # macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     - name: Config
+  #       run: $CONFIG_NAME
+
+  #     - name: Install secman (MacOS)
+  #       run: curl -fsSL https://cli.secman.dev/install.sh | bash
+
+  #     - name: Clone .secman (ex folder)
+  #       run: |
+  #         echo $HOME
+  #         $CLONE_DOT_SECMAN ~/.secman
+
+  #     - name: Run secman
+  #       run: secman
+
+  #     - name: Run secman Help
+  #       run: secman -h
+
+  #     - name: Run secman version
+  #       run: secman ver
+
   macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Config
-        run: $CONFIG_NAME
-
-      - name: Install secman (MacOS)
-        run: curl -fsSL https://cli.secman.dev/install.sh | bash
+      - name: Build secman (MacOS)
+        run: |
+          make
+          make setup
 
       - name: Clone .secman (ex folder)
         run: |
@@ -65,10 +85,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Config
-        shell: powershell
-        run: $CONFIG_NAME
 
       - name: Install secman (Windows)
         run: |
