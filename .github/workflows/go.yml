@@ -28,5 +28,5 @@ jobs:
 
     - name: Run the New Build (With Authentication)
       run: |
-        secman auth login -t ${{ secrets.ACCESS_TOKEN }}
+        secman auth login --with-token ${{ secrets.ACCESS_TOKEN }}
         secman
