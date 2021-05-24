@@ -23,5 +23,10 @@ jobs:
         make
         make setup
 
-    - name: Run the New Build
+    - name: Run the New Build (Without Authentication)
       run: secman
+
+    - name: Run the New Build (With Authentication)
+      run: |
+        secman auth login -t ${{ secrets.ACCESS_TOKEN }}
+        secman
