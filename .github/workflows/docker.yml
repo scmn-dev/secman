@@ -38,7 +38,7 @@ jobs:
     needs: [ dockerhub_build ]
 
     runs-on: ubuntu-20.04
-    
+
     container:
       image: smcr/secman:latest
 
@@ -46,7 +46,7 @@ jobs:
       - name: Run Secman in Docker Container
         run: |
           secman
-  
+
   # GitHub Packages
   ghcr_build:
     runs-on: ubuntu-20.04
@@ -68,7 +68,7 @@ jobs:
     needs: [ ghcr_build ]
 
     runs-on: ubuntu-20.04
-    
+
     container:
       image: ghcr.io/secman-team/secman:latest
 
