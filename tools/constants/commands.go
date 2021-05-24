@@ -155,7 +155,7 @@ func Start_ml() string {
 }
 
 func StartEX() string {
-	return "echo '\n## Clone\n\n```\nsecman sync clone\n```\n\n## Open Your Repo\n\n```\nsecman open\n```\n\n> Open your repo in the browser\n\n```\nsecman open -w/--web\n```\n\n **for more about sync command, run `secman sync -h`**' >> $HOME/.secman/README.md"
+	return "echo '\n## Clone\n\n```\nsecman sync clone\n```\n\n## Open Your Repo\n\n```\nsecman open\n```\n\n> Open your repo in the browser\n\n```\nsecman open -w/--web\n```\n\n**for more about sync command, run `secman sync -h`**\n**or visit the docs at https://secman.dev/docs/commands/sync**' >> $HOME/.secman/README.md"
 }
 
 func Push_w() string {

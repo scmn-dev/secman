@@ -10,9 +10,9 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/secman-team/shell"
 	"github.com/spf13/cobra"
-	config "github.com/secman-team/secman/tools/config"
 	commands "github.com/secman-team/secman/tools/constants"
 	"github.com/secman-team/gh-api/pkg/cmd/factory"
+	"github.com/secman-team/secman/tools/git_config"
 )
 
 var (
@@ -22,10 +22,9 @@ var (
 		Example: "secman sync start",
 		Short: "Start Sync your passwords.",
 		Run: func(cmd *cobra.Command, args []string) {
-			startCmd := commands.Start_ml()
 			exCmd := commands.StartEX()
 
-			shell.SHCore(startCmd, startCmd)
+			shell.SHCore(commands.Start_ml(), commands.Start_w())
 			shell.SHCore(exCmd, exCmd)
 		},
 	}
@@ -45,7 +44,7 @@ var (
 	NewCmdPush = &cobra.Command{
 		Use:   "push",
 		Aliases: []string{"ph"},
-		Short: "Push The New Passwords in .secman .",
+		Short: "Push The New Passwords in ~/.secman .",
 		Run: func(cmd *cobra.Command, args []string) {
 			shell.SHCore(commands.Push_ml(), commands.Push_w())
 		},
@@ -80,43 +79,18 @@ func Sync() *cobra.Command {
 	return cmd
 }
 
+const dotSecman string = "/.secman ."
+
 func PullHelp() string {
-	const msg string = "Pull The New Passwords from "
-	repo := "/.secman ."
-
-	uname := config.GitConfig(factory.New("x"))
-
-	if uname != "" {
-		return msg + uname + repo
-	} else {
-		return msg + ":USERNAME" + repo
-	}
+	return git_config.GitConfig(factory.New("x"), "Pull The New Passwords from ", dotSecman)
 }
 
 func SyncHelp() string {
-	const msg string = "Sync Your Passwords, by create a private repo at "
-	repo := "/.secman ."
-
-	uname := config.GitConfig(factory.New("x"))
-
-	if uname != "" {
-		return msg + uname + repo
-	} else {
-		return msg + ":USERNAME" + repo
-	}
+	return git_config.GitConfig(factory.New("x"), "Sync Your Passwords, by create a private repo at ", dotSecman)
 }
 
 func CloneHelp() string {
-	const msg string = "Clone your .secman from your private repo at https://github.com/"
-	repo := "/.secman ."
-
-	uname := config.GitConfig(factory.New("x"))
-
-	if uname != "" {
-		return msg + uname + repo
-	} else {
-		return msg + ":USERNAME" + repo
-	}
+	return git_config.GitConfig(factory.New("x"), "Clone your .secman from your private repo at https://github.com/", dotSecman)
 }
 
 func PushSync() {

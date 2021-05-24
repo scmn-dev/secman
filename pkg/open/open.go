@@ -17,9 +17,9 @@ import (
 	"github.com/secman-team/gh-api/pkg/markdown"
 	"github.com/secman-team/gh-api/utils"
 	"github.com/spf13/cobra"
-	config "github.com/secman-team/secman/tools/config"
 	openx "github.com/secman-team/secman/tools/open"
 	"github.com/secman-team/gh-api/pkg/cmd/factory"
+	"github.com/secman-team/secman/tools/git_config"
 )
 
 type browser interface {
@@ -31,7 +31,7 @@ type OpenOptions struct {
 	IO         *iostreams.IOStreams
 	BaseRepo   func() (ghrepo.Interface, error)
 	Browser    browser
-	
+
 	RepoArg string
 	Web     bool
 	Branch  string
@@ -82,6 +82,7 @@ func openRun(opts *OpenOptions) error {
 		if err != nil {
 			return err
 		}
+
 		openURL = currentUser + "/" + openURL
 	}
 
@@ -101,6 +102,7 @@ func openRun(opts *OpenOptions) error {
 		if opts.IO.IsStdoutTTY() {
 			fmt.Fprintf(opts.IO.ErrOut, "Opening %s in your browser.\n", utils.DisplayURL(openURL))
 		}
+
 		return opts.Browser.Browse(openURL)
 	}
 
@@ -187,14 +189,5 @@ func openRun(opts *OpenOptions) error {
 }
 
 func OpenHelp() string {
-	const msg string = "Open Your Private Repo ("
-	repo := "/.secman)."
-
-	uname := config.GitConfig(factory.New("x"))
-
-	if uname != "" {
-		return msg + uname + repo
-	} else {
-		return msg + ":USERNAME" + repo
-	}
+	return git_config.GitConfig(factory.New("x"), "Open Your Private Repo (", "/.secman).")
 }
