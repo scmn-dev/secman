@@ -11,7 +11,6 @@ import (
 	"github.com/secman-team/shell"
 	"github.com/spf13/cobra"
 	commands "github.com/secman-team/secman/tools/constants"
-	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/secman-team/secman/tools/git_config"
 )
 
@@ -82,15 +81,15 @@ func Sync() *cobra.Command {
 const dotSecman string = "/.secman ."
 
 func PullHelp() string {
-	return git_config.GitConfig(factory.New("x"), "Pull The New Passwords from ", dotSecman)
+	return git_config.GitConfigWithMsg("Pull The New Passwords from ", dotSecman)
 }
 
 func SyncHelp() string {
-	return git_config.GitConfig(factory.New("x"), "Sync Your Passwords, by create a private repo at ", dotSecman)
+	return git_config.GitConfigWithMsg("Sync Your Passwords, by create a private repo at ", dotSecman)
 }
 
 func CloneHelp() string {
-	return git_config.GitConfig(factory.New("x"), "Clone your .secman from your private repo at https://github.com/", dotSecman)
+	return git_config.GitConfigWithMsg("Clone your .secman from your private repo at https://github.com/", dotSecman)
 }
 
 func PushSync() {

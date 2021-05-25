@@ -1,7 +1,6 @@
 package git_config
 
 import (
-	"os"
 	"github.com/secman-team/gh-api/pkg/cmdutil"
 	"github.com/secman-team/gh-api/api"
 	"github.com/secman-team/gh-api/core/ghinstance"
@@ -17,32 +16,36 @@ type ConfStruct struct {
 	BaseRepo   func() (ghrepo.Interface, error)
 }
 
-func GitConfig(f *cmdutil.Factory, msg1 string, msg2 string) string {
-	opts := ConfStruct{
+func f(f *cmdutil.Factory) ConfStruct {
+	var opts = ConfStruct{
 		HttpClient: f.HttpClient,
 	}
 
-	httpClient, herr := opts.HttpClient()
+	return opts
+}
 
-	if herr != nil {
-		return herr.Error()
+var httpClient, _ = f(factory.New("x")).HttpClient()
+
+var apiClient = api.NewClientFromHTTP(httpClient)
+var currentUser, _ = api.CurrentLoginName(apiClient, ghinstance.Default())
+
+var cmdFactory = factory.New("x")
+var configRootCmd = NewCmdConfigRoot(cmdFactory)
+var cfg, _ = cmdFactory.Config()
+
+var expandedArgs = []string{}
+
+var cmd, _, _ = configRootCmd.Traverse(expandedArgs)
+
+func GitConfig() string {
+	if cmdutil.IsAuthCheckEnabled(cmd) && !cmdutil.CheckAuth(cfg) {
+		return ":username"
+	} else {
+		return currentUser
 	}
+}
 
-	apiClient := api.NewClientFromHTTP(httpClient)
-	currentUser, _ := api.CurrentLoginName(apiClient, ghinstance.Default())
-	
-	cmdFactory := factory.New("x")
-	configRootCmd := NewCmdConfigRoot(cmdFactory)
-	cfg, _ := cmdFactory.Config()
-
-	expandedArgs := []string{}
-
-	if len(os.Args) > 0 {
-		expandedArgs = os.Args[1:]
-	}
-
-	cmd, _, _ := configRootCmd.Traverse(expandedArgs)
-
+func GitConfigWithMsg(msg1 string, msg2 string) string {
 	if cmdutil.IsAuthCheckEnabled(cmd) && !cmdutil.CheckAuth(cfg) {
 		return msg1 + ":username" + msg2
 	} else {

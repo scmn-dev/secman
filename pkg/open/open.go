@@ -18,7 +18,6 @@ import (
 	"github.com/secman-team/gh-api/utils"
 	"github.com/spf13/cobra"
 	openx "github.com/secman-team/secman/tools/open"
-	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/secman-team/secman/tools/git_config"
 )
 
@@ -189,5 +188,5 @@ func openRun(opts *OpenOptions) error {
 }
 
 func OpenHelp() string {
-	return git_config.GitConfig(factory.New("x"), "Open Your Private Repo (", "/.secman).")
+	return git_config.GitConfigWithMsg("Open Your Private Repo (", "/.secman).")
 }

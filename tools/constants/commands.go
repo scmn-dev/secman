@@ -218,6 +218,10 @@ func Clone_check_ml() string {
 	return `if [ -d $HOME/.secman ]; then echo "cloned successfully ✅"; fi`
 }
 
+func Clone_Template() string {
+	return "git clone https://github.com/secman-team/.secman.ex ~/.secman"
+}
+
 func Check_w() string {
 	return `
 		$releases = "https://api.github.com/repos/secman-team/secman/releases"
