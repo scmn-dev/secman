@@ -9,4 +9,4 @@ build:
 		go build -o secman -ldflags "-X main.version=$(LATEST_VERSION) -X main.versionDate=($(DATE))"
 
 setup: core/secman
-		sudo cp core/secman /usr/local/bin
+		sudo mv core/secman /usr/local/bin
