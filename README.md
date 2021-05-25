@@ -89,6 +89,20 @@ scoop bucket add secman https://github.com/secman-team/sm-scoop
 scoop install secman
 ```
 
+### Via [Docker](https://docker.com)
+
+> DockerHub
+
+```bash
+docker run -it smcr/secman
+```
+
+> GitHub Packages
+
+```bash
+docker run -it ghcr.io/secman-team/secman
+```
+
 ## Build from source
 
 see [installing from source](https://secman.dev/docs/secman/build_from_source)
