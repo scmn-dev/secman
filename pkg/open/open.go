@@ -18,7 +18,7 @@ import (
 	"github.com/secman-team/gh-api/utils"
 	"github.com/spf13/cobra"
 	openx "github.com/secman-team/secman/tools/open"
-	"github.com/secman-team/secman/tools/git_config"
+	"github.com/abdfnx/git_config"
 )
 
 type browser interface {

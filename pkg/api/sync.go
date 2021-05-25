@@ -11,7 +11,7 @@ import (
 	"github.com/secman-team/shell"
 	"github.com/spf13/cobra"
 	commands "github.com/secman-team/secman/tools/constants"
-	"github.com/secman-team/secman/tools/git_config"
+	"github.com/abdfnx/git_config"
 )
 
 var (
