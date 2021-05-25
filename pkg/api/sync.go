@@ -21,10 +21,16 @@ var (
 		Example: "secman sync start",
 		Short: "Start Sync your passwords.",
 		Run: func(cmd *cobra.Command, args []string) {
-			exCmd := commands.StartEX()
+			username := git_config.GitConfig()
 
-			shell.SHCore(commands.Start_ml(), commands.Start_w())
-			shell.SHCore(exCmd, exCmd)
+			if username != ":username" {
+				exCmd := commands.StartEX()
+	
+				shell.SHCore(commands.Start_ml(), commands.Start_w())
+				shell.SHCore(exCmd, exCmd)
+			} else {
+				fmt.Println("You're not authenticate, to authenticate run `secman auth login`")
+			}
 		},
 	}
 

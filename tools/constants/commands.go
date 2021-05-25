@@ -73,10 +73,10 @@ func ClearData() string {
 		SECDIR=~/.secman
 
 		afterClear() {
-			SM_GH_UN=$(git config user.name)
+			username=$(secman auth get-username)
 
 			if ! [ -d $SECDIR ]; then
-				echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
+				echo "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$username/.secman"
 			fi
 		}
 
@@ -116,20 +116,20 @@ func Clean_ml() string {
 
 func Start_w() string {
 	return `
-		$SM_GH_UN = git config user.name
+		$username = secman auth get-username
 		$SECDIR = $HOME\.secman
 		cd $SECDIR
 
 		git init
 
-		Write-Host "# My secman passwords - $SM_GH_UN" >> $SECDIR\README.md
+		Write-Host "# My secman passwords - $username" >> $SECDIR\README.md
 
-		secman repo create .secman -d "My secman passwords - $SM_GH_UN" --private -y
+		secman repo create .secman -d "My secman passwords - $username" --private -y
 
 		git add .
 		git commit -m "new .secman repo"
 		git branch -M trunk
-		git remote add origin https://github.com/$SM_GH_UN/.secman
+		git remote add origin https://github.com/$username/.secman
 		git push -u origin trunk
 
 		cd $lastDir
@@ -138,18 +138,18 @@ func Start_w() string {
 
 func Start_ml() string {
 	return `
-		SM_GH_UN=$(git config user.name)
+		username=$(secman auth get-username)
 		cd $HOME/.secman
 		git init
 
-		echo "# My secman passwords - $SM_GH_UN" >> $HOME/.secman/README.md
+		echo "# My secman passwords - $username" >> $HOME/.secman/README.md
 
-		secman repo create .secman -d "My secman passwords - $SM_GH_UN" --private -y
+		secman repo create .secman -d "My secman passwords - $username" --private -y
 
 		git add .
 		git commit -m "new .secman repo"
 		git branch -M trunk
-		git remote add origin https://github.com/$SM_GH_UN/.secman
+		git remote add origin https://github.com/$username/.secman
 		git push -u origin trunk
 	`
 }
