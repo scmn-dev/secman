@@ -29,7 +29,7 @@ var (
 				shell.SHCore(commands.Start_ml(), commands.Start_w())
 				shell.SHCore(exCmd, exCmd)
 			} else {
-				fmt.Println("You're not authenticate, to authenticate run `secman auth login`")
+				fmt.Println("You're not authenticated, to authenticate run `secman auth login`")
 			}
 		},
 	}

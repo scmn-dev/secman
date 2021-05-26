@@ -24,6 +24,9 @@ import (
 	configx "github.com/secman-team/secman/tools/config"
 	repox "github.com/secman-team/secman/tools/repo"
 	checker "github.com/secman-team/version-checker"
+	
+	"github.com/secman-team/shell"
+	commands "github.com/secman-team/secman/tools/constants"
 )
 
 var (
@@ -187,16 +190,22 @@ one group or all sites that contain a certain word in the group or name.`,
 	}
 
 	syncCmd = sync.Sync()
-	openCmd = open.Open(factory.New("x"), nil)
+	openCmd = open.Open(factory.New(), nil)
 	uninstallCmd  = uni.Uninstall(nil)
 
 	// with github
-	repoCmd = repox.Repo(factory.New("x"))
-	authCmd = authx.Auth(factory.New("x"))
-	configCmd = configx.Config(factory.New("x"))
+	repoCmd = repox.Repo(factory.New())
+	authCmd = authx.Auth(factory.New())
+	configCmd = configx.Config(factory.New())
 )
 
+type Options struct {
+	UseTemplate bool
+}
+
 func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.Command {
+	opts := Options{}
+
 	cmd := &cobra.Command{
 		Use:   "secman <command> <subcommand> [flags]",
 		Short: "Secman CLI",
@@ -214,14 +223,8 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 				Open an issue at https://github.com/secman-team/secman/issues
 			`),
 		},
-		Run: func(cmd *cobra.Command, args []string) {
-			if exists, _ := pio.PassFileDirExists(); exists {
-				show.ListAll()
-			} else {
-				cmd.Help()
-			}
-
-			checker.Checker()
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return run(&opts)
 		},
 	}
 
@@ -256,6 +259,8 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 	cmd.SetHelpFunc(helpHelper)
 	cmd.SetUsageFunc(rootUsageFunc)
 	cmd.SetFlagErrorFunc(rootFlagErrorFunc)
+	
+	cmd.Flags().BoolVarP(&opts.UseTemplate, "use-template", "t", false, "Clone the template of .secman")
 
 	cmd.AddCommand(authCmd)
 	cmd.AddCommand(repoCmd)
@@ -280,4 +285,22 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 	cmdutil.DisableAuthCheck(cmd)
 
 	return cmd
+}
+
+func run(opts *Options) error {
+	cmdFactory := factory.New()
+
+	if opts.UseTemplate {
+		shell.ShellCmd(commands.Clone_Template())
+	} else {
+		if exists, _ := pio.PassFileDirExists(); exists {
+			show.ListAll()
+		} else {
+			NewCmdRoot(cmdFactory, "", "").Help()
+		}
+	}
+
+	checker.Checker()
+
+	return nil
 }

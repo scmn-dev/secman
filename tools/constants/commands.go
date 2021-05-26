@@ -219,7 +219,7 @@ func Clone_check_ml() string {
 }
 
 func Clone_Template() string {
-	return "git clone https://github.com/secman-team/.secman.ex ~/.secman"
+	return "git clone https://github.com/secman-team/.secman.ex $HOME/.secman"
 }
 
 func Check_w() string {

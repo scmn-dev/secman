@@ -37,7 +37,7 @@ func main() {
 }
 
 func mainRun() exitCode {
-	cmdFactory := factory.New("x")
+	cmdFactory := factory.New()
 	hasDebug := os.Getenv("DEBUG") != ""
 	stderr := cmdFactory.IOStreams.ErrOut
 
