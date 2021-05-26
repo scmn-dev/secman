@@ -4,7 +4,31 @@
 
 ---
 
-## [[v5.3.6] 2021-05-18](#v532-2021-05-18)
+## [[v5.3.61] 2021-05-26](#v5361-2021-05-26)
+
+### Added
+
+- Create `-t/--use-template` flag.
+- Add `secman auth get-username` command.
+- Add user checker [**#42**](https://github.com/secman-team/secman/issues/42).
+
+### Changed
+
+- Change Secman Help Form with
+  * **USAGE**
+  * **COMMANDS**
+  * **FLAGS**
+  * **EXAMPLES**
+  * **LEARN MORE**
+  * **FEEDBACK**
+- Change CLI Website from **get.secman.dev** to [**cli.secman.dev**](https://cli.secman.dev).
+
+### Fixed
+
+- Fix [**#43**](https://github.com/secman-team/secman/issues/43)
+- Fix [**#42**](https://github.com/secman-team/secman/issues/42)
+
+## [[v5.3.6] 2021-05-18](#v536-2021-05-18)
 
 ### Added
 
@@ -19,7 +43,7 @@ nothing
 
 - Fix `Upgrade` command
 
-## [[v5.3.5] 2021-05-10](#v532-2021-05-10)
+## [[v5.3.5] 2021-05-10](#v535-2021-05-10)
 
 ### Added
 
@@ -46,7 +70,7 @@ nothing
 
 - Fix version checks in windows [#29](https://github.com/secman-team/secman/issues/29)
 
-## [[v5.3.4] 2021-04-19](#v532-2021-04-19)
+## [[v5.3.4] 2021-04-19](#v534-2021-04-19)
 
 ### Added
 
@@ -79,7 +103,7 @@ nothing
 
 - Fix **error: exit status 1 when type `secman -h`**
 
-## [[v5.3.3] 2021-04-12](#v532-2021-04-12)
+## [[v5.3.3] 2021-04-12](#v533-2021-04-12)
 
 ### Added
 

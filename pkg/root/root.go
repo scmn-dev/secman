@@ -3,11 +3,14 @@ package root
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/MakeNowJust/heredoc"
+	"github.com/briandowns/spinner"
+	"github.com/spf13/cobra"
+
 	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/secman-team/gh-api/pkg/cmdutil"
-	"github.com/spf13/cobra"
 	sync "github.com/secman-team/secman/pkg/api"
 	"github.com/secman-team/secman/pkg/clean"
 	"github.com/secman-team/secman/pkg/edit"
@@ -24,7 +27,7 @@ import (
 	configx "github.com/secman-team/secman/tools/config"
 	repox "github.com/secman-team/secman/tools/repo"
 	checker "github.com/secman-team/version-checker"
-	
+
 	"github.com/secman-team/shell"
 	commands "github.com/secman-team/secman/tools/constants"
 )
@@ -291,7 +294,16 @@ func run(opts *Options) error {
 	cmdFactory := factory.New()
 
 	if opts.UseTemplate {
-		shell.ShellCmd(commands.Clone_Template())
+		s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
+		s.Suffix = " 📦 Cloning..."
+		s.Start()
+
+		cloneCmd := commands.Clone_Template()
+
+		cmd, _, _ := shell.SHCoreOut(cloneCmd, cloneCmd)
+
+		s.Stop()
+		fmt.Print(cmd)
 	} else {
 		if exists, _ := pio.PassFileDirExists(); exists {
 			show.ListAll()
