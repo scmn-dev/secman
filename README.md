@@ -17,7 +17,7 @@
 [![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/secman-team/secman)
 ![Codacy grade](https://img.shields.io/codacy/grade/d222c27c970f4dc086b77e83809bffde?color=blue&logo=codacy&style=for-the-badge)
 
-> `secman` is a password manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in *go*! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
+> `secman` is a password manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in _**go**_! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
 ## Featurs
 
