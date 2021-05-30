@@ -11,7 +11,6 @@ import (
 	"github.com/secman-team/gh-api/pkg/cmd/factory"
 	"github.com/secman-team/gh-api/pkg/iostreams"
 	"github.com/secman-team/gh-api/pkg/cmdutil"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
 
 	"github.com/spf13/cobra"
 )
