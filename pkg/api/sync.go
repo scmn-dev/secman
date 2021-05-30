@@ -12,7 +12,10 @@ import (
 	"github.com/spf13/cobra"
 	commands "github.com/secman-team/secman/tools/constants"
 	"github.com/abdfnx/git_config"
+	"github.com/secman-team/secman/tools/shared"
 )
+
+var username = git_config.GitConfig()
 
 var (
 	NewCmdStart = &cobra.Command{
@@ -21,15 +24,13 @@ var (
 		Example: "secman sync start",
 		Short: "Start Sync your passwords.",
 		Run: func(cmd *cobra.Command, args []string) {
-			username := git_config.GitConfig()
-
 			if username != ":username" {
 				exCmd := commands.StartEX()
-	
+
 				shell.SHCore(commands.Start_ml(), commands.Start_w())
 				shell.SHCore(exCmd, exCmd)
 			} else {
-				fmt.Println("You're not authenticated, to authenticate run `secman auth login`")
+				shared.AuthMessage()
 			}
 		},
 	}
@@ -39,10 +40,14 @@ var (
 		Aliases: []string{"cn", "/"},
 		Short: CloneHelp(),
 		Run: func(cmd *cobra.Command, args []string) {
-			cloneCmd := commands.Clone()
+			if username != ":username" {
+				cloneCmd := commands.Clone()
 
-			shell.SHCore(cloneCmd, cloneCmd)
-			shell.SHCore(commands.Clone_check_ml(), commands.Clone_check_w())
+				shell.SHCore(cloneCmd, cloneCmd)
+				shell.SHCore(commands.Clone_check_ml(), commands.Clone_check_w())
+			} else {
+				shared.AuthMessage()
+			}
 		},
 	}
 
@@ -51,7 +56,11 @@ var (
 		Aliases: []string{"ph"},
 		Short: "Push The New Passwords in ~/.secman .",
 		Run: func(cmd *cobra.Command, args []string) {
-			shell.SHCore(commands.Push_ml(), commands.Push_w())
+			if username != ":username" {
+				shell.SHCore(commands.Push_ml(), commands.Push_w())
+			} else {
+				shared.AuthMessage()
+			}
 		},
 	}
 
@@ -60,7 +69,11 @@ var (
 		Aliases: []string{"pl"},
 		Short: PullHelp(),
 		Run: func(cmd *cobra.Command, args []string) {
-			shell.SHCore(commands.Pull_ml(), commands.Pull_w())
+			if username != ":username" {
+				shell.SHCore(commands.Pull_ml(), commands.Pull_w())
+			} else {
+				shared.AuthMessage()
+			}
 		},
 	}
 )

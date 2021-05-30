@@ -15,7 +15,7 @@ import (
 	"github.com/secman-team/gh-api/pkg/cmdutil"
 	"github.com/mgutz/ansi"
 	"github.com/spf13/cobra"
-	"github.com/secman-team/secman/tools/other"
+	"github.com/secman-team/secman/tools/shared"
 )
 
 var (
@@ -81,7 +81,7 @@ func mainRun() exitCode {
 			return exitCancel
 		}
 
-		other.PrintError(stderr, err, cmd, hasDebug)
+		shared.PrintError(stderr, err, cmd, hasDebug)
 
 		var httpErr api.HTTPError
 		if errors.As(err, &httpErr) && httpErr.StatusCode == 401 {

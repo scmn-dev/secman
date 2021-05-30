@@ -5,7 +5,7 @@ go 1.11
 require (
 	github.com/AlecAivazis/survey/v2 v2.2.12
 	github.com/MakeNowJust/heredoc v1.0.0
-	github.com/abdfnx/git_config v0.0.31
+	github.com/abdfnx/git_config v0.0.32
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.13.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d

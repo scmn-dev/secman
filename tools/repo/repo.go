@@ -31,10 +31,12 @@ func resolvedBaseRepo(f *cmdutil.Factory) func() (ghrepo.Interface, error) {
 		if err != nil {
 			return nil, err
 		}
+
 		repoContext, err := context.ResolveRemotesToRepos(remotes, apiClient, "")
 		if err != nil {
 			return nil, err
 		}
+
 		baseRepo, err := repoContext.BaseRepo(f.IOStreams)
 		if err != nil {
 			return nil, err
