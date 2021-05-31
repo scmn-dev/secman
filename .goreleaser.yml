@@ -34,7 +34,7 @@ archives:
   - id: nix
     builds: [ macos, linux ]
     <<: &archive_defaults
-      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
+      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}"
 
     wrap_in_directory: true
     replacements:
