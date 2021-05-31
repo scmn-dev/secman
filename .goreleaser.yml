@@ -6,7 +6,7 @@ env_files:
 release:
   prerelease: auto
   draft: true
-  name_template: "Secman {{ .Version }}"
+  name_template: "Secman v{{ .Version }}"
 
 before:
   hooks:
@@ -17,7 +17,7 @@ builds:
       binary: bin/secman
       main: ./core
       ldflags:
-        - -X main.version={{ .Version }}
+        - -X main.version=v{{ .Version }}
         - -X main.versionDate=(31-05-2021)
 
     id: macos
@@ -40,11 +40,11 @@ archives:
   - id: nix
     builds: [ macos, linux ]
     <<: &archive_defaults
-      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Version }}_x64"
+      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_x64"
 
     wrap_in_directory: true
     replacements:
-      darwin: macOS
+      darwin: macos
     format: zip
     files:
       - LICENSE
