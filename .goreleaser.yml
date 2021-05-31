@@ -1,5 +1,8 @@
 project_name: secman
 
+env_files:
+  github_token: ~/gh-goreleaser-token.txt
+
 release:
   prerelease: auto
   draft: true
