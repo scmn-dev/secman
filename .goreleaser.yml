@@ -1,12 +1,9 @@
 project_name: secman
 
-env_files:
-  github_token: ~/gh-goreleaser-token.txt
-
 release:
   prerelease: auto
   draft: true
-  name_template: "Secman v{{ .Version }}"
+  name_template: "Secman {{ .Version }}"
 
 before:
   hooks:
@@ -17,7 +14,7 @@ builds:
       binary: bin/secman
       main: ./core
       ldflags:
-        - -X main.version=v{{ .Version }}
+        - -X main.version={{ .Version }}
         - -X main.versionDate=(31-05-2021)
 
     id: macos
@@ -27,7 +24,7 @@ builds:
   - <<: *build_defaults
     id: linux
     goos: [ linux ]
-    goarch: [ arm, amd64, arm64 ]
+    goarch: [ amd64, arm64 ]
     env:
       - CGO_ENABLED=0
 
@@ -40,7 +37,7 @@ archives:
   - id: nix
     builds: [ macos, linux ]
     <<: &archive_defaults
-      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}_v{{ .Version }}_x64"
+      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Version }}_{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
 
     wrap_in_directory: true
     replacements:
@@ -63,6 +60,7 @@ nfpms:
     maintainer: Secman
     homepage: https://github.com/secman-team/secman
     bindir: /usr
+    file_name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Arch }}"
     dependencies:
       - git
     description: The Password Manager of your Dreams.
