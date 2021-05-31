@@ -37,7 +37,7 @@ archives:
   - id: nix
     builds: [ macos, linux ]
     <<: &archive_defaults
-      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Version }}_{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
+      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}{{ if .Arm }}{{ .Arm }}{{ end }}"
 
     wrap_in_directory: true
     replacements:
@@ -60,7 +60,7 @@ nfpms:
     maintainer: Secman
     homepage: https://github.com/secman-team/secman
     bindir: /usr
-    file_name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Arch }}"
+    file_name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Arch }}"
     dependencies:
       - git
     description: The Password Manager of your Dreams.
