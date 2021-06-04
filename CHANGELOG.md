@@ -4,7 +4,21 @@
 
 ---
 
-## [[v5.3.62] 2021-06-01](#v5361-2021-06-01)
+## [[v5.3.63] 2021-06-04](#v5363-2021-06-04)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+fix [**#52**](https://github.com/secman-team/secman/issues/52)
+
+## [[v5.3.62] 2021-06-01](#v5362-2021-06-01)
 
 ### Added
 
