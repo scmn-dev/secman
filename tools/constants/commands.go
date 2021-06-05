@@ -231,7 +231,7 @@ func Check_w() string {
 		$c = secman verx
 
 		if ($l -ne $c) {
-			$nr = "there's a new release of secman is avalaible:"
+			$nr = "there's a new release of secman is avalaible: "
 			$up = "to upgrade run "
 			$smu = "sm-upg start"
 
@@ -250,7 +250,7 @@ func Check_ml() string {
 		c=$(secman verx | tr -d \n)
 
 		if [ $l != $c ]; then
-			nr="there's a new release of secman is avalaible:"
+			nr="there's a new release of secman is avalaible: "
 			up="to upgrade run"
 			smu="secman upgrade"
 
