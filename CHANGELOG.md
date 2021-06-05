@@ -8,7 +8,7 @@
 
 ### Added
 
-nothing
+- Add `read` alias for `show` command.
 
 ### Changed
 
@@ -16,7 +16,7 @@ nothing
 
 ### Fixed
 
-fix [**#52**](https://github.com/secman-team/secman/issues/52)
+- Fix [**#52**](https://github.com/secman-team/secman/issues/52)
 
 ## [[v5.3.62] 2021-06-01](#v5362-2021-06-01)
 
