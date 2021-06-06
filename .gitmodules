@@ -6,6 +6,6 @@
 	path = plugins/version-checker
 	url = https://github.com/secman-team/version-checker.git
 
-[submodule "sm-upg"]
-	path = pkg/upgrade/sm-upg
-	url = https://github.com/secman-team/sm-upg.git
+# [submodule "sm-win"]
+# 	path = pkg/upgrade/sm-win
+# 	url = https://github.com/secman-team/sm-win.git
