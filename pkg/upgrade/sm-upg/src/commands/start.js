@@ -1,14 +1,23 @@
 const { Command } = require("@oclif/command");
 const PowerShell = require("powershell");
-const { LOC } = require("../shared");
+const { LOC, Check } = require("../shared");
 
 class StartCommand extends Command {
   async run() {
     let ps = new PowerShell(`
       ${LOC}
-      Remove-Item $loc
 
-      iwr -useb https://cli.secman.dev/install.ps1 | iex
+      ${Check}
+
+      if ($l -ne $c) {
+        Remove-Item -Force -Recurse $loc
+  
+        iwr -useb https://cli.secman.dev/install_upg.ps1 | iex
+
+        Write-Host "secman was upgraded successfully 🎊"
+      } else {
+        Write-Host "secman is already up-to-date and it's the latest release $l"
+      }
     `);
 
     ps.on("output", (data) => {

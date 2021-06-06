@@ -1,14 +1,11 @@
 const { Command } = require("@oclif/command");
 const PowerShell = require("powershell");
+const { Check } = require("../shared");
 
 class FetchCommand extends Command {
   async run() {
     let ps = new PowerShell(`
-      $releases = "https://api.github.com/repos/secman-team/secman/releases"
-
-      $l = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0].tag_name
-
-      $c = secman verx
+      ${Check}
 
       if ($l -ne $c) {
         $nr = "there's a new release of secman is avalaible:"

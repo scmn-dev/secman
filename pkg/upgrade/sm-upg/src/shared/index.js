@@ -22,4 +22,12 @@ const CDCmd = `
   Write-Host "after clear, if you want to restore .secman you can clone it from your private repo in https://github.com/$SM_GH_UN/.secman"
 `;
 
-module.exports = { LOC, LastCheck, MainCode, CDCmd };
+const Check = `
+  $releases = "https://api.github.com/repos/secman-team/secman/releases"
+
+  $l = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0].tag_name
+
+  $c = secman verx
+`;
+
+module.exports = { LOC, LastCheck, MainCode, CDCmd, Check };

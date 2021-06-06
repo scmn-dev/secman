@@ -28,7 +28,7 @@ func Upgrade() string {
 		elif [ $l != $c ]; then
 			sudo rm $smLoc
 
-			curl -fsSL https://cli.secman.dev/install.sh | bash
+			curl -fsSL https://cli.secman.dev/install_upg.sh | bash
 
 			if [ -x "command -v $(secman)" ]; then
 				echo "secman was upgraded successfully 🎊"
