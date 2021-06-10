@@ -142,7 +142,7 @@ func rootHelpFunc(cs *iostreams.ColorScheme, command *cobra.Command, args []stri
 
 	helpEntries = append(helpEntries, helpEntry{"LEARN MORE", `
 Use 'secman <command> <subcommand> --help' for more information about a command.
-Read docs at https://secman.dev/docs`})
+Read docs at https://docs.secman.dev`})
 	if _, ok := command.Annotations["help:feedback"]; ok {
 		helpEntries = append(helpEntries, helpEntry{"FEEDBACK", command.Annotations["help:feedback"]})
 	}
