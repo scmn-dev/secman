@@ -125,7 +125,7 @@ see [installing from source](https://secman.dev/docs/secman/build_from_source)
 
 <img src="https://assets.secman.dev/assets/Sync-Start.svg" />
 
-> see [commands](https://secman.dev/docs/commands)
+> see [commands](https://docs.secman.dev/guides)
 
 ## License
 
@@ -134,6 +134,7 @@ see [installing from source](https://secman.dev/docs/secman/build_from_source)
 ## Our Websites
 
 - [**main website**](https://secman.dev)
+- [**docs website**](https://docs.secman.dev)
 - [**secman cli website**](https://cli.secman.dev)
 - [**changelog website**](https://changelog.secman.dev)
 
