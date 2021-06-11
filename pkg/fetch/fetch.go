@@ -21,7 +21,7 @@ func OS() string {
 
 func FetchSECDIR() {
 	s := spinner.New(spinner.CharSets[36], 100*time.Millisecond)
-	s.Suffix = " ☄ Fetching..."
+	s.Suffix = " 🔗 Fetching..."
 	s.Start()
 
 	err, out, errout := shell.ShellOut(OS())

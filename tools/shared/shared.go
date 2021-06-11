@@ -27,12 +27,16 @@ func opts(f *cmdutil.Factory) ColorScheme {
 	return opts
 }
 
-func AuthMessage() {
-	cs := opts(factory.New()).IO.ColorScheme()
+var cs = opts(factory.New()).IO.ColorScheme()
 
+func AuthMessage() {
 	fmt.Println("You're not authenticated, to authenticate run " + cs.Bold("secman auth login"))
 
 	os.Exit(0)
+}
+
+func RunSMWin() string {
+	return "run " + cs.Bold("sm-win start")
 }
 
 func PrintError(out io.Writer, err error, cmd *cobra.Command, debug bool) {

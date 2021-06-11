@@ -2,10 +2,16 @@ package commands
 
 func Fetch_w() string {
 	return `
-		$lastDir = pwd
-		cd $HOME/.secman
-		git pull
-		cd $lastDir
+		Remove-Item $HOME/.secman -Recurse -Force
+		secman sync fetch-clone
+
+		Write-Host "Fetched Successfully"
+	`
+}
+
+func FetchClone() string {
+	return `
+
 	`
 }
 
@@ -13,6 +19,7 @@ func Fetch_ml() string {
 	return `
 		cd $HOME/.secman
 		git pull
+		echo "Fetched Successfully ✅"
 	`
 }
 

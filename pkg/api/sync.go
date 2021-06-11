@@ -76,6 +76,22 @@ var (
 			}
 		},
 	}
+
+	FetchClone = &cobra.Command{
+		Use:   "pull",
+		Short: PullHelp(),
+		Run: func(cmd *cobra.Command, args []string) {
+			if username != ":username" {
+				if runtime.GOOS == "windows" {
+					shell.PWSLCmd(commands.Clone())
+				} else {
+					fmt.Println("This command isn't avaliable for this platform")
+				}
+			} else {
+				shared.AuthMessage()
+			}
+		},
+	}
 )
 
 func Sync() *cobra.Command {
