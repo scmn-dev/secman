@@ -105,7 +105,7 @@ docker run -it ghcr.io/secman-team/secman
 
 ## Build from source
 
-see [installing from source](https://secman.dev/docs/secman/build_from_source)
+see [building from source](https://docs.secman.dev/docs/contributing/build_from_source) doc.
 
 ## Getting started with secman
 
