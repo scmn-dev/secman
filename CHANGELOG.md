@@ -4,6 +4,23 @@
 
 ---
 
+## [[v5.3.7] 2021-06-20](#v537-2021-06-20)
+
+### Added
+
+- Add Spinner to `upgrade` command.
+
+### Changed
+
+- Change `sm-upg` to `sm-win`.
+- Update Release Message.
+- Change docs url to **https://docs.secman.dev** .
+
+### Fixed
+
+- Fix [**#57**](https://github.com/secman-team/secman/issues/57): **Fetching in windows**.
+- Fix upgrading in windows.
+
 ## [[v5.3.63] 2021-06-04](#v5363-2021-06-04)
 
 ### Added
