@@ -125,7 +125,7 @@ see [building from source](https://docs.secman.dev/docs/contributing/build_from_
 
 <img src="https://assets.secman.dev/assets/Sync-Start.svg" />
 
-> see [commands](https://docs.secman.dev/guides)
+> see [commands](https://docs.secman.dev/docs/guides)
 
 ## License
 
