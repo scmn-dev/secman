@@ -7,7 +7,7 @@ require (
 	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/abdfnx/git_config v0.0.32
 	github.com/atotto/clipboard v0.1.4
-	github.com/briandowns/spinner v1.15.0
+	github.com/briandowns/spinner v1.16.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/secman-team/gh-api v0.2.571
 	github.com/secman-team/shell v0.3.14
