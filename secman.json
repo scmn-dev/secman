@@ -1,0 +1,15 @@
+{
+  "version": "5.3.7",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/secman-team/sm-scoop/releases/download/v5.3.7/secman_windows_v5.3.7_x64-scp.zip",
+      "bin": [
+        "bin/secman.exe"
+      ],
+      "hash": ""
+    }
+  },
+  "homepage": "https://github.com/secman-team/secman",
+  "license": "MIT",
+  "description": "secman via scoop"
+}
