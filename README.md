@@ -85,7 +85,7 @@ brew install secman
 ### Using [Scoop](https://scoop.sh) (Windows)
 
 ```powershell
-scoop bucket add secman https://github.com/secman-team/sm-scoop
+scoop bucket add secman https://github.com/secman-team/secman
 scoop install secman
 ```
 
