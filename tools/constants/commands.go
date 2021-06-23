@@ -240,7 +240,7 @@ func Check_w() string {
 		if ($l -ne $c) {
 			$nr = "there's a new release of secman is avalaible: "
 			$up = "to upgrade run "
-			$smu = "sm-upg start"
+			$smu = "sm-win start"
 
 			Write-Host ""
 			Write-Host -NoNewline $nr -ForegroundColor DarkYellow
