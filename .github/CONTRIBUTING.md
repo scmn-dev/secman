@@ -27,7 +27,7 @@ We'd also love to hear about ideas for new features as issues or discussions.
 
 1. Create a new branch: `git checkout -b my-new-branch-name`
 2. Make sure your changes and new fixes are without errors and bugs.
-3. Create pull request at https://github.com/secman-team/issues
+3. Create pull request at https://github.com/secman-team/secman/pulls
 
 [hw]: https://github.com/secman-team/secman/labels/help%20wanted
 [gfi]: https://github.com/secman-team/secman/labels/good%20first%20issue
