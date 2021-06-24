@@ -18,7 +18,7 @@ func Upgrade() {
 
 	} else {
 		s := spinner.New(spinner.CharSets[9], 100*time.Millisecond)
-		s.Suffix = " 🌠 Upgrading..."
+		s.Suffix = " 🚧 Upgrading..."
 		s.Start()
 
 		shell.ShellCmd(commands.Upgrade())
