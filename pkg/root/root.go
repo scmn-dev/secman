@@ -35,15 +35,6 @@ import (
 var (
 	copyPass bool
 
-	cleanCmd = &cobra.Command{
-		Use:   "clean",
-		Short: "Clean your ~/.secman (delete it).",
-		Run: func(cmd *cobra.Command, args []string) {
-			clean.Clean()
-			checker.Checker()
-		},
-	}
-
 	initCmd = &cobra.Command{
 		Use:   "init",
 		Short: "Initialize your secman vault.",
@@ -192,6 +183,7 @@ one group or all sites that contain a certain word in the group or name.`,
 		},
 	}
 
+	cleanCmd = clean.Clean(nil)
 	syncCmd = sync.Sync()
 	openCmd = open.Open(factory.New(), nil)
 	uninstallCmd  = uni.Uninstall(nil)

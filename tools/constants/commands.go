@@ -121,6 +121,28 @@ func Clean_ml() string {
 	`
 }
 
+func Clean_w_git() string {
+	return `
+		$directoyPath = "$HOME\.secman"
+
+		if (Test-Path -path $directoyPath) {
+			Remove-Item $directoyPath/.git -Recurse -Force
+		}
+
+		if (!(Test-Path -path $directoyPath/.git)) {
+			Write-Host "git was removed"
+		}
+	`
+}
+
+func Clean_ml_git() string {
+	return `
+		#!/bin/bash
+		if [ -d $HOME/.secman/.git ]; then rm -rf $HOME/.secman/.git; fi
+		if ! [ -d $HOME/.secman/.git ]; then echo "git was removed"; fi
+	`
+}
+
 func Start_w() string {
 	return `
 		$username = secman auth get-username
