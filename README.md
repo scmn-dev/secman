@@ -105,7 +105,7 @@ docker run -it ghcr.io/secman-team/secman
 
 ## Build from source
 
-see [building from source](https://docs.secman.dev/docs/contributing/build_from_source) doc.
+see [building from source](https://docs.secman.dev/contributing/build_from_source) doc.
 
 ## Getting started with secman
 
@@ -125,7 +125,7 @@ see [building from source](https://docs.secman.dev/docs/contributing/build_from_
 
 <img src="https://assets.secman.dev/assets/Sync-Start.svg" />
 
-> see [commands](https://docs.secman.dev/docs/guides)
+> see [commands](https://docs.secman.dev/guides)
 
 ## License
 
