@@ -4,6 +4,25 @@
 
 ---
 
+## [[v5.3.71] 2021-07-03](#v5371-2021-07-03)
+
+### Added
+
+- Create `browse` command, this command opens the repository in the browser.
+
+### Changed
+
+- Change `config` command to `gh-config`.
+- Update `gh-api` pkg.
+- Upgrade `clean` command, add two flags to it `--git/-g` & `--all/-a`, and add survey.
+- Change scoop bucket url from **https://github.com/secman-team/sm-scoop** to **https://github.com/secman-team/secman** .
+- Change **windows release message** to `sm-win start`.
+- Update `upgrading` emoji 🚧.
+
+### Fixed
+
+nothing
+
 ## [[v5.3.7] 2021-06-20](#v537-2021-06-20)
 
 ### Added
