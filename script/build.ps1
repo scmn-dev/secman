@@ -24,7 +24,7 @@ if ((Get-Command git -errorAction SilentlyContinue) -or (Get-Command npm -errorA
 }
 
 if (Test-Path -path $LOC) {
-    Write-Host "secman was builded successfully, run secman --help" -ForegroundColor DarkGreen
+    Write-Host "secman was built successfully, run secman --help" -ForegroundColor DarkGreen
 } else {
     Write-Host "Build failed"
 }
