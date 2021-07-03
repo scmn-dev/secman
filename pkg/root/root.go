@@ -26,6 +26,7 @@ import (
 	authx "github.com/secman-team/secman/tools/auth"
 	configx "github.com/secman-team/secman/tools/config"
 	repox "github.com/secman-team/secman/tools/repo"
+	browsex "github.com/secman-team/secman/tools/browse"
 	checker "github.com/secman-team/version-checker"
 
 	"github.com/secman-team/shell"
@@ -192,6 +193,7 @@ one group or all sites that contain a certain word in the group or name.`,
 	repoCmd = repox.Repo(factory.New())
 	authCmd = authx.Auth(factory.New())
 	configCmd = configx.Config(factory.New())
+	browseCmd = browsex.Browse(factory.New())
 )
 
 type Options struct {
@@ -276,6 +278,7 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 	cmd.AddCommand(uninstallCmd)
 	cmd.AddCommand(syncCmd)
 	cmd.AddCommand(openCmd)
+	cmd.AddCommand(browseCmd)
 
 	cmdutil.DisableAuthCheck(cmd)
 
