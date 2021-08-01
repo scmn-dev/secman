@@ -142,6 +142,10 @@ see [building from source](https://docs.secman.dev/contributing/build_from_sourc
 - [**secman cli website**](https://cli.secman.dev)
 - [**changelog website**](https://changelog.secman.dev)
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/secman-team/secman.svg)](https://starchart.cc/secman-team/secman)
+
 [goUrl]: https://goland.org
 [smUrl]: https://secman.dev
 [mitUrl]: https://github.com/secman-team/secman/blob/main/LICENSE
