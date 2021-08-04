@@ -4,6 +4,20 @@
 
 ---
 
+## [[v5.3.72] 2021-08-04](#v5372-2021-08-04)
+
+### Added
+
+- Add `repo browse` command.
+
+### Changed
+
+- Move `browse` command to `repo browse`.
+
+### Fixed
+
+Nothing.
+
 ## [[v5.3.71] 2021-07-03](#v5371-2021-07-03)
 
 ### Added
