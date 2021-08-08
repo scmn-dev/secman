@@ -1,11 +1,11 @@
 [submodule "shell"]
 	path = plugins/shell
-	url = https://github.com/secman-team/shell.git
+	url = https://github.com/scmn-dev/shell.git
 
 [submodule "version-checker"]
 	path = plugins/version-checker
-	url = https://github.com/secman-team/version-checker.git
+	url = https://github.com/scmn-dev/version-checker.git
 
 [submodule "sm-win"]
 	path = pkg/upgrade/sm-win
-	url = https://github.com/secman-team/sm-win.git
+	url = https://github.com/scmn-dev/sm-win.git

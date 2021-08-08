@@ -29,7 +29,7 @@ Nothing.
 - Change `config` command to `gh-config`.
 - Update `gh-api` pkg.
 - Upgrade `clean` command, add two flags to it `--git/-g` & `--all/-a`, and add survey.
-- Change scoop bucket url from **https://github.com/secman-team/sm-scoop** to **https://github.com/secman-team/secman** .
+- Change scoop bucket url from **https://github.com/scmn-dev/sm-scoop** to **https://github.com/scmn-dev/secman** .
 - Change **windows release message** to `sm-win start`.
 - Update `upgrading` emoji 🚧.
 
@@ -51,7 +51,7 @@ nothing
 
 ### Fixed
 
-- Fix [**#57**](https://github.com/secman-team/secman/issues/57): **Fetching in windows**.
+- Fix [**#57**](https://github.com/scmn-dev/secman/issues/57): **Fetching in windows**.
 - Fix upgrading in windows.
 
 ## [[v5.3.63] 2021-06-04](#v5363-2021-06-04)
@@ -66,7 +66,7 @@ nothing
 
 ### Fixed
 
-- Fix [**#52**](https://github.com/secman-team/secman/issues/52)
+- Fix [**#52**](https://github.com/scmn-dev/secman/issues/52)
 
 ## [[v5.3.62] 2021-06-01](#v5362-2021-06-01)
 
@@ -80,7 +80,7 @@ nothing
 
 ### Fixed
 
-fix [**#49**](https://github.com/secman-team/secman/issues/49)
+fix [**#49**](https://github.com/scmn-dev/secman/issues/49)
 
 ## [[v5.3.61] 2021-05-26](#v5361-2021-05-26)
 
@@ -88,7 +88,7 @@ fix [**#49**](https://github.com/secman-team/secman/issues/49)
 
 - Create `-t/--use-template` flag.
 - Add `secman auth get-username` command.
-- Add user checker [**#42**](https://github.com/secman-team/secman/issues/42).
+- Add user checker [**#42**](https://github.com/scmn-dev/secman/issues/42).
 
 ### Changed
 
@@ -103,8 +103,8 @@ fix [**#49**](https://github.com/secman-team/secman/issues/49)
 
 ### Fixed
 
-- Fix [**#43**](https://github.com/secman-team/secman/issues/43)
-- Fix [**#42**](https://github.com/secman-team/secman/issues/42)
+- Fix [**#43**](https://github.com/scmn-dev/secman/issues/43)
+- Fix [**#42**](https://github.com/scmn-dev/secman/issues/42)
 
 ## [[v5.3.6] 2021-05-18](#v536-2021-05-18)
 
@@ -139,14 +139,14 @@ nothing
 
 ### Changed
 
-- ### **Make Secman is self-reliant** [#32](https://github.com/secman-team/secman/issues/32) (the most important change), The author of the idea: @abdfnx
+- ### **Make Secman is self-reliant** [#32](https://github.com/scmn-dev/secman/issues/32) (the most important change), The author of the idea: @abdfnx
 - Change Secman Repo Form
 - Change Git Config
-- Move Our website from **next.js** to [**docusaurus**](https://docusaurus.io) [secman.dev#45](https://github.com/secman-team/secman.dev/issues/45), The author of the idea: @Timothee
+- Move Our website from **next.js** to [**docusaurus**](https://docusaurus.io) [secman.dev#45](https://github.com/scmn-dev/secman.dev/issues/45), The author of the idea: @Timothee
 
 ### Fixed
 
-- Fix version checks in windows [#29](https://github.com/secman-team/secman/issues/29)
+- Fix version checks in windows [#29](https://github.com/scmn-dev/secman/issues/29)
 
 ## [[v5.3.4] 2021-04-19](#v534-2021-04-19)
 
@@ -154,7 +154,7 @@ nothing
 
 - Add Secman Docker Image, creator: @abdfnx
   * in [Docker Hub](https://hub.docker.com/r/smcr/secman)
-  * in [Github Packages](https://github.com/orgs/secman-team/packages/container/package/secman)
+  * in [Github Packages](https://github.com/orgs/scmn-dev/packages/container/package/secman)
 - Add Github Commands, creator: @abdfnx
   * Auth
     - Login
@@ -186,7 +186,7 @@ nothing
 ### Added
 
 - Create imgs website **https://imgs-secman.web.app**, creator: @abdfnx
-- Add [version-checker](https://github.com/secman-team/version-checker) package, creator: @abdfnx
+- Add [version-checker](https://github.com/scmn-dev/version-checker) package, creator: @abdfnx
 
 ### Changed
 
@@ -209,7 +209,7 @@ nothing
 
 - Create / command (cn), creator @iMRxM7mD
 - Configure upgrade command for windows, creator @abdfnx
-- Create deps website **https://secman-team.github.io**, creator: @Timothee
+- Create deps website **https://scmn-dev.github.io**, creator: @Timothee
 - Create uninstall command, creator: @abdfnx
 - When install secman in windows, now it's creates env path variable, creator: @abdfnx
 - Add special build for scoop, creator: @abdfnx
@@ -249,9 +249,9 @@ nothing
 - Create `clean` command
 
 - In _sm-win_ folder
-  * Add [**vx.ps1**](https://github.com/secman-team/sm-win/blob/code/vx.ps1)
-  * Add [**ct.ps1**](https://github.com/secman-team/sm-win/blob/code/ct.ps1)
-  * Add [**secman-sync.ps1**](https://github.com/secman-team/sm-win/blob/code/secman-sync.ps1)
+  * Add [**vx.ps1**](https://github.com/scmn-dev/sm-win/blob/code/vx.ps1)
+  * Add [**ct.ps1**](https://github.com/scmn-dev/sm-win/blob/code/ct.ps1)
+  * Add [**secman-sync.ps1**](https://github.com/scmn-dev/sm-win/blob/code/secman-sync.ps1)
 
 ### Changed
 
@@ -373,17 +373,17 @@ syncing...
 
 - Finish from `vm` command
 - Finish from `backup` command
-- Add [Dockerfile](https://github.com/secman-team/secman/blob/main/api/vm/Dockerfile) for `vm`
+- Add [Dockerfile](https://github.com/scmn-dev/secman/blob/main/api/vm/Dockerfile) for `vm`
 - Create _**docs**_ folder in secman repo
-- Create **[secman-team](https://github.com/secman-team)** org
+- Create **[scmn-dev](https://github.com/scmn-dev)** org
 - Add **.secman.yml**
 - Create builds files
 
 ### Changed
 
-- MV installer files to another repo: [install repo](https://github.com/secman-team/install)
+- MV installer files to another repo: [install repo](https://github.com/scmn-dev/install)
 - Change secman logo [<img src=".github/assets/icon.svg" align="center" width="15">](#)
-- Transfer secman from `abdfnx/secman` to `secman-team/secman`
+- Transfer secman from `abdfnx/secman` to `scmn-dev/secman`
 - Update README.md
 
 ### Fixed

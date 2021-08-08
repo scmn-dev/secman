@@ -59,7 +59,7 @@ archives:
 nfpms:
   - license: MIT
     maintainer: Secman
-    homepage: https://github.com/secman-team/secman
+    homepage: https://github.com/scmn-dev/secman
     bindir: /usr
     file_name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Arch }}"
     dependencies:

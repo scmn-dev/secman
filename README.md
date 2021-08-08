@@ -6,20 +6,20 @@
    <img src="https://assets.secman.dev/assets/Secman.svg" />
 </p>
 
-[![RELEASE](https://img.shields.io/github/v/release/secman-team/secman?style=for-the-badge)](https://github.com/secman-team/secman/releases/latest)
+[![RELEASE](https://img.shields.io/github/v/release/scmn-dev/secman?style=for-the-badge)](https://github.com/scmn-dev/secman/releases/latest)
 
 ## Code Status
 
-[![CodeQL](https://img.shields.io/github/workflow/status/secman-team/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/codeql.yml)
-[![Go](https://img.shields.io/github/workflow/status/secman-team/secman/Go?color=blue&label=Go%20Build&logo=go&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/go.yml)
-[![Secman CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/secman.yml)
-[![Secman Docker CI](https://img.shields.io/github/workflow/status/secman-team/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)](https://github.com/secman-team/secman/actions/workflows/docker.yml)
-[![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/secman-team/secman)
+[![CodeQL](https://img.shields.io/github/workflow/status/scmn-dev/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/codeql.yml)
+[![Go](https://img.shields.io/github/workflow/status/scmn-dev/secman/Go?color=blue&label=Go%20Build&logo=go&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/go.yml)
+[![Secman CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/secman.yml)
+[![Secman Docker CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/docker.yml)
+[![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/scmn-dev/secman)
 ![Codacy grade](https://img.shields.io/codacy/grade/d222c27c970f4dc086b77e83809bffde?color=blue&logo=codacy&style=for-the-badge)
 
 > Open In [**VSCode**](https://code.visualstudio.com)
 
-[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/secman-team/secman)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/scmn-dev/secman)
 
 > `secman` is a password manager can store, retrieves, generates, synchronizes passwords and save files securely, and is written in _**go**_! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. It also supports encrypting arbitrary files.
 
@@ -82,14 +82,14 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
 ```bash
-brew tap secman-team/smx
+brew tap scmn-dev/smx
 brew install secman
 ```
 
 ### Using [Scoop](https://scoop.sh) (Windows)
 
 ```powershell
-scoop bucket add secman https://github.com/secman-team/secman
+scoop bucket add secman https://github.com/scmn-dev/secman
 scoop install secman
 ```
 
@@ -104,7 +104,7 @@ docker run -it smcr/secman
 > GitHub Packages
 
 ```bash
-docker run -it ghcr.io/secman-team/secman
+docker run -it ghcr.io/scmn-dev/secman
 ```
 
 ## Build from source
@@ -144,8 +144,8 @@ see [building from source](https://docs.secman.dev/contributing/build_from_sourc
 
 ## Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/secman-team/secman.svg)](https://starchart.cc/secman-team/secman)
+[![Stargazers over time](https://starchart.cc/scmn-dev/secman.svg)](https://starchart.cc/scmn-dev/secman)
 
 [goUrl]: https://goland.org
 [smUrl]: https://secman.dev
-[mitUrl]: https://github.com/secman-team/secman/blob/main/LICENSE
+[mitUrl]: https://github.com/scmn-dev/secman/blob/main/LICENSE
