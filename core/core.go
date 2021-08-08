@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/secman-team/secman/pkg/root"
+	"github.com/scmn-dev/secman/pkg/root"
 
 	surveyCore "github.com/AlecAivazis/survey/v2/core"
 	"github.com/AlecAivazis/survey/v2/terminal"
-	"github.com/secman-team/gh-api/api"
-	"github.com/secman-team/gh-api/core/ghrepo"
-	"github.com/secman-team/gh-api/pkg/cmd/factory"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
+	"github.com/scmn-dev/gh-api/api"
+	"github.com/scmn-dev/gh-api/core/ghrepo"
+	"github.com/scmn-dev/gh-api/pkg/cmd/factory"
+	"github.com/scmn-dev/gh-api/pkg/cmdutil"
 	"github.com/mgutz/ansi"
 	"github.com/spf13/cobra"
-	"github.com/secman-team/secman/tools/shared"
+	"github.com/scmn-dev/secman/tools/shared"
 )
 
 var (

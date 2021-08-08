@@ -5,9 +5,9 @@ import (
 	"time"
 	"runtime"
 
-	"github.com/secman-team/shell"
-	commands "github.com/secman-team/secman/tools/constants"
-	"github.com/secman-team/secman/tools/shared"
+	"github.com/scmn-dev/shell"
+	commands "github.com/scmn-dev/secman/tools/constants"
+	"github.com/scmn-dev/secman/tools/shared"
 
 	"github.com/briandowns/spinner"
 )

@@ -12,7 +12,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/secman-team/secman/pkg/pio"
+	"github.com/scmn-dev/secman/pkg/pio"
 	"golang.org/x/crypto/curve25519"
 	"golang.org/x/crypto/nacl/box"
 	"golang.org/x/crypto/nacl/secretbox"

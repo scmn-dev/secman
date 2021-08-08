@@ -3,7 +3,7 @@ package gen
 import (
 	"log"
 
-	"github.com/secman-team/secman/pkg/pc"
+	"github.com/scmn-dev/secman/pkg/pc"
 )
 
 var (

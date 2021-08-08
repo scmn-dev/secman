@@ -1,8 +1,8 @@
 package uni
 
 import (
-	"github.com/secman-team/shell"
-	commands "github.com/secman-team/secman/tools/constants"
+	"github.com/scmn-dev/shell"
+	commands "github.com/scmn-dev/secman/tools/constants"
 	"github.com/spf13/cobra"
 )
 

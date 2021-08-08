@@ -8,11 +8,11 @@ import (
 
 	"github.com/MakeNowJust/heredoc"
 	"github.com/briandowns/spinner"
-	"github.com/secman-team/shell"
+	"github.com/scmn-dev/shell"
 	"github.com/spf13/cobra"
-	commands "github.com/secman-team/secman/tools/constants"
+	commands "github.com/scmn-dev/secman/tools/constants"
 	"github.com/abdfnx/git_config"
-	"github.com/secman-team/secman/tools/shared"
+	"github.com/scmn-dev/secman/tools/shared"
 )
 
 var username = git_config.GitConfig()

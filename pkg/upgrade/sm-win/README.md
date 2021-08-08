@@ -23,7 +23,7 @@ $ sm-win COMMAND
 running command...
 $ sm-win (-v | --version | version)
 
-@secman/sm-win/0.2.31 win32-x64
+@secman/sm-win/0.2.32 win32-x64
 $ sm-win --help [COMMAND]
 USAGE
   $ sm-win COMMAND

@@ -1,4 +1,4 @@
-l = `verx secman-team/secman -l`
+l = `verx scmn-dev/secman -l`
 c = `secman verx`
 
 if l == c

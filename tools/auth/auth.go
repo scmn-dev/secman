@@ -1,8 +1,8 @@
 package authx
 
 import (
-	aCmd "github.com/secman-team/gh-api/pkg/cmd/auth"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
+	aCmd "github.com/scmn-dev/gh-api/pkg/cmd/auth"
+	"github.com/scmn-dev/gh-api/pkg/cmdutil"
 	"github.com/spf13/cobra"
 )
 

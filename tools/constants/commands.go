@@ -25,7 +25,7 @@ func Fetch_ml() string {
 
 func Upgrade() string {
 	return `
-		l=$(curl --silent "https://api.github.com/repos/secman-team/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+		l=$(curl --silent "https://api.github.com/repos/scmn-dev/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 		c=$(secman verx | tr -d \n)
 		smLoc="/usr/local/bin/secman*"
 
@@ -248,12 +248,12 @@ func Clone_check_ml() string {
 }
 
 func Clone_Template() string {
-	return "git clone https://github.com/secman-team/.secman.ex $HOME/.secman"
+	return "git clone https://github.com/scmn-dev/.secman.ex $HOME/.secman"
 }
 
 func Check_w() string {
 	return `
-		$releases = "https://api.github.com/repos/secman-team/secman/releases"
+		$releases = "https://api.github.com/repos/scmn-dev/secman/releases"
 
 		$l = (Invoke-WebRequest -Uri $releases -UseBasicParsing | ConvertFrom-Json)[0].tag_name
 
@@ -275,7 +275,7 @@ func Check_w() string {
 
 func Check_ml() string {
 	return `
-		l=$(curl --silent "https://api.github.com/repos/secman-team/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+		l=$(curl --silent "https://api.github.com/repos/scmn-dev/secman/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 		c=$(secman verx | tr -d \n)
 
 		if [ $l != $c ]; then

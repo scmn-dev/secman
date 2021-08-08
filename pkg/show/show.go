@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/secman-team/secman/pkg/pc"
-	"github.com/secman-team/secman/pkg/pio"
+	"github.com/scmn-dev/secman/pkg/pc"
+	"github.com/scmn-dev/secman/pkg/pio"
 )
 
 type searchType int

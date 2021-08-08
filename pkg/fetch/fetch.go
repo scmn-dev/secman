@@ -7,8 +7,8 @@ import (
 	"runtime"
 
 	"github.com/briandowns/spinner"
-	"github.com/secman-team/shell"
-	commands "github.com/secman-team/secman/tools/constants"
+	"github.com/scmn-dev/shell"
+	commands "github.com/scmn-dev/secman/tools/constants"
 )
 
 func OS() string {

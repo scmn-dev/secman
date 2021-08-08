@@ -1,8 +1,8 @@
 package configx
 
 import (
-	configCmd "github.com/secman-team/gh-api/pkg/cmd/config"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
+	configCmd "github.com/scmn-dev/gh-api/pkg/cmd/config"
+	"github.com/scmn-dev/gh-api/pkg/cmdutil"
 	"github.com/spf13/cobra"
 )
 

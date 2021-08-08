@@ -9,27 +9,27 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/spf13/cobra"
 
-	"github.com/secman-team/gh-api/pkg/cmd/factory"
-	"github.com/secman-team/gh-api/pkg/cmdutil"
-	sync "github.com/secman-team/secman/pkg/api"
-	"github.com/secman-team/secman/pkg/clean"
-	"github.com/secman-team/secman/pkg/edit"
-	"github.com/secman-team/secman/pkg/fetch"
-	"github.com/secman-team/secman/pkg/open"
-	"github.com/secman-team/secman/pkg/gen"
-	"github.com/secman-team/secman/pkg/initialize"
-	"github.com/secman-team/secman/pkg/insert"
-	"github.com/secman-team/secman/pkg/pio"
-	"github.com/secman-team/secman/pkg/show"
-	upg "github.com/secman-team/secman/pkg/upgrade"
-	uni "github.com/secman-team/secman/pkg/uninstall"
-	authx "github.com/secman-team/secman/tools/auth"
-	configx "github.com/secman-team/secman/tools/config"
-	repox "github.com/secman-team/secman/tools/repo"
-	checker "github.com/secman-team/version-checker"
+	"github.com/scmn-dev/gh-api/pkg/cmd/factory"
+	"github.com/scmn-dev/gh-api/pkg/cmdutil"
+	sync "github.com/scmn-dev/secman/pkg/api"
+	"github.com/scmn-dev/secman/pkg/clean"
+	"github.com/scmn-dev/secman/pkg/edit"
+	"github.com/scmn-dev/secman/pkg/fetch"
+	"github.com/scmn-dev/secman/pkg/open"
+	"github.com/scmn-dev/secman/pkg/gen"
+	"github.com/scmn-dev/secman/pkg/initialize"
+	"github.com/scmn-dev/secman/pkg/insert"
+	"github.com/scmn-dev/secman/pkg/pio"
+	"github.com/scmn-dev/secman/pkg/show"
+	upg "github.com/scmn-dev/secman/pkg/upgrade"
+	uni "github.com/scmn-dev/secman/pkg/uninstall"
+	authx "github.com/scmn-dev/secman/tools/auth"
+	configx "github.com/scmn-dev/secman/tools/config"
+	repox "github.com/scmn-dev/secman/tools/repo"
+	checker "github.com/scmn-dev/version-checker"
 
-	"github.com/secman-team/shell"
-	commands "github.com/secman-team/secman/tools/constants"
+	"github.com/scmn-dev/shell"
+	commands "github.com/scmn-dev/secman/tools/constants"
 )
 
 var (
@@ -215,7 +215,7 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 		`),
 		Annotations: map[string]string{
 			"help:feedback": heredoc.Doc(`
-				Open an issue at https://github.com/secman-team/secman/issues
+				Open an issue at https://github.com/scmn-dev/secman/issues
 			`),
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
@@ -229,7 +229,7 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 		Short: "Print the version of your secman binary.",
 		Run: func(cmd *cobra.Command, args []string) {
 			fmt.Println("secman " + version + " " + versionDate)
-			fmt.Println("https://github.com/secman-team/secman/releases/tag/" + version)
+			fmt.Println("https://github.com/scmn-dev/secman/releases/tag/" + version)
 			checker.Checker()
 		},
 	}

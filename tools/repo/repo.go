@@ -1,12 +1,12 @@
 package repox
 
 import (
-	"github.com/secman-team/gh-api/pkg/cmdutil"
+	"github.com/scmn-dev/gh-api/pkg/cmdutil"
 	"github.com/spf13/cobra"
-	"github.com/secman-team/gh-api/core/ghrepo"
-	"github.com/secman-team/gh-api/api"
-	"github.com/secman-team/gh-api/context"
-	rCmd "github.com/secman-team/gh-api/pkg/cmd/repo"
+	"github.com/scmn-dev/gh-api/core/ghrepo"
+	"github.com/scmn-dev/gh-api/api"
+	"github.com/scmn-dev/gh-api/context"
+	rCmd "github.com/scmn-dev/gh-api/pkg/cmd/repo"
 )
 
 func Repo(f *cmdutil.Factory) *cobra.Command {

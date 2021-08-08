@@ -11,7 +11,7 @@ on:
 
 env:
   DOCKERHUB_IMAGE: smcr/secman
-  GHCR_IMAGE: ghcr.io/secman-team/secman
+  GHCR_IMAGE: ghcr.io/scmn-dev/secman
 
 jobs:
   # DockerHub
@@ -30,7 +30,7 @@ jobs:
       - name: Run Build
         run: |
           docker pull $DOCKERHUB_IMAGE:latest
-          git clone https://github.com/secman-team/secman-docker
+          git clone https://github.com/scmn-dev/secman-docker
           docker build -t $DOCKERHUB_IMAGE --cache-from $DOCKERHUB_IMAGE:latest --file ./secman-docker/Dockerfile .
           docker push $DOCKERHUB_IMAGE
 
@@ -60,7 +60,7 @@ jobs:
       - name: Run Build
         run: |
           docker pull $GHCR_IMAGE:latest
-          git clone https://github.com/secman-team/secman-docker
+          git clone https://github.com/scmn-dev/secman-docker
           docker build -t $GHCR_IMAGE --cache-from $GHCR_IMAGE:latest --file ./secman-docker/Dockerfile .
           docker push $GHCR_IMAGE
 
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     container:
-      image: ghcr.io/secman-team/secman:latest
+      image: ghcr.io/scmn-dev/secman:latest
 
     steps:
       - name: Run Secman in Github Docker Container

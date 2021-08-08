@@ -9,7 +9,7 @@ on:
 
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-  CLONE_DOT_SECMAN: git clone https://github.com/secman-team/.secman.ex
+  CLONE_DOT_SECMAN: git clone https://github.com/scmn-dev/.secman.ex
 
 jobs:
   ubuntu:
@@ -64,7 +64,7 @@ jobs:
 
       - name: Build secman (MacOS)
         run: |
-          git clone https://github.com/secman-team/secman
+          git clone https://github.com/scmn-dev/secman
           cd secman
           make
           make setup
@@ -95,7 +95,7 @@ jobs:
 
       - name: Clone .secman (ex folder)
         shell: powershell
-        run: git clone https://github.com/secman-team/.secman.ex C:\Users\runneradmin\.secman
+        run: git clone https://github.com/scmn-dev/.secman.ex C:\Users\runneradmin\.secman
 
       - name: Run secman
         run: secman
