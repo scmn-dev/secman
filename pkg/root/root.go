@@ -214,7 +214,7 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 			secman find new-password 
 		`),
 		Annotations: map[string]string{
-			"help:feedback": heredoc.Doc(`
+			"help:tellus": heredoc.Doc(`
 				Open an issue at https://github.com/scmn-dev/secman/issues
 			`),
 		},
