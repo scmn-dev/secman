@@ -10,8 +10,8 @@ require (
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.16.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
-	github.com/scmn-dev/gh-api v0.3.31
-	github.com/scmn-dev/version-checker v0.1.42
+	// github.com/scmn-dev/gh-api v0.3.31
+	github.com/scmn-dev/version-checker v0.1.43
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
