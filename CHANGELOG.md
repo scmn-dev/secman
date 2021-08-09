@@ -4,6 +4,22 @@
 
 ---
 
+## [[v5.3.73] 2021-08-09](#v5372-2021-08-09)
+
+### Added
+
+- Add `repo sync` command.
+- Add New Features to `gh-api`.
+
+### Changed
+
+- Change Secman Organization to `scmn-dev`.
+- Bump Versions of our packages.
+
+### Fixed
+
+- Fix `sm-win` issues in windows.
+
 ## [[v5.3.72] 2021-08-04](#v5372-2021-08-04)
 
 ### Added
