@@ -5,7 +5,7 @@ import (
 	"time"
 	"runtime"
 
-	"github.com/scmn-dev/shell"
+	"github.com/abdfnx/shell"
 	commands "github.com/scmn-dev/secman/tools/constants"
 	"github.com/scmn-dev/secman/tools/shared"
 

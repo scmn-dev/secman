@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	commands "github.com/scmn-dev/secman/tools/constants"
-	"github.com/scmn-dev/shell"
+	"github.com/abdfnx/shell"
 	checker "github.com/scmn-dev/version-checker"
 	"github.com/spf13/cobra"
 	survey "github.com/AlecAivazis/survey/v2"

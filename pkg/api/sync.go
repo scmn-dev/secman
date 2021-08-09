@@ -8,7 +8,7 @@ import (
 
 	"github.com/MakeNowJust/heredoc"
 	"github.com/briandowns/spinner"
-	"github.com/scmn-dev/shell"
+	"github.com/abdfnx/shell"
 	"github.com/spf13/cobra"
 	commands "github.com/scmn-dev/secman/tools/constants"
 	"github.com/abdfnx/git_config"

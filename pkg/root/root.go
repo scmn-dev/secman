@@ -28,7 +28,7 @@ import (
 	repox "github.com/scmn-dev/secman/tools/repo"
 	checker "github.com/scmn-dev/version-checker"
 
-	"github.com/scmn-dev/shell"
+	"github.com/abdfnx/shell"
 	commands "github.com/scmn-dev/secman/tools/constants"
 )
 
