@@ -82,7 +82,7 @@ Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 ### Using [Homebrew](https://brew.sh) (macOS and Linux)
 
 ```bash
-brew tap scmn-dev/smx
+brew tap scmn-dev/secman
 brew install secman
 ```
 
