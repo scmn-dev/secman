@@ -135,9 +135,9 @@ see [building from source](https://docs.secman.dev/contributing/build_from_sourc
 
 [secman][smUrl] is licensed under the terms of [MIT][mitUrl] License
 
-## Our Websites
+## Some Resources
 
-- [**main website**](https://secman.dev)
+- [**secman website**](https://secman.dev)
 - [**docs website**](https://docs.secman.dev)
 - [**secman cli website**](https://cli.secman.dev)
 - [**changelog website**](https://changelog.secman.dev)
