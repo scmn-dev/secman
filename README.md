@@ -25,10 +25,10 @@
 
 ## Featurs
 
-- Not GPG cored.
-- It uses a master password to securely store your passwords.
-- It syncs your passwords.
-- Supports encrypting arbitrary files.
+- **Not GPG cored**.
+- **It uses a master password to securely store your passwords**.
+- **It syncs your passwords**.
+- **Supports encrypting arbitrary files**.
 
 ## Forms
 
@@ -95,17 +95,21 @@ scoop install secman
 
 ### Via [Docker](https://docker.com)
 
-> DockerHub
+> `secman cli` image
+
+```bash
+docker run -it smcr/secman-cli
+```
+
+see [**secman cli docs**](https://docker.secman.dev/sm-cli)
+
+> `secman container` image
 
 ```bash
 docker run -it smcr/secman
 ```
 
-> GitHub Packages
-
-```bash
-docker run -it ghcr.io/scmn-dev/secman
-```
+see [**secman container docs**](https://docker.secman.dev/sm-container)
 
 ## Build from source
 

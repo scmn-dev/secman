@@ -1,6 +1,6 @@
 [submodule "shell"]
 	path = plugins/shell
-	url = https://github.com/scmn-dev/shell.git
+	url = https://github.com/abdfnx/shell.git
 
 [submodule "version-checker"]
 	path = plugins/version-checker
