@@ -71,3 +71,19 @@ nfpms:
     contents:
       - src: "./share/man/man1/secman.1"
         dst: "/usr/share/man/man1/secman.1.gz"
+ 
+ dockers:
+  - goos: linux
+    goarch: amd64
+    ids:
+      - secman
+      - secman-linux
+    image_templates:
+      - "smcr/secman-cli:latest"
+      - "smcr/secman-cli:{{ .Tag }}"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version=v{{.Version}}"
