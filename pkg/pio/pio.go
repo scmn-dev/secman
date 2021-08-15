@@ -65,6 +65,7 @@ func PassFileDirExists() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+
 	dirInfo, err := os.Stat(d)
 	if err == nil {
 		if dirInfo.IsDir() {
@@ -75,6 +76,7 @@ func PassFileDirExists() (bool, error) {
 			return false, nil
 		}
 	}
+
 	return false, err
 }
 
@@ -85,6 +87,7 @@ func PassDirExists() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+
 	dirInfo, err := os.Stat(d)
 	if err == nil {
 		if !dirInfo.IsDir() {
@@ -95,6 +98,7 @@ func PassDirExists() (bool, error) {
 			return false, nil
 		}
 	}
+
 	return false, err
 }
 
@@ -109,6 +113,7 @@ func PassConfigExists() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+
 	return true, nil
 }
 
@@ -119,11 +124,13 @@ func SitesVaultExists() (bool, error) {
 	if err != nil {
 		return false, err
 	}
+
 	sitesFilePath := filepath.Join(c, SiteFileName)
 	_, err = os.Stat(sitesFilePath)
 	if err != nil {
 		return false, err
 	}
+
 	return true, nil
 }
 
@@ -132,6 +139,7 @@ func GetHomeDir() (d string, err error) {
 	if err == nil {
 		d = usr.HomeDir
 	}
+
 	return
 }
 
@@ -144,6 +152,7 @@ func GetPassDir() (d string, err error) {
 			d = filepath.Join(home, ".secman")
 		}
 	}
+
 	return
 }
 
@@ -153,6 +162,7 @@ func GetConfigPath() (p string, err error) {
 	if err == nil {
 		p = filepath.Join(d, ConfigFileName)
 	}
+
 	return
 }
 
@@ -163,6 +173,7 @@ func GetEncryptedFilesDir() (p string, err error) {
 	if err == nil {
 		p = filepath.Join(d, EncryptedFileDir)
 	}
+
 	return
 }
 
@@ -172,6 +183,7 @@ func GetSitesFile() (d string, err error) {
 	if err == nil {
 		d = filepath.Join(p, SiteFileName)
 	}
+
 	return
 }
 
@@ -185,18 +197,21 @@ func (s *SiteInfo) AddFile(fileBytes []byte, filename string) error {
 	if err != nil {
 		return err
 	}
+
 	if !fileDirExists {
 		err = os.Mkdir(encFileDir, 0700)
 		if err != nil {
 			log.Fatalf("Could not create secman encrypted file dir: %s", err.Error())
 		}
 	}
+	// Make sure that the file doesn't already exist.
 	encFilePath := filepath.Join(encFileDir, filename)
 	dir, _ := filepath.Split(encFilePath)
 	err = os.MkdirAll(dir, 0700)
 	if err != nil {
 		log.Fatalf("Could not create subdirectory: %s", err.Error())
 	}
+
 	err = ioutil.WriteFile(encFilePath, fileBytes, 0666)
 	if err != nil {
 		return err
@@ -214,6 +229,7 @@ func (s *SiteInfo) AddSite() (err error) {
 			return errors.New("Could not add site with duplicate name")
 		}
 	}
+
 	siteFile = append(siteFile, *s)
 	return UpdateVault(siteFile)
 }
@@ -224,6 +240,7 @@ func GetVault() (s SiteFile) {
 	if err != nil {
 		log.Fatalf("Could not get pass dir: %s", err.Error())
 	}
+
 	siteFileContents, err := ioutil.ReadFile(si)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -231,10 +248,12 @@ func GetVault() (s SiteFile) {
 		}
 		log.Fatalf("Could not read site file: %s", err.Error())
 	}
+
 	err = json.Unmarshal(siteFileContents, &s)
 	if err != nil {
 		log.Fatalf("Could not unmarshal site info: %s", err.Error())
 	}
+
 	return
 }
 
@@ -244,15 +263,18 @@ func GetSiteFileBytes() (b []byte) {
 	if err != nil {
 		log.Fatalf("Could not get pass dir: %s", err.Error())
 	}
+
 	f, err := os.OpenFile(si, os.O_RDWR, 0600)
 	if err != nil {
 		log.Fatalf("Could not open site file: %s", err.Error())
 	}
+
 	defer f.Close()
 	b, err = ioutil.ReadAll(f)
 	if err != nil {
 		log.Fatalf("Could not read site file: %s", err.Error())
 	}
+
 	return
 }
 
@@ -262,6 +284,7 @@ func UpdateVault(s SiteFile) (err error) {
 	if err != nil {
 		log.Fatalf("Could not get pass dir: %s", err.Error())
 	}
+
 	siteFileContents, err := json.MarshalIndent(s, "", "\t")
 	if err != nil {
 		log.Fatalf("Could not marshal site info: %s", err.Error())
@@ -281,14 +304,17 @@ func (c *ConfigFile) SaveFile() (err error) {
 			log.Fatalf("pass config could not be found: %s", err.Error())
 		}
 	}
+
 	cBytes, err := json.MarshalIndent(c, "", "\t")
 	if err != nil {
 		log.Fatalf("Could not marshal config file: %s", err.Error())
 	}
+
 	path, err := GetConfigPath()
 	if err != nil {
 		log.Fatalf("Could not get config file path: %s", err.Error())
 	}
+
 	err = ioutil.WriteFile(path, cBytes, 0666)
 	return
 }
@@ -299,10 +325,12 @@ func ReadConfig() (c ConfigFile, err error) {
 	if err != nil {
 		return
 	}
+
 	configBytes, err := ioutil.ReadFile(config)
 	if err != nil {
 		return
 	}
+
 	err = json.Unmarshal(configBytes, &c)
 	return
 }
@@ -315,6 +343,7 @@ func PromptPass(prompt string) (pass string, err error) {
 	if err != nil {
 		panic("Could not get state of terminal: " + err.Error())
 	}
+
 	defer terminal.Restore(fd, oldState)
 
 	// Restore STDIN in the event of a signal interuption

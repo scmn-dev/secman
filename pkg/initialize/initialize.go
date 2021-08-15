@@ -39,10 +39,12 @@ func Init() {
 	if err != nil {
 		log.Fatalf("Could not get pass dir: %s", err.Error())
 	}
+
 	sitesFile, err := pio.GetSitesFile()
 	if err != nil {
 		log.Fatalf("Could not get sites dir: %s", err.Error())
 	}
+
 	configFile, err := pio.GetConfigPath()
 	if err != nil {
 		log.Fatalf("Could not get pass config: %s", err.Error())
@@ -65,6 +67,7 @@ func Init() {
 			fmt.Printf("Created directory to store passwords: %s\n", passDir)
 		}
 	}
+
 	if fileDirExists, err := pio.PassFileDirExists(); err == nil {
 		if !fileDirExists {
 			encryptedFileDir, err := pio.GetEncryptedFilesDir()
@@ -90,6 +93,7 @@ func Init() {
 	if err != nil {
 		log.Fatalf("Could not create secman config: %s", err.Error())
 	}
+
 	config.Close()
 
 	// Handle creation and initialization of the site vault.

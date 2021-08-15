@@ -62,6 +62,7 @@ func Site(path string, copyPassword bool) {
 		fmt.Printf("Site with path %s not found", path)
 		return
 	}
+
 	masterPrivKey := pc.GetMasterKey()
 	showPassword(allSites, masterPrivKey, copyPassword)
 	handleErrors(allErrors)
@@ -84,17 +85,20 @@ func showPassword(allSites map[string][]pio.SiteInfo, masterPrivKey [32]byte, co
 				if err != nil {
 					log.Fatalf("Could not get encrypted file dir when searching vault: %s", err.Error())
 				}
+
 				filePath := filepath.Join(fileDir, site.FileName)
 				f, err := os.OpenFile(filePath, os.O_RDONLY, 0600)
 				if err != nil {
 					log.Fatalf("Could not open encrypted file: %s", err.Error())
 				}
+
 				defer f.Close()
 
 				fileSealed, err := ioutil.ReadAll(f)
 				if err != nil {
 					log.Fatalf("Could not read encrypted file: %s", err.Error())
 				}
+
 				unsealed, err = pc.OpenAsym(fileSealed, &site.PubKey, &masterPrivKey)
 				if err != nil {
 					log.Fatalf("Could not decrypt file bytes: %s", err.Error())
@@ -107,6 +111,7 @@ func showPassword(allSites map[string][]pio.SiteInfo, masterPrivKey [32]byte, co
 					continue
 				}
 			}
+
 			if copyPassword {
 				pio.ToClipboard(string(unsealed))
 			} else {
@@ -130,6 +135,7 @@ func showResults(allSites map[string][]pio.SiteInfo) {
 				if group == "" {
 					sitePrefix = ""
 				}
+
 				preName = sitePrefix + regPrefix
 				if siteCounter == len(siteList) {
 					preName = sitePrefix + lastPrefix
@@ -145,9 +151,11 @@ func showResults(allSites map[string][]pio.SiteInfo) {
 					fmt.Println(preGroup + group)
 				}
 			}
+
 			fmt.Printf("%s%s\n", preName, site.Name)
 			siteCounter++
 		}
+
 		counter++
 	}
 }
@@ -182,6 +190,7 @@ func SearchAll(st searchType, searchFor string) (allSites map[string][]pio.SiteI
 		if slashIndex > 0 {
 			group = string(s.Name[:slashIndex])
 		}
+
 		name := s.Name[slashIndex+1:]
 		pass := s.PassSealed
 		pubKey := s.PubKey
@@ -194,6 +203,7 @@ func SearchAll(st searchType, searchFor string) (allSites map[string][]pio.SiteI
 			IsFile:     isFile,
 			FileName:   filename,
 		}
+
 		if st == One {
 			if name == searchFor || fmt.Sprintf("%s/%s", group, name) == searchFor {
 				return map[string][]pio.SiteInfo{
@@ -216,5 +226,6 @@ func SearchAll(st searchType, searchFor string) (allSites map[string][]pio.SiteI
 			}
 		}
 	}
+
 	return
 }

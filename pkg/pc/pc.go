@@ -75,6 +75,7 @@ func Seal(key *[32]byte, message []byte) ([]byte, error) {
 	if _, err := rand.Read(nonce[:]); err != nil {
 		return nil, err
 	}
+
 	return secretbox.Seal(nonce[:], message, &nonce, key), nil
 }
 
@@ -86,6 +87,7 @@ func SealAsym(message []byte, pub *[32]byte, priv *[32]byte) (out []byte, err er
 	if _, err := rand.Read(nonce[:]); err != nil {
 		return nil, err
 	}
+
 	sealedBytes := box.Seal(out, message, &nonce, pub, priv)
 	return append(nonce[:], sealedBytes...), nil
 }
@@ -98,6 +100,7 @@ func OpenAsym(ciphertext []byte, pub, priv *[32]byte) (out []byte, err error) {
 	if !ok {
 		err = errors.New("Unable to decrypt message")
 	}
+
 	return
 }
 
@@ -109,6 +112,7 @@ func Open(key *[32]byte, ciphertext []byte) (message []byte, err error) {
 	if !ok {
 		err = errors.New("Unable to decrypt message")
 	}
+
 	return
 }
 
@@ -117,6 +121,7 @@ func Open(key *[32]byte, ciphertext []byte) (message []byte, err error) {
 func Scrypt(pass, salt []byte) (key [32]byte, err error) {
 	keyBytes, err := scrypt.Key(pass, salt, 262144, 8, 1, 32)
 	copy(key[:], keyBytes)
+
 	return
 }
 
@@ -127,6 +132,7 @@ func GetMasterKey() (masterPrivKey [32]byte) {
 	if err != nil {
 		log.Fatalf("Could not get master password: %s", err.Error())
 	}
+
 	c, err := pio.GetConfigPath()
 	if err != nil {
 		log.Fatalf("Could not get config file: %s", err.Error())
@@ -137,10 +143,12 @@ func GetMasterKey() (masterPrivKey [32]byte) {
 	if err != nil {
 		log.Fatalf("Could not read config file: %s", err.Error())
 	}
+
 	err = json.Unmarshal(configFileBytes, &configFile)
 	if err != nil {
 		log.Fatalf("Could not read unmarshal config file: %s", err.Error())
 	}
+
 	masterKey, err := Scrypt([]byte(pass), configFile.MasterPassKeySalt[:])
 	if err != nil {
 		log.Fatalf("Could not create master key: %s", err.Error())
@@ -169,17 +177,22 @@ func checkBound(letter byte, lowerBound, upperBound int) bool {
 	if int(letter) >= lowerBound && int(letter) <= upperBound {
 		return true
 	}
+
 	return false
 }
+
 func isASCIIDigit(letter byte) bool {
 	return checkBound(letter, DigitLowerBound, DigitUpperBound)
 }
+
 func isASCIIUpper(letter byte) bool {
 	return checkBound(letter, UpperCaseLowerBound, UpperCaseUpperBound)
 }
+
 func isASCIILower(letter byte) bool {
 	return checkBound(letter, LowerCaseLowerBound, LowerCaseUpperBound)
 }
+
 func isASCIISymbol(letter byte) bool {
 	grp1 := checkBound(letter, SymbolGrp1LowerBound, SymbolGrp1UpperBound)
 	grp2 := checkBound(letter, SymbolGrp2LowerBound, SymbolGrp2UpperBound)
@@ -193,18 +206,23 @@ func passwordExpectationsPossible(specs *PasswordSpecs, passlen int) bool {
 	if specs.NeedsUpper {
 		minLength++
 	}
+
 	if specs.NeedsLower {
 		minLength++
 	}
+
 	if specs.NeedsSymbol {
 		minLength++
 	}
+
 	if specs.NeedsDigit {
 		minLength++
 	}
+
 	if passlen < minLength {
 		return false
 	}
+
 	return true
 }
 
@@ -222,14 +240,17 @@ func GeneratePassword(specs *PasswordSpecs, passlen int) (pass string, err error
 	var (
 		letters [65535]byte
 	)
+
 	if !passwordExpectationsPossible(specs, passlen) {
 		err = errors.New("Invalid password specs and length passed in to generate password. Try generating a longer password")
 		return
 	}
+
 	if passlen > MaxPwLength {
 		err = fmt.Errorf("Max password length is %d. Generate a shorter password", MaxPwLength)
 		return
 	}
+
 	for {
 		pass = ""
 		_, err = rand.Read(letters[:])
@@ -262,6 +283,7 @@ func (specs *PasswordSpecs) MeetsSpecs(pass string) bool {
 		needsSymbol = specs.NeedsSymbol
 		needsDigit  = specs.NeedsDigit
 	)
+
 	for i := 0; i < len(pass); i++ {
 		if isASCIIDigit(pass[i]) {
 			needsDigit = false
@@ -272,12 +294,14 @@ func (specs *PasswordSpecs) MeetsSpecs(pass string) bool {
 		} else if isASCIISymbol(pass[i]) {
 			needsSymbol = false
 		}
+
 		// Optimization. Once we find out that we have everything
 		// that we need, return.
 		if !needsUpper && !needsLower && !needsSymbol && !needsDigit {
 			return !needsUpper && !needsLower && !needsSymbol && !needsDigit
 		}
 	}
+
 	// The answer is false if the optmiziation didn't return true.
 	return false
 }
@@ -289,5 +313,6 @@ func GenHexString() (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return hex.EncodeToString(b[:]), nil
 }

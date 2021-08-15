@@ -41,11 +41,14 @@ func remove(path string) {
 			break
 		}
 	}
+
 	if pathIndex == -1 {
 		log.Fatalf("Could not find %s in vault", path)
 	}
+
 	vault = append(vault[:pathIndex], vault[pathIndex+1:]...)
 	err := pio.UpdateVault(vault)
+
 	if err != nil {
 		log.Fatalf("Could not update password vault: %s", err.Error())
 	}
@@ -104,24 +107,29 @@ func reencrypt(s pio.SiteInfo, newPass string) pio.SiteInfo {
 	if err != nil {
 		log.Fatalf("Could not generate new keys: %s", err.Error())
 	}
+
 	config, err := pio.GetConfigPath()
 	if err != nil {
 		log.Fatalf("Could not get config file name: %s", err.Error())
 	}
+
 	configContents, err := ioutil.ReadFile(config)
 	if err != nil {
 		log.Fatalf("Could not read contents of config: %s", err.Error())
 	}
+
 	err = json.Unmarshal(configContents, &c)
 	if err != nil {
 		log.Fatalf("Could not unmarshal config file contents for reencrypt: %s", err.Error())
 	}
+
 	masterPub := c.MasterPubKey
 
 	passSealed, err := pc.SealAsym([]byte(newPass), &masterPub, priv)
 	if err != nil {
 		log.Fatalf("Could not seal new site password: %s", err.Error())
 	}
+
 	return pio.SiteInfo{
 		PubKey:     *pub,
 		Name:       s.Name,
