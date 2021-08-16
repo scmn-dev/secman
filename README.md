@@ -101,7 +101,7 @@ scoop install secman
 docker run -it smcr/secman-cli
 ```
 
-see [**secman cli docs**](https://docker.secman.dev/sm-cli)
+see [**secman cli docs**](https://docker.secman.dev/docs/sm-cli)
 
 > `secman container` image
 
@@ -109,7 +109,7 @@ see [**secman cli docs**](https://docker.secman.dev/sm-cli)
 docker run -it smcr/secman
 ```
 
-see [**secman container docs**](https://docker.secman.dev/sm-container)
+see [**secman container docs**](https://docker.secman.dev/docs/sm-container)
 
 ## Build from source
 
