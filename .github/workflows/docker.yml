@@ -15,12 +15,11 @@ env:
   SM_CONTAINER_GHCR_IMAGE: ghcr.io/scmn-dev/secman
   SM_CLI_IMAGE: smcr/secman-cli
   SM_CLI_RUN: docker run -it $SM_CLI_IMAGE
-  OS: ubuntu-20.04
 
 jobs:
   # Secman Container Docker Image `smcr/secman` | DockerHub
   sm_container_build_dh:
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -41,7 +40,7 @@ jobs:
   sm_container_run_dh:
     needs: [ sm_container_build_dh ]
 
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     container:
       image: smcr/secman:latest
@@ -53,7 +52,7 @@ jobs:
 
   # Secman Container Docker Image `smcr/secman` | GitHub Packages
   sm_container_build_ghcr:
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -71,7 +70,7 @@ jobs:
   sm_container_ghcr_run:
     needs: [ sm_container_build_ghcr ]
 
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     container:
       image: ghcr.io/scmn-dev/secman:latest
@@ -85,7 +84,7 @@ jobs:
   sm_cli_build:
     needs: [ sm_container_build_dh, sm_container_run_dh, sm_container_build_ghcr, sm_container_ghcr_run ]
 
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -106,7 +105,7 @@ jobs:
   sm_cli_run:
     needs: [ sm_cli_build ]
 
-    runs-on: $OS
+    runs-on: ubuntu-latest
 
     container:
       image: smcr/secman-cli:latest
