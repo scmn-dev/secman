@@ -99,9 +99,8 @@ jobs:
         run: |
           docker pull $SM_CLI_IMAGE:latest
           git clone $SM_DOCKER_REPO
-          cd docker
-          make pull
-          docker build -t $SM_CLI_IMAGE --cache-from $SM_CLI_IMAGE:latest --file ./cli/Dockerfile .
+          cd docker && make pull && cd ..
+          docker build -t $SM_CLI_IMAGE --cache-from $SM_CLI_IMAGE:latest --file ./docker/cli/Dockerfile .
           docker push $SM_CLI_IMAGE
 
   sm_cli_run:
