@@ -10,13 +10,17 @@ on:
       - main
 
 env:
-  DOCKERHUB_IMAGE: smcr/secman
-  GHCR_IMAGE: ghcr.io/scmn-dev/secman
+  SM_DOCKER_REPO: https://github.com/scmn-dev/docker
+  SM_CONTAINER_DH_IMAGE: smcr/secman
+  SM_CONTAINER_GHCR_IMAGE: ghcr.io/scmn-dev/secman
+  SM_CLI_IMAGE: smcr/secman-cli
+  SM_CLI_RUN: docker run -it $SM_CLI_IMAGE
+  OS: ubuntu-20.04
 
 jobs:
-  # DockerHub
-  dockerhub_build:
-    runs-on: ubuntu-20.04
+  # Secman Container Docker Image `smcr/secman` | DockerHub
+  sm_container_build_dh:
+    runs-on: $OS
 
     steps:
       - uses: actions/checkout@v2
@@ -29,15 +33,15 @@ jobs:
 
       - name: Run Build
         run: |
-          docker pull $DOCKERHUB_IMAGE:latest
-          git clone https://github.com/scmn-dev/secman-docker
-          docker build -t $DOCKERHUB_IMAGE --cache-from $DOCKERHUB_IMAGE:latest --file ./secman-docker/Dockerfile .
-          docker push $DOCKERHUB_IMAGE
+          docker pull $SM_CONTAINER_DH_IMAGE:latest
+          git clone $SM_DOCKER_REPO
+          docker build -t $SM_CONTAINER_DH_IMAGE --cache-from $SM_CONTAINER_DH_IMAGE:latest --file ./docker/container/Dockerfile .
+          docker push $SM_CONTAINER_DH_IMAGE
 
-  dockerhub_run:
-    needs: [ dockerhub_build ]
+  sm_container_run_dh:
+    needs: [ sm_container_build_dh ]
 
-    runs-on: ubuntu-20.04
+    runs-on: $OS
 
     container:
       image: smcr/secman:latest
@@ -47,9 +51,9 @@ jobs:
         run: |
           secman
 
-  # GitHub Packages
-  ghcr_build:
-    runs-on: ubuntu-20.04
+  # Secman Container Docker Image `smcr/secman` | GitHub Packages
+  sm_container_build_ghcr:
+    runs-on: $OS
 
     steps:
       - uses: actions/checkout@v2
@@ -59,15 +63,15 @@ jobs:
 
       - name: Run Build
         run: |
-          docker pull $GHCR_IMAGE:latest
-          git clone https://github.com/scmn-dev/secman-docker
-          docker build -t $GHCR_IMAGE --cache-from $GHCR_IMAGE:latest --file ./secman-docker/Dockerfile .
-          docker push $GHCR_IMAGE
+          docker pull $SM_CONTAINER_GHCR_IMAGE:latest
+          git clone $SM_DOCKER_REPO
+          docker build -t $SM_CONTAINER_GHCR_IMAGE --cache-from $SM_CONTAINER_GHCR_IMAGE:latest --file ./docker/container/Dockerfile .
+          docker push $SM_CONTAINER_GHCR_IMAGE
 
-  ghcr_run:
-    needs: [ ghcr_build ]
+  sm_container_ghcr_run:
+    needs: [ sm_container_build_ghcr ]
 
-    runs-on: ubuntu-20.04
+    runs-on: $OS
 
     container:
       image: ghcr.io/scmn-dev/secman:latest
@@ -76,3 +80,46 @@ jobs:
       - name: Run Secman in Github Docker Container
         run: |
           secman
+  
+  # Secman CLI Docker Image `smcr/secman-cli`
+  sm_cli_build:
+    needs: [ sm_container_build_dh, sm_container_run_dh, sm_container_build_ghcr, sm_container_ghcr_run ]
+
+    runs-on: $OS
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_ID }}
+          password: ${{ secrets.DOCKER_SECMAN_TOKEN }}
+
+      - name: Build Secman CLI
+        run: |
+          docker pull $SM_CLI_IMAGE:latest
+          git clone $SM_DOCKER_REPO
+          docker build -t $SM_CLI_IMAGE --cache-from $SM_CLI_IMAGE:latest --file ./docker/cli/Dockerfile .
+          docker push $SM_CLI_IMAGE
+
+  sm_cli_run:
+    needs: [ sm_cli_build ]
+
+    runs-on: $OS
+
+    container:
+      image: smcr/secman-cli:latest
+
+    steps:
+      - name: Run Secman CLI in Docker Container
+        run: |
+          # run `secman`
+          $SM_CLI_RUN
+
+          # run `secman help`
+          $SM_CLI_RUN -h
+
+          # run `secman version`
+
+          $SM_CLI_RUN ver
