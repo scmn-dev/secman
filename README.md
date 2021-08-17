@@ -15,7 +15,7 @@
 [![Secman CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/secman.yml)
 [![Secman Docker CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/docker.yml)
 [![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/scmn-dev/secman)
-![Codacy grade](https://img.shields.io/codacy/grade/d222c27c970f4dc086b77e83809bffde?color=blue&logo=codacy&style=for-the-badge)
+![Codacy grade](https://img.shields.io/codacy/grade/c434720ddcc84bea982475063f903a81?color=blue&logo=codacy&style=for-the-badge)
 
 > Open In [**VSCode**](https://code.visualstudio.com)
 
