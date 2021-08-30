@@ -109,6 +109,7 @@ func Sync() *cobra.Command {
 	cmd.AddCommand(NewCmdClone)
 	cmd.AddCommand(NewCmdPush)
 	cmd.AddCommand(NewCmdPull)
+	cmd.AddCommand(FetchClone)
 
 	return cmd
 }

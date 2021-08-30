@@ -23,9 +23,7 @@ import (
 	sync "github.com/scmn-dev/secman/pkg/api"
 	upg "github.com/scmn-dev/secman/pkg/upgrade"
 	uni "github.com/scmn-dev/secman/pkg/uninstall"
-	authx "github.com/scmn-dev/secman/tools/auth"
-	configx "github.com/scmn-dev/secman/tools/config"
-	repox "github.com/scmn-dev/secman/tools/repo"
+	shared "github.com/scmn-dev/secman/tools/shared"
 	checker "github.com/scmn-dev/version-checker"
 
 	"github.com/abdfnx/shell"
@@ -190,9 +188,9 @@ one group or all sites that contain a certain word in the group or name.`,
 	uninstallCmd  = uni.Uninstall(nil)
 
 	// with github
-	repoCmd = repox.Repo(factory.New())
-	authCmd = authx.Auth(factory.New())
-	configCmd = configx.Config(factory.New())
+	repoCmd = shared.Repo(factory.New())
+	authCmd = shared.Auth(factory.New())
+	configCmd = shared.Config(factory.New())
 )
 
 type Options struct {
