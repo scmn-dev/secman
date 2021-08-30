@@ -11,7 +11,6 @@ import (
 
 	"github.com/scmn-dev/gh-api/pkg/cmd/factory"
 	"github.com/scmn-dev/gh-api/pkg/cmdutil"
-	sync "github.com/scmn-dev/secman/pkg/api"
 	"github.com/scmn-dev/secman/pkg/clean"
 	"github.com/scmn-dev/secman/pkg/edit"
 	"github.com/scmn-dev/secman/pkg/fetch"
@@ -21,6 +20,7 @@ import (
 	"github.com/scmn-dev/secman/pkg/insert"
 	"github.com/scmn-dev/secman/pkg/pio"
 	"github.com/scmn-dev/secman/pkg/show"
+	sync "github.com/scmn-dev/secman/pkg/api"
 	upg "github.com/scmn-dev/secman/pkg/upgrade"
 	uni "github.com/scmn-dev/secman/pkg/uninstall"
 	authx "github.com/scmn-dev/secman/tools/auth"
@@ -56,6 +56,7 @@ var (
 
 	insertCmd = &cobra.Command{
 		Use:     "insert",
+		Aliases: []string{"write", "new"},
 		Short:   "Insert a file or password in to your vault.",
 		Example: "secman insert core/docker.com",
 		Args:    cobra.RangeArgs(1, 2),
