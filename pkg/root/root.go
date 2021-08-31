@@ -20,10 +20,10 @@ import (
 	"github.com/scmn-dev/secman/pkg/insert"
 	"github.com/scmn-dev/secman/pkg/pio"
 	"github.com/scmn-dev/secman/pkg/show"
+	"github.com/scmn-dev/secman/tools/ios"
 	sync "github.com/scmn-dev/secman/pkg/api"
 	upg "github.com/scmn-dev/secman/pkg/upgrade"
 	uni "github.com/scmn-dev/secman/pkg/uninstall"
-	shared "github.com/scmn-dev/secman/tools/shared"
 	checker "github.com/scmn-dev/version-checker"
 
 	"github.com/abdfnx/shell"
@@ -184,13 +184,13 @@ one group or all sites that contain a certain word in the group or name.`,
 
 	cleanCmd = clean.Clean(nil)
 	syncCmd = sync.Sync()
-	openCmd = open.Open(factory.New(), nil)
 	uninstallCmd  = uni.Uninstall(nil)
 
 	// with github
-	repoCmd = shared.Repo(factory.New())
-	authCmd = shared.Auth(factory.New())
-	configCmd = shared.Config(factory.New())
+	repoCmd = ios.Repo(factory.New())
+	authCmd = ios.Auth(factory.New())
+	openCmd = open.Open(factory.New(), nil)
+	configCmd = ios.Config(factory.New())
 )
 
 type Options struct {
