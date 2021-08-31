@@ -3,6 +3,7 @@ package pkg
 import (
 	"bytes"
 	"errors"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
@@ -213,4 +214,70 @@ func readPathFromFile(path string) (string, error) {
 	b := make([]byte, 1024)
 	n, err := f.Read(b)
 	return strings.TrimSpace(string(b[:n])), err
+}
+
+func (m *Manager) Upgrade(name string, force bool, stdout, stderr io.Writer) error {
+	exe, err := m.lookPath("git")
+	if err != nil {
+		return err
+	}
+
+	pack := m.List(false)
+	if len(pack) == 0 {
+		return errors.New("no packages installed")
+	}
+
+	someUpgraded := false
+	for _, f := range pack {
+		if name == "" {
+			fmt.Fprintf(stdout, "[%s]: ", f.Name())
+		} else if f.Name() != name {
+			continue
+		}
+
+		if f.IsLocal() {
+			if name == "" {
+				fmt.Fprintf(stdout, "%s\n", localPackageUpgradeError)
+			} else {
+				err = localPackageUpgradeError
+			}
+
+			continue
+		}
+
+		var cmds []*exec.Cmd
+		dir := filepath.Dir(f.Path())
+		if force {
+			fetchCmd := m.newCommand(exe, "-C", dir, "--git-dir="+filepath.Join(dir, ".git"), "fetch", "origin", "HEAD")
+			resetCmd := m.newCommand(exe, "-C", dir, "--git-dir="+filepath.Join(dir, ".git"), "reset", "--hard", "origin/HEAD")
+			cmds = []*exec.Cmd{fetchCmd, resetCmd}
+		} else {
+			pullCmd := m.newCommand(exe, "-C", dir, "--git-dir="+filepath.Join(dir, ".git"), "pull", "--ff-only")
+			cmds = []*exec.Cmd{pullCmd}
+		}
+
+		if e := runCmds(cmds, stdout, stderr); e != nil {
+			err = e
+		}
+
+		someUpgraded = true
+	}
+
+	if err == nil && !someUpgraded {
+		err = fmt.Errorf("no extension matched %q", name)
+	}
+
+	return err
+}
+
+func runCmds(cmds []*exec.Cmd, stdout, stderr io.Writer) error {
+	for _, cmd := range cmds {
+		cmd.Stdout = stdout
+		cmd.Stderr = stderr
+		if err := cmd.Run(); err != nil {
+			return err
+		}
+	}
+
+	return nil
 }
