@@ -152,7 +152,15 @@ func (m *Manager) getRemoteUrl(pkg string) string {
 	return strings.TrimSpace(string(url))
 }
 
-// func (m *Manager) InstallLocal(dir string) error {}
+func (m *Manager) InstallLocal(dir string) error {
+	name := filepath.Base(dir)
+	targetLink := filepath.Join(m.installDir(), name)
+	if err := os.MkdirAll(filepath.Dir(targetLink), 0755); err != nil {
+		return err
+	}
+
+	return makeSymlink(dir, targetLink)
+}
 
 func (m *Manager) Install(cloneURL string, stdout, stderr io.Writer) error {
 	exe, err := m.lookPath("git")
