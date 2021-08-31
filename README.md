@@ -64,13 +64,13 @@ secman insert FOLDERNAME/PASSWORDNAME
 ### Using Shell (macOS and Linux)
 
 ```bash
-curl -fsSL https://cli.secman.dev/install.sh | bash
+curl -fsSL https://cli.secman.dev/unix | bash
 ```
 
 ### Powershell (Windows)
 
 ```powershell
-iwr -useb https://cli.secman.dev/install.ps1 | iex
+iwr -useb https://cli.secman.dev/win | iex
 ```
 
 > if you get an error you might need to change the **execution policy** _**(i.e. enable Powershell)**_ via
@@ -113,7 +113,7 @@ see [**secman container docs**](https://docker.secman.dev/docs/sm-container)
 
 ## Build from source
 
-see [building from source](https://docs.secman.dev/contributing/build_from_source) doc.
+see [**building from source**](https://docs.secman.dev/contributing/build_from_source) doc.
 
 ## Getting started with secman
 

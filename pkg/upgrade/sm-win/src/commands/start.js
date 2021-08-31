@@ -12,7 +12,7 @@ class StartCommand extends Command {
       if ($l -ne $c) {
         Remove-Item -Force -Recurse $loc
   
-        iwr -useb https://cli.secman.dev/install_upg.ps1 | iex
+        iwr -useb https://cli.secman.dev/win_upg | iex
 
         Write-Host "secman was upgraded successfully 🎊"
       } else {

@@ -9,12 +9,6 @@ func Fetch_w() string {
 	`
 }
 
-func FetchClone() string {
-	return `
-
-	`
-}
-
 func Fetch_ml() string {
 	return `
 		cd $HOME/.secman
@@ -35,7 +29,7 @@ func Upgrade() string {
 		elif [ $l != $c ]; then
 			sudo rm $smLoc
 
-			curl -fsSL https://cli.secman.dev/install_upg.sh | bash
+			curl -fsSL https://cli.secman.dev/unix_upg | bash
 
 			if [ -x "command -v $(secman)" ]; then
 				echo "secman was upgraded successfully 🎊"
