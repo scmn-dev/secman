@@ -55,8 +55,8 @@ func ClusterOptions() []ClusterOption {
 }
 
 func ValidateKey(key string) error {
-	for _, configKey := range clusterOptions {
-		if key == configKey.Key {
+	for _, clusterKey := range clusterOptions {
+		if key == clusterKey.Key {
 			return nil
 		}
 	}
