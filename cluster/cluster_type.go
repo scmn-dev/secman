@@ -1,6 +1,6 @@
 package cluster
 
-type Config interface {
+type Cluster interface {
 	Get(string, string) (string, error)
 	GetWithSource(string, string) (string, string, error)
 	Set(string, string, string) error
@@ -10,4 +10,11 @@ type Config interface {
 	DefaultHostWithSource() (string, string, error)
 	CheckWriteable(string, string) error
 	Write() error
+}
+
+type ClusterOption struct {
+	Key           string
+	Description   string
+	DefaultValue  string
+	AllowedValues []string
 }
