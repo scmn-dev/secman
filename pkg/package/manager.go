@@ -13,3 +13,10 @@ import (
 	"runtime"
 	"strings"
 )
+
+type Manager struct {
+	dataDir    func() string
+	lookPath   func(string) (string, error)
+	lookSh     func() (string, error)
+	newCommand func(string, ...string) *exec.Cmd
+}
