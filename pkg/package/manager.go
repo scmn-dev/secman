@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
+	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -16,6 +17,8 @@ import (
 	"github.com/scmn-dev/secman/tools/looksh"
 	tcexe "github.com/Timothee-Cardoso/tc-exe"
 )
+
+var localPackageUpgradeError = errors.New("local packages can not be upgraded")
 
 type Manager struct {
 	dataDir    func() string
@@ -101,6 +104,7 @@ func (m *Manager) list(includeMetadata bool) ([]packages.Package, error) {
 		updateAvailable := false
 		isLocal := false
 		exePath := filepath.Join(dir, f.Name(), f.Name())
+
 		if f.IsDir() {
 			if includeMetadata {
 				remoteUrl = m.getRemoteUrl(f.Name())
@@ -126,6 +130,7 @@ func (m *Manager) list(includeMetadata bool) ([]packages.Package, error) {
 			updateAvailable: updateAvailable,
 		})
 	}
+
 	return results, nil
 }
 
@@ -144,6 +149,23 @@ func (m *Manager) getRemoteUrl(pkg string) string {
 	}
 
 	return strings.TrimSpace(string(url))
+}
+
+// func (m *Manager) InstallLocal(dir string) error {}
+
+func (m *Manager) Install(cloneURL string, stdout, stderr io.Writer) error {
+	exe, err := m.lookPath("git")
+	if err != nil {
+		return err
+	}
+
+	name := strings.TrimSuffix(path.Base(cloneURL), ".git")
+	targetDir := filepath.Join(m.installDir(), name)
+
+	externalCmd := m.newCommand(exe, "clone", cloneURL, targetDir)
+	externalCmd.Stdout = stdout
+	externalCmd.Stderr = stderr
+	return externalCmd.Run()
 }
 
 func (m *Manager) installDir() string {
