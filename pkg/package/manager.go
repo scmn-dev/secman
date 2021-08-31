@@ -264,10 +264,19 @@ func (m *Manager) Upgrade(name string, force bool, stdout, stderr io.Writer) err
 	}
 
 	if err == nil && !someUpgraded {
-		err = fmt.Errorf("no extension matched %q", name)
+		err = fmt.Errorf("no package matched %q", name)
 	}
 
 	return err
+}
+
+func (m *Manager) Remove(name string) error {
+	targetDir := filepath.Join(m.installDir(), "sm-" + name)
+	if _, err := os.Lstat(targetDir); os.IsNotExist(err) {
+		return fmt.Errorf("no package found: %q", targetDir)
+	}
+
+	return os.RemoveAll(targetDir)
 }
 
 func runCmds(cmds []*exec.Cmd, stdout, stderr io.Writer) error {
