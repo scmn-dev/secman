@@ -2,6 +2,8 @@ package cluster
 
 import (
 	"fmt"
+
+	yaml "gopkg.in/yaml.v3"
 )
 
 type Cluster interface {
@@ -91,4 +93,111 @@ func ValidateValue(key, value string) error {
 	}
 
 	return &InvalidValueError{ValidValues: validValues}
+}
+
+func NewCluster(root *yaml.Node) Cluster {
+	return &fileCluster{
+		ClusterMap:    ClusterMap{Root: root.Content[0]},
+		documentRoot: root,
+	}
+}
+
+// NewFromString initializes a Cluster from a yaml string
+func NewFromString(str string) Cluster {
+	root, err := parseClusterData([]byte(str))
+	if err != nil {
+		panic(err)
+	}
+
+	return NewCluster(root)
+}
+
+// NewBlankCluster initializes a config file pre-populated with comments and default values
+func NewBlankCluster() Cluster {
+	return NewCluster(NewBlankRoot())
+}
+
+func NewBlankRoot() *yaml.Node {
+	return &yaml.Node{
+		Kind: yaml.DocumentNode,
+		Content: []*yaml.Node{
+			{
+				Kind: yaml.MappingNode,
+				Content: []*yaml.Node{
+					{
+						HeadComment: "What protocol to use when performing git operations. Supported values: ssh, https",
+						Kind:        yaml.ScalarNode,
+						Value:       "git_protocol",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "https",
+					},
+					{
+						HeadComment: "What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.",
+						Kind:        yaml.ScalarNode,
+						Value:       "editor",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "",
+					},
+					{
+						HeadComment: "When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled",
+						Kind:        yaml.ScalarNode,
+						Value:       "prompt",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "enabled",
+					},
+					{
+						HeadComment: "A pager program to send command output to, e.g. \"less\". Set the value to \"cat\" to disable the pager.",
+						Kind:        yaml.ScalarNode,
+						Value:       "pager",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "",
+					},
+					{
+						HeadComment: "Aliases allow you to create nicknames for gh commands",
+						Kind:        yaml.ScalarNode,
+						Value:       "aliases",
+					},
+					{
+						Kind: yaml.MappingNode,
+						Content: []*yaml.Node{
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "co",
+							},
+							{
+								Kind:  yaml.ScalarNode,
+								Value: "pr checkout",
+							},
+						},
+					},
+					{
+						HeadComment: "The path to a unix socket through which send HTTP connections. If blank, HTTP traffic will be handled by net/http.DefaultTransport.",
+						Kind:        yaml.ScalarNode,
+						Value:       "http_unix_socket",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "",
+					},
+					{
+						HeadComment: "What web browser gh should use when opening URLs. If blank, will refer to environment.",
+						Kind:        yaml.ScalarNode,
+						Value:       "browser",
+					},
+					{
+						Kind:  yaml.ScalarNode,
+						Value: "",
+					},
+				},
+			},
+		},
+	}
 }
