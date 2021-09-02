@@ -21,7 +21,7 @@ func Auth(f *cmdutil.Factory) *cobra.Command {
 }
 
 func Config(f *cmdutil.Factory) *cobra.Command {
-	cmd := cCmd.NewCmdConfig(f)
+	cmd := cCmd.NewCmdCluster(f)
 	return cmd
 }
 

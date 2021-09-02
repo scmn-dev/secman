@@ -1,6 +1,6 @@
 // +build !windows
 
-package package
+package pkg
 
 import "os"
 

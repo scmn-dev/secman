@@ -24,6 +24,7 @@ import (
 	sync "github.com/scmn-dev/secman/pkg/api"
 	upg "github.com/scmn-dev/secman/pkg/upgrade"
 	uni "github.com/scmn-dev/secman/pkg/uninstall"
+	pkg "github.com/scmn-dev/secman/pkg/package"
 	checker "github.com/scmn-dev/version-checker"
 
 	"github.com/abdfnx/shell"
@@ -184,6 +185,7 @@ one group or all sites that contain a certain word in the group or name.`,
 
 	cleanCmd = clean.Clean(nil)
 	syncCmd = sync.Sync()
+	pkgCmd = pkg.PackageCmd(factory.New())
 	uninstallCmd  = uni.Uninstall(nil)
 
 	// with github

@@ -6,12 +6,12 @@ require (
 	github.com/AlecAivazis/survey/v2 v2.3.1
 	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/Timothee-Cardoso/tc-exe v1.0.0
-	github.com/abdfnx/git_config v0.0.34
 	github.com/abdfnx/shell v0.3.15
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.16.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/scmn-dev/gh-api v0.3.41
+	github.com/scmn-dev/git v0.0.0-20210901094448-922e6fdee5fc
 	github.com/scmn-dev/version-checker v0.1.44
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
