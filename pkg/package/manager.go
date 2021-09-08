@@ -13,7 +13,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/scmn-dev/secman/cluster"
+	"github.com/scmn-dev/cluster"
 	"github.com/scmn-dev/secman/tools/packages"
 	"github.com/scmn-dev/secman/tools/looksh"
 	tcexe "github.com/Timothee-Cardoso/tc-exe"
