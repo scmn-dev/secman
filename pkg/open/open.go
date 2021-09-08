@@ -18,7 +18,7 @@ import (
 	"github.com/scmn-dev/gh-api/utils"
 	"github.com/spf13/cobra"
 	openx "github.com/scmn-dev/secman/tools/open"
-	git_config "github.com/scmn-dev/git"
+	git_config "github.com/gepis/git"
 )
 
 type browser interface {
