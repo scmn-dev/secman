@@ -112,7 +112,7 @@ func NewFromString(str string) Cluster {
 	return NewCluster(root)
 }
 
-// NewBlankCluster initializes a config file pre-populated with comments and default values
+// NewBlankCluster initializes a cluster file pre-populated with comments and default values
 func NewBlankCluster() Cluster {
 	return NewCluster(NewBlankRoot())
 }
@@ -138,7 +138,7 @@ func NewBlankRoot() *yaml.Node {
 						Value: "",
 					},
 					{
-						HeadComment: "When to interactively prompt. This is a global config that cannot be overridden by hostname. Supported values: enabled, disabled",
+						HeadComment: "When to interactively prompt. This is a global cluster that cannot be overridden by hostname. Supported values: enabled, disabled",
 						Kind:        yaml.ScalarNode,
 						Value:       "prompt",
 					},

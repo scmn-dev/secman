@@ -11,6 +11,7 @@ import (
 	yaml "gopkg.in/yaml.v3"
 )
 
+// This type implements a Cluster interface and represents a cluster file on disk.
 type fileCluster struct {
 	ClusterMap
 	documentRoot *yaml.Node
@@ -34,14 +35,14 @@ func (c *fileCluster) GetWithSource(hostname, key string) (string, string, error
 	if hostname != "" {
 		var notFound *NotFoundError
 
-		hostClr, err := c.clusterForHost(hostname)
+		hostCls, err := c.clusterForHost(hostname)
 		if err != nil && !errors.As(err, &notFound) {
 			return "", "", err
 		}
 
 		var hostValue string
-		if hostClr != nil {
-			hostValue, err = hostClr.GetStringValue(key)
+		if hostCls != nil {
+			hostValue, err = hostCls.GetStringValue(key)
 			if err != nil && !errors.As(err, &notFound) {
 				return "", "", err
 			}
@@ -75,31 +76,15 @@ func (c *fileCluster) Set(hostname, key, value string) error {
 	if hostname == "" {
 		return c.SetStringValue(key, value)
 	} else {
-		hostCfg, err := c.clusterForHost(hostname)
+		hostCls, err := c.clusterForHost(hostname)
 		var notFound *NotFoundError
 		if errors.As(err, &notFound) {
-			hostCfg = c.makeClusterForHost(hostname)
+			hostCls = c.makeClusterForHost(hostname)
 		} else if err != nil {
 			return err
 		}
-
-		return hostCfg.SetStringValue(key, value)
+		return hostCls.SetStringValue(key, value)
 	}
-}
-
-func (c *fileCluster) clusterForHost(hostname string) (*HostCluster, error) {
-	hosts, err := c.hostEntries()
-	if err != nil {
-		return nil, err
-	}
-
-	for _, hc := range hosts {
-		if strings.EqualFold(hc.Host, hostname) {
-			return hc, nil
-		}
-	}
-
-	return nil, &NotFoundError{fmt.Errorf("could not find cluster entry for %q", hostname)}
 }
 
 func (c *fileCluster) UnsetHost(hostname string) {
@@ -116,49 +101,18 @@ func (c *fileCluster) UnsetHost(hostname string) {
 	cm.RemoveEntry(hostname)
 }
 
-func defaultFor(key string) string {
-	for _, co := range clusterOptions {
-		if co.Key == key {
-			return co.DefaultValue
+func (c *fileCluster) clusterForHost(hostname string) (*HostCluster, error) {
+	hosts, err := c.hostEntries()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, hc := range hosts {
+		if strings.EqualFold(hc.Host, hostname) {
+			return hc, nil
 		}
 	}
-
-	return ""
-}
-
-func (c *fileCluster) hostEntries() ([]*HostCluster, error) {
-	entry, err := c.FindEntry("hosts")
-	if err != nil {
-		return []*HostCluster{}, nil
-	}
-
-	hostClusters, err := c.parseHosts(entry.ValueNode)
-	if err != nil {
-		return nil, fmt.Errorf("could not parse hosts cluster: %w", err)
-	}
-
-	return hostClusters, nil
-}
-
-func (c *fileCluster) parseHosts(hostsEntry *yaml.Node) ([]*HostCluster, error) {
-	hostClusters := []*HostCluster{}
-
-	for i := 0; i < len(hostsEntry.Content)-1; i = i + 2 {
-		hostname := hostsEntry.Content[i].Value
-		hostRoot := hostsEntry.Content[i+1]
-		hostCluster := HostCluster{
-			ClusterMap: ClusterMap{Root: hostRoot},
-			Host:      hostname,
-		}
-
-		hostClusters = append(hostClusters, &hostCluster)
-	}
-
-	if len(hostClusters) == 0 {
-		return nil, errors.New("could not find any host clusters")
-	}
-
-	return hostClusters, nil
+	return nil, &NotFoundError{fmt.Errorf("could not find cluster entry for %q", hostname)}
 }
 
 func (c *fileCluster) CheckWriteable(hostname, key string) error {
@@ -198,6 +152,21 @@ func (c *fileCluster) Write() error {
 	return WriteClusterFile(HostsClusterFile(), yamlNormalize(hostsBytes))
 }
 
+func (c *fileCluster) hostEntries() ([]*HostCluster, error) {
+	entry, err := c.FindEntry("hosts")
+	if err != nil {
+		return []*HostCluster{}, nil
+	}
+
+	hostClusters, err := c.parseHosts(entry.ValueNode)
+	if err != nil {
+		return nil, fmt.Errorf("could not parse hosts cluster: %w", err)
+	}
+
+	return hostClusters, nil
+}
+
+// Hosts returns a list of all known hostnames clusterured in hosts.yml
 func (c *fileCluster) Hosts() ([]string, error) {
 	entries, err := c.hostEntries()
 	if err != nil {
@@ -230,7 +199,7 @@ func (c *fileCluster) DefaultHostWithSource() (string, string, error) {
 
 func (c *fileCluster) makeClusterForHost(hostname string) *HostCluster {
 	hostRoot := &yaml.Node{Kind: yaml.MappingNode}
-	hostCfg := &HostCluster{
+	hostCls := &HostCluster{
 		Host:      hostname,
 		ClusterMap: ClusterMap{Root: hostRoot},
 	}
@@ -242,7 +211,6 @@ func (c *fileCluster) makeClusterForHost(hostname string) *HostCluster {
 			Kind:  yaml.ScalarNode,
 			Value: "hosts",
 		}
-
 		hostsEntry.ValueNode = &yaml.Node{Kind: yaml.MappingNode}
 		root := c.Root()
 		root.Content = append(root.Content, hostsEntry.KeyNode, hostsEntry.ValueNode)
@@ -256,7 +224,27 @@ func (c *fileCluster) makeClusterForHost(hostname string) *HostCluster {
 			Value: hostname,
 		}, hostRoot)
 
-	return hostCfg
+	return hostCls
+}
+
+func (c *fileCluster) parseHosts(hostsEntry *yaml.Node) ([]*HostCluster, error) {
+	hostClusters := []*HostCluster{}
+
+	for i := 0; i < len(hostsEntry.Content)-1; i = i + 2 {
+		hostname := hostsEntry.Content[i].Value
+		hostRoot := hostsEntry.Content[i+1]
+		hostCluster := HostCluster{
+			ClusterMap: ClusterMap{Root: hostRoot},
+			Host:      hostname,
+		}
+		hostClusters = append(hostClusters, &hostCluster)
+	}
+
+	if len(hostClusters) == 0 {
+		return nil, errors.New("could not find any host clusterurations")
+	}
+
+	return hostClusters, nil
 }
 
 func yamlNormalize(b []byte) []byte {
@@ -266,3 +254,13 @@ func yamlNormalize(b []byte) []byte {
 
 	return b
 }
+
+func defaultFor(key string) string {
+	for _, co := range clusterOptions {
+		if co.Key == key {
+			return co.DefaultValue
+		}
+	}
+	return ""
+}
+

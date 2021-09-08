@@ -65,7 +65,7 @@ func mainRun() exitCode {
 
 	RootCmd := root.NewCmdRoot(cmdFactory, version, versionDate)
 
-	cfg, _ := cmdFactory.Config()
+	cfg, _ := cmdFactory.Cluster()
 
 	if host, err := cfg.DefaultHost(); err == nil {
 		ghrepo.SetDefaultHost(host)

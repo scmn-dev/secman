@@ -3,12 +3,9 @@ package cluster
 import (
 	"errors"
 
-	yaml "gopkg.in/yaml.v3"
+	"gopkg.in/yaml.v3"
 )
 
-// This type implements a low-level get/set cluster that is backed by an in-memory tree of Yaml
-// nodes. It allows us to interact with a yaml-based cluster programmatically, preserving any
-// comments that were present when the yaml was parsed.
 type ClusterMap struct {
 	Root *yaml.Node
 }
@@ -32,6 +29,7 @@ func (cm *ClusterMap) GetStringValue(key string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+
 	return entry.ValueNode.Value, nil
 }
 
@@ -69,14 +67,20 @@ func (cm *ClusterMap) FindEntry(key string) (ce *ClusterEntry, err error) {
 
 	ce = &ClusterEntry{}
 
-	topLevelKeys := cm.Root.Content
-	for i, v := range topLevelKeys {
+	// Content slice goes [key1, value1, key2, value2, ...]
+	topLevelPairs := cm.Root.Content
+	for i, v := range topLevelPairs {
+		// Skip every other slice item since we only want to check against keys
+		if i%2 != 0 {
+			continue
+		}
 		if v.Value == key {
 			ce.KeyNode = v
 			ce.Index = i
-			if i+1 < len(topLevelKeys) {
-				ce.ValueNode = topLevelKeys[i+1]
+			if i+1 < len(topLevelPairs) {
+				ce.ValueNode = topLevelPairs[i+1]
 			}
+
 			return
 		}
 	}

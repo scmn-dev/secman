@@ -10,12 +10,12 @@ require (
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.16.0
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
-	github.com/scmn-dev/gh-api v0.3.41
+	github.com/scmn-dev/gh-api v0.3.42
 	github.com/scmn-dev/git v0.0.0-20210901094448-922e6fdee5fc
 	github.com/scmn-dev/version-checker v0.1.44
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
-	golang.org/x/crypto v0.0.0-20210513164829-c07d793c2f9a
+	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 )
 
