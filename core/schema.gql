@@ -2,18 +2,18 @@
 
 type Password {
     value: String!
-    hasParentID: Boolean
-    parentCollection: ParentCollection
+    hasID: Boolean
+    collection: Collection
 }
 
-type ParentCollection {
+type Collection {
     name: String!
     passwords: [Password]
 }
 
 type Query {
     passwords: [Password]
-    parentCollection(name: String): ParentCollection
+    collection(name: String): Collection
 }
 
 mutation {
