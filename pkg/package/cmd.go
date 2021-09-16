@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/scmn-dev/gh-api/git"
+	git "github.com/scmn-dev/gh-api/git"
 	"github.com/scmn-dev/secman/tools/packages"
 	"github.com/MakeNowJust/heredoc"
 	"github.com/spf13/cobra"
@@ -23,7 +23,7 @@ func PackageCmd(f *cmdutil.Factory) *cobra.Command {
 		Use:   "package",
 		Short: "Manage secman package",
 		Long: heredoc.Docf(`
-			Secman Package are repositories that provide more additional apps.
+			Secman Package are repositories that provide awesome apps.
 		`, "`"),
 		Aliases: []string{"pkg", "packages"},
 	}
