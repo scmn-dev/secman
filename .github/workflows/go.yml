@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  CLONE_DOT_SMCLUSTER: git clone https://github.com/scmn-dev/sm-cluster ~/.sm-cluster
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,13 +25,15 @@ jobs:
       run: |
         make
         make setup
-        git clone https://github.com/scmn-dev/sm-cluster ~/.sm-cluster
 
     - name: Run the New Build (Without Authentication)
-      run: secman
+      run: |
+        $CLONE_DOT_SMCLUSTER
+        secman
 
     - name: Run the New Build (With Authentication)
       run: |
+        $CLONE_DOT_SMCLUSTER
         echo ${{ secrets.ACCESS_TOKEN }} >> token.txt
         secman auth login --with-token < token.txt
         secman
