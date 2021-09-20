@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  CLONE_DOT_SMCLUSTER: git clone https://github.com/scmn-dev/sm-cluster ~/.sm-cluster
+  CLONE_DOT_SMCLUSTER: git clone https://github.com/scmn-dev/sm-cluster /home/runner/.sm-cluster
 
 jobs:
   build:
