@@ -51,6 +51,8 @@ func Uninstall() string {
 				rm $smManLoc
 				rm $smLoc
 			fi
+
+			rm -rf ~/.sm-cluster
 		}
 
 		if [ -x "$(command -v secman)" ]; then

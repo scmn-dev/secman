@@ -18,7 +18,7 @@ if ((Get-Command git -errorAction SilentlyContinue) -or (Get-Command npm -errorA
 
     cd ..
 
-    New-Item -ItemType "directory" -Path $HOME/.sm-cluster
+    git clone https://github.com/scmn-dev/sm-cluster $HOME\.sm-cluster
 } else {
     Write-Host "Some of these apps must be installed: git, or npm"
     Write-Host "git: https://git-scm.com"
