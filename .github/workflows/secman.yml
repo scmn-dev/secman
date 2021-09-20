@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install secman (Linux)
-        run: curl -fsSL https://cli.secman.dev/install.sh | bash
+        run: curl -fsSL https://cli.secman.dev/unix | bash
 
       - name: Clone .secman (ex folder)
         run: $CLONE_DOT_SECMAN /home/runner/.secman
@@ -41,7 +41,7 @@ jobs:
   #       run: $CONFIG_NAME
 
   #     - name: Install secman (MacOS)
-  #       run: curl -fsSL https://cli.secman.dev/install.sh | bash
+  #       run: curl -fsSL https://cli.secman.dev/unix | bash
 
   #     - name: Clone .secman (ex folder)
   #       run: |
@@ -71,7 +71,6 @@ jobs:
 
       - name: Clone .secman (ex folder)
         run: |
-          echo $HOME
           $CLONE_DOT_SECMAN ~/.secman
 
       - name: Run secman
@@ -90,7 +89,7 @@ jobs:
 
       - name: Install secman (Windows)
         run: |
-          iwr -useb https://cli.secman.dev/install.ps1 | iex
+          iwr -useb https://cli.secman.dev/win | iex
           echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
 
       - name: Clone .secman (ex folder)

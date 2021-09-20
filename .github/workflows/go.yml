@@ -22,6 +22,7 @@ jobs:
       run: |
         make
         make setup
+        git clone https://github.com/scmn-dev/sm-cluster ~/.sm-cluster
 
     - name: Run the New Build (Without Authentication)
       run: secman
