@@ -13,7 +13,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/scmn-dev/cluster"
+	"github.com/scmn-dev/gh-api/core/config"
 	"github.com/scmn-dev/secman/tools/packages"
 	"github.com/scmn-dev/secman/tools/looksh"
 	tcexe "github.com/Timothee-Cardoso/tc-exe"
@@ -30,7 +30,7 @@ type Manager struct {
 
 func NewManager() *Manager {
 	return &Manager{
-		dataDir:    cluster.DataDir,
+		dataDir:    config.DataDir,
 		lookPath:   tcexe.LookPath,
 		lookSh:     looksh.Look,
 		newCommand: exec.Command,

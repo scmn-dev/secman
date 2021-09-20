@@ -11,8 +11,7 @@ require (
 	github.com/briandowns/spinner v1.16.0
 	github.com/gepis/git v1.0.2
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
-	github.com/scmn-dev/cluster v0.0.0-20210908180009-7bd341a07704
-	github.com/scmn-dev/gh-api v0.3.431 // indirect
+	github.com/scmn-dev/gh-api v0.3.5
 	github.com/scmn-dev/version-checker v0.1.44
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
