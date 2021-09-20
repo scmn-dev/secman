@@ -8,6 +8,11 @@
 
 [![RELEASE](https://img.shields.io/github/v/release/scmn-dev/secman?style=for-the-badge)](https://github.com/scmn-dev/secman/releases/latest)
 
+## Secman Products
+
+- [x] [**Secman Desktop**](https://secman.dev/download)
+- [ ] [**Secman Extension**](https://secman.dev/extension)
+
 ## Code Status
 
 [![CodeQL](https://img.shields.io/github/workflow/status/scmn-dev/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/codeql.yml)
