@@ -13,10 +13,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/scmn-dev/gh-api/core/config"
-	"github.com/scmn-dev/secman/tools/packages"
-	"github.com/scmn-dev/secman/tools/looksh"
 	tcexe "github.com/Timothee-Cardoso/tc-exe"
+	"github.com/gepis/sm-gh-api/core/config"
+	"github.com/scmn-dev/secman/tools/looksh"
+	"github.com/scmn-dev/secman/tools/packages"
 )
 
 var localPackageUpgradeError = errors.New("local packages can not be upgraded")

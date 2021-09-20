@@ -6,13 +6,13 @@ import (
 	"os"
 	"strings"
 
-	git "github.com/scmn-dev/gh-api/git"
-	"github.com/scmn-dev/secman/tools/packages"
 	"github.com/MakeNowJust/heredoc"
+	"github.com/gepis/sm-gh-api/core/ghrepo"
+	git "github.com/gepis/sm-gh-api/git"
+	"github.com/gepis/sm-gh-api/pkg/cmdutil"
+	"github.com/gepis/sm-gh-api/utils"
+	"github.com/scmn-dev/secman/tools/packages"
 	"github.com/spf13/cobra"
-	"github.com/scmn-dev/gh-api/pkg/cmdutil"
-	"github.com/scmn-dev/gh-api/utils"
-	"github.com/scmn-dev/gh-api/core/ghrepo"
 )
 
 func PackageCmd(f *cmdutil.Factory) *cobra.Command {
@@ -87,7 +87,7 @@ func PackageCmd(f *cmdutil.Factory) *cobra.Command {
 					return err
 				}
 
-				cls, err := f.Cluster()
+				cls, err := f.Config()
 				if err != nil {
 					return err
 				}

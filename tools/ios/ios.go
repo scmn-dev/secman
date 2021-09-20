@@ -1,17 +1,17 @@
 package ios
 
 import (
-	"github.com/scmn-dev/gh-api/pkg/cmdutil"
-	"github.com/scmn-dev/gh-api/context"
-	"github.com/scmn-dev/gh-api/api"
-	"github.com/scmn-dev/gh-api/core/ghrepo"
+	"github.com/gepis/sm-gh-api/pkg/cmdutil"
+	"github.com/gepis/sm-gh-api/context"
+	"github.com/gepis/sm-gh-api/api"
+	"github.com/gepis/sm-gh-api/core/ghrepo"
 
 	"github.com/spf13/cobra"
 
 	// commands
-	aCmd "github.com/scmn-dev/gh-api/pkg/cmd/auth"
-	cCmd "github.com/scmn-dev/gh-api/pkg/cmd/config"
-	rCmd "github.com/scmn-dev/gh-api/pkg/cmd/repo"
+	aCmd "github.com/gepis/sm-gh-api/pkg/cmd/auth"
+	cCmd "github.com/gepis/sm-gh-api/pkg/cmd/config"
+	rCmd "github.com/gepis/sm-gh-api/pkg/cmd/repo"
 )
 
 
@@ -21,7 +21,7 @@ func Auth(f *cmdutil.Factory) *cobra.Command {
 }
 
 func Config(f *cmdutil.Factory) *cobra.Command {
-	cmd := cCmd.NewCmdCluster(f)
+	cmd := cCmd.NewCmdConfig(f)
 	return cmd
 }
 

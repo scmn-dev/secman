@@ -9,13 +9,13 @@ import (
 
 	surveyCore "github.com/AlecAivazis/survey/v2/core"
 	"github.com/AlecAivazis/survey/v2/terminal"
-	"github.com/scmn-dev/gh-api/api"
-	"github.com/scmn-dev/gh-api/core/ghrepo"
-	"github.com/scmn-dev/gh-api/pkg/cmd/factory"
-	"github.com/scmn-dev/gh-api/pkg/cmdutil"
+	"github.com/gepis/sm-gh-api/api"
+	"github.com/gepis/sm-gh-api/core/ghrepo"
+	"github.com/gepis/sm-gh-api/pkg/cmd/factory"
+	"github.com/gepis/sm-gh-api/pkg/cmdutil"
 	"github.com/mgutz/ansi"
-	"github.com/spf13/cobra"
 	"github.com/scmn-dev/secman/tools/shared"
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -65,7 +65,7 @@ func mainRun() exitCode {
 
 	RootCmd := root.NewCmdRoot(cmdFactory, version, versionDate)
 
-	cfg, _ := cmdFactory.Cluster()
+	cfg, _ := cmdFactory.Config()
 
 	if host, err := cfg.DefaultHost(); err == nil {
 		ghrepo.SetDefaultHost(host)

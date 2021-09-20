@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/scmn-dev/gh-api/pkg/cmdutil"
-	"github.com/scmn-dev/gh-api/pkg/iostreams"
-	"github.com/scmn-dev/gh-api/pkg/text"
+	"github.com/gepis/sm-gh-api/pkg/cmdutil"
+	"github.com/gepis/sm-gh-api/pkg/iostreams"
+	"github.com/gepis/sm-gh-api/pkg/text"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -145,6 +145,7 @@ Use 'secman <command> <subcommand> --help' for more information about a command.
 Read 📚 at https://docs.secman.dev`})
 	if _, ok := command.Annotations["help:tellus"]; ok {
 		helpEntries = append(helpEntries, helpEntry{"TELL US", command.Annotations["help:tellus"]})
+		helpEntries = append(helpEntries, helpEntry{"OTHER SECMAN PRODUCTS", command.Annotations["help:smprds"]})
 	}
 
 	out := command.OutOrStdout()

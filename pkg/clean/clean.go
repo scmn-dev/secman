@@ -3,12 +3,12 @@ package clean
 import (
 	"fmt"
 
-	commands "github.com/scmn-dev/secman/tools/constants"
+	survey "github.com/AlecAivazis/survey/v2"
 	"github.com/abdfnx/shell"
+	"github.com/gepis/sm-gh-api/pkg/prompt"
+	commands "github.com/scmn-dev/secman/tools/constants"
 	checker "github.com/scmn-dev/version-checker"
 	"github.com/spf13/cobra"
-	survey "github.com/AlecAivazis/survey/v2"
-	"github.com/scmn-dev/gh-api/pkg/prompt"
 )
 
 type CleanOptions struct {

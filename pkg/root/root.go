@@ -9,8 +9,8 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/spf13/cobra"
 
-	"github.com/scmn-dev/gh-api/pkg/cmd/factory"
-	"github.com/scmn-dev/gh-api/pkg/cmdutil"
+	"github.com/gepis/sm-gh-api/pkg/cmd/factory"
+	"github.com/gepis/sm-gh-api/pkg/cmdutil"
 	"github.com/scmn-dev/secman/pkg/clean"
 	"github.com/scmn-dev/secman/pkg/edit"
 	"github.com/scmn-dev/secman/pkg/fetch"
@@ -223,6 +223,10 @@ func NewCmdRoot(f *cmdutil.Factory, version string, versionDate string) *cobra.C
 		Annotations: map[string]string{
 			"help:tellus": heredoc.Doc(`
 				Open an issue at https://github.com/scmn-dev/secman/issues
+			`),
+			"help:smprds": heredoc.Doc(`
+				Secman Desktop: https://secman.dev/download
+				Secman Extension: https://secman.dev/extension
 			`),
 		},
 		RunE: func(cmd *cobra.Command, args []string) error {
