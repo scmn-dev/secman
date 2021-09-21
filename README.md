@@ -6,21 +6,20 @@
    <img src="https://assets.secman.dev/assets/Secman.svg" />
 </p>
 
-[![RELEASE](https://img.shields.io/github/v/release/scmn-dev/secman?style=for-the-badge)](https://github.com/scmn-dev/secman/releases/latest)
+[![RELEASE](https://img.shields.io/github/v/release/scmn-dev/secman?style=flat-square)](https://github.com/scmn-dev/secman/releases/latest)
 
 ## Secman Products
 
-- [x] [**Secman Desktop**](https://secman.dev/download)
-- [ ] [**Secman Extension**](https://secman.dev/extension)
+- [**Secman Desktop**](https://dl.secman.dev)
+- [**Secman Extension**](https://secman.dev/extension)
 
 ## Code Status
 
-[![CodeQL](https://img.shields.io/github/workflow/status/scmn-dev/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/codeql.yml)
-[![Go](https://img.shields.io/github/workflow/status/scmn-dev/secman/Go?color=blue&label=Go%20Build&logo=go&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/go.yml)
-[![Secman CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/secman.yml)
-[![Secman Docker CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=for-the-badge)](https://github.com/scmn-dev/secman/actions/workflows/docker.yml)
-[![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod&style=for-the-badge)](https://gitpod.io/#https://github.com/scmn-dev/secman)
-![Codacy grade](https://img.shields.io/codacy/grade/c434720ddcc84bea982475063f903a81?color=blue&logo=codacy&style=for-the-badge)
+[![CodeQL](https://img.shields.io/github/workflow/status/scmn-dev/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/codeql.yml)
+[![Secman CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/secman.yml)
+[![Secman Docker CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/docker.yml)
+[![Secman With GitPod](https://img.shields.io/badge/Gitpod-Ready%20to%20Code-blue?logo=gitpod&style=flat-square)](https://gitpod.io/#https://github.com/scmn-dev/secman)
+![Codacy grade](https://img.shields.io/codacy/grade/c434720ddcc84bea982475063f903a81?color=blue&logo=codacy&style=flat-square)
 
 > Open In [**VSCode**](https://code.visualstudio.com)
 
