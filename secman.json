@@ -1,8 +1,8 @@
 {
-  "version": "5.3.73",
+  "version": "5.3.8",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/scmn-dev/secman/releases/download/v5.3.73/secman_windows_v5.3.73_x64-scp.zip",
+      "url": "https://github.com/scmn-dev/secman/releases/download/v5.3.8/secman_windows_v5.3.8_x64-scp.zip",
       "bin": [
         "bin/secman.exe"
       ],

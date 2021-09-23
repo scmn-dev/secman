@@ -4,7 +4,29 @@
 
 ---
 
-## [[v5.3.73] 2021-08-09](#v5372-2021-08-09)
+## [[v5.3.8] 2021-09-23](#v538-2021-09-23)
+
+### Added
+
+- Create `--topic` flag to `repo list` command.
+- Add new secman docker image: [**smcr/secman-cli**](https://hub.docker.com/r/smcr/secman-cli).
+- Add `brews` in `.goreleaser`.
+- Build `write` & `new` aliases to `insert` command.
+
+### Changed
+
+- Update the installers url
+  * unix: [**cli.secman.dev/unix**](https://cli.secman.dev/unix)
+  * windows: [**cli.secman.dev/win**](https://cli.secman.dev/win)
+- Change the infrastructure of secman docker images
+  * `smcr/secman`: secman container image for full experince.
+  * `smcr/secman-cli`: lightweight image for demo.
+
+### Fixed
+
+- Fix `fetch` command in **windows** by adding `FetchClone` in `sync` command.
+
+## [[v5.3.73] 2021-08-09](#v5373-2021-08-09)
 
 ### Added
 
