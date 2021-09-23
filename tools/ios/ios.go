@@ -14,7 +14,6 @@ import (
 	rCmd "github.com/gepis/sm-gh-api/pkg/cmd/repo"
 )
 
-
 func Auth(f *cmdutil.Factory) *cobra.Command {
 	cmd := aCmd.NewCmdAuth(f)
 	return cmd
