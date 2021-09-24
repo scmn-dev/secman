@@ -6,8 +6,7 @@ DATE=$(shell git tag -l --sort=-creatordate --format='%(creatordate:short)' $(LA
 build:
 		@cd core && \
 		go get -d && \
-		go build -o secman -ldflags "-X main.version=$(LATEST_VERSION) -X main.versionDate=($(DATE))" && \
-		git clone https://github.com/scmn-dev/sm-cluster ~/.sm-cluster
+		go build -o secman -ldflags "-X main.version=$(LATEST_VERSION) -X main.versionDate=($(DATE))"
 
 setup: core/secman
 		sudo mv core/secman /usr/local/bin

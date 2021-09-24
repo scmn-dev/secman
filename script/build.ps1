@@ -16,9 +16,6 @@ if ((Get-Command git -errorAction SilentlyContinue) -or (Get-Command npm -errorA
     Move-Item secman.exe -Destination $BIN
     [System.Environment]::SetEnvironmentVariable("Path", $Env:Path + ";$BIN", [System.EnvironmentVariableTarget]::User)
 
-    cd ..
-
-    git clone https://github.com/scmn-dev/sm-cluster $HOME\.sm-cluster
 } else {
     Write-Host "Some of these apps must be installed: git, or npm"
     Write-Host "git: https://git-scm.com"
