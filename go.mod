@@ -9,8 +9,8 @@ require (
 	github.com/abdfnx/shell v0.3.15
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.16.0
-	github.com/gepis/git v1.0.7
-	github.com/gepis/sm-gh-api v0.3.57
+	github.com/gepis/git v1.0.8
+	github.com/gepis/sm-gh-api v0.3.58
 	github.com/itchyny/gojq v0.12.5
 	github.com/mattn/go-isatty v0.0.14
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d

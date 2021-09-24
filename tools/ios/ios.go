@@ -10,7 +10,7 @@ import (
 
 	// commands
 	aCmd "github.com/gepis/sm-gh-api/pkg/cmd/auth"
-	cCmd "github.com/gepis/sm-gh-api/pkg/cmd/config"
+	cCmd "github.com/gepis/sm-gh-api/pkg/cmd/cluster"
 	rCmd "github.com/gepis/sm-gh-api/pkg/cmd/repo"
 )
 
