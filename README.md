@@ -10,7 +10,7 @@
 
 ## Secman Products
 
-- [**Secman Desktop**](https://dl.secman.dev)
+- [**Secman Desktop**](https://d.secman.dev)
 - [**Secman Extension**](https://secman.dev/extension)
 
 ## Code Status
