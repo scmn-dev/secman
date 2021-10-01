@@ -68,13 +68,13 @@ secman insert FOLDERNAME/PASSWORDNAME
 ### Using Shell (macOS and Linux)
 
 ```bash
-curl -fsSL https://cli.secman.dev/unix | bash
+curl -fsSL https://unix.secman.dev | bash
 ```
 
 ### Powershell (Windows)
 
 ```powershell
-iwr -useb https://cli.secman.dev/win | iex
+iwr -useb https://win.secman.dev | iex
 ```
 
 > if you get an error you might need to change the **execution policy** _**(i.e. enable Powershell)**_ via
@@ -147,7 +147,6 @@ see [**building from source**](https://docs.secman.dev/contributing/build_from_s
 
 - [**secman website**](https://secman.dev)
 - [**docs website**](https://docs.secman.dev)
-- [**secman cli website**](https://cli.secman.dev)
 - [**changelog website**](https://changelog.secman.dev)
 
 ## Stargazers over time
