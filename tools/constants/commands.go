@@ -277,7 +277,7 @@ func Check_ml() string {
 		if [ $l != $c ]; then
 			nr="there's a new release of secman is avalaible: "
 			up="to upgrade run"
-			smu="secman upgrade"
+			smu="sudo secman upgrade"
 
 			echo ""
 			echo "$nr $c → $l"
