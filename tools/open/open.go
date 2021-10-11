@@ -8,8 +8,8 @@ import (
 	"strings"
 	"encoding/base64"
 
-	"github.com/gepis/sm-gh-api/api"
-	"github.com/gepis/sm-gh-api/core/ghrepo"
+	"github.com/scmn-dev/secman/pkg/api/gh/api"
+	"github.com/scmn-dev/secman/pkg/api/gh/core/ghrepo"
 )
 
 var NotFoundError = errors.New("not found")

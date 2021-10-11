@@ -9,16 +9,16 @@ import (
 	"text/template"
 
 	"github.com/MakeNowJust/heredoc"
-	"github.com/gepis/sm-gh-api/api"
-	"github.com/gepis/sm-gh-api/core/ghinstance"
-	"github.com/gepis/sm-gh-api/core/ghrepo"
-	"github.com/gepis/sm-gh-api/pkg/cmdutil"
-	"github.com/gepis/sm-gh-api/pkg/iostreams"
-	"github.com/gepis/sm-gh-api/pkg/markdown"
-	"github.com/gepis/sm-gh-api/utils"
+	"github.com/scmn-dev/secman/pkg/api/gh/api"
+	"github.com/scmn-dev/secman/pkg/api/gh/core/ghinstance"
+	"github.com/scmn-dev/secman/pkg/api/gh/core/ghrepo"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmdutil"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/iostreams"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/markdown"
+	"github.com/scmn-dev/secman/pkg/api/gh/utils"
 	"github.com/spf13/cobra"
 	openx "github.com/scmn-dev/secman/tools/open"
-	git_config "github.com/gepis/git"
+	git_config "github.com/scmn-dev/secman/tools/config"
 )
 
 type browser interface {

@@ -9,8 +9,8 @@ import (
 	"github.com/briandowns/spinner"
 	"github.com/spf13/cobra"
 
-	"github.com/gepis/sm-gh-api/pkg/cmd/factory"
-	"github.com/gepis/sm-gh-api/pkg/cmdutil"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmd/factory"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmdutil"
 	"github.com/scmn-dev/secman/pkg/clean"
 	"github.com/scmn-dev/secman/pkg/edit"
 	"github.com/scmn-dev/secman/pkg/fetch"

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gepis/sm-gh-api/pkg/cmdutil"
-	"github.com/gepis/sm-gh-api/pkg/iostreams"
-	"github.com/gepis/sm-gh-api/pkg/text"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmdutil"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/iostreams"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/text"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )

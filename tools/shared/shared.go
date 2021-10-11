@@ -8,9 +8,9 @@ import (
 	"net"
 	"strings"
 
-	"github.com/gepis/sm-gh-api/pkg/cmd/factory"
-	"github.com/gepis/sm-gh-api/pkg/iostreams"
-	"github.com/gepis/sm-gh-api/pkg/cmdutil"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmd/factory"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/iostreams"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/cmdutil"
 
 	"github.com/spf13/cobra"
 )

@@ -5,7 +5,7 @@ import (
 
 	survey "github.com/AlecAivazis/survey/v2"
 	"github.com/abdfnx/shell"
-	"github.com/gepis/sm-gh-api/pkg/prompt"
+	"github.com/scmn-dev/secman/pkg/api/gh/pkg/prompt"
 	commands "github.com/scmn-dev/secman/tools/constants"
 	checker "github.com/scmn-dev/version-checker"
 	"github.com/spf13/cobra"

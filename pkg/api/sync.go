@@ -11,7 +11,7 @@ import (
 	"github.com/abdfnx/shell"
 	"github.com/spf13/cobra"
 	commands "github.com/scmn-dev/secman/tools/constants"
-	git_config "github.com/gepis/git"
+	git_config "github.com/scmn-dev/secman/tools/config"
 	"github.com/scmn-dev/secman/tools/shared"
 )
 
