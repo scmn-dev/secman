@@ -71,13 +71,3 @@ nfpms:
     contents:
       - src: "./share/man/man1/secman.1"
         dst: "/usr/share/man/man1/secman.1.gz"
-
-brews:
-  - tap:
-      owner: scmn-dev
-      name: homebrew-tap
-    folder: Formula
-    homepage: https://github.com/scmn-dev/secman
-    description: Save your passwords and Sync them across all your devices.
-    test: |
-      system "#{bin}/secman"
