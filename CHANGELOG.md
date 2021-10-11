@@ -11,16 +11,19 @@
 - Create `--topic` flag to `repo list` command.
 - Add new secman docker image: [**smcr/secman-cli**](https://hub.docker.com/r/smcr/secman-cli).
 - Add `brews` in `.goreleaser`.
-- Build `write` & `new` aliases to `insert` command.
+- Add `write` & `new` aliases to `insert` command.
+- Build `scmn-dev/browser` package.
 
 ### Changed
 
 - Update the installers url
-  * unix: [**cli.secman.dev/unix**](https://cli.secman.dev/unix)
-  * windows: [**cli.secman.dev/win**](https://cli.secman.dev/win)
+  * unix: [**unix.secman.dev**](https://unix.secman.dev)
+  * windows: [**win.secman.dev**](https://win.secman.dev)
 - Change the infrastructure of secman docker images
   * `smcr/secman`: secman container image for full experince.
   * `smcr/secman-cli`: lightweight image for demo.
+- Move [`scmn-dev/gh-api`](https://github.com/scmn-dev/gh-api) & [`david-tomson/git`](https://github.com/david-tomson/git) repos to secman.
+- upgrade secman docker CI.
 
 ### Fixed
 
