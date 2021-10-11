@@ -11,7 +11,7 @@ require (
 	github.com/briandowns/spinner v1.16.0
 	github.com/charmbracelet/glamour v0.3.0
 	github.com/cli/oauth v0.8.0
-	github.com/cpuguy83/go-md2man/v2 v2.0.0
+	github.com/cpuguy83/go-md2man/v2 v2.0.1
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/hashicorp/go-version v1.3.0
 	github.com/henvic/httpretty v0.0.6
