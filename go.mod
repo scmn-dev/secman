@@ -17,7 +17,7 @@ require (
 	github.com/henvic/httpretty v0.0.6
 	github.com/itchyny/gojq v0.12.5
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
-	github.com/mattn/go-colorable v0.1.8
+	github.com/mattn/go-colorable v0.1.11
 	github.com/mattn/go-isatty v0.0.14
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
@@ -31,7 +31,7 @@ require (
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5
 	golang.org/x/net v0.0.0-20210907225631-ff17edfbf26d // indirect
-	golang.org/x/sys v0.0.0-20210906170528-6f6e22806c34
+	golang.org/x/sys v0.0.0-20210927094055-39ccf1dd6fa6
 	golang.org/x/term v0.0.0-20210615171337-6886f2dfbf5b
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
 )
