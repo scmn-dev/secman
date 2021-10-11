@@ -5,7 +5,7 @@ go 1.11
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.1
 	github.com/MakeNowJust/heredoc v1.0.0
-	github.com/Timothee-Cardoso/tc-exe v1.0.0
+	github.com/Timothee-Cardoso/tc-exe v1.0.1
 	github.com/abdfnx/shell v0.3.15
 	github.com/atotto/clipboard v0.1.4
 	github.com/briandowns/spinner v1.16.0
