@@ -47,7 +47,7 @@
     "@oclif/dev-cli": "^1.26.0",
     "@oclif/test": "^1.2.8",
     "chai": "^4.3.4",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-oclif": "^4.0.0",
     "nyc": "^15.1.0"
   }
