@@ -146,8 +146,8 @@ see [**building from source**](https://docs.secman.dev/contributing/build_from_s
 ## Some Resources
 
 - [**secman website**](https://secman.dev)
-- [**docs website**](https://docs.secman.dev)
-- [**changelog website**](https://changelog.secman.dev)
+- [**docs**](https://secman.dev/docs)
+- [**changelog**](https://secman.dev/changelog)
 
 ## Stargazers over time
 
