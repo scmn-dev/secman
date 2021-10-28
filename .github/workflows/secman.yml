@@ -57,30 +57,30 @@ jobs:
   #     - name: Run secman version
   #       run: secman ver
 
-  macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
+  # macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - name: Build secman (MacOS)
-        run: |
-          git clone https://github.com/scmn-dev/secman
-          cd secman
-          make
-          make setup
+  #     - name: Build secman (MacOS)
+  #       run: |
+  #         git clone https://github.com/scmn-dev/secman
+  #         cd secman
+  #         make
+  #         make setup
 
-      - name: Clone .secman (ex folder)
-        run: |
-          $CLONE_DOT_SECMAN ~/.secman
+  #     - name: Clone .secman (ex folder)
+  #       run: |
+  #         $CLONE_DOT_SECMAN ~/.secman
 
-      - name: Run secman
-        run: secman
+  #     - name: Run secman
+  #       run: secman
 
-      - name: Run secman Help
-        run: secman -h
+  #     - name: Run secman Help
+  #       run: secman -h
 
-      - name: Run secman version
-        run: secman ver
+  #     - name: Run secman version
+  #       run: secman ver
 
   windows:
     runs-on: windows-latest
