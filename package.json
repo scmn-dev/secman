@@ -62,7 +62,7 @@
     "bl": "^5.0.0",
     "boxen": "^6.2.1",
     "globby": "^12",
-    "indent-string": "4.0.0",
+    "indent-string": "5.0.0",
     "lodash.template": "^4.5.0",
     "process": "^0.11.10",
     "prompts": "^2.4.2",
