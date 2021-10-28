@@ -1,0 +1,117 @@
+{
+  "name": "secman",
+  "description": "The command-line interface of Secman",
+  "version": "6.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "homepage": "https://secman.dev",
+  "bugs": "https://github.com/scmn-dev/secman/issues",
+  "repository": "scmn-dev/secman",
+  "keywords": [
+    "password manager",
+    "secman",
+    "cli",
+    "security",
+    "secrets management"
+  ],
+  "author": {
+    "name": "Secman, Inc.",
+    "email": "hello@secman.dev",
+    "url": "https://secman.dev"
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "pack": "oclif-dev pack"
+  },
+  "bin": {
+    "sm": "./bin/run",
+    "secman": "./bin/run"
+  },
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "@secman/spinner": "^0.1.22",
+    "@sendgrid/mail": "^7.5.0",
+    "axios": "^0.23.0",
+    "cfonts": "^2.10.0",
+    "chalk": "^4.1.2",
+    "cli-ux": "^5.6.3",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "powershell": "^2.3.2",
+    "shelljs": "^0.8.4",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/plugin-plugins": "^1.10.1",
+    "@oclif/plugin-warn-if-update-available": "^1.7.0",
+    "@types/crypto-js": "^4.0.2",
+    "@types/lodash.template": "^4.5.0",
+    "@types/node": "^16.11.6",
+    "@types/prompts": "^2.0.14",
+    "@types/shelljs": "^0.8.9",
+    "@types/signal-exit": "^3.0.1",
+    "@types/whatwg-fetch": "^0.0.33",
+    "@types/wrap-ansi": "^8.0.1",
+    "@types/write-file-atomic": "^3.0.2",
+    "@types/yargs": "^17.0.4",
+    "bl": "^5.0.0",
+    "boxen": "^6.2.1",
+    "globby": "^10",
+    "indent-string": "4.0.0",
+    "lodash.template": "^4.5.0",
+    "process": "^0.11.10",
+    "prompts": "^2.4.2",
+    "signal-exit": "^3.0.5",
+    "string-width": "4.2.0",
+    "strip-ansi": "6.0.0",
+    "table": "^6.7.2",
+    "ts-node": "^8",
+    "typescript": "^4.4.4",
+    "wcwidth": "^1.0.1",
+    "whatwg-fetch": "^3.6.2",
+    "wrap-ansi": "4.0.0",
+    "write-file-atomic": "^3.0.3",
+    "yargs": "^17.2.1"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "secman",
+    "helpClass": "./src/help",
+    "hooks": {
+      "init": "./lib/hooks/init/version"
+    },
+    "plugins": [
+      "@oclif/plugin-warn-if-update-available"
+    ],
+    "warn-if-update-available": {
+      "timeoutInDays": 10,
+      "message": "there's a new release of secman is avalaible: <%= chalk.greenBright(latest) %>\nto upgrade run <%= chalk.bold('`npm upgrade secman`') %>",
+      "authorization": "Basic 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"
+    }
+  },
+  "pkg": {
+    "scripts": "lib/**/*.js",
+    "targets": [
+      "node14-linux-arm64"
+    ],
+    "outputPath": "dist"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "types": "lib/index.d.ts"
+}
