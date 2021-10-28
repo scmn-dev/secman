@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "module": "es2015",
+    "outDir": "lib",
+    "rootDirs": ["src", "."],
+    "strict": true,
+    "target": "es2017",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "lib": ["es2017", "dom"],
+    "sourceMap": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*", "api"],
+  "exclude": ["node_modules", "node_modules/*"]
+}
