@@ -1,0 +1,6 @@
+{
+  // The output of reading password, values [ "table", "raw" ]
+  "read_output": "table",
+  // Disable version check
+  "disable_version_check": false
+}
