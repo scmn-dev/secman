@@ -1,0 +1,3 @@
+tasks:
+  - init: yarn
+    command: curl -fsSL https://unix.secman.dev | bash
