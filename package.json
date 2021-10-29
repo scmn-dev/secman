@@ -42,7 +42,7 @@
     "dotenv": "^10.0.0",
     "powershell": "^2.3.2",
     "shelljs": "^0.8.4",
-    "tslib": "^1"
+    "tslib": "^2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
