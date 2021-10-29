@@ -1,0 +1,14 @@
+* @abdfnx
+README.md @Timothee-Cardoso @david-tomson
+CHANGELOG.md @Timothee-Cardoso
+Makefile @Timothee-Cardoso
+/script/build.ps1 @Timothee-Cardoso
+/core/core.go @Timothee-Cardoso @iMRxM7mD
+secman.json @Timothee-Cardoso
+.snyk @Timothee-Cardoso
+.gitpod.yml @Timothee-Cardoso
+.github/workflows/secman.yml @Timothee-Cardoso
+/tools/constants/commands.go @Timothee-Cardoso
+.editorconfig @Timothee-Cardoso
+/core/schema.gql @david-tomson
+.gitignore @iMRxM7mD

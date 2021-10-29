@@ -1,0 +1,9 @@
+tasks:
+  - init: go get -d ./...
+    command: curl -fsSL https://cli.secman.dev/unix | bash
+
+vscode:
+  extensions:
+    - pkief.material-icon-theme
+    - esbenp.prettier-vscode
+    - golang.go

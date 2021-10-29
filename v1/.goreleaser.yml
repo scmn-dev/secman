@@ -1,0 +1,73 @@
+project_name: secman
+
+release:
+  prerelease: auto
+  draft: true
+  name_template: "Secman v{{ .Version }}"
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - <<: &build_defaults
+      binary: bin/secman
+      main: ./core
+      ldflags:
+        - -X main.version=v{{ .Version }}
+        - -X main.versionDate={{ .Env.VersionDate }}
+
+    id: macos
+    goos: [ darwin ]
+    goarch: [ amd64 ]
+
+  - <<: *build_defaults
+    id: linux
+    goos: [ linux ]
+    goarch: [ amd64 ]
+
+    env:
+      - CGO_ENABLED=0
+
+  - <<: *build_defaults
+    id: windows
+    goos: [ windows ]
+    goarch: [ amd64 ]
+
+archives:
+  - id: nix
+    builds: [ macos, linux ]
+    <<: &archive_defaults
+      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}"
+
+    wrap_in_directory: true
+    replacements:
+      darwin: macos
+    format: zip
+    files:
+      - LICENSE
+      - ./share/man/man1/secman.1
+
+  - id: windows
+    builds: [ windows ]
+    <<: *archive_defaults
+    wrap_in_directory: false
+    format: zip
+    files:
+      - LICENSE
+
+nfpms:
+  - license: MIT
+    maintainer: Secman
+    homepage: https://secman.dev
+    bindir: /usr
+    file_name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Arch }}"
+    dependencies:
+      - git
+    description: The Password Manager of your Dreams.
+    formats:
+      - deb
+      - rpm
+    contents:
+      - src: "./share/man/man1/secman.1"
+        dst: "/usr/share/man/man1/secman.1.gz"

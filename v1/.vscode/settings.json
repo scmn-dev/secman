@@ -1,0 +1,10 @@
+{
+    "search.exclude": {
+        "vendor/**": true
+    },
+
+    "editor.formatOnSave": true,
+    "[go]": {
+        "editor.formatOnSave": true
+    },
+}

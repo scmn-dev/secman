@@ -1,0 +1,54 @@
+{
+  "name": "@secman/sm-win",
+  "description": "sub-app of secman for windows",
+  "version": "0.2.4",
+  "author": "@abdfnx",
+  "bin": {
+    "sm-win": "./bin/run"
+  },
+  "bugs": "https://github.com/scmn-dev/sm-win/issues",
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.2",
+    "powershell": "^2.3.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://sm-win.secman.dev",
+  "keywords": [
+    "upgrader",
+    "secman",
+    "windows"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "sm-win",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "scmn-dev/sm-win",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "@oclif/test": "^1.2.8",
+    "chai": "^4.3.4",
+    "eslint": "^8.0.0",
+    "eslint-config-oclif": "^4.0.0",
+    "nyc": "^15.1.0"
+  }
+}

@@ -1,0 +1,11 @@
+[submodule "shell"]
+	path = plugins/shell
+	url = https://github.com/abdfnx/shell.git
+
+[submodule "version-checker"]
+	path = plugins/version-checker
+	url = https://github.com/scmn-dev/version-checker.git
+
+[submodule "sm-win"]
+	path = pkg/upgrade/sm-win
+	url = https://github.com/scmn-dev/sm-win.git

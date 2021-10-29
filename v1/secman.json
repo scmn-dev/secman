@@ -1,0 +1,13 @@
+{
+  "version": "5.3.8",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/scmn-dev/secman-v1/releases/download/v5.3.8/secman_windows_v5.3.8_x64-scp.zip",
+      "bin": ["bin/secman.exe"],
+      "hash": ""
+    }
+  },
+  "homepage": "https://github.com/scmn-dev/secman-v1",
+  "license": "MIT",
+  "description": "secman via scoop"
+}

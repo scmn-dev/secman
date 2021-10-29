@@ -1,0 +1,22 @@
+# just schema
+
+type Password {
+    value: String!
+    hasID: Boolean
+    collection: Collection
+}
+
+type Collection {
+    name: String!
+    passwords: [Password]
+}
+
+type Query {
+    passwords: [Password]
+    collection(name: String): Collection
+}
+
+mutation {
+    createPassword(value: String): Password
+    deletePassword(name: String): String
+}
