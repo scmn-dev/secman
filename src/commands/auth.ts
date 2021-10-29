@@ -89,11 +89,7 @@ export default class Auth extends Command {
             },
           });
 
-          let hash = crypto
-            .createHash("sha256")
-            .update(master_password.mp)
-            .digest("hex")
-            .toString();
+          let hash = CryptoTools.sha256Encrypt(master_password.mp);
 
           let pswd = hash.toString();
 
