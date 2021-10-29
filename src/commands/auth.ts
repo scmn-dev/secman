@@ -1,5 +1,5 @@
 import { Command, flags } from "@oclif/command";
-import * as chalk from "chalk";
+import chalk from "chalk";
 import SendEmail from "../../app/email/send";
 import { PRIMARY_COLOR } from "../../constants";
 import * as cryptojs from "crypto-js";
