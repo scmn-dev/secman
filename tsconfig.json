@@ -14,6 +14,6 @@
     "sourceMap": true,
     "skipLibCheck": true
   },
-  "include": ["src/**/*", "api"],
+  "include": ["src/**/*", "api", "contents/examples/delete.ts"],
   "exclude": ["node_modules", "node_modules/*"]
 }
