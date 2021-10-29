@@ -18,6 +18,8 @@ export default class Auth extends Command {
     help: flags.help({ char: "h" }),
   };
 
+  static aliases = ["login"];
+
   async run() {
     const { flags } = this.parse(Auth);
 
@@ -113,6 +115,7 @@ export default class Auth extends Command {
               );
 
               writeConfigFile(
+                name,
                 email,
                 access_token,
                 refresh_token,

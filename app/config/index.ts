@@ -20,6 +20,7 @@ const sm_data = path.join(homedir(), SECMAN_DATA_PATH);
 const sm_setting = path.join(homedir(), SECMAN_SETTINGS_PATH);
 
 export default async function writeConfigFile(
+  username: any,
   user_email: any,
   access_token: any,
   refresh_token: any,
@@ -55,7 +56,11 @@ export default async function writeConfigFile(
   }
 
   // write config file
-  await writeJSON(sm_config, { user: user_email, secret: secret }, {});
+  await writeJSON(
+    sm_config,
+    { name: username, user: user_email, secret: secret },
+    {}
+  );
 
   writeDataFile(
     access_token,
@@ -91,6 +96,7 @@ export async function writeSettingFile() {
     {
       read_output: "table",
       disable_version_check: false,
+      editor: "secman_editor",
     },
     {}
   );
