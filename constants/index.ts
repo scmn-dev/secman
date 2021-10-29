@@ -5,6 +5,7 @@ env.config();
 
 export const PRIMARY_COLOR: any = "#1163E6";
 export const SENDGRID_API_KEY: any = process.env.SENDGRID_API_KEY;
+export const GH_TOKEN: any = process.env.GH_TOKEN;
 export const API_URL: any = "https://api.secman.dev";
 export const CHARS = {
   alphabet: "abcdefghijklmnopqrstuvwxyz",
