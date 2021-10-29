@@ -1,7 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
 import * as cryptojs from "crypto-js";
-import * as chalk from "chalk";
+import chalk from "chalk";
 import { spnr as spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
@@ -40,7 +40,6 @@ export default class List extends Command {
 
   async run() {
     const { flags } = this.parse(List);
-    let API_URL = "/api";
     const access_token = readDataFile("access_token");
 
     const gettingDataSpinner = spinner("📡 Getting data...").start();
@@ -49,7 +48,7 @@ export default class List extends Command {
       await API.get("/api/logins", {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Cookie: `access_token=${access_token}`,
+          Cookie: `secman_token=${access_token}`,
         },
       }).then(async (res: any) => {
         gettingDataSpinner.stop();
@@ -83,7 +82,7 @@ export default class List extends Command {
       await API.get("/api/credit-cards", {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Cookie: `access_token=${access_token}`,
+          Cookie: `secman_token=${access_token}`,
         },
       }).then(async (res: any) => {
         gettingDataSpinner.stop();
@@ -121,7 +120,7 @@ export default class List extends Command {
       await API.get("/api/emails", {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Cookie: `access_token=${access_token}`,
+          Cookie: `secman_token=${access_token}`,
         },
       }).then(async (res: any) => {
         gettingDataSpinner.stop();
@@ -136,7 +135,7 @@ export default class List extends Command {
         // console.log(`├──Emails`);
         if (flags.emails) {
           console.log(`.
-├──Emails`);
+├──${chalk.bold("Emails")}`);
         } else {
           console.log(`├──Emails`);
         }
@@ -160,7 +159,7 @@ export default class List extends Command {
       await API.get("/api/notes", {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Cookie: `access_token=${access_token}`,
+          Cookie: `secman_token=${access_token}`,
         },
       }).then(async (res: any) => {
         gettingDataSpinner.stop();
@@ -175,7 +174,7 @@ export default class List extends Command {
         // console.log(`├──Notes`);
         if (flags.notes) {
           console.log(`.
-├──Notes`);
+├──${chalk.bold("Notes")}`);
         } else {
           console.log(`├──Notes`);
         }
@@ -198,7 +197,7 @@ export default class List extends Command {
       await API.get("/api/servers", {
         headers: {
           Authorization: `Bearer ${access_token}`,
-          Cookie: `access_token=${access_token}`,
+          Cookie: `secman_token=${access_token}`,
         },
       }).then(async (res: any) => {
         gettingDataSpinner.stop();
@@ -213,7 +212,7 @@ export default class List extends Command {
         // console.log(`├──Servers`);
         if (flags.servers) {
           console.log(`.
-├──Servers`);
+├──${chalk.bold("Servers")}`);
         } else {
           console.log(`├──Servers`);
         }
@@ -229,7 +228,6 @@ export default class List extends Command {
     };
 
     const core = async () => {
-      // make logins as a first item in the list then list the rest
       logins()
         .then(() => {
           creditCards().then(() => {
