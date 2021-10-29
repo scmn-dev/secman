@@ -24,7 +24,7 @@ export async function refresh() {
 
   let master_password = password.mp;
 
-  let hash = cryptojs.SHA256(master_password).toString();
+  let hash = CryptoTools.sha256Encrypt(master_password);
   let pswd = hash.toString();
 
   let data = JSON.stringify({

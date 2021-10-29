@@ -79,7 +79,7 @@ export default class Auth extends Command {
           let master_password = await prompts({
             type: "password",
             name: "mp",
-            message: "Enter your master password: ",
+            message: "Enter your master password: ",jo838z8mw8ialtvbgmaeqnpxb6ndgn1q
             validate: (value: string) => {
               if (value.length > 0) {
                 return true;
