@@ -2,7 +2,7 @@ import { Command, flags } from "@oclif/command";
 import chalk from "chalk";
 import SendEmail from "../../app/email/send";
 import { PRIMARY_COLOR } from "../../constants";
-import * as cryptojs from "crypto-js";
+import crypto from "crypto";
 import tokenGenerator from "../../api/generator";
 import writeConfigFile from "../../app/config";
 import { API } from "../../contract";
@@ -89,7 +89,12 @@ export default class Auth extends Command {
             },
           });
 
-          let hash = cryptojs.SHA256(master_password.mp).toString();
+          let hash = crypto
+            .createHash("sha256")
+            .update(master_password.mp)
+            .digest("hex")
+            .toString();
+
           let pswd = hash.toString();
 
           let data = JSON.stringify({
