@@ -2,14 +2,14 @@ import { Command, flags } from "@oclif/command";
 import chalk from "chalk";
 import SendEmail from "../../app/email/send";
 import { PRIMARY_COLOR } from "../../constants";
-import crypto from "crypto";
 import tokenGenerator from "../../api/generator";
 import writeConfigFile from "../../app/config";
 import { API } from "../../contract";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { CryptoTools } from "../../tools/crypto";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
+import store from "store";
 
 export default class Auth extends Command {
   static description = "Manage secman's authentication state.";
@@ -79,7 +79,7 @@ export default class Auth extends Command {
           let master_password = await prompts({
             type: "password",
             name: "mp",
-            message: "Enter your master password: ",jo838z8mw8ialtvbgmaeqnpxb6ndgn1q
+            message: "Enter your master password: ",
             validate: (value: string) => {
               if (value.length > 0) {
                 return true;
@@ -109,10 +109,13 @@ export default class Auth extends Command {
                 secret,
               } = res.data;
 
-              const mp = CryptoTools.sha256Encrypt(master_password.mp);
+              master_password.mp = CryptoTools.sha256Encrypt(
+                master_password.mp
+              );
+
               const master_password_hash = CryptoTools.pbkdf2Encrypt(
                 secret,
-                mp
+                master_password.mp
               );
 
               writeConfigFile(

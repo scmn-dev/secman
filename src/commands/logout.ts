@@ -1,5 +1,5 @@
 import { Command, flags } from "@oclif/command";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import writeConfigFile from "../../app/config";
 
 export default class Logout extends Command {

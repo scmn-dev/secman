@@ -10,7 +10,7 @@ import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import * as cryptojs from "crypto-js";
 import * as chalk from "chalk";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import {
   CCFields,

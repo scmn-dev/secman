@@ -11,8 +11,7 @@ import { writeJsonFile as writeJSON } from "../../tools/json/write";
 import { homedir, platform } from "os";
 import fs from "fs";
 import path from "path";
-// import * as chalk from "chalk";
-const chalk = require("chalk");
+import chalk from "chalk";
 
 const secman_dir = path.join(homedir(), DOT_SECMAN_PATH);
 const sm_config = path.join(homedir(), SECMAN_CONFIG_PATH);

@@ -1,9 +1,10 @@
 import { Command, flags } from "@oclif/command";
-import * as chalk from "chalk";
+import chalk from "chalk";
 import * as sh from "shelljs";
 import { platform } from "os";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { InstallEditor } from "../../tools/install-editor";
+import { readSettingsFile } from "../../app/config";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 const powershell = require("powershell");
@@ -28,7 +29,9 @@ export default class Settings extends Command {
   async run() {
     const { flags } = this.parse(Settings);
 
-    const opening = spinner("📜 Opening settings file...").start();
+    const opening = spinner("📜 Opening settings file...");
+
+    const editor = readSettingsFile("editor");
 
     if (flags.docs) {
       console.log(`
@@ -36,43 +39,68 @@ ${chalk.bold("secman settings")}
 ----------------
 ${chalk.bold(
   "read_output"
-)}: The output of reading password, values [ "table", "raw" ]
+)}: The output of reading password, values [ "table", "raw" ].
 ----------------
-${chalk.bold("disable_version_check")}: Disable version check
+${chalk.bold("disable_version_check")}: Disable version check.
+----------------
+${chalk.bold(
+  "editor"
+)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
 `);
     } else if (flags["editor-install"]) {
       InstallEditor();
     } else {
-      const editor = sh.find("~/.secman/editor");
+      if (editor === "secman_editor") {
+        const editor = sh.find("~/.secman/editor");
 
-      if (editor.length === 0) {
-        const qe = await prompts({
-          type: "toggle",
-          name: "value",
-          message: "The secman editor is not found. Do you want to install it?",
-          active: "yes",
-          inactive: "no",
-        });
-
-        if (qe.value) {
-          InstallEditor();
-        } else {
-          this.exit(0);
-        }
-      } else {
-        if (platform() === "win32") {
-          const ps = new powershell(
-            "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
-          );
-
-          ps.on("output", (data: any) => {
-            console.log(data);
+        if (editor.length === 0) {
+          const qe = await prompts({
+            type: "toggle",
+            name: "value",
+            message:
+              "The secman editor is not found. Do you want to install it?",
+            active: "yes",
+            inactive: "no",
           });
 
-          opening.stop();
+          if (qe.value) {
+            InstallEditor();
+          } else {
+            this.exit(0);
+          }
         } else {
-          sh.exec("~/.secman/editor ~/.secman/settings.json");
-          opening.stop();
+          if (platform() === "win32") {
+            const ps = new powershell(
+              "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
+            );
+
+            ps.on("output", (data: any) => {
+              console.log(data);
+            });
+
+            opening.stop();
+          } else {
+            sh.exec("~/.secman/editor ~/.secman/settings.json");
+            opening.stop();
+          }
+        }
+      } else {
+        switch (true) {
+          case platform() === "win32":
+            const ps = new powershell(
+              `"${editor}" "$HOME/.secman/settings.json"`
+            );
+
+            ps.on("output", (data: any) => {
+              console.log(data);
+            });
+
+            opening.stop();
+
+            break;
+
+          default:
+            sh.exec(`"${editor}" "$HOME/.secman/settings.json"`);
         }
       }
     }

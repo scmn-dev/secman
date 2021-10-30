@@ -8,7 +8,7 @@ const octokit = new Octokit({
 });
 
 export default class Info extends Command {
-  static description = "Info about the secman CLI.";
+  static description = "Information about the secman CLI.";
 
   static aliases = ["data"];
 

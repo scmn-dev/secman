@@ -2,7 +2,7 @@ import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
 import * as cryptojs from "crypto-js";
 import * as chalk from "chalk";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { DeleteExamples } from "../../contents/examples/delete";

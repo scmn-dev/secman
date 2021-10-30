@@ -14,6 +14,7 @@ export default class Generate extends Command {
     length: flags.integer({
       char: "l",
       description: "length of the generated password",
+      default: 10,
     }),
     numbers: flags.boolean({ char: "n", description: "include numbers" }),
     symbols: flags.boolean({ char: "s", description: "include symbols" }),
@@ -30,7 +31,6 @@ export default class Generate extends Command {
     COMPLEXIES[2].checked = flags.symbols ?? false;
     COMPLEXIES[3].checked = flags["capital-letters"] ?? false;
 
-    let pwLength = flags.length ?? 10;
     let generatedPassword = "";
 
     const generator = COMPLEXIES.filter((item) => item.checked).reduce(
@@ -40,7 +40,7 @@ export default class Generate extends Command {
       ""
     );
 
-    for (let i = 0; i < pwLength; i++) {
+    for (let i = 0; i < flags.length; i++) {
       generatedPassword += generator.charAt(
         Math.floor(Math.random() * generator.length)
       );

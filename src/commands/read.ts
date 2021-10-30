@@ -9,10 +9,10 @@ import {
 } from "../../constants";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as cryptojs from "crypto-js";
-import * as chalk from "chalk";
+import cryptojs from "crypto-js";
+import chalk from "chalk";
 import { ReadExamples } from "../../contents/examples/read";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { readDataFile, readSettingsFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
@@ -105,8 +105,15 @@ export default class Read extends Command {
                 ? element.url
                 : "https://" + element.url;
 
+              const pw = CryptoTools.aesEncrypt(
+                element.password,
+                ms_hash
+              ).toString();
+
+              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
+
               const password = flags["show-password"]
-                ? element.password
+                ? _pw
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
@@ -180,8 +187,16 @@ ${chalk.bold("Verification Number")}: ${verification_number}
                 EMAILS_ENCRYPTED_FIELDS,
                 ms_hash
               );
+
+              const pw = CryptoTools.aesEncrypt(
+                element.password,
+                ms_hash
+              ).toString();
+
+              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
+
               const password = flags["show-password"]
-                ? element.password
+                ? _pw
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
@@ -226,17 +241,38 @@ ${chalk.bold("Password")}: ${password}
                 ms_hash
               );
 
+              const pw = CryptoTools.aesEncrypt(
+                element.password,
+                ms_hash
+              ).toString();
+
+              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
+
+              const hpw = CryptoTools.aesEncrypt(
+                element.hosting_password,
+                ms_hash
+              ).toString();
+
+              let _hpw = CryptoTools.aesDecrypt(hpw, ms_hash).toString();
+
+              const apw = CryptoTools.aesEncrypt(
+                element.admin_password,
+                ms_hash
+              ).toString();
+
+              let _apw = CryptoTools.aesDecrypt(apw, ms_hash).toString();
+
               const url = element.url.startsWith("http")
                 ? element.url
                 : "https://" + element.url;
               const password = flags["show-password"]
-                ? element.password
+                ? _pw
                 : "•".repeat(element.password.length);
               const hosting_password = flags["show-password"]
-                ? element.hosting_password
+                ? _hpw
                 : "•".repeat(element.hosting_password.length);
               const admin_password = flags["show-password"]
-                ? element.admin_password
+                ? _apw
                 : "•".repeat(element.admin_password.length);
               const checkExtra = element.extra ? element.extra : "No extra";
 

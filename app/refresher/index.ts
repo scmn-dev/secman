@@ -1,8 +1,7 @@
 import { readConfigFile, writeDataFile } from "../config";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as cryptojs from "crypto-js";
 import chalk from "chalk";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
