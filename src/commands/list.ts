@@ -6,6 +6,7 @@ import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { ListExamples } from "../../contents/examples/list";
+import { Flags } from "../../tools/flags";
 
 export default class List extends Command {
   static description = "List all passwords.";
@@ -243,10 +244,18 @@ export default class List extends Command {
         });
     };
 
+    const whatIsCommand = () => {
+      if (flags) {
+        return `list ${Flags(flags)}`;
+      } else {
+        return "list";
+      }
+    };
+
     const catcher = async (err: any) => {
       gettingDataSpinner.stop();
       if (err.response.status === 401) {
-        refresh();
+        refresh(whatIsCommand());
       } else if (err.response.status === 404) {
         console.log(chalk.red("No data found"));
       } else {

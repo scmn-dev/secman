@@ -16,6 +16,7 @@ import { spinner } from "@secman/spinner";
 import { readDataFile, readSettingsFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
+import { Flags } from "../../tools/flags";
 
 export default class Read extends Command {
   static description = "Print the password of a secman entry.";
@@ -325,7 +326,7 @@ ${chalk.bold("Extra")}: ${checkExtra}
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh();
+          refresh(`read ${Flags(flags)} ${args.PASSWORD_NAME}`);
         } else if (err.response.status === 404) {
           console.log(chalk.red("No data found"));
         } else {

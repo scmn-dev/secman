@@ -21,6 +21,7 @@ import {
 } from "../../contents/types";
 import { refresh } from "../../app/refresher";
 import { EditExamples } from "../../contents/examples/edit";
+import { Flags } from "../../tools/flags";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -227,7 +228,9 @@ export default class Edit extends Command {
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh();
+          refresh(`edit ${Flags(flags)} ${args.PASSWORD_NAME}`);
+        } else {
+          console.log(chalk.red("Error: " + err));
         }
       });
   }

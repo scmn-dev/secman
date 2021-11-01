@@ -1,7 +1,8 @@
 import { Command, flags } from "@oclif/command";
 import bcrypt from "bcrypt";
+import chalk from "chalk";
 export default class Bcrypt extends Command {
-  static description = "Encrypt data using bcrypt.";
+  static description = `Encrypt data using ${chalk.bold("bcrypt")}.`;
 
   static flags = {
     help: flags.help({ char: "h" }),

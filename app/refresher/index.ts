@@ -3,11 +3,12 @@ import { spinner } from "@secman/spinner";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import chalk from "chalk";
+import { PRIMARY_COLOR } from "../../constants";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
-export async function refresh() {
-  let password = await prompts({
+export async function refresh(cmd: any) {
+  const password = await prompts({
     type: "password",
     name: "mp",
     message:
@@ -21,12 +22,11 @@ export async function refresh() {
     },
   });
 
-  let master_password = password.mp;
+  const master_password = password.mp;
 
-  let hash = CryptoTools.sha256Encrypt(master_password);
-  let pswd = hash.toString();
+  const pswd = CryptoTools.sha256Encrypt(master_password).toString();
 
-  let data = JSON.stringify({
+  const data = JSON.stringify({
     email: readConfigFile("user"),
     master_password: pswd,
   });
@@ -50,7 +50,11 @@ export async function refresh() {
       refreshSpinner.stop();
 
       refreshSpinner.succeed("🔗 Refreshed");
-      console.log(chalk.bold("run the command again"));
+      console.log(
+        chalk.bold(
+          `run ${chalk.hex(PRIMARY_COLOR).bold("secman " + cmd)} command again`
+        )
+      );
     })
     .catch(function (err: any) {
       console.log(err);
