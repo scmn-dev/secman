@@ -1,6 +1,6 @@
 import { Command, flags } from "@oclif/command";
 import { spinner } from "@secman/spinner";
-import { readConfigFile, writeDataFile } from "../../app/config";
+import writeConfigFile, { readConfigFile } from "../../app/config";
 import { API } from "../../contract";
 
 export default class Logout extends Command {
@@ -23,7 +23,7 @@ export default class Logout extends Command {
 
     await API.post("/auth/signout", data)
       .then(() => {
-        writeDataFile(null, null, null, null);
+        writeConfigFile(null, null, null, null, null, null, null);
 
         logoutSpinner.succeed("Logged out successfully");
       })
