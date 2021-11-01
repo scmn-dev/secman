@@ -93,8 +93,6 @@ export async function writeSettingFile() {
   await writeJSON(
     sm_setting,
     {
-      read_output: "table",
-      disable_version_check: false,
       editor: "secman_editor",
     },
     {}

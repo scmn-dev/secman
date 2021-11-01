@@ -38,12 +38,6 @@ export default class Settings extends Command {
 ${chalk.bold("secman settings")}
 ----------------
 ${chalk.bold(
-  "read_output"
-)}: The output of reading password, values [ "table", "raw" ].
-----------------
-${chalk.bold("disable_version_check")}: Disable version check.
-----------------
-${chalk.bold(
   "editor"
 )}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
 `);
