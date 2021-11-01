@@ -26,7 +26,7 @@ export default class Auth extends Command {
     const { flags } = this.parse(Auth);
     const configFile = `${process.env.HOME}/.secman/config.json`;
 
-    const _ = async (isNewUser: boolean) => {
+    const _ = async (isNewLogin: boolean) => {
       // let email = readlineSync.questionEMail("Enter your email: ");
       const email =
         readConfigFile("user") ??
@@ -99,7 +99,7 @@ export default class Auth extends Command {
                 secret
               );
 
-              const msg = isNewUser
+              const msg = isNewLogin
                 ? "\n🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
                 : "\nRe-authentication successful";
 
