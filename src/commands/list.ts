@@ -1,6 +1,6 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
-import * as cryptojs from "crypto-js";
+import cryptojs from "crypto-js";
 import chalk from "chalk";
 import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";

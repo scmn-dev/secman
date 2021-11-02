@@ -13,7 +13,7 @@ import cryptojs from "crypto-js";
 import chalk from "chalk";
 import { ReadExamples } from "../../contents/examples/read";
 import { spinner } from "@secman/spinner";
-import { readDataFile, readSettingsFile } from "../../app/config";
+import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
 import { Flags } from "../../tools/flags";

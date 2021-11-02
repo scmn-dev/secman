@@ -9,5 +9,7 @@ export const Flags = (flags: any) => {
     return "-n";
   } else if (flags.servers) {
     return "-s";
+  } else if (flags.multi) {
+    return "-m";
   }
 };
