@@ -17,6 +17,8 @@ import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
 import { Flags } from "../../tools/flags";
+import bcrypt from "bcrypt";
+import { stdout } from "process";
 
 export default class Read extends Command {
   static description = "Print the password of a secman entry.";
@@ -166,10 +168,20 @@ export default class Read extends Command {
                 ms_hash
               ).toString();
 
-              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
+              const _pw = bcrypt.hash(pw, 10);
+
+              const pswd = bcrypt
+                .compare(element.password, _pw.toString())
+                .then((res: any) => {
+                  if (res) {
+                    stdout.write(pw);
+                  } else {
+                    stdout.write("error");
+                  }
+                });
 
               const password = flags["show-password"]
-                ? _pw
+                ? pswd
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
