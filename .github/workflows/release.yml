@@ -21,7 +21,7 @@ jobs:
     
     - name: Build
       run: |
-        sudo yarn:deb
+        sudo yarn pack:deb
         mv ./dist/deb/secman_6.0.0-1_amd64.deb ./dist/deb/secman_v6.0.0_amd64.deb
 
     - name: Upload It
