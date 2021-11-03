@@ -62,7 +62,9 @@ export default class Auth extends Command {
         let master_password = password.mp;
 
         if (master_password) {
-          const pswd = CryptoTools.sha256Encrypt(master_password).toString();
+          const hash = CryptoTools.sha256Encrypt(master_password);
+
+          const pswd = hash.toString();
 
           const data = JSON.stringify({
             email: email,

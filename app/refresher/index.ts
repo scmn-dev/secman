@@ -24,57 +24,61 @@ export async function refresh(cmd: any) {
   });
 
   let master_password = password.mp;
-  master_password = CryptoTools.encrypt(master_password);
+  if (master_password) {
+    const hash = CryptoTools.sha256Encrypt(master_password);
 
-  let data: any;
-  const func = (res: any) => {
-    let { access_token, refresh_token, transmission_key, secret } = res.data;
+    const pswd = hash.toString();
 
-    const master_password_hash = CryptoTools.pbkdf2Encrypt(
-      secret,
-      master_password
-    );
+    let data: any;
 
-    const refreshSpinner = spinner("🔑 Refreshing token...").start();
+    const func = (res: any) => {
+      let { access_token, refresh_token, transmission_key, secret } = res.data;
 
-    writeDataFile(
-      access_token,
-      refresh_token,
-      transmission_key,
-      master_password_hash
-    ).then(async () => {
-      refreshSpinner.succeed("🔗 Refreshed");
+      const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, pswd);
 
-      stdout.write(
-        chalk.bold(
-          `run ${chalk.hex(PRIMARY_COLOR).bold("secman " + cmd)} command again`
-        )
-      );
-    });
-  };
+      const refreshSpinner = spinner("🔑 Refreshing token...").start();
 
-  await API.post("/auth/refresh", data)
-    .then(async (res: any) => {
-      data = JSON.stringify({
-        refresh_token: readDataFile("refresh_token"),
+      writeDataFile(
+        access_token,
+        refresh_token,
+        transmission_key,
+        master_password_hash
+      ).then(async () => {
+        refreshSpinner.succeed("🔗 Refreshed");
+
+        stdout.write(
+          chalk.bold(
+            `run ${chalk
+              .hex(PRIMARY_COLOR)
+              .bold("secman " + cmd)} command again`
+          )
+        );
       });
+    };
 
-      func(res);
-    })
-    .catch(async (err: any) => {
-      if (err.response.status === 401) {
+    await API.post("/auth/refresh", data)
+      .then(async (res: any) => {
         data = JSON.stringify({
-          email: readConfigFile("user"),
-          master_password: master_password,
+          refresh_token: readDataFile("refresh_token"),
         });
 
-        await API.post("/auth/signin", data)
-          .then(async (res: any) => {
-            func(res);
-          })
-          .catch((err: any) => {
-            stdout.write(err);
+        func(res);
+      })
+      .catch(async (err: any) => {
+        if (err.response.status === 401) {
+          data = JSON.stringify({
+            email: readConfigFile("user"),
+            master_password: master_password,
           });
-      }
-    });
+
+          await API.post("/auth/signin", data)
+            .then(async (res: any) => {
+              func(res);
+            })
+            .catch((err: any) => {
+              stdout.write(err);
+            });
+        }
+      });
+  }
 }
