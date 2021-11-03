@@ -6,7 +6,7 @@ import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { ListExamples } from "../../contents/examples/list";
-import { Flags } from "../../tools/flags";
+import { Types } from "../../tools/flags";
 
 export default class List extends Command {
   static description = "List all passwords.";
@@ -246,7 +246,7 @@ export default class List extends Command {
 
     const whatIsCommand = () => {
       if (flags) {
-        return `list ${Flags(flags)}`;
+        return `list ${Types(flags)}`;
       } else {
         return "list";
       }

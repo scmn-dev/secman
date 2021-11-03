@@ -1,9 +1,10 @@
-import { readConfigFile, writeDataFile } from "../config";
+import { readConfigFile, readDataFile, writeDataFile } from "../config";
 import { spinner } from "@secman/spinner";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import chalk from "chalk";
 import { PRIMARY_COLOR } from "../../constants";
+import { stdout } from "process";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -24,39 +25,54 @@ export async function refresh(cmd: any) {
 
   const master_password = password.mp;
 
-  const pswd = CryptoTools.sha256Encrypt(master_password).toString();
+  let data: any;
+  const mp = CryptoTools.sha256Encrypt(master_password);
 
-  const data = JSON.stringify({
-    email: readConfigFile("user"),
-    master_password: pswd,
-  });
+  const func = (res: any) => {
+    let { access_token, refresh_token, transmission_key, secret } = res.data;
 
-  await API.post("/auth/signin", data)
-    .then(async function (res: any) {
-      let { access_token, refresh_token, transmission_key, secret } = res.data;
+    const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, mp);
 
-      const mp = CryptoTools.sha256Encrypt(master_password);
-      const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, mp);
+    const refreshSpinner = spinner("🔑 Refreshing token...").start();
 
-      const refreshSpinner = spinner("🔑 Refreshing token...").start();
-
-      writeDataFile(
-        access_token,
-        refresh_token,
-        transmission_key,
-        master_password_hash
-      );
-
-      refreshSpinner.stop();
-
+    writeDataFile(
+      access_token,
+      refresh_token,
+      transmission_key,
+      master_password_hash
+    ).then(async () => {
       refreshSpinner.succeed("🔗 Refreshed");
-      console.log(
+
+      stdout.write(
         chalk.bold(
           `run ${chalk.hex(PRIMARY_COLOR).bold("secman " + cmd)} command again`
         )
       );
+    });
+  };
+
+  await API.post("/auth/refresh", data)
+    .then(async (res: any) => {
+      data = JSON.stringify({
+        refresh_token: readDataFile("refresh_token"),
+      });
+
+      func(res);
     })
-    .catch(function (err: any) {
-      console.log(err);
+    .catch(async (err: any) => {
+      if (err.response.status === 401) {
+        data = JSON.stringify({
+          email: readConfigFile("user"),
+          master_password: master_password,
+        });
+
+        await API.post("/auth/signin", data)
+          .then(async (res: any) => {
+            func(res);
+          })
+          .catch((err: any) => {
+            stdout.write(err);
+          });
+      }
     });
 }

@@ -16,9 +16,7 @@ import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
-import { Flags } from "../../tools/flags";
-import bcrypt from "bcrypt";
-import { stdout } from "process";
+import { ShowPassword, Types } from "../../tools/flags";
 
 export default class Read extends Command {
   static description = "Print the password of a secman entry.";
@@ -168,20 +166,10 @@ export default class Read extends Command {
                 ms_hash
               ).toString();
 
-              const _pw = bcrypt.hash(pw, 10);
-
-              const pswd = bcrypt
-                .compare(element.password, _pw.toString())
-                .then((res: any) => {
-                  if (res) {
-                    stdout.write(pw);
-                  } else {
-                    stdout.write("error");
-                  }
-                });
+              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
 
               const password = flags["show-password"]
-                ? pswd
+                ? _pw
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
@@ -191,10 +179,6 @@ export default class Read extends Command {
                 ];
 
                 console.log("\n" + table(data, TABLE_DESIGN));
-              } else {
-                if (flags.emails) {
-                  console.log("Not found");
-                }
               }
             } else if (flags.notes) {
               CryptoTools.decryptFields(
@@ -289,7 +273,9 @@ export default class Read extends Command {
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh(`read ${Flags(flags)} ${args.PASSWORD_NAME}`);
+          refresh(
+            `read ${Types(flags)} ${ShowPassword(flags)} ${args.PASSWORD_NAME}`
+          );
         } else if (err.response.status === 404) {
           console.log(chalk.red("No data found"));
         } else {

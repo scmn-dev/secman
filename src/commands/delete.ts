@@ -8,7 +8,7 @@ import { refresh } from "../../app/refresher";
 import { DeleteExamples } from "../../contents/examples/delete";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
-import { Flags } from "../../tools/flags";
+import { Types } from "../../tools/flags";
 
 export default class Delete extends Command {
   static description = "Delete a password from the vault.";
@@ -117,7 +117,7 @@ export default class Delete extends Command {
       .catch((err: any) => {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh(`delete ${Flags(flags)} ${args.PASSWORD_NAME}`);
+          refresh(`delete ${Types(flags)} ${args.PASSWORD_NAME}`);
         } else if (err.response.status === 404) {
           console.log(chalk.red("No data found"));
         } else {

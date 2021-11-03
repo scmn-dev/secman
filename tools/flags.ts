@@ -1,15 +1,41 @@
-export const Flags = (flags: any) => {
-  if (flags.logins) {
-    return "-l";
-  } else if (flags["credit-cards"]) {
-    return "-c";
-  } else if (flags.emails) {
-    return "-e";
-  } else if (flags.notes) {
-    return "-n";
-  } else if (flags.servers) {
-    return "-s";
-  } else if (flags.multi) {
-    return "-m";
+export function Types(flags: any) {
+  switch (true) {
+    case flags.logins:
+      return "-l";
+
+    case flags["credit-cards"]:
+      return "-c";
+
+    case flags.emails:
+      return "-e";
+
+    case flags.notes:
+      return "-n";
+
+    case flags.servers:
+      return "-s";
+
+    default:
+      return;
   }
-};
+}
+
+export function Multi(flags: any) {
+  switch (true) {
+    case flags.multi:
+      return "-m";
+
+    default:
+      return;
+  }
+}
+
+export function ShowPassword(flags: any) {
+  switch (true) {
+    case flags["show-password"]:
+      return "-p";
+
+    default:
+      return;
+  }
+}

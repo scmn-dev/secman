@@ -19,7 +19,7 @@ import {
 } from "../../contents/types";
 import { refresh } from "../../app/refresher";
 import { InsertExamples } from "../../contents/examples/insert";
-import { Flags } from "../../tools/flags";
+import { Types } from "../../tools/flags";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -174,7 +174,7 @@ export default class Insert extends Command {
       })
       .catch((err: any) => {
         if (err.response.status === 401) {
-          refresh(`insert ${Flags(flags)}`);
+          refresh(`insert ${Types(flags)}`);
         }
       });
   }
