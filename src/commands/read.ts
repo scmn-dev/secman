@@ -105,15 +105,8 @@ export default class Read extends Command {
                 ? element.url
                 : "https://" + element.url;
 
-              const pw = CryptoTools.aesEncrypt(
-                element.password,
-                ms_hash
-              ).toString();
-
-              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
-
               const password = flags["show-password"]
-                ? _pw
+                ? element.password
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
@@ -161,15 +154,8 @@ export default class Read extends Command {
                 ms_hash
               );
 
-              const pw = CryptoTools.aesEncrypt(
-                element.password,
-                ms_hash
-              ).toString();
-
-              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
-
               const password = flags["show-password"]
-                ? _pw
+                ? element.password
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
@@ -203,38 +189,17 @@ export default class Read extends Command {
                 ms_hash
               );
 
-              const pw = CryptoTools.aesEncrypt(
-                element.password,
-                ms_hash
-              ).toString();
-
-              let _pw = CryptoTools.aesDecrypt(pw, ms_hash).toString();
-
-              const hpw = CryptoTools.aesEncrypt(
-                element.hosting_password,
-                ms_hash
-              ).toString();
-
-              let _hpw = CryptoTools.aesDecrypt(hpw, ms_hash).toString();
-
-              const apw = CryptoTools.aesEncrypt(
-                element.admin_password,
-                ms_hash
-              ).toString();
-
-              let _apw = CryptoTools.aesDecrypt(apw, ms_hash).toString();
-
               const url = element.url.startsWith("http")
                 ? element.url
                 : "https://" + element.url;
               const password = flags["show-password"]
-                ? _pw
+                ? element.password
                 : "•".repeat(element.password.length);
               const hosting_password = flags["show-password"]
-                ? _hpw
+                ? element.hosting_password
                 : "•".repeat(element.hosting_password.length);
               const admin_password = flags["show-password"]
-                ? _apw
+                ? element.admin_password
                 : "•".repeat(element.admin_password.length);
               const checkExtra = element.extra ? element.extra : "No extra";
 
