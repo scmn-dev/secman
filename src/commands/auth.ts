@@ -106,7 +106,15 @@ export default class Auth extends Command {
               console.log(msg);
             })
             .catch(function (err: any) {
-              console.log(err);
+              if (err.response.status === 401) {
+                console.log(
+                  chalk.red.bold(`\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold("`secman auth --create-account`").}`)
+                );
+              } else {
+                console.log(
+                  chalk.red.bold("\nSomething went wrong. Please try again.")
+                );
+              }
             });
         }
       } catch (error) {
