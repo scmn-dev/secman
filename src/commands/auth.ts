@@ -62,9 +62,7 @@ export default class Auth extends Command {
         let master_password = password.mp;
 
         if (master_password) {
-          const hash = CryptoTools.sha256Encrypt(master_password);
-
-          const pswd = hash.toString();
+          const pswd = CryptoTools.sha256Encrypt(master_password).toString();
 
           const data = JSON.stringify({
             email: email,
@@ -108,7 +106,11 @@ export default class Auth extends Command {
             .catch(function (err: any) {
               if (err.response.status === 401) {
                 console.log(
-                  chalk.red.bold(`\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold("`secman auth --create-account`").}`)
+                  chalk.red.bold(
+                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold(
+                      "`secman auth --create-account`."
+                    )}`
+                  )
                 );
               } else {
                 console.log(

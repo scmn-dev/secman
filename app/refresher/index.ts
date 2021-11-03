@@ -23,15 +23,17 @@ export async function refresh(cmd: any) {
     },
   });
 
-  const master_password = password.mp;
+  let master_password = password.mp;
+  master_password = CryptoTools.encrypt(master_password);
 
   let data: any;
-  const mp = CryptoTools.sha256Encrypt(master_password);
-
   const func = (res: any) => {
     let { access_token, refresh_token, transmission_key, secret } = res.data;
 
-    const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, mp);
+    const master_password_hash = CryptoTools.pbkdf2Encrypt(
+      secret,
+      master_password
+    );
 
     const refreshSpinner = spinner("🔑 Refreshing token...").start();
 
