@@ -245,10 +245,16 @@ export default class List extends Command {
     };
 
     const whatIsCommand = () => {
-      if (flags) {
-        return `list ${Types(flags)}`;
+      if (
+        flags.logins ||
+        flags["credit-cards"] ||
+        flags.emails ||
+        flags.notes ||
+        flags.servers
+      ) {
+        return `. ${Types(flags)}`;
       } else {
-        return "list";
+        return ".";
       }
     };
 

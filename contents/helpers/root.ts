@@ -9,7 +9,7 @@ export async function root() {
   console.log(chalk.grey("  -") + " Insert a New Password\n");
   console.log(chalk.cyan("    $ secman insert --[PASSWORD_TYPE]\n"));
   console.log(chalk.grey("  -") + " List Passwords\n");
-  console.log(chalk.cyan("    $ secman list\n"));
+  console.log(chalk.cyan("    $ secman .\n"));
   console.log(chalk.grey("  -") + " Read The Password\n");
   console.log(
     chalk.cyan("    $ secman read --[PASSWORD_TYPE] <PASSWORD_NAME>\n")

@@ -16,7 +16,7 @@ export function Types(flags: any) {
       return "-s";
 
     default:
-      return;
+      return "";
   }
 }
 
@@ -26,7 +26,7 @@ export function Multi(flags: any) {
       return "-m";
 
     default:
-      return;
+      return "";
   }
 }
 
@@ -36,6 +36,6 @@ export function ShowPassword(flags: any) {
       return "-p";
 
     default:
-      return;
+      return "";
   }
 }

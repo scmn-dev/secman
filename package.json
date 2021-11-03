@@ -1,5 +1,5 @@
 {
-  "name": "secman-test",
+  "name": "secman",
   "description": "The command-line interface of Secman",
   "version": "6.0.0",
   "versionDate": "2021-10-30",
@@ -22,7 +22,10 @@
   },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest"
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest",
+    "pack:deb": "oclif-dev pack:deb",
+    "pack:macos": "oclif-dev pack:macos",
+    "pack:win": "oclif-dev pack:win"
   },
   "bin": {
     "sm": "./bin/run",
@@ -106,8 +109,7 @@
         "version": "12.12.0"
       },
       "s3": {
-        "bucket": "secman-new",
-        "xz": true
+        "host": "https://cli.secman.dev"
       }
     },
     "helpClass": "./src/help",

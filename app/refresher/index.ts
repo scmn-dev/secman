@@ -4,7 +4,6 @@ import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import chalk from "chalk";
 import { PRIMARY_COLOR } from "../../constants";
-import { stdout } from "process";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -24,12 +23,11 @@ export async function refresh(cmd: any) {
   });
 
   let master_password = password.mp;
+  const hash = CryptoTools.sha256Encrypt(master_password);
+  const pswd = hash.toString();
+
   if (master_password) {
-    const hash = CryptoTools.sha256Encrypt(master_password);
-
-    const pswd = hash.toString();
-
-    let data: any;
+    let data;
 
     const func = (res: any) => {
       let { access_token, refresh_token, transmission_key, secret } = res.data;
@@ -46,7 +44,7 @@ export async function refresh(cmd: any) {
       ).then(async () => {
         refreshSpinner.succeed("🔗 Refreshed");
 
-        stdout.write(
+        console.log(
           chalk.bold(
             `run ${chalk
               .hex(PRIMARY_COLOR)
@@ -68,7 +66,7 @@ export async function refresh(cmd: any) {
         if (err.response.status === 401) {
           data = JSON.stringify({
             email: readConfigFile("user"),
-            master_password: master_password,
+            master_password: pswd,
           });
 
           await API.post("/auth/signin", data)
@@ -76,7 +74,7 @@ export async function refresh(cmd: any) {
               func(res);
             })
             .catch((err: any) => {
-              stdout.write(err);
+              console.log(err);
             });
         }
       });
