@@ -22,9 +22,9 @@ jobs:
     - name: Build
       run: |
         sudo yarn pack:deb
-        sudo mv ./dist/deb/secman_6.0.0-1_amd64.deb ./dist/deb/secman_v6.0.0_amd64.deb
+        sudo mv ./dist/deb/secman_6.0.2-1_amd64.deb ./dist/deb/secman_v6.0.2_amd64.deb
 
     - name: Upload It
       uses: softprops/action-gh-release@v1
       with:
-        files: ./dist/deb/secman_v6.0.0_amd64.deb
+        files: ./dist/deb/secman_v6.0.2_amd64.deb
