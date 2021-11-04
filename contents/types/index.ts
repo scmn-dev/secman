@@ -14,6 +14,7 @@ export const LoginFields = [
   {
     title: "Password",
     value: "password",
+    isHidden: true,
   },
   {
     title: "Extra",
@@ -45,6 +46,7 @@ export const CCFields = [
   {
     title: "Verification Number",
     value: "verification_number",
+    isHidden: true,
   },
 ];
 
@@ -60,6 +62,7 @@ export const EmailFields = [
   {
     title: "Password",
     value: "password",
+    isHidden: true,
   },
 ];
 
@@ -90,6 +93,7 @@ export const ServerFields = [
   {
     title: "Password",
     value: "password",
+    isHidden: true,
   },
   {
     title: "URL",
@@ -102,6 +106,7 @@ export const ServerFields = [
   {
     title: "Hosting Password",
     value: "hosting_password",
+    isHidden: true,
   },
   {
     title: "Admin Username",
@@ -110,6 +115,7 @@ export const ServerFields = [
   {
     title: "Admin Password",
     value: "admin_password",
+    isHidden: true,
   },
   {
     title: "Extra",

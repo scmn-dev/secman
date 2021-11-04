@@ -8,9 +8,9 @@ import {
 } from "../../constants";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as cryptojs from "crypto-js";
-import * as chalk from "chalk";
-import { spnr as spinner } from "@secman/spinner";
+import cryptojs from "crypto-js";
+import chalk from "chalk";
+import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import {
   CCFields,
@@ -21,6 +21,7 @@ import {
 } from "../../contents/types";
 import { refresh } from "../../app/refresher";
 import { EditExamples } from "../../contents/examples/edit";
+import { ShowPassword, Types, Multi } from "../../tools/flags";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -69,6 +70,9 @@ export default class Edit extends Command {
     const { args, flags } = this.parse(Edit);
     let API_URL = "/api";
     const access_token = readDataFile("access_token");
+    let response;
+    let newValue;
+    let isHidden: any;
 
     if (flags.logins) {
       API_URL += "/logins";
@@ -156,8 +160,13 @@ export default class Edit extends Command {
               //   message: `Enter the new ${response.value} of ${element.title}`,
               // });
 
-              let response;
-              let newValue;
+              const isHiddenOrNot = (value: any) => {
+                fields().forEach((fieldx: any) => {
+                  if (fieldx.value === value) {
+                    return (isHidden = fieldx.isHidden);
+                  }
+                });
+              };
 
               if (flags.multi) {
                 response = await prompts([
@@ -170,8 +179,10 @@ export default class Edit extends Command {
                 ]);
 
                 for (const field of response.value) {
+                  isHiddenOrNot(field);
+
                   newValue = await prompts({
-                    type: "text",
+                    type: isHidden ? "password" : "text",
                     name: "value",
                     message: `Enter the new ${field} of ${element.title}`,
                   });
@@ -192,10 +203,12 @@ export default class Edit extends Command {
                   },
                 ]);
 
+                isHiddenOrNot(response.value);
+
                 newValue = await prompts({
-                  type: "text",
+                  type: isHidden ? "password" : "text",
                   name: "value",
-                  message: `Enter the new ${response.title} of ${element.title}`,
+                  message: `Enter the new ${response.value} of ${element.title}`,
                 });
 
                 element[response.value] = newValue.value;
@@ -226,8 +239,13 @@ export default class Edit extends Command {
       })
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
+
         if (err.response.status === 401) {
-          refresh();
+          refresh(
+            `edit ${Types(flags)} ${ShowPassword(flags)} ${Multi(flags)} ${args.PASSWORD_NAME}`
+          );
+        } else {
+          console.log(chalk.red("Error: " + err));
         }
       });
   }

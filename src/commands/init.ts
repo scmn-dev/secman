@@ -2,7 +2,7 @@ import { Command, flags } from "@oclif/command";
 const chalk = require("chalk");
 import * as sh from "shelljs";
 const powershell = require("powershell");
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { homedir, platform } from "os";
 import fs from "fs";
 import path from "path";
@@ -80,6 +80,7 @@ export default class Init extends Command {
 
         if (!fs.existsSync(sm_setting)) {
           // sh.exec(`curl -s ${SECMAN_SETTINGS_URL} > ${sm_setting}`);
+          sh.touch(sm_setting);
           writeSettingFile();
         }
 

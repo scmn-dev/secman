@@ -9,13 +9,14 @@ import {
 } from "../../constants";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as cryptojs from "crypto-js";
-import * as chalk from "chalk";
+import cryptojs from "crypto-js";
+import chalk from "chalk";
 import { ReadExamples } from "../../contents/examples/read";
-import { spnr as spinner } from "@secman/spinner";
-import { readDataFile, readSettingsFile } from "../../app/config";
+import { spinner } from "@secman/spinner";
+import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
+import { ShowPassword, Types } from "../../tools/flags";
 
 export default class Read extends Command {
   static description = "Print the password of a secman entry.";
@@ -45,7 +46,6 @@ export default class Read extends Command {
       description: "read password from servers type",
     }),
     "show-password": flags.boolean({ char: "p", description: "show password" }),
-    raw: flags.boolean({ char: "r", description: "raw output" }),
   };
 
   static args = [{ name: "PASSWORD_NAME" }];
@@ -112,28 +112,12 @@ export default class Read extends Command {
               if (element.title === args.PASSWORD_NAME) {
                 // console.log(chalk.green(element.title));
 
-                if (flags.raw || readSettingsFile("read_output") === "raw") {
-                  console.log(`
-${chalk.bold("Title")}: ${element.title}
-${chalk.bold("URL")}: ${url}
-${chalk.bold("Username")}: ${element.username}
-${chalk.bold("Password")}: ${password}
-${chalk.bold("Extra")}: ${checkExtra}
-                `);
-                } else {
-                  const data = [
-                    ["Title", "URL", "Username", "Password", "Extra"],
-                    [
-                      element.title,
-                      url,
-                      element.username,
-                      password,
-                      checkExtra,
-                    ],
-                  ];
+                const data = [
+                  ["Title", "URL", "Username", "Password", "Extra"],
+                  [element.title, url, element.username, password, checkExtra],
+                ];
 
-                  console.log("\n" + table(data, TABLE_DESIGN));
-                }
+                console.log("\n" + table(data, TABLE_DESIGN));
               }
             } else if (flags["credit-cards"]) {
               CryptoTools.decryptFields(element, CCS_ENCRYPTED_FIELDS, ms_hash);
@@ -142,37 +126,26 @@ ${chalk.bold("Extra")}: ${checkExtra}
                 : "•".repeat(element.verification_number.length);
 
               if (element.title === args.PASSWORD_NAME) {
-                if (flags.raw || readSettingsFile("read_output") === "raw") {
-                  console.log(`
-${chalk.bold("Card Name")}: ${element.title}
-${chalk.bold("Card Holder")}: ${element.cardholder_name}
-${chalk.bold("Card Type")}: ${element.type}
-${chalk.bold("Card Number")}: ${element.number}
-${chalk.bold("Expiry Date")}: ${element.expiry_date}
-${chalk.bold("Verification Number")}: ${verification_number}
-                `);
-                } else {
-                  const data = [
-                    [
-                      "Card Name",
-                      "Card Holder",
-                      "Card Type",
-                      "Card Number",
-                      "Expiry Date",
-                      "Verification Number",
-                    ],
-                    [
-                      element.title,
-                      element.cardholder_name,
-                      element.type,
-                      element.number,
-                      element.expiry_date,
-                      verification_number,
-                    ],
-                  ];
+                const data = [
+                  [
+                    "Card Name",
+                    "Card Holder",
+                    "Card Type",
+                    "Card Number",
+                    "Expiry Date",
+                    "Verification Number",
+                  ],
+                  [
+                    element.title,
+                    element.cardholder_name,
+                    element.type,
+                    element.number,
+                    element.expiry_date,
+                    verification_number,
+                  ],
+                ];
 
-                  console.log("\n" + table(data, TABLE_DESIGN));
-                }
+                console.log("\n" + table(data, TABLE_DESIGN));
               }
             } else if (flags.emails) {
               CryptoTools.decryptFields(
@@ -180,28 +153,18 @@ ${chalk.bold("Verification Number")}: ${verification_number}
                 EMAILS_ENCRYPTED_FIELDS,
                 ms_hash
               );
+
               const password = flags["show-password"]
                 ? element.password
                 : "•".repeat(element.password.length);
 
               if (element.title === args.PASSWORD_NAME) {
-                if (flags.raw || readSettingsFile("read_output") === "raw") {
-                  console.log(`
-${chalk.bold("Email")}: ${element.title}
-${chalk.bold("Password")}: ${password}
-                `);
-                } else {
-                  const data = [
-                    ["Email", "Password"],
-                    [element.title, password],
-                  ];
+                const data = [
+                  ["Email", "Password"],
+                  [element.title, password],
+                ];
 
-                  console.log("\n" + table(data, TABLE_DESIGN));
-                }
-              } else {
-                if (flags.emails) {
-                  console.log("Not found");
-                }
+                console.log("\n" + table(data, TABLE_DESIGN));
               }
             } else if (flags.notes) {
               CryptoTools.decryptFields(
@@ -241,46 +204,32 @@ ${chalk.bold("Password")}: ${password}
               const checkExtra = element.extra ? element.extra : "No extra";
 
               if (element.title === args.PASSWORD_NAME) {
-                if (flags.raw || readSettingsFile("read_output") === "raw") {
-                  console.log(`
-${chalk.bold("Title")}: ${element.title}
-${chalk.bold("URL")}: ${url}
-${chalk.bold("Username")}: ${element.username}
-${chalk.bold("Password")}: ${password}
-${chalk.bold("Hosting Username")}: ${element.hosting_username}
-${chalk.bold("Hosting Password")}: ${hosting_password}
-${chalk.bold("Admin Username")}: ${element.admin_username}
-${chalk.bold("Admin Password")}: ${admin_password}
-${chalk.bold("Extra")}: ${checkExtra}
-                `);
-                } else {
-                  const data = [
-                    [
-                      "Title",
-                      "URL",
-                      "Username",
-                      "Password",
-                      "Hosting Username",
-                      "Hosting Password",
-                      "Admin Username",
-                      "Admin Password",
-                      "Extra",
-                    ],
-                    [
-                      element.title,
-                      url,
-                      element.username,
-                      password,
-                      element.hosting_username,
-                      hosting_password,
-                      element.admin_username,
-                      admin_password,
-                      checkExtra,
-                    ],
-                  ];
+                const data = [
+                  [
+                    "Title",
+                    "URL",
+                    "Username",
+                    "Password",
+                    "Hosting Username",
+                    "Hosting Password",
+                    "Admin Username",
+                    "Admin Password",
+                    "Extra",
+                  ],
+                  [
+                    element.title,
+                    url,
+                    element.username,
+                    password,
+                    element.hosting_username,
+                    hosting_password,
+                    element.admin_username,
+                    admin_password,
+                    checkExtra,
+                  ],
+                ];
 
-                  console.log("\n" + table(data, TABLE_DESIGN));
-                }
+                console.log("\n" + table(data, TABLE_DESIGN));
               }
             }
           });
@@ -289,7 +238,9 @@ ${chalk.bold("Extra")}: ${checkExtra}
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh();
+          refresh(
+            `read ${Types(flags)} ${ShowPassword(flags)} ${args.PASSWORD_NAME}`
+          );
         } else if (err.response.status === 404) {
           console.log(chalk.red("No data found"));
         } else {

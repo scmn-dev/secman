@@ -8,7 +8,7 @@ import {
 } from "../../constants";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as chalk from "chalk";
+import chalk from "chalk";
 import { readDataFile } from "../../app/config";
 import {
   CCFields,
@@ -19,6 +19,7 @@ import {
 } from "../../contents/types";
 import { refresh } from "../../app/refresher";
 import { InsertExamples } from "../../contents/examples/insert";
+import { Types } from "../../tools/flags";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -173,7 +174,7 @@ export default class Insert extends Command {
       })
       .catch((err: any) => {
         if (err.response.status === 401) {
-          refresh();
+          refresh(`insert ${Types(flags)}`);
         }
       });
   }

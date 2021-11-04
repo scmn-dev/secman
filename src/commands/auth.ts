@@ -1,13 +1,10 @@
 import { Command, flags } from "@oclif/command";
 import chalk from "chalk";
-import SendEmail from "../../app/email/send";
 import { PRIMARY_COLOR } from "../../constants";
-import * as cryptojs from "crypto-js";
-import tokenGenerator from "../../api/generator";
-import writeConfigFile from "../../app/config";
+import writeConfigFile, { readConfigFile } from "../../app/config";
 import { API } from "../../contract";
-import { spnr as spinner } from "@secman/spinner";
 import { CryptoTools } from "../../tools/crypto";
+import { cli } from "cli-ux";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -16,84 +13,61 @@ export default class Auth extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
+    createAccount: flags.boolean({
+      char: "c",
+      description: "Create a new account.",
+      default: false,
+    }),
   };
 
-  static aliases = ["login"];
+  static aliases = ["login", "signin"];
 
   async run() {
     const { flags } = this.parse(Auth);
+    const configFile = `${process.env.HOME}/.secman/config.json`;
 
-    // let email = readlineSync.questionEMail("Enter your email: ");
-    let email = await prompts({
-      type: "text",
-      name: "e",
-      message: "Enter your email: ",
-      validate: (value: string) => {
-        if (value.length > 0) {
-          return true;
-        } else {
-          return "Please enter your email";
-        }
-      },
-    });
-
-    const user_email = email.e;
-
-    let generatedPassword = "";
-    for (let i = 0; i < 10; i++) {
-      generatedPassword += tokenGenerator.charAt(
-        Math.floor(Math.random() * tokenGenerator.length)
-      );
-    }
-
-    const emailSpinner = spinner("📮 Sending Email ...").start();
-
-    const func = async () => {
-      emailSpinner.succeed(
-        `We sent an email to ${chalk.underline.bold(
-          user_email
-        )}. please copy the security code and insert it here.`
-      );
-
-      let securityCode = await prompts({
-        type: "text",
-        name: "sc",
-        message: "Enter the security code: ",
-        validate: (value: string) => {
-          if (value.length > 0) {
-            return true;
-          } else {
-            return "Please enter the security code";
-          }
-        },
-      });
-
-      const sc = securityCode.sc;
-
-      if (sc === generatedPassword) {
-        const verifiedSpinner = spinner("📁 Verfiying ...").start();
-
-        try {
-          verifiedSpinner.succeed("Verified successfully.");
-
-          let master_password = await prompts({
-            type: "password",
-            name: "mp",
-            message: "Enter your master password: ",
+    const _ = async (isNewLogin: boolean) => {
+      // let email = readlineSync.questionEMail("Enter your email: ");
+      const email =
+        readConfigFile("user") ??
+        (
+          await prompts({
+            type: "text",
+            name: "e",
+            message: "Enter your email: ",
             validate: (value: string) => {
               if (value.length > 0) {
                 return true;
               } else {
-                return "Please enter your master password";
+                return "Please enter your email";
               }
             },
-          });
+          })
+        ).e;
 
-          let hash = cryptojs.SHA256(master_password.mp).toString();
-          let pswd = hash.toString();
+      try {
+        let password = await prompts({
+          type: "password",
+          name: "mp",
+          message: "Enter your master password: ",
+          validate: (value: string) => {
+            if (value.length > 0) {
+              return true;
+            } else {
+              return "Please enter your master password";
+            }
+          },
+        });
 
-          let data = JSON.stringify({
-            email: user_email,
+        let master_password = password.mp;
+
+        if (master_password) {
+          const hash = CryptoTools.sha256Encrypt(master_password);
+
+          const pswd = hash.toString();
+
+          const data = JSON.stringify({
+            email: email,
             master_password: pswd,
           });
 
@@ -108,10 +82,11 @@ export default class Auth extends Command {
                 secret,
               } = res.data;
 
-              const mp = CryptoTools.sha256Encrypt(master_password.mp);
+              master_password = CryptoTools.sha256Encrypt(master_password);
+
               const master_password_hash = CryptoTools.pbkdf2Encrypt(
                 secret,
-                mp
+                master_password
               );
 
               writeConfigFile(
@@ -124,22 +99,66 @@ export default class Auth extends Command {
                 secret
               );
 
-              console.log(
-                "\n🎉 Welcome",
-                chalk.hex(PRIMARY_COLOR).bold(name) + "!"
-              );
+              const msg = isNewLogin
+                ? "\n🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
+                : "\nRe-authentication successful";
+
+              console.log(msg);
             })
             .catch(function (err: any) {
-              console.log(err);
+              if (err.response.status === 401) {
+                console.log(
+                  chalk.red.bold(
+                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold(
+                      "`secman auth --create-account`."
+                    )}`
+                  )
+                );
+              } else {
+                console.log(
+                  chalk.red.bold("\nSomething went wrong. Please try again.")
+                );
+              }
             });
-        } catch (error) {
-          console.log(error);
         }
-      } else {
-        console.log("Incorrect");
+      } catch (error) {
+        console.log(error);
       }
     };
 
-    SendEmail(user_email, generatedPassword, func);
+    switch (true) {
+      case flags.createAccount:
+        cli.open("https://auth.secman.dev");
+
+        break;
+
+      default:
+        if (configFile) {
+          const user = readConfigFile("name");
+
+          if (user != null) {
+            const reauth = await prompts({
+              type: "toggle",
+              name: "value",
+              message: `You are already logged in as ${chalk
+                .hex(PRIMARY_COLOR)
+                .bold(user)}. Would you like to re-authenticate?`,
+              initial: "yes",
+              active: "yes",
+              inactive: "no",
+            });
+
+            if (reauth.value) {
+              _(false);
+            } else {
+              this.log("Re-authentication cancelled");
+            }
+          } else {
+            _(true);
+          }
+        } else {
+          _(true);
+        }
+    }
   }
 }

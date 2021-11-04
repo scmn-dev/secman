@@ -1,14 +1,14 @@
-import { readConfigFile, writeDataFile } from "../config";
-import { spnr as spinner } from "@secman/spinner";
+import { readConfigFile, readDataFile, writeDataFile } from "../config";
+import { spinner } from "@secman/spinner";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import * as cryptojs from "crypto-js";
 import chalk from "chalk";
+import { PRIMARY_COLOR } from "../../constants";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
-export async function refresh() {
-  let password = await prompts({
+export async function refresh(cmd: any) {
+  const password = await prompts({
     type: "password",
     name: "mp",
     message:
@@ -23,21 +23,16 @@ export async function refresh() {
   });
 
   let master_password = password.mp;
+  const hash = CryptoTools.sha256Encrypt(master_password);
+  const pswd = hash.toString();
 
-  let hash = cryptojs.SHA256(master_password).toString();
-  let pswd = hash.toString();
+  if (master_password) {
+    let data;
 
-  let data = JSON.stringify({
-    email: readConfigFile("user"),
-    master_password: pswd,
-  });
-
-  await API.post("/auth/signin", data)
-    .then(async function (res: any) {
+    const func = (res: any) => {
       let { access_token, refresh_token, transmission_key, secret } = res.data;
 
-      const mp = CryptoTools.sha256Encrypt(master_password);
-      const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, mp);
+      const master_password_hash = CryptoTools.pbkdf2Encrypt(secret, pswd);
 
       const refreshSpinner = spinner("🔑 Refreshing token...").start();
 
@@ -46,14 +41,42 @@ export async function refresh() {
         refresh_token,
         transmission_key,
         master_password_hash
-      );
+      ).then(async () => {
+        refreshSpinner.succeed("🔗 Refreshed");
 
-      refreshSpinner.stop();
+        console.log(
+          chalk.bold(
+            `run ${chalk
+              .hex(PRIMARY_COLOR)
+              .bold("secman " + cmd)} command again`
+          )
+        );
+      });
+    };
 
-      refreshSpinner.succeed("🔗 Refreshed");
-      console.log(chalk.bold("run the command again"));
-    })
-    .catch(function (err: any) {
-      console.log(err);
-    });
+    await API.post("/auth/refresh", data)
+      .then(async (res: any) => {
+        data = JSON.stringify({
+          refresh_token: readDataFile("refresh_token"),
+        });
+
+        func(res);
+      })
+      .catch(async (err: any) => {
+        if (err.response.status === 401) {
+          data = JSON.stringify({
+            email: readConfigFile("user"),
+            master_password: pswd,
+          });
+
+          await API.post("/auth/signin", data)
+            .then(async (res: any) => {
+              func(res);
+            })
+            .catch((err: any) => {
+              console.log(err);
+            });
+        }
+      });
+  }
 }

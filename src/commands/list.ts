@@ -1,11 +1,12 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
-import * as cryptojs from "crypto-js";
+import cryptojs from "crypto-js";
 import chalk from "chalk";
-import { spnr as spinner } from "@secman/spinner";
+import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { ListExamples } from "../../contents/examples/list";
+import { Types } from "../../tools/flags";
 
 export default class List extends Command {
   static description = "List all passwords.";
@@ -243,10 +244,24 @@ export default class List extends Command {
         });
     };
 
+    const whatIsCommand = () => {
+      if (
+        flags.logins ||
+        flags["credit-cards"] ||
+        flags.emails ||
+        flags.notes ||
+        flags.servers
+      ) {
+        return `. ${Types(flags)}`;
+      } else {
+        return ".";
+      }
+    };
+
     const catcher = async (err: any) => {
       gettingDataSpinner.stop();
       if (err.response.status === 401) {
-        refresh();
+        refresh(whatIsCommand());
       } else if (err.response.status === 404) {
         console.log(chalk.red("No data found"));
       } else {

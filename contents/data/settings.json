@@ -1,6 +1,4 @@
 {
-  // The output of reading password, values [ "table", "raw" ]
-  "read_output": "table",
-  // Disable version check
-  "disable_version_check": false
+  // The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
+  "editor": "secman_editor"
 }

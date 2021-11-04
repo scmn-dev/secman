@@ -1,13 +1,14 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
 import * as cryptojs from "crypto-js";
-import * as chalk from "chalk";
-import { spnr as spinner } from "@secman/spinner";
+import chalk from "chalk";
+import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { DeleteExamples } from "../../contents/examples/delete";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
+import { Types } from "../../tools/flags";
 
 export default class Delete extends Command {
   static description = "Delete a password from the vault.";
@@ -116,7 +117,7 @@ export default class Delete extends Command {
       .catch((err: any) => {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh();
+          refresh(`delete ${Types(flags)} ${args.PASSWORD_NAME}`);
         } else if (err.response.status === 404) {
           console.log(chalk.red("No data found"));
         } else {
