@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v2.4.0
+      with:
+        node-version: 14
+
+    - name: Install Dependencies
+      run: yarn
+    
+    - name: Build
+      run: |
+        sudo yarn pack:deb
+        sudo mv ./dist/deb/secman_6.0.0-1_amd64.deb ./dist/deb/secman_v6.0.0_amd64.deb
+
+    - name: Upload It
+      uses: softprops/action-gh-release@v1
+      with:
+        files: ./dist/deb/secman_v6.0.0_amd64.deb
