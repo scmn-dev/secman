@@ -56,7 +56,6 @@ Password created
 
 ```bash
 secman .
-
 .
 ├──Logins
 │  └──Twitter
@@ -67,10 +66,9 @@ secman .
 ```
 
 > Read It
-
+•
 ```
 secman read -l Twitter
-
 
 ╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
 │ Title   │ URL                 │ Username         │ Password  │ Extra    │
