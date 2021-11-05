@@ -4,6 +4,20 @@
 
 ---
 
+## [[v6.0.4] 2021-11-05](#v604-2021-11-05)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+## Fixed
+
+- fix version command.
+
 ## [[v6.0.3] 2021-11-05](#v603-2021-11-05)
 
 > Secman V2
@@ -12,7 +26,7 @@ this release is the first release of secman v2
 
 it's comes with new features, new design, new infrastructure, and new secman
 
-## Added
+### Added
 
 - Create `crypto` command.
 - Create `bcrypt` command.
@@ -24,7 +38,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 - `logout` command.
 - Build `whoami` command.
 
-## Changed
+### Changed
 
 - All secman.
 - Change secman language from `golang` to `typescript`.
@@ -33,7 +47,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 - New help design.
 - Secman is now using the secman api. it's a new way to use secman. and now users can manage their secrets from everywhere.
 
-## Fixed
+### Fixed
 
 - Fix many errors, bugs, and issues.
 
