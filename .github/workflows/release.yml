@@ -7,10 +7,6 @@ on:
         description: "The New Secman Release"
         required: true
 
-  push:
-    tags:
-      - "v*.*.*"
-
 env:
   RELEASE: ${{ github.event.inputs.release }}
 
@@ -36,4 +32,5 @@ jobs:
       - name: Upload It
         uses: softprops/action-gh-release@v1
         with:
+          tag_name: v${{ env.RELEASE }}
           files: ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
