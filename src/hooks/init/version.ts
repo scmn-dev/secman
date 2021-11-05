@@ -1,11 +1,6 @@
-import path from "path";
-
 // get "version" and "versionDate" from package.json
-const version = require(path.join(process.cwd(), "package.json")).version;
-const versionDate = require(path.join(
-  process.cwd(),
-  "package.json"
-)).versionDate;
+const version = require("../../../../package.json").version;
+const versionDate = require("../../../../package.json").versionDate;
 
 export default async function hook() {
   if (["-v", "-V", "--version", "version"].includes(process.argv[2])) {
