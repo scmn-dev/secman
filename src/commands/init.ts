@@ -15,7 +15,7 @@ import {
   SECMAN_SETTINGS_URL,
 } from "../../constants";
 import { InstallEditor } from "../../tools/install-editor";
-import { writeSettingFile } from "../../app/config";
+import { writeCFIle, writeDFile, writeSettingFile } from "../../app/config";
 
 const secman_dir = path.join(homedir(), DOT_SECMAN_PATH);
 const sm_config = path.join(homedir(), SECMAN_CONFIG_PATH);
@@ -72,10 +72,12 @@ export default class Init extends Command {
 
         if (!fs.existsSync(sm_config)) {
           sh.touch(sm_config);
+          writeCFIle();
         }
 
         if (!fs.existsSync(sm_data)) {
           sh.touch(sm_data);
+          writeDFile();
         }
 
         if (!fs.existsSync(sm_setting)) {
