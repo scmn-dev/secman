@@ -4,6 +4,39 @@
 
 ---
 
+## [[v6.0.2] 2021-11-05](#v602-2021-11-05)
+
+> Secman V2
+
+this release is the first release of secman v2
+
+it's comes with new features, new design, new infrastructure, and new secman
+
+## Added
+
+- Create `crypto` command.
+- Create `bcrypt` command.
+- Add `docs` command.
+- Build `info` command.
+- Add `list` command.
+- Create `settings` command.
+- Create `update` command.
+- `logout` command.
+- Build `whoami` command.
+
+## Changed
+
+- All secman.
+- Change secman language from `golang` to `typescript`.
+- The root command is `secman .` instead of `secman`. if you execute `secman`, it will show the help.
+- `auth`, `delete`, `edit`, `generate`, `init`, `insert`, read` commands are totally changed.
+- New help design.
+- Secman is now using the secman api. it's a new way to use secman. and now users can manage their secrets from everywhere.
+
+## Fixed
+
+- Fix many errors, bugs, and issues.
+
 ## [[v5.3.8] 2021-09-23](#v538-2021-09-23)
 
 ### Added
