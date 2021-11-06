@@ -27,12 +27,8 @@ jobs:
       - name: Pack
         run: |
           sudo yarn pack:deb
-          ls -a ./dist/deb
-          ls -a ./dist/deb/Packages.gz
-          ls -a ./dist/deb/Packages.xz
 
-          tar -xvf ./dist/deb/Packages.gz
-          tar -xf ./dist/deb/Packages.xz
+          ls -a ./tmp
 
   windows:
     runs-on: windows-latest
