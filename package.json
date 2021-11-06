@@ -126,7 +126,7 @@
     "warn-if-update-available": {
       "timeoutInDays": 10,
       "message": "there's a new release of secman is avalaible: <%= chalk.greenBright(latest) %>\nto upgrade run <%= chalk.bold('`npm upgrade secman`') %>",
-      "authorization": "Basic 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"
+      "authorization": "Basic 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"
     }
   },
   "publishConfig": {
