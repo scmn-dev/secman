@@ -26,14 +26,13 @@ jobs:
 
       - name: Pack
         run: |
-          sudo yarn pack
-      
+          yarn pack
+
       - name: Upload It
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ env.RELEASE }}
-          files: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}-linux-x64.tar.gz 
-
+          files: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}-linux-x64.tar.gz
 
   windows:
     runs-on: windows-latest

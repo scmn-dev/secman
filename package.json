@@ -24,6 +24,7 @@
     "postpack": "rimraf -f oclif.manifest.json",
     "prepack": "yarn build",
     "build": "rimraf -rf lib && tsc -b && oclif-dev manifest",
+    "pack": "oclif-dev pack",
     "pack:deb": "oclif-dev pack:deb",
     "pack:macos": "oclif-dev pack:macos",
     "pack:win": "oclif-dev pack:win"
