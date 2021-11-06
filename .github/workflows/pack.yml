@@ -27,23 +27,10 @@ jobs:
       - name: Pack
         run: |
           sudo yarn pack:deb
-          ls -a ./dist/deb
-  
-  macos:
-    runs-on: macos-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2.4.0
-        with:
-          node-version: 16
-      
-      - name: Install Dependencies
-        run: yarn
-      
-      - name: Pack
-        run: sudo yarn pack:macos
+          ls -a ./dist/deb/Packages
+          ls -a ./dist/deb/Packages.gz
+          ls -a ./dist/deb/Packages.xz
+          ls -a ./dist/deb/Releases
 
   windows:
     runs-on: windows-latest
@@ -53,10 +40,10 @@ jobs:
 
       - uses: actions/setup-node@v2.4.0
         with:
-          node-version: 16
-      
+          node-version: 12
+
       - name: Install Dependencies
         run: yarn
-      
+
       - name: Pack
         run: yarn pack:win
