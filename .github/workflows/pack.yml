@@ -26,7 +26,8 @@ jobs:
 
       - name: Pack
         run: |
-          yarn pack
+          npm i @oclif/dev-cli -g
+          oclif-dev pack
 
       - name: Upload It
         uses: softprops/action-gh-release@v1
