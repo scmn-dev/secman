@@ -26,13 +26,14 @@ jobs:
 
       - name: Pack
         run: |
-          sudo yarn pack:deb
+          sudo yarn pack
+      
+      - name: Upload It
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.RELEASE }}
+          files: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}-linux-x64.tar.gz 
 
-          ls -a ./tmp
-          ls -a ./tmp/cache
-          ls -a ./tmp/linux-arm
-          ls -a ./tmp/linux-x64
-          ls -a ./tmp/secman
 
   windows:
     runs-on: windows-latest
@@ -42,7 +43,7 @@ jobs:
 
       - uses: actions/setup-node@v2.4.0
         with:
-          node-version: 12
+          node-version: 16
 
       - name: Install Dependencies
         run: yarn
