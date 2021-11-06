@@ -102,16 +102,20 @@
     "commands": "./lib/src/commands",
     "bin": "secman",
     "dirname": "secman",
+    "macos": {
+      "sign": "Developer ID Installer: Secman",
+      "identifier": "dev.secman.cli"
+    },
     "update": {
       "autoupdate": {
         "rollout": 50,
         "debounce": 60
       },
       "node": {
-        "version": "14.18.0"
+        "version": "16.0.0"
       },
       "s3": {
-        "host": "https://cli.secman.dev"
+        "host": "https://cli-files.secman.dev"
       }
     },
     "helpClass": "./lib/src/help",
