@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "The New Secman Release"
+        required: true
+
+env:
+  RELEASE: ${{ github.event.inputs.release }}
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Pack
+        run: |
+          sudo yarn pack:deb
+          ls -a ./dist/deb
+  
+  macos:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 16
+      
+      - name: Install Dependencies
+        run: yarn
+      
+      - name: Pack
+        run: sudo yarn pack:macos
+
+  windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 16
+      
+      - name: Install Dependencies
+        run: yarn
+      
+      - name: Pack
+        run: yarn pack:win
