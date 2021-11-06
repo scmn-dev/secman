@@ -29,6 +29,10 @@ jobs:
           sudo yarn pack:deb
 
           ls -a ./tmp
+          ls -a ./tmp/cache
+          ls -a ./tmp/linux-arm
+          ls -a ./tmp/linux-x64
+          ls -a ./tmp/secman
 
   windows:
     runs-on: windows-latest

@@ -112,7 +112,7 @@
         "debounce": 60
       },
       "node": {
-        "version": "16.0.0"
+        "version": "16.13.0"
       },
       "s3": {
         "host": "https://cli-files.secman.dev"
