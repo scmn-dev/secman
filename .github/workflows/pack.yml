@@ -9,11 +9,12 @@ on:
 
 env:
   RELEASE: ${{ github.event.inputs.release }}
-  FILE_FORMAT: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      FILE_FORMAT: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}
 
     steps:
       - uses: actions/checkout@v2
