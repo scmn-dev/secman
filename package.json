@@ -21,9 +21,9 @@
     "url": "https://secman.dev"
   },
   "scripts": {
-    "postpack": "rimraf -f oclif.manifest.json",
+    "postpack": "rimraf oclif.manifest.json",
     "prepack": "yarn build",
-    "build": "rimraf -rf lib && tsc -b && oclif-dev manifest",
+    "build": "rimraf lib && tsc -b && oclif-dev manifest",
     "pack": "oclif-dev pack",
     "pack:deb": "oclif-dev pack:deb",
     "pack:macos": "oclif-dev pack:macos",
@@ -103,10 +103,6 @@
     "commands": "./lib/src/commands",
     "bin": "secman",
     "dirname": "secman",
-    "macos": {
-      "sign": "Developer ID Installer: Secman",
-      "identifier": "dev.secman.cli"
-    },
     "update": {
       "autoupdate": {
         "rollout": 50,
@@ -130,7 +126,7 @@
     ],
     "warn-if-update-available": {
       "timeoutInDays": 10,
-      "message": "there's a new release of secman is avalaible: <%= chalk.greenBright(latest) %>\nto upgrade run <%= chalk.bold('`npm upgrade secman`') %>",
+      "message": "there's a new release of secman is avalaible: <%= chalk.greenBright(latest) %>\nto upgrade run <%= chalk.bold('`secman update`') %>",
       "authorization": "Basic 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"
     }
   },
