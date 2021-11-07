@@ -13,8 +13,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FILE_FORMAT: ./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}
 
     steps:
       - uses: actions/checkout@v2
@@ -30,6 +28,10 @@ jobs:
         run: |
           npm i @oclif/dev-cli -g
           oclif-dev pack
+      
+      - name: Format
+        run: |
+          echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
 
       - name: Upload It
         uses: softprops/action-gh-release@v1
