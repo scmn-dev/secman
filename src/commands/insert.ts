@@ -78,88 +78,19 @@ export default class Insert extends Command {
 
     if (flags.logins) {
       API_URL += "/logins";
-
-      for (let i = 0; i < LoginFields.length; i++) {
-        const loga = await prompts({
-          type: LoginFields[i].title === "Password" ? "password" : "text",
-          name: "value",
-          message: LoginFields[i].title,
-        });
-
-        form[LoginFields[i].value] = loga.value;
-      }
     } else if (flags["credit-cards"]) {
       API_URL += "/credit-cards";
-
-      for (let i = 0; i < CCFields.length; i++) {
-        const cca = await prompts({
-          type:
-            CCFields[i].title === "Verification Number" ? "password" : "text",
-          name: "value",
-          message: CCFields[i].title,
-        });
-
-        form[CCFields[i].value] = cca.value;
-      }
     } else if (flags.emails) {
       API_URL += "/emails";
-
-      for (let i = 0; i < EmailFields.length; i++) {
-        const ema = await prompts({
-          type: EmailFields[i].title === "Password" ? "password" : "text",
-          name: "value",
-          message: EmailFields[i].title,
-        });
-
-        form[EmailFields[i].value] = ema.value;
-      }
     } else if (flags.notes) {
       API_URL += "/notes";
-
-      for (let i = 0; i < NoteFields.length; i++) {
-        const not = await prompts({
-          type: "text",
-          name: "value",
-          message: NoteFields[i].title,
-        });
-
-        form[NoteFields[i].value] = not.value;
-      }
     } else if (flags.servers) {
       API_URL += "/servers";
-      for (let i = 0; i < ServerFields.length; i++) {
-        const passwords = () => {
-          if (
-            ServerFields[i].title === "Password" ||
-            ServerFields[i].title === "Hosting Password" ||
-            ServerFields[i].title === "Admin Password"
-          ) {
-            return "password";
-          } else {
-            return "text";
-          }
-        };
-
-        const ser = await prompts({
-          type: passwords(),
-          name: "value",
-          message: ServerFields[i].title,
-        });
-
-        form[ServerFields[i].value] = ser.value;
-      }
     } else {
       this.error("Incorrect type of entry.");
     }
 
-    const payload = CryptoTools.encryptPayload(
-      form,
-      enc_fields(),
-      readDataFile("master_password_hash"),
-      readDataFile("transmission_key")
-    );
-
-    await API.post(API_URL, payload, {
+    await API.get(API_URL, {
       headers: {
         Authorization: `Bearer ${access_token}`,
         Cookie: `secman_token=${access_token}`,
@@ -167,9 +98,100 @@ export default class Insert extends Command {
     })
       .then(async (res: any) => {
         if (res.status === 200 || res.status === 202) {
-          console.log(chalk.green("Password created"));
-        } else {
-          console.log(chalk.red("Password not created"));
+          if (flags.logins) {
+            for (let i = 0; i < LoginFields.length; i++) {
+              const loga = await prompts({
+                type: LoginFields[i].title === "Password" ? "password" : "text",
+                name: "value",
+                message: LoginFields[i].title,
+              });
+
+              form[LoginFields[i].value] = loga.value;
+            }
+          } else if (flags["credit-cards"]) {
+            for (let i = 0; i < CCFields.length; i++) {
+              const cca = await prompts({
+                type:
+                  CCFields[i].title === "Verification Number"
+                    ? "password"
+                    : "text",
+                name: "value",
+                message: CCFields[i].title,
+              });
+
+              form[CCFields[i].value] = cca.value;
+            }
+          } else if (flags.emails) {
+            for (let i = 0; i < EmailFields.length; i++) {
+              const ema = await prompts({
+                type: EmailFields[i].title === "Password" ? "password" : "text",
+                name: "value",
+                message: EmailFields[i].title,
+              });
+
+              form[EmailFields[i].value] = ema.value;
+            }
+          } else if (flags.notes) {
+            for (let i = 0; i < NoteFields.length; i++) {
+              const not = await prompts({
+                type: "text",
+                name: "value",
+                message: NoteFields[i].title,
+              });
+
+              form[NoteFields[i].value] = not.value;
+            }
+          } else if (flags.servers) {
+            for (let i = 0; i < ServerFields.length; i++) {
+              const passwords = () => {
+                if (
+                  ServerFields[i].title === "Password" ||
+                  ServerFields[i].title === "Hosting Password" ||
+                  ServerFields[i].title === "Admin Password"
+                ) {
+                  return "password";
+                } else {
+                  return "text";
+                }
+              };
+
+              const ser = await prompts({
+                type: passwords(),
+                name: "value",
+                message: ServerFields[i].title,
+              });
+
+              form[ServerFields[i].value] = ser.value;
+            }
+          } else {
+            this.error("Incorrect type of entry.");
+          }
+
+          const payload = CryptoTools.encryptPayload(
+            form,
+            enc_fields(),
+            readDataFile("master_password_hash"),
+            readDataFile("transmission_key")
+          );
+
+          await API.post(API_URL, payload, {
+            headers: {
+              Authorization: `Bearer ${access_token}`,
+              Cookie: `secman_token=${access_token}`,
+            },
+          })
+            .then(async (res: any) => {
+              if (res.status === 200 || res.status === 202) {
+                console.log(chalk.green("Password created"));
+              } else {
+                console.log(chalk.red("Password not created"));
+              }
+            })
+            .catch((err: any) => {
+              if (err.response.status === 401) {
+                refresh(`insert ${Types(flags)}`);
+              }
+            });
         }
       })
       .catch((err: any) => {

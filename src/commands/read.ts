@@ -177,10 +177,12 @@ export default class Read extends Command {
                 : "•".repeat(element.note.length);
 
               if (element.title === args.PASSWORD_NAME) {
-                console.log(`
-  ${chalk.bold("Title")}: ${element.title}
-  ${chalk.bold("Note")}: ${note}
-  `);
+                const data = [
+                  ["Title", "Note"],
+                  [element.title, note],
+                ];
+
+                console.log("\n" + table(data, TABLE_DESIGN));
               }
             } else if (flags.servers) {
               CryptoTools.decryptFields(

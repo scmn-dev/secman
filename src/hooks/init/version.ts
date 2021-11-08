@@ -1,5 +1,6 @@
-const version = require("../../../package.json").version;
-const versionDate = require("../../../package.json").versionDate;
+// get "version" and "versionDate" from package.json
+const version = require("../../../../package.json").version;
+const versionDate = require("../../../../package.json").versionDate;
 
 export default async function hook() {
   if (["-v", "-V", "--version", "version"].includes(process.argv[2])) {

@@ -27,7 +27,7 @@
 
 > `secman` is a password manager can store, retrieves, generates, and synchronizes passwords, and is written in _**TypeScript**_! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere.
 
-## Featurs
+## Features
 
 - **Not GPG cored**.
 - **It uses a master password to securely store your passwords**.
@@ -37,6 +37,12 @@
 - **You can easily manage your passwords from everywhere, desktop, web, terminal, and more**.
 
 ## Examples
+
+> Initialize `~/.secman`
+
+```bash
+secman init
+```
 
 > Create a new password
 
@@ -56,7 +62,6 @@ Password created
 
 ```bash
 secman .
-
 .
 ├──Logins
 │  └──Twitter
@@ -67,10 +72,9 @@ secman .
 ```
 
 > Read It
-
+•
 ```
 secman read -l Twitter
-
 
 ╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
 │ Title   │ URL                 │ Username         │ Password  │ Extra    │

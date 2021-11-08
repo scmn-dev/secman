@@ -11,7 +11,7 @@ const { TopicFormatter } = require("../contents/helpers/topic");
 // constants
 const { PRIMARY_COLOR } = require("../constants");
 
-function getHelpSubject(args) {
+function getHelpSubject(args: any) {
   for (const arg of args) {
     if (arg === "--") return;
     if (arg === "help" || arg === "--help" || arg === "-h") continue;
@@ -25,23 +25,25 @@ module.exports = class MyHelpClass extends Help {
   get sortedCommands() {
     let commands = this.config.commands;
 
-    commands = commands.filter((c) => this.opts.all || !c.hidden);
-    commands = sortBy(commands, (c) => c.id);
-    commands = uniqBy(commands, (c) => c.id);
+    commands = commands.filter((c: any) => this.opts.all || !c.hidden);
+    commands = sortBy(commands, (c: any) => c.id);
+    commands = uniqBy(commands, (c: any) => c.id);
 
     console.log(commands);
+
+    return;
   }
 
   get sortedTopics() {
     let topics = this._topics;
-    topics = topics.filter((t) => this.opts.all || !t.hidden);
-    topics = sortBy(topics, (t) => t.name);
-    topics = uniqBy(topics, (t) => t.name);
+    topics = topics.filter((t: any) => this.opts.all || !t.hidden);
+    topics = sortBy(topics, (t: any) => t.name);
+    topics = uniqBy(topics, (t: any) => t.name);
 
     return topics;
   }
 
-  showHelp(args) {
+  showHelp(args: any) {
     // print secman cli version
     console.log(`${chalk.bold("Secman CLI")} ${this.config.version}\n`);
 
@@ -61,12 +63,12 @@ module.exports = class MyHelpClass extends Help {
     }
   }
 
-  showCommandHelp(command) {
+  showCommandHelp(command: any) {
     const name = command.id;
     const depth = name.split(":").length;
 
     const subTopics = this.sortedTopics.filter(
-      (t) =>
+      (t: any) =>
         t.name.startsWith(name + ":") && t.name.split(":").length === depth + 1
     );
 
@@ -98,16 +100,16 @@ module.exports = class MyHelpClass extends Help {
     root.root();
   }
 
-  formatCommand(command) {
+  formatCommand(command: any) {
     const help = new CommandHelp(command, this.config, this.opts);
     return help.generate();
   }
 
-  formatCommands(commands) {
+  formatCommands(commands: any) {
     if (commands.length === 0) return "";
 
     const body = renderList(
-      commands.map((c) => [
+      commands.map((c: any) => [
         c.id,
         c.description && this.render(c.description.split("\n")[0]),
       ]),
@@ -121,14 +123,14 @@ module.exports = class MyHelpClass extends Help {
     console.log([chalk.grey.bold("COMMANDS\n"), indent(body, 2)].join("\n"));
   }
 
-  formatTopic(topic) {
+  formatTopic(topic: any) {
     TopicFormatter(this.render, topic, this.config, this.opts);
   }
 
-  formatTopics(topics) {
+  formatTopics(topics: any) {
     if (topics.length === 0) return "";
     const body = renderList(
-      topics.map((c) => [
+      topics.map((c: any) => [
         c.name,
         c.description && this.render(c.description.split("\n")[0]),
       ]),

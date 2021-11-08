@@ -1,0 +1,46 @@
+name: Pack
+
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "The New Secman Release"
+        required: true
+
+env:
+  RELEASE: ${{ github.event.inputs.release }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Pack
+        run: |
+          npm i @oclif/dev-cli -g
+          oclif-dev pack
+      
+      - name: Format
+        run: |
+          echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
+
+      - name: Upload It
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.RELEASE }}
+          files: |
+            ${{ env.FILE_FORMAT }}-darwin-x64.tar.gz
+            ${{ env.FILE_FORMAT }}-linux-arm.tar.gz
+            ${{ env.FILE_FORMAT }}-linux-x64.tar.gz
+            ${{ env.FILE_FORMAT }}-win32-x64.tar.gz
+            ${{ env.FILE_FORMAT }}-win32-x86.tar.gz
+            ${{ env.FILE_FORMAT }}.tar.gz

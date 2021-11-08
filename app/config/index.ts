@@ -47,10 +47,12 @@ export default async function writeConfigFile(
 
     if (!fs.existsSync(sm_config)) {
       sh.touch(sm_config);
+      writeCFIle();
     }
 
     if (!fs.existsSync(sm_data)) {
       sh.touch(sm_data);
+      writeDFile();
     }
   }
 
@@ -87,6 +89,14 @@ export async function writeDataFile(
     },
     {}
   );
+}
+
+export async function writeCFIle() {
+  await writeJSON(sm_config, {}, {});
+}
+
+export async function writeDFile() {
+  await writeJSON(sm_data, {}, {});
 }
 
 export async function writeSettingFile() {
