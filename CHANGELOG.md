@@ -4,6 +4,20 @@
 
 ---
 
+## [[v6.0.5] 2021-11-08](#v605-2021-11-08)
+
+### Added
+
+nothing
+
+### Changed
+
+- 
+
+### Fixed
+
+- Fix authentication check for `secman insert` command.
+
 ## [[v6.0.4] 2021-11-05](#v604-2021-11-05)
 
 ### Added
@@ -16,7 +30,7 @@ nothing
 
 ## Fixed
 
-- fix version command.
+- Fix version command.
 
 ## [[v6.0.3] 2021-11-05](#v603-2021-11-05)
 
@@ -50,6 +64,8 @@ it's comes with new features, new design, new infrastructure, and new secman
 ### Fixed
 
 - Fix many errors, bugs, and issues.
+
+---
 
 ## [[v5.3.8] 2021-09-23](#v538-2021-09-23)
 

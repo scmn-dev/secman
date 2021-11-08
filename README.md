@@ -60,7 +60,7 @@ Password created
 
 > List passwords
 
-```bash
+```
 secman .
 .
 ├──Logins
@@ -76,17 +76,17 @@ secman .
 ```
 secman read -l Twitter
 
-╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
-│ Title   │ URL                 │ Username         │ Password  │ Extra    │
-├─────────┼─────────────────────┼──────────────────┼───────────┼──────────┤
-│ Twitter │ https://twitter.com │ hello@secman.dev │ ••••••••• │ no extra │
-╰─────────┴─────────────────────┴──────────────────┴───────────┴──────────╯
+╭─────────┬─────────────────────┬──────────────────┬──────────┬──────────╮
+│ Title   │ URL                 │ Username         │ Password │ Extra    │
+├─────────┼─────────────────────┼──────────────────┼──────────┼──────────┤
+│ Twitter │ https://twitter.com │ hello@secman.dev │ •••••••• │ no extra │
+╰─────────┴─────────────────────┴──────────────────┴──────────┴──────────╯
 ```
 
 #### show password
 
 ```bash
-secman show -l -p Twitter
+secman show -lp Twitter
 
 ╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
 │ Title   │ URL                 │ Username         │ Password  │ Extra    │
@@ -111,7 +111,7 @@ secman edit -l Twitter
 #### edit multiple fields
 
 ```code
-secman edit -l -m Twitter
+secman edit -lm Twitter
 
 ? Pick a field ›
 ? Pick a field ›
@@ -195,7 +195,6 @@ secman init
 ```bash
 secman auth
 ```
-> 
 
 > Insert a New Password
 
