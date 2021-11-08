@@ -47,6 +47,8 @@ jobs:
 
   # Secman Container Docker Image `smcr/secman` | GitHub Packages
   sm_container_build_ghcr:
+    needs: [ sm_container_build_dh ]
+
     runs-on: ubuntu-latest
 
     steps:
@@ -77,7 +79,13 @@ jobs:
 
   # Secman CLI Docker Image `smcr/secman-cli`
   sm_cli_build:
-    needs: [ sm_container_build_dh, sm_container_run_dh, sm_container_build_ghcr, sm_container_run_ghcr ]
+    needs:
+      [
+        sm_container_build_dh,
+        sm_container_run_dh,
+        sm_container_build_ghcr,
+        sm_container_run_ghcr,
+      ]
 
     runs-on: ubuntu-latest
 
