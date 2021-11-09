@@ -28,7 +28,7 @@ prompts.override(require("yargs").argv);
 export default class Edit extends Command {
   static description = "Update or change a value in a password.";
 
-  static aliases = ["show", "print"];
+  static aliases = ["modify", "change"];
 
   static flags = {
     help: flags.help({ char: "h" }),
