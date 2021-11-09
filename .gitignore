@@ -3,7 +3,7 @@
 /.nyc_output
 dist
 /lib
-/tmp
+tmp
 node_modules
 
 .env

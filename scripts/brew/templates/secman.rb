@@ -10,6 +10,7 @@ class Secman < Formula
     inreplace "bin/secman", "\"$DIR/node\"", Formula["sm-node"].opt_bin/"node"
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/secman"
+    system("export SM_PROVIDER=brew")
   end
 
   test do

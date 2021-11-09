@@ -27,7 +27,8 @@
     "pack": "oclif-dev pack",
     "pack:deb": "oclif-dev pack:deb",
     "pack:macos": "oclif-dev pack:macos",
-    "pack:win": "oclif-dev pack:win"
+    "pack:win": "oclif-dev pack:win",
+    "brew": "cd scripts/brew && npm start"
   },
   "bin": {
     "sm": "./bin/run",
