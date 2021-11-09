@@ -74,7 +74,7 @@ Hash: ${hash}`);
           ).toString();
 
           console.log(`String: ${args.STRING}
-  Hash: ${hash}`);
+Hash: ${hash}`);
         } else {
           this.error("No string provided");
         }

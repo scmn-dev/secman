@@ -10,6 +10,7 @@ const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
 const crypto = require("crypto");
+const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
 const SECMAN_DIR = path.join(__dirname, "..", "..");
@@ -150,6 +151,7 @@ async function updateHomebrew() {
   await git(["config", "--local", "core.pager", "cat"]);
   await git(["diff", "--cached"], { stdio: "inherit" });
   await git(["commit", "-m", `secman v${VERSION}`]);
+
   if (process.env.SKIP_GIT_PUSH === undefined) {
     await git(["push", "origin", "master"]);
   }

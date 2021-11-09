@@ -21,7 +21,8 @@ export default class Bcrypt extends Command {
     if (args.STRING) {
       let hash = await bcrypt.hash(args.STRING, flags.length);
 
-      this.log(hash);
+      this.log(`String: ${args.STRING}
+Hash: ${hash}`);
     } else {
       this.error("No string provided");
     }
