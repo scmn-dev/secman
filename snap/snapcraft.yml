@@ -39,7 +39,7 @@ parts:
       apt-get install -y nodejs yarn
       yarn
       yarn pack --filename secman.tar.gz
-      export SM_PROVIDOR=snap
+      export SM_PROVIDER=snap
       tar xvzf secman.tar.gz
       rmdir ../install
       mv package ../install
