@@ -17,7 +17,7 @@ export default class Update extends Command {
     const { flags } = this.parse(Update);
 
     const spnr = spinner("📦 Checking for updates...");
-    const currentVersion = this.config.version;
+    const currentVersion = "v" + this.config.version;
     const latestVersion = await GetLatestGHRelease("secman");
     const successMsg =
       "Secman CLI upgraded to " + latestVersion + " successfully";
