@@ -28,11 +28,22 @@ jobs:
         run: |
           npm i @oclif/dev-cli -g
           oclif-dev pack
-      
+
       - name: Build .deb Package
         run: | 
           sudo yarn pack:deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+          sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
+
+      - name: Build secman windows installer
+        run: |
+          sudo apt-get install -y nsis
+          yarn pack:win
+          sudo mv ./dist/win/secman_v${{ env.RELEASE }}-x64.exe
+          sudo mv ./dist/win/secman_v${{ env.RELEASE }}-x86.exe
+
+      - name: HomeBrew
+        run: yarn brew
 
       - name: Format
         run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
@@ -49,3 +60,6 @@ jobs:
             ${{ env.FILE_FORMAT }}-win32-x86.tar.gz
             ${{ env.FILE_FORMAT }}.tar.gz
             ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+            ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
+            ./dist/win/secman_v${{ env.RELEASE }}-x64.exe
+            ./dist/win/secman_v${{ env.RELEASE }}-x86.exe
