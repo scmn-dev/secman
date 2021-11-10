@@ -4,6 +4,21 @@
 
 ---
 
+## [[v6.0.6] 2021-11-10](#v606-2021-11-10)
+
+### Added
+
+- Add `modify` & `change` aliases to `secman edit` command.
+- Build github api to `api` dir.
+
+### Changed
+
+- Build our own `update` command.
+
+### Fixed
+
+- Fix `update` command.
+
 ## [[v6.0.5] 2021-11-08](#v605-2021-11-08)
 
 ### Added
