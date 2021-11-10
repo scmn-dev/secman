@@ -1,4 +1,4 @@
-class SMNode < Formula
+class SmNode < Formula
   desc "node.js dependency for secman"
   homepage "https://secman.dev/docs/cli"
   url "__NODE_BIN_URL__"
