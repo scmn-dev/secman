@@ -39,11 +39,12 @@ jobs:
         run: |
           sudo apt-get install -y nsis
           yarn pack:win
-          sudo mv ./dist/win/secman_v${{ env.RELEASE }}-x64.exe
-          sudo mv ./dist/win/secman_v${{ env.RELEASE }}-x86.exe
 
       - name: HomeBrew
-        run: yarn brew
+        run: |
+          cd scripts/brew
+          npm i
+          npm start
 
       - name: Format
         run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
