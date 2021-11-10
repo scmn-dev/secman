@@ -4,6 +4,20 @@
 
 ---
 
+## [[v6.0.61] 2021-11-10](#v6061-2021-11-10)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix version checker in `update` command.
+
 ## [[v6.0.6] 2021-11-10](#v606-2021-11-10)
 
 ### Added
