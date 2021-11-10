@@ -5,6 +5,5 @@ dist
 /lib
 tmp
 node_modules
-
+.snapcraft
 .env
-/app/email/mail/index.ts
