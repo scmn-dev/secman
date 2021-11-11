@@ -180,7 +180,7 @@ see [**secman container docs**](https://docker.secman.dev/docs/sm-container)
 
 ## Build from source
 
-see [**building from source**](https://docs.secman.dev/contributing/build_from_source) doc.
+see [**building from source**](https://secman.dev/docs/contributing/building_from_source) doc.
 
 ## Getting started with secman
 
