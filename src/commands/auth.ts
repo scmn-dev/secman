@@ -4,7 +4,8 @@ import { PRIMARY_COLOR } from "../../constants";
 import writeConfigFile, { readConfigFile } from "../../app/config";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import { cli } from "cli-ux";
+import { cli as ux } from "cli-ux";
+import { readPipe } from "../../tools/readPipe";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -13,9 +14,21 @@ export default class Auth extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
-    createAccount: flags.boolean({
+    "create-account": flags.boolean({
       char: "c",
       description: "Create a new account.",
+      default: false,
+    }),
+    email: flags.string({
+      char: "e",
+      description: "Email address of the account to use.",
+    }),
+    "master-password": flags.string({
+      char: "p" || "m",
+      description: "Master password of the account to use.",
+    }),
+    "password-stdin": flags.boolean({
+      description: "Take the password from stdin",
       default: false,
     }),
   };
@@ -27,39 +40,59 @@ export default class Auth extends Command {
     const configFile = `${process.env.HOME}/.secman/config.json`;
 
     const _ = async (isNewLogin: boolean) => {
-      // let email = readlineSync.questionEMail("Enter your email: ");
-      const email =
-        readConfigFile("user") ??
-        (
-          await prompts({
-            type: "text",
-            name: "e",
-            message: "Enter your email: ",
+      let email;
+
+      if (flags.email) {
+        email = flags.email;
+      } else {
+        email =
+          readConfigFile("user") ??
+          (
+            await prompts({
+              type: "text",
+              name: "e",
+              message: "Enter your email: ",
+              validate: (value: string) => {
+                if (value.length > 0) {
+                  return true;
+                } else {
+                  return "Please enter your email";
+                }
+              },
+            })
+          ).e;
+      }
+
+      try {
+        let password;
+        let master_password: any;
+
+        if (flags["master-password"]) {
+          password = flags["master-password"];
+          master_password = password;
+        } else if (flags["password-stdin"]) {
+          const stdin = await readPipe();
+
+          if (stdin) {
+            password = stdin.replace(/\s/g, "");
+            master_password = password;
+          }
+        } else {
+          password = await prompts({
+            type: "password",
+            name: "mp",
+            message: "Enter your master password: ",
             validate: (value: string) => {
               if (value.length > 0) {
                 return true;
               } else {
-                return "Please enter your email";
+                return "Please enter your master password";
               }
             },
-          })
-        ).e;
-
-      try {
-        let password = await prompts({
-          type: "password",
-          name: "mp",
-          message: "Enter your master password: ",
-          validate: (value: string) => {
-            if (value.length > 0) {
-              return true;
-            } else {
-              return "Please enter your master password";
-            }
-          },
-        });
-
-        let master_password = password.mp;
+          });
+          master_password = password.mp;
+          console.log("");
+        }
 
         if (master_password) {
           const hash = CryptoTools.sha256Encrypt(master_password);
@@ -100,8 +133,8 @@ export default class Auth extends Command {
               );
 
               const msg = isNewLogin
-                ? "\n🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
-                : "\nRe-authentication successful";
+                ? "🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
+                : "Re-authentication successful";
 
               console.log(msg);
             })
@@ -127,8 +160,8 @@ export default class Auth extends Command {
     };
 
     switch (true) {
-      case flags.createAccount:
-        cli.open("https://auth.secman.dev");
+      case flags["create-account"]:
+        ux.open("https://auth.secman.dev");
 
         break;
 
@@ -147,6 +180,8 @@ export default class Auth extends Command {
               active: "yes",
               inactive: "no",
             });
+
+            console.log("");
 
             if (reauth.value) {
               _(false);

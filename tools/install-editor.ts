@@ -10,6 +10,8 @@ export const InstallEditor = () => {
       console.log(data);
     });
   } else {
-    sh.exec("curl -fsSL https://unix-editor.secman.dev | bash");
+    sh.exec("curl -fsSL https://unix-editor.secman.dev | bash", {
+      silent: true,
+    }).stdout;
   }
 };

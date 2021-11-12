@@ -7,16 +7,10 @@ import {
   SECMAN_SETTINGS_PATH,
 } from "../../constants";
 import { writeJsonFile as writeJSON } from "../../tools/json/write";
-import { homedir, platform } from "os";
+import { platform } from "os";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";
-import process from "process";
-
-const secman_dir = path.join(homedir(), DOT_SECMAN_PATH);
-const sm_config = path.join(homedir(), SECMAN_CONFIG_PATH);
-const sm_data = path.join(homedir(), SECMAN_DATA_PATH);
-const sm_setting = path.join(homedir(), SECMAN_SETTINGS_PATH);
 
 export default async function writeConfigFile(
   username: any,
@@ -28,11 +22,11 @@ export default async function writeConfigFile(
   secret: any
 ) {
   if (platform() === "win32") {
-    if (!fs.existsSync(secman_dir)) {
+    if (!fs.existsSync(DOT_SECMAN_PATH)) {
       const ps = new powershell(`
-        New-Item -ItemType "directory" -Path "${secman_dir}"
-        New-Item ${sm_config}
-        New-Item ${sm_data}
+        New-Item -ItemType "directory" -Path "${DOT_SECMAN_PATH}"
+        New-Item ${SECMAN_CONFIG_PATH}
+        New-Item ${SECMAN_DATA_PATH}
       `);
 
       ps.on("output", (data: any) => {
@@ -40,24 +34,24 @@ export default async function writeConfigFile(
       });
     }
   } else {
-    if (!fs.existsSync(secman_dir)) {
-      fs.mkdirSync(secman_dir, { recursive: true });
+    if (!fs.existsSync(DOT_SECMAN_PATH)) {
+      fs.mkdirSync(DOT_SECMAN_PATH, { recursive: true });
     }
 
-    if (!fs.existsSync(sm_config)) {
-      sh.touch(sm_config);
+    if (!fs.existsSync(SECMAN_CONFIG_PATH)) {
+      sh.touch(SECMAN_CONFIG_PATH);
       writeCFile();
     }
 
-    if (!fs.existsSync(sm_data)) {
-      sh.touch(sm_data);
+    if (!fs.existsSync(SECMAN_DATA_PATH)) {
+      sh.touch(SECMAN_DATA_PATH);
       writeDFile();
     }
   }
 
   // write config file
   await writeJSON(
-    sm_config,
+    SECMAN_CONFIG_PATH,
     { name: username, user: user_email, secret: secret },
     {}
   );
@@ -77,7 +71,7 @@ export async function writeDataFile(
   master_password_hash: any
 ) {
   await writeJSON(
-    sm_data,
+    SECMAN_DATA_PATH,
     {
       data: {
         access_token: access_token,
@@ -91,16 +85,16 @@ export async function writeDataFile(
 }
 
 export async function writeCFile() {
-  await writeJSON(sm_config, {}, {});
+  await writeJSON(SECMAN_CONFIG_PATH, {}, {});
 }
 
 export async function writeDFile() {
-  await writeJSON(sm_data, {}, {});
+  await writeJSON(SECMAN_DATA_PATH, {}, {});
 }
 
 export async function writeSettingFile() {
   await writeJSON(
-    sm_setting,
+    SECMAN_SETTINGS_PATH,
     {
       editor: "secman_editor",
     },
@@ -109,10 +103,10 @@ export async function writeSettingFile() {
 }
 
 export function readConfigFile(obj: any) {
-  if (!fs.existsSync(sm_config)) {
+  if (!fs.existsSync(SECMAN_CONFIG_PATH)) {
     fileIsNotFound("config");
   } else {
-    let rawData: any = fs.readFileSync(path.resolve(sm_config));
+    let rawData: any = fs.readFileSync(path.resolve(SECMAN_CONFIG_PATH));
 
     let data: any = JSON.parse(rawData)[obj];
 
@@ -121,11 +115,11 @@ export function readConfigFile(obj: any) {
 }
 
 export function readDataFile(obj: any) {
-  if (!fs.existsSync(sm_data)) {
+  if (!fs.existsSync(SECMAN_DATA_PATH)) {
     fileIsNotFound("data");
   } else {
     try {
-      let rawData: any = fs.readFileSync(path.resolve(sm_data));
+      let rawData: any = fs.readFileSync(path.resolve(SECMAN_DATA_PATH));
 
       let data: any = JSON.parse(rawData).data[obj];
 
@@ -144,10 +138,10 @@ export function readDataFile(obj: any) {
 }
 
 export function readSettingsFile(obj: any) {
-  if (!fs.existsSync(sm_setting)) {
+  if (!fs.existsSync(SECMAN_SETTINGS_PATH)) {
     fileIsNotFound("settings");
   } else {
-    let rawData: any = fs.readFileSync(path.resolve(sm_setting));
+    let rawData: any = fs.readFileSync(path.resolve(SECMAN_SETTINGS_PATH));
 
     let data: any = JSON.parse(rawData)[obj];
 
