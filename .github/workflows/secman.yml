@@ -25,6 +25,26 @@ jobs:
 
       - name: Run secman version
         run: secman -v
+  
+  from_github_packages:
+    needs: [ linux ]
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install secman (From GitHub Packages)
+        run: npm i -g @scmn-dev/secman
+
+      - name: Run secman
+        run: secman
+
+      - name: Run secman Help
+        run: secman -h
+
+      - name: Run secman version
+        run: secman -v
 
   from_script:
     runs-on: ubuntu-latest
