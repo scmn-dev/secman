@@ -45,6 +45,7 @@ parts:
       mkdir ./install
       mv package ./install
       git clone https://gist.github.com/7eed6656d1ee591206ef0cd8d823d988.git _fetch
+      chmod 755 _fetch && chmod 755 _fetch/*
       OS=linux ./_fetch/fetch ./install/bin
       cd ./install && yarn --prod
       cd ./install && bin/run -v
