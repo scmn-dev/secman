@@ -41,14 +41,14 @@ parts:
       yarn pack --filename secman.tar.gz
       export SM_PROVIDER=snap
       tar xvzf secman.tar.gz
-      rmdir ../install
-      mv package ../install
+      rmdir ./install
+      mv package ./install
       git clone https://gist.github.com/7eed6656d1ee591206ef0cd8d823d988.git _fetch
-      OS=linux ./_fetch/fetch ../install/bin
-      cd ../install && yarn --prod
-      cd ../install && bin/run -v
-      sed -i 's/#!\/usr\/bin\/env node/#!\/snap\/secman\/current\/bin\/node/' ../install/bin/run
-      sed -i "s/^process\.env\.HEROKU_UPDATE_INSTRUCTIONS.*$/process.env.HEROKU_UPDATE_INSTRUCTIONS = 'update with: snap refresh secman'/" ../install/bin/run
+      OS=linux ./_fetch/fetch ./install/bin
+      cd ./install && yarn --prod
+      cd ./install && bin/run -v
+      sed -i 's/#!\/usr\/bin\/env node/#!\/snap\/secman\/current\/bin\/node/' ./install/bin/run
+      sed -i "s/^process\.env\.SECMAN_UPDATE_INSTRUCTIONS.*$/process.env.SECMAN_UPDATE_INSTRUCTIONS = 'update with: snap refresh secman'/" ./install/bin/run
       mkdir -p snap/hooks
       cat << EOF > snap/hooks/configure
       #!/bin/sh
