@@ -33,6 +33,9 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Set NPM Registry to GitHub Registry
+        run: npm config set registry https://npm.pkg.github.com
 
       - name: Install secman (From GitHub Packages)
         run: npm i -g @scmn-dev/secman
