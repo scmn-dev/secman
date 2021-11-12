@@ -43,7 +43,8 @@ parts:
       tar xvzf secman.tar.gz
       rmdir ../install
       mv package ../install
-      OS=linux ./scripts/_fetch_node_binary ../install/bin
+      git clone https://gist.github.com/7eed6656d1ee591206ef0cd8d823d988.git _fetch
+      OS=linux ./_fetch/fetch ../install/bin
       cd ../install && yarn --prod
       cd ../install && bin/run -v
       sed -i 's/#!\/usr\/bin\/env node/#!\/snap\/secman\/current\/bin\/node/' ../install/bin/run

@@ -1,6 +1,5 @@
-import * as sh from "shelljs";
+import sh from "shelljs";
 const powershell = require("powershell");
-
 import {
   DOT_SECMAN_PATH,
   SECMAN_CONFIG_PATH,
@@ -12,6 +11,7 @@ import { homedir, platform } from "os";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";
+import process from "process";
 
 const secman_dir = path.join(homedir(), DOT_SECMAN_PATH);
 const sm_config = path.join(homedir(), SECMAN_CONFIG_PATH);
@@ -40,14 +40,13 @@ export default async function writeConfigFile(
       });
     }
   } else {
-    // sh.mkdir(secman_dir);
     if (!fs.existsSync(secman_dir)) {
       fs.mkdirSync(secman_dir, { recursive: true });
     }
 
     if (!fs.existsSync(sm_config)) {
       sh.touch(sm_config);
-      writeCFIle();
+      writeCFile();
     }
 
     if (!fs.existsSync(sm_data)) {
@@ -91,7 +90,7 @@ export async function writeDataFile(
   );
 }
 
-export async function writeCFIle() {
+export async function writeCFile() {
   await writeJSON(sm_config, {}, {});
 }
 
@@ -110,35 +109,58 @@ export async function writeSettingFile() {
 }
 
 export function readConfigFile(obj: any) {
-  let rawdata: any = fs.readFileSync(path.resolve(sm_config));
-
-  let data: any = JSON.parse(rawdata)[obj];
-
-  return data;
-}
-
-export function readDataFile(obj: any) {
-  let rawdata: any = fs.readFileSync(path.resolve(sm_data));
-
-  let data: any = JSON.parse(rawdata).data[obj];
-
-  return data;
-}
-
-export function readSettingsFile(obj: any) {
-  // check if file exists
-  if (!fs.existsSync(sm_setting)) {
-    chalk.yellow.bold(
-      `~/.secman/settings.json does not exist, run ${chalk.grey.bold(
-        "secman init"
-      )}.`
-    );
-    return;
+  if (!fs.existsSync(sm_config)) {
+    fileIsNotFound("config");
   } else {
-    let rawdata: any = fs.readFileSync(path.resolve(sm_setting));
+    let rawData: any = fs.readFileSync(path.resolve(sm_config));
 
-    let data: any = JSON.parse(rawdata)[obj];
+    let data: any = JSON.parse(rawData)[obj];
 
     return data;
   }
 }
+
+export function readDataFile(obj: any) {
+  if (!fs.existsSync(sm_data)) {
+    fileIsNotFound("data");
+  } else {
+    try {
+      let rawData: any = fs.readFileSync(path.resolve(sm_data));
+
+      let data: any = JSON.parse(rawData).data[obj];
+
+      return data;
+    } catch {
+      console.log(
+        chalk.red(
+          `can't find your auth tokens, to authenticate run ${chalk.grey.bold(
+            "`secman auth`"
+          )}.`
+        )
+      );
+      process.exit(0);
+    }
+  }
+}
+
+export function readSettingsFile(obj: any) {
+  if (!fs.existsSync(sm_setting)) {
+    fileIsNotFound("settings");
+  } else {
+    let rawData: any = fs.readFileSync(path.resolve(sm_setting));
+
+    let data: any = JSON.parse(rawData)[obj];
+
+    return data;
+  }
+}
+
+const fileIsNotFound = (fileName: string) => {
+  console.log(
+    `${chalk.yellow.bold(
+      "~/.secman/" + fileName + ".json"
+    )} does not exist, run ${chalk.grey.bold("secman init")}.`
+  );
+
+  process.exit(0);
+};

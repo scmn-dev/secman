@@ -57,6 +57,10 @@ export default class Read extends Command {
     let API_URL = "/api";
     const access_token = readDataFile("access_token");
 
+    if (!args.PASSWORD_NAME) {
+      this.error("PASSWORD NAME is not found");
+    }
+
     if (flags.logins) {
       API_URL += "/logins";
     } else if (flags["credit-cards"]) {
@@ -93,24 +97,22 @@ export default class Read extends Command {
           const ms_hash = readDataFile("master_password_hash");
 
           itemList.forEach((element: any) => {
-            if (flags.logins) {
-              CryptoTools.decryptFields(
-                element,
-                LOGINS_ENCRYPTED_FIELDS,
-                ms_hash
-              );
+            if (element.title === args.PASSWORD_NAME) {
+              if (flags.logins) {
+                CryptoTools.decryptFields(
+                  element,
+                  LOGINS_ENCRYPTED_FIELDS,
+                  ms_hash
+                );
 
-              const checkExtra = element.extra ? element.extra : "No extra";
-              const url = element.url.startsWith("http")
-                ? element.url
-                : "https://" + element.url;
+                const checkExtra = element.extra ? element.extra : "No extra";
+                const url = element.url.startsWith("http")
+                  ? element.url
+                  : "https://" + element.url;
 
-              const password = flags["show-password"]
-                ? element.password
-                : "•".repeat(element.password.length);
-
-              if (element.title === args.PASSWORD_NAME) {
-                // console.log(chalk.green(element.title));
+                const password = flags["show-password"]
+                  ? element.password
+                  : "•".repeat(element.password.length);
 
                 const data = [
                   ["Title", "URL", "Username", "Password", "Extra"],
@@ -118,14 +120,16 @@ export default class Read extends Command {
                 ];
 
                 console.log("\n" + table(data, TABLE_DESIGN));
-              }
-            } else if (flags["credit-cards"]) {
-              CryptoTools.decryptFields(element, CCS_ENCRYPTED_FIELDS, ms_hash);
-              const verification_number = flags["show-password"]
-                ? element.verification_number
-                : "•".repeat(element.verification_number.length);
+              } else if (flags["credit-cards"]) {
+                CryptoTools.decryptFields(
+                  element,
+                  CCS_ENCRYPTED_FIELDS,
+                  ms_hash
+                );
+                const verification_number = flags["show-password"]
+                  ? element.verification_number
+                  : "•".repeat(element.verification_number.length);
 
-              if (element.title === args.PASSWORD_NAME) {
                 const data = [
                   [
                     "Card Name",
@@ -146,66 +150,60 @@ export default class Read extends Command {
                 ];
 
                 console.log("\n" + table(data, TABLE_DESIGN));
-              }
-            } else if (flags.emails) {
-              CryptoTools.decryptFields(
-                element,
-                EMAILS_ENCRYPTED_FIELDS,
-                ms_hash
-              );
+              } else if (flags.emails) {
+                CryptoTools.decryptFields(
+                  element,
+                  EMAILS_ENCRYPTED_FIELDS,
+                  ms_hash
+                );
 
-              const password = flags["show-password"]
-                ? element.password
-                : "•".repeat(element.password.length);
+                const password = flags["show-password"]
+                  ? element.password
+                  : "•".repeat(element.password.length);
 
-              if (element.title === args.PASSWORD_NAME) {
                 const data = [
                   ["Email", "Password"],
                   [element.title, password],
                 ];
 
                 console.log("\n" + table(data, TABLE_DESIGN));
-              }
-            } else if (flags.notes) {
-              CryptoTools.decryptFields(
-                element,
-                NOTES_ENCRYPTED_FIELDS,
-                ms_hash
-              );
-              const note = flags["show-password"]
-                ? element.note
-                : "•".repeat(element.note.length);
+              } else if (flags.notes) {
+                CryptoTools.decryptFields(
+                  element,
+                  NOTES_ENCRYPTED_FIELDS,
+                  ms_hash
+                );
+                const note = flags["show-password"]
+                  ? element.note
+                  : "•".repeat(element.note.length);
 
-              if (element.title === args.PASSWORD_NAME) {
                 const data = [
                   ["Title", "Note"],
                   [element.title, note],
                 ];
 
                 console.log("\n" + table(data, TABLE_DESIGN));
-              }
-            } else if (flags.servers) {
-              CryptoTools.decryptFields(
-                element,
-                SERVERS_ENCRYPTED_FIELDS,
-                ms_hash
-              );
+              } else if (flags.servers) {
+                CryptoTools.decryptFields(
+                  element,
+                  SERVERS_ENCRYPTED_FIELDS,
+                  ms_hash
+                );
 
-              const url = element.url.startsWith("http")
-                ? element.url
-                : "https://" + element.url;
-              const password = flags["show-password"]
-                ? element.password
-                : "•".repeat(element.password.length);
-              const hosting_password = flags["show-password"]
-                ? element.hosting_password
-                : "•".repeat(element.hosting_password.length);
-              const admin_password = flags["show-password"]
-                ? element.admin_password
-                : "•".repeat(element.admin_password.length);
-              const checkExtra = element.extra ? element.extra : "No extra";
+                const url = element.url.startsWith("http")
+                  ? element.url
+                  : "https://" + element.url;
+                const password = flags["show-password"]
+                  ? element.password
+                  : "•".repeat(element.password.length);
+                const hosting_password = flags["show-password"]
+                  ? element.hosting_password
+                  : "•".repeat(element.hosting_password.length);
+                const admin_password = flags["show-password"]
+                  ? element.admin_password
+                  : "•".repeat(element.admin_password.length);
+                const checkExtra = element.extra ? element.extra : "No extra";
 
-              if (element.title === args.PASSWORD_NAME) {
                 const data = [
                   [
                     "Title",
@@ -239,6 +237,7 @@ export default class Read extends Command {
       })
       .catch(async function (err: any) {
         gettingDataSpinner.stop();
+
         if (err.response.status === 401) {
           refresh(
             `read ${Types(flags)} ${ShowPassword(flags)} ${args.PASSWORD_NAME}`
