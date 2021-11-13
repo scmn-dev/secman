@@ -1,12 +1,12 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
 import cryptojs from "crypto-js";
-import chalk from "chalk";
 import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { ListExamples } from "../../contents/examples/list";
 import { Types } from "../../tools/flags";
+import { bold, error } from "../../design/layout";
 
 export default class List extends Command {
   static description = "List all passwords.";
@@ -136,7 +136,7 @@ export default class List extends Command {
         // console.log(`├──Emails`);
         if (flags.emails) {
           console.log(`.
-├──${chalk.bold("Emails")}`);
+├──${bold("Emails")}`);
         } else {
           console.log(`├──Emails`);
         }
@@ -175,7 +175,7 @@ export default class List extends Command {
         // console.log(`├──Notes`);
         if (flags.notes) {
           console.log(`.
-├──${chalk.bold("Notes")}`);
+├──${bold("Notes")}`);
         } else {
           console.log(`├──Notes`);
         }
@@ -213,7 +213,7 @@ export default class List extends Command {
         // console.log(`├──Servers`);
         if (flags.servers) {
           console.log(`.
-├──${chalk.bold("Servers")}`);
+├──${bold("Servers")}`);
         } else {
           console.log(`├──Servers`);
         }
@@ -263,9 +263,9 @@ export default class List extends Command {
       if (err.response.status === 401) {
         refresh(whatIsCommand());
       } else if (err.response.status === 404) {
-        console.log(chalk.red("No data found"));
+        console.log(error("No data found"));
       } else {
-        console.log(chalk.red("Something went wrong"));
+        console.log(error("Something went wrong"));
       }
     };
 

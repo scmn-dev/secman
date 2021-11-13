@@ -10,13 +10,13 @@ import {
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import cryptojs from "crypto-js";
-import chalk from "chalk";
 import { ReadExamples } from "../../contents/examples/read";
 import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
 import { table } from "table";
 import { ShowPassword, Types } from "../../tools/flags";
+import { error } from "../../design/layout";
 
 export default class Read extends Command {
   static description = "Print the password of a secman entry.";
@@ -243,9 +243,9 @@ export default class Read extends Command {
             `read ${Types(flags)} ${ShowPassword(flags)} ${args.PASSWORD_NAME}`
           );
         } else if (err.response.status === 404) {
-          console.log(chalk.red("No data found"));
+          console.log(error("No data found"));
         } else {
-          console.log(chalk.red("Something went wrong"));
+          console.log(error("Something went wrong"));
           console.log(err);
         }
       });

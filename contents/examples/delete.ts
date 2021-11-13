@@ -1,7 +1,7 @@
-import chalk from "chalk";
+import { withSecondary } from "../../design/layout";
 
 export const DeleteExamples = [
-  `Delete a Password\n\n ${chalk.cyan(
+  `Delete a Password\n\n ${withSecondary(
     "$ secman delete --logins | -l GitPod"
   )}\n`,
 ];

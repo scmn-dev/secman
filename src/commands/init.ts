@@ -1,5 +1,4 @@
 import { Command, flags } from "@oclif/command";
-const chalk = require("chalk");
 import * as sh from "shelljs";
 const powershell = require("powershell");
 import { spinner } from "@secman/spinner";
@@ -14,6 +13,7 @@ import {
 } from "../../constants";
 import { InstallEditor } from "../../tools/install-editor";
 import { writeCFile, writeDFile, writeSettingFile } from "../../app/config";
+import { bold, command, error, success } from "../../design/layout";
 
 export default class Init extends Command {
   static description = "Initialize ~/.secman .";
@@ -49,13 +49,11 @@ export default class Init extends Command {
         console.log(data);
       });
 
-      initSpinner.succeed(chalk.green("💿 Initialization complete"));
-      console.log(
-        chalk.bold(`run ${chalk.grey("`secman auth`")} to authenticate`)
-      );
+      initSpinner.succeed(success("💿 Initialization complete"));
+      console.log(bold(`run ${command("`secman auth`")} to authenticate`));
     } else {
       if (sh.test("-e", DOT_SECMAN_PATH)) {
-        initSpinner.fail(chalk.red("💿 ~/.secman already exists"));
+        initSpinner.fail(error("💿 ~/.secman already exists"));
       } else {
         if (!fs.existsSync(DOT_SECMAN_PATH)) {
           fs.mkdirSync(DOT_SECMAN_PATH, { recursive: true });
@@ -81,11 +79,9 @@ export default class Init extends Command {
         }
 
         if (fs.existsSync(DOT_SECMAN_PATH)) {
-          initSpinner.succeed(chalk.green("💿 Initialization complete"));
+          initSpinner.succeed(success("💿 Initialization complete"));
 
-          console.log(
-            chalk.bold(`run ${chalk.grey("`secman auth`")} to authenticate`)
-          );
+          console.log(bold(`run ${command("`secman auth`")} to authenticate`));
         }
       }
     }

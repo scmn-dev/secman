@@ -1,11 +1,11 @@
 import { Command, flags } from "@oclif/command";
-import chalk from "chalk";
 import { PRIMARY_COLOR } from "../../constants";
 import writeConfigFile, { readConfigFile } from "../../app/config";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import { cli as ux } from "cli-ux";
 import { readPipe } from "../../tools/readPipe";
+import { command, withPrimary } from "../../design/layout";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -133,7 +133,7 @@ export default class Auth extends Command {
               );
 
               const msg = isNewLogin
-                ? "🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
+                ? "🎉 Welcome " + withPrimary(name) + "!"
                 : "Re-authentication successful";
 
               console.log(msg);
@@ -141,15 +141,16 @@ export default class Auth extends Command {
             .catch(function (err: any) {
               if (err.response.status === 401) {
                 console.log(
-                  chalk.red.bold(
-                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold(
-                      "`secman auth --create-account`."
-                    )}`
+                  command(
+                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${
+                      (command("`secman auth --create-account`."), true)
+                    }`,
+                    true
                   )
                 );
               } else {
                 console.log(
-                  chalk.red.bold("\nSomething went wrong. Please try again.")
+                  command("\nSomething went wrong. Please try again.", true)
                 );
               }
             });
@@ -173,9 +174,7 @@ export default class Auth extends Command {
             const reauth = await prompts({
               type: "toggle",
               name: "value",
-              message: `You are already logged in as ${chalk
-                .hex(PRIMARY_COLOR)
-                .bold(user)}. Would you like to re-authenticate?`,
+              message: `You are already logged in as ${withPrimary(user)}. Would you like to re-authenticate?`,
               initial: "yes",
               active: "yes",
               inactive: "no",

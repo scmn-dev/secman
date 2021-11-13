@@ -1,10 +1,10 @@
 import { Command, flags } from "@oclif/command";
-import chalk from "chalk";
 import * as sh from "shelljs";
 import { platform } from "os";
 import { spinner } from "@secman/spinner";
 import { InstallEditor } from "../../tools/install-editor";
 import { readSettingsFile } from "../../app/config";
+import { bold } from "../../design/layout";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 const powershell = require("powershell");
@@ -34,9 +34,9 @@ export default class Settings extends Command {
     const editor = readSettingsFile("editor");
 
     if (flags.docs) {
-      console.log(`${chalk.bold("secman settings")}
+      console.log(`${bold("secman settings")}
 ----------------
-${chalk.bold(
+${bold(
   "editor"
 )}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].`);
     } else if (flags["editor-install"]) {

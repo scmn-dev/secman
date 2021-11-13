@@ -8,7 +8,6 @@ import {
 } from "../../constants";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import chalk from "chalk";
 import { readDataFile } from "../../app/config";
 import {
   CCFields,
@@ -20,6 +19,7 @@ import {
 import { refresh } from "../../app/refresher";
 import { InsertExamples } from "../../contents/examples/insert";
 import { Types } from "../../tools/flags";
+import { error, success } from "../../design/layout";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -182,9 +182,9 @@ export default class Insert extends Command {
           })
             .then(async (res: any) => {
               if (res.status === 200 || res.status === 202) {
-                console.log(chalk.green("Password created"));
+                console.log(success("Password created"));
               } else {
-                console.log(chalk.red("Password not created"));
+                console.log(error("Password not created"));
               }
             })
             .catch((err: any) => {

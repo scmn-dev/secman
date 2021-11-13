@@ -1,10 +1,10 @@
 import { Command, flags } from "@oclif/command";
-import chalk from "chalk";
 import cryptojs from "crypto-js";
 import { readDataFile } from "../../app/config";
+import { bold } from "../../design/layout";
 
 export default class Crypto extends Command {
-  static description = `Encrypt data using ${chalk.bold("crypto")}.`;
+  static description = `Encrypt data using ${bold("crypto")}.`;
 
   static flags = {
     help: flags.help({ char: "h" }),

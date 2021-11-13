@@ -3,8 +3,8 @@ import { spinner } from "@secman/spinner";
 import { platform } from "os";
 import * as sh from "shelljs";
 const powershell = require("powershell");
-import chalk from "chalk";
 import { GetLatestGHRelease } from "../../api/github/api";
+import { bold } from "../../design/layout";
 
 export default class Update extends Command {
   static description = "Update the secman CLI.";
@@ -23,15 +23,15 @@ export default class Update extends Command {
       "Secman CLI upgraded to " + latestVersion + " successfully";
 
     if (currentVersion === latestVersion) {
-      spnr.succeed("already on latest version: " + chalk.bold(currentVersion));
+      spnr.succeed("already on latest version: " + bold(currentVersion));
     } else if (currentVersion !== latestVersion) {
       spnr.stop();
 
       const upgradingSpinner = spinner(
         "🚧 Upgrading Secman CLI from " +
-          chalk.bold(currentVersion) +
+          bold(currentVersion) +
           " to " +
-          chalk.bold(latestVersion) +
+          bold(latestVersion) +
           "\n"
       ).start();
 

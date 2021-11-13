@@ -1,7 +1,7 @@
 import { Command, flags } from "@oclif/command";
-import chalk from "chalk";
 import { readConfigFile } from "../../app/config";
 import { PRIMARY_COLOR } from "../../constants";
+import { bold, withPrimary } from "../../design/layout";
 
 export default class WhoamI extends Command {
   static description = "Display the current user.";
@@ -28,11 +28,7 @@ export default class WhoamI extends Command {
           break;
 
         default:
-          console.log(
-            `👊 Hi ${chalk.hex(PRIMARY_COLOR).bold(username)} <${chalk.bold(
-              email
-            )}>`
-          );
+          console.log(`👊 Hi ${withPrimary(username)} <${bold(email)}>`);
       }
     }
   }

@@ -1,7 +1,7 @@
 import indent from "indent-string";
 import stripAnsi from "strip-ansi";
+import { command } from "../../design/layout";
 const wrap = require("wrap-ansi");
-const chalk = require("chalk");
 import { compact } from "../../tools/bool";
 
 export function TopicFormatter(
@@ -16,7 +16,7 @@ export function TopicFormatter(
   let output = compact([
     title,
     [
-      chalk.grey.bold("USAGE"),
+      command("USAGE", true),
       indent(
         wrap(`$ ${config.bin} ${topic.name}:COMMAND`, opts.maxWidth - 2, {
           trim: false,
@@ -27,7 +27,7 @@ export function TopicFormatter(
     ].join("\n"),
     description &&
       [
-        chalk.grey.bold("DESCRIPTION"),
+        command("DESCRIPTION", true),
         indent(
           wrap(description, opts.maxWidth - 2, {
             trim: false,

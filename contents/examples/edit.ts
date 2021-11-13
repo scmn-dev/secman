@@ -1,5 +1,5 @@
-import chalk from "chalk";
+import { withSecondary } from "../../design/layout";
 
 export const EditExamples = [
-  `Edit a Password\n\n ${chalk.cyan("$ secman edit --emails | -e OutLook")}\n`,
+  `Edit a Password\n\n ${withSecondary("$ secman edit --emails | -e OutLook")}\n`,
 ];

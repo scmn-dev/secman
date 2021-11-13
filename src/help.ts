@@ -1,5 +1,6 @@
+import { bold, command, withSecondary } from "../design/layout";
+
 const Help = require("@oclif/plugin-help").default;
-const chalk = require("chalk");
 const { say } = require("cfonts");
 const { sortBy, uniqBy } = require("../tools/bool");
 const { renderList } = require("../tools/list");
@@ -45,7 +46,7 @@ module.exports = class MyHelpClass extends Help {
 
   showHelp(args: any) {
     // print secman cli version
-    console.log(`${chalk.bold("Secman CLI")} ${this.config.version}`);
+    console.log(`${bold("Secman CLI")} ${this.config.version}`);
 
     const subject = getHelpSubject(args);
 
@@ -94,8 +95,8 @@ module.exports = class MyHelpClass extends Help {
       background: "transparent",
     });
 
-    console.log(chalk.grey.bold("USAGE\n"));
-    console.log(chalk.cyan("  $ secman <COMMAND> [FLAGS]\n"));
+    console.log(command("USAGE\n", true));
+    console.log(withSecondary("  $ secman <COMMAND> [FLAGS]\n"));
     this.formatCommands(this.config.commands);
     root.root();
   }
@@ -120,7 +121,7 @@ module.exports = class MyHelpClass extends Help {
       }
     );
 
-    console.log([chalk.grey.bold("COMMANDS\n"), indent(body, 2)].join("\n"));
+    console.log([command("COMMANDS\n", true), indent(body, 2)].join("\n"));
   }
 
   formatTopic(topic: any) {
@@ -141,6 +142,6 @@ module.exports = class MyHelpClass extends Help {
       }
     );
 
-    return [chalk.grey.bold("TOPICS"), indent(body, 2)].join("\n");
+    return [command("TOPICS", true), indent(body, 2)].join("\n");
   }
 };

@@ -10,7 +10,8 @@ import { writeJsonFile as writeJSON } from "../../tools/json/write";
 import { platform } from "os";
 import fs from "fs";
 import path from "path";
-import chalk from "chalk";
+import { command, error, warning } from "../../design/layout";
+import { logSymbols } from "../../design/log";
 
 export default async function writeConfigFile(
   username: any,
@@ -126,10 +127,10 @@ export function readDataFile(obj: any) {
       return data;
     } catch {
       console.log(
-        chalk.red(
-          `can't find your auth tokens, to authenticate run ${chalk.grey.bold(
-            "`secman auth`"
-          )}.`
+        error(
+          `can't find your auth tokens, to authenticate run ${
+            (command("`secman auth`"), true)
+          }.`
         )
       );
       process.exit(0);
@@ -151,9 +152,10 @@ export function readSettingsFile(obj: any) {
 
 const fileIsNotFound = (fileName: string) => {
   console.log(
-    `${chalk.yellow.bold(
-      "~/.secman/" + fileName + ".json"
-    )} does not exist, run ${chalk.grey.bold("secman init")}.`
+    logSymbols.warning +
+      `${warning(
+        "~/.secman/" + fileName + ".json"
+      )} does not exist, run ${command("secman init")}.`
   );
 
   process.exit(0);
