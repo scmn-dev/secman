@@ -252,7 +252,7 @@ export default class List extends Command {
         flags.notes ||
         flags.servers
       ) {
-        return `. ${Types(flags)}`;
+        return `. -${Types(flags)}`;
       } else {
         return ".";
       }

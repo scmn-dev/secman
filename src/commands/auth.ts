@@ -6,6 +6,7 @@ import { CryptoTools } from "../../tools/crypto";
 import { cli as ux } from "cli-ux";
 import { readPipe } from "../../tools/readPipe";
 import { command, withPrimary } from "../../design/layout";
+import { AuthExamples } from "../../contents/examples/auth";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -34,6 +35,8 @@ export default class Auth extends Command {
   };
 
   static aliases = ["login", "signin"];
+
+  static examples = AuthExamples;
 
   async run() {
     const { flags } = this.parse(Auth);
@@ -174,7 +177,9 @@ export default class Auth extends Command {
             const reauth = await prompts({
               type: "toggle",
               name: "value",
-              message: `You are already logged in as ${withPrimary(user)}. Would you like to re-authenticate?`,
+              message: `You are already logged in as ${withPrimary(
+                user
+              )}. Would you like to re-authenticate?`,
               initial: "yes",
               active: "yes",
               inactive: "no",

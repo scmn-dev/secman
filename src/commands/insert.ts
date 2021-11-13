@@ -196,7 +196,7 @@ export default class Insert extends Command {
       })
       .catch((err: any) => {
         if (err.response.status === 401) {
-          refresh(`insert ${Types(flags)}`);
+          refresh(`insert -${Types(flags)}`);
         }
       });
   }

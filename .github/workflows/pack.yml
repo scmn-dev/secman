@@ -25,20 +25,13 @@ jobs:
         run: yarn
 
       - name: Pack
-        run: |
-          npm i @oclif/dev-cli -g
-          oclif-dev pack
+        run: yarn package
 
       - name: Build .deb Package
-        run: | 
+        run: |
           sudo yarn pack:deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
-
-      - name: Build secman windows installer
-        run: |
-          sudo apt-get install -y nsis
-          yarn pack:win
 
       - name: HomeBrew
         run: |

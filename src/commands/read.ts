@@ -240,7 +240,7 @@ export default class Read extends Command {
 
         if (err.response.status === 401) {
           refresh(
-            `read ${Types(flags)} ${ShowPassword(flags)} ${args.PASSWORD_NAME}`
+            `read -${Types(flags)}${ShowPassword(flags)} ${args.PASSWORD_NAME}`
           );
         } else if (err.response.status === 404) {
           console.log(error("No data found"));

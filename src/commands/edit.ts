@@ -242,7 +242,7 @@ export default class Edit extends Command {
 
         if (err.response.status === 401) {
           refresh(
-            `edit ${Types(flags)} ${ShowPassword(flags)} ${Multi(flags)} ${args.PASSWORD_NAME}`
+            `edit -${Types(flags)}${ShowPassword(flags)}${Multi(flags)} ${args.PASSWORD_NAME}`
           );
         } else {
           console.log(error("Error: " + err));

@@ -117,7 +117,7 @@ export default class Delete extends Command {
       .catch((err: any) => {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh(`delete ${Types(flags)} ${args.PASSWORD_NAME}`);
+          refresh(`delete -${Types(flags)} ${args.PASSWORD_NAME}`);
         } else if (err.response.status === 404) {
           console.log(error("No data found"));
         } else {
