@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "homebrew of secman",
   "author": "@abdfnx",
-  "main": "homebrew.js",
+  "main": "homebrew.ts",
   "scripts": {
     "start": "ts-node homebrew.ts"
   },
@@ -12,6 +12,7 @@
     "secman"
   ],
   "dependencies": {
+    "crypto-js": "^4.1.1",
     "execa": "^5.1.1",
     "https": "^1.0.0",
     "mkdirp": "^1.0.4",

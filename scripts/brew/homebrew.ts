@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 // This code is forked from https://github.com/heroku/cli/blob/master/scripts/release/homebrew.js
 
 const fs = require("fs");
@@ -9,8 +8,8 @@ const rm = require("rimraf");
 const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
-const _crypto = require("crypto");
 const sh = require("shelljs");
+const _crypto = require("crypto-js");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
 const SECMAN_DIR = path.join(__dirname, "..", "..");
@@ -63,10 +62,10 @@ async function getDownloadInfoForNodeVersion(version: any) {
 // }
 
 async function calculateSHA256(fileName: any) {
-  const hash = _crypto.createHash("sha256");
-  hash.setEncoding("hex");
-  await promisify(pipeline)(fs.createReadStream(fileName), hash);
-  return hash.read();
+  return _crypto.SHA256(fileName);
+  // hash.setEncoding("hex");
+  // await promisify(pipeline)(fs.createReadStream(fileName), hash);
+  // return hash.read();
 }
 
 const ROOT = __dirname;
