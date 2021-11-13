@@ -35,6 +35,8 @@ jobs:
 
       - name: HomeBrew
         run: |
+          git config --global user.email ${{ secrets.GITHUB_ACTOR_EMAIL }}
+          git config --global user.name abdfnx
           cd scripts/brew
           npm i
           npm start
