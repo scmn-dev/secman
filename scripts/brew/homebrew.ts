@@ -9,7 +9,7 @@ const rm = require("rimraf");
 const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
-const crypto = require("crypto");
+const _crypto = require("crypto");
 const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
@@ -19,13 +19,13 @@ const PJSON = require(path.join(SECMAN_DIR, "package.json"));
 const NODE_VERSION = PJSON.oclif.update.node.version;
 const VERSION = PJSON.version;
 
-async function getText(url) {
+async function getText(url: any) {
   return new Promise((resolve, reject) => {
     https
-      .get(url, (res) => {
-        let buffer = [];
+      .get(url, (res: any) => {
+        let buffer: any = [];
 
-        res.on("data", (buf) => {
+        res.on("data", (buf: any) => {
           buffer.push(buf);
         });
 
@@ -37,11 +37,12 @@ async function getText(url) {
   });
 }
 
-async function getDownloadInfoForNodeVersion(version) {
-  // https://nodejs.org/download/release/v12.21.0/SHASUMS256.txt
+async function getDownloadInfoForNodeVersion(version: any) {
+  // https://nodejs.org/download/release/v16.13.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
-  const shasums = await getText(url);
-  const shasumLine = shasums.split("\n").find((line) => {
+  const shasums: any = await getText(url);
+
+  const shasumLine = shasums.split("\n").find((line: any) => {
     return line.includes(`node-v${version}-darwin-x64.tar.gz`);
   });
 
@@ -61,8 +62,8 @@ async function getDownloadInfoForNodeVersion(version) {
 //   process.exit(0);
 // }
 
-async function calculateSHA256(fileName) {
-  const hash = crypto.createHash("sha256");
+async function calculateSHA256(fileName: any) {
+  const hash = _crypto.createHash("sha256");
   hash.setEncoding("hex");
   await promisify(pipeline)(fs.createReadStream(fileName), hash);
   return hash.read();
@@ -73,7 +74,7 @@ const TEMPLATES = path.join(ROOT, "templates");
 
 const CLI_URL = "https://cli-files.secman.dev";
 
-async function updateSecmanFormula(brewDir) {
+async function updateSecmanFormula(brewDir: any) {
   const templatePath = path.join(TEMPLATES, "secman.rb");
   const template = fs.readFileSync(templatePath).toString("utf-8");
 
@@ -96,7 +97,7 @@ async function updateSecmanFormula(brewDir) {
   );
 }
 
-async function updateSecmanNodeFormula(brewDir) {
+async function updateSecmanNodeFormula(brewDir: any) {
   const formulaPath = path.join(brewDir, "Formula", "sm-node.rb");
 
   console.log(`updating sm-node Formula in ${formulaPath}`);
@@ -140,10 +141,11 @@ async function updateHomebrew() {
   console.log(`done cloning scmn-dev/homebrew-secman to ${homebrewDir}`);
 
   console.log("updating local git...");
+
   await updateSecmanNodeFormula(homebrewDir);
   await updateSecmanFormula(homebrewDir);
 
-  const git = async (args, opts = {}) => {
+  const git = async (args: any, opts = {}) => {
     await execa("git", ["-C", homebrewDir, ...args], opts);
   };
 
@@ -157,7 +159,7 @@ async function updateHomebrew() {
   }
 }
 
-updateHomebrew().catch((err) => {
+updateHomebrew().catch((err: any) => {
   console.error(`error running scripts/brew/homebrew.js`, err);
   process.exit(1);
 });

@@ -5,7 +5,7 @@
   "author": "@abdfnx",
   "main": "homebrew.js",
   "scripts": {
-    "start": "node homebrew.js"
+    "start": "ts-node homebrew.ts"
   },
   "keywords": [
     "homebrew",

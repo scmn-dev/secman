@@ -34,13 +34,11 @@ export default class Settings extends Command {
     const editor = readSettingsFile("editor");
 
     if (flags.docs) {
-      console.log(`
-${chalk.bold("secman settings")}
+      console.log(`${chalk.bold("secman settings")}
 ----------------
 ${chalk.bold(
   "editor"
-)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
-`);
+)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].`);
     } else if (flags["editor-install"]) {
       InstallEditor();
     } else {
