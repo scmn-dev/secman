@@ -45,7 +45,7 @@ module.exports = class MyHelpClass extends Help {
 
   showHelp(args: any) {
     // print secman cli version
-    console.log(`${chalk.bold("Secman CLI")} ${this.config.version}\n`);
+    console.log(`${chalk.bold("Secman CLI")} ${this.config.version}`);
 
     const subject = getHelpSubject(args);
 
@@ -88,9 +88,9 @@ module.exports = class MyHelpClass extends Help {
 
   async showRootHelp() {
     say("secman", {
-      font: "3d",
+      // font: "simple",
       align: "left",
-      colors: [PRIMARY_COLOR],
+      colors: [PRIMARY_COLOR, "cyan"],
       background: "transparent",
     });
 

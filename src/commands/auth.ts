@@ -19,12 +19,12 @@ export default class Auth extends Command {
       description: "Create a new account.",
       default: false,
     }),
-    email: flags.string({
-      char: "e",
+    user: flags.string({
+      char: "u",
       description: "Email address of the account to use.",
     }),
     "master-password": flags.string({
-      char: "p" || "m",
+      char: "p",
       description: "Master password of the account to use.",
     }),
     "password-stdin": flags.boolean({
@@ -42,8 +42,8 @@ export default class Auth extends Command {
     const _ = async (isNewLogin: boolean) => {
       let email;
 
-      if (flags.email) {
-        email = flags.email;
+      if (flags.user) {
+        email = flags.user;
       } else {
         email =
           readConfigFile("user") ??
