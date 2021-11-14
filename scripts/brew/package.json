@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "homebrew of secman",
   "author": "@abdfnx",
-  "main": "homebrew.ts",
+  "main": "homebrew.js",
   "scripts": {
-    "start": "ts-node homebrew.ts"
+    "start": "node homebrew.js"
   },
   "keywords": [
     "homebrew",

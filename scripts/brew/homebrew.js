@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // This code is forked from https://github.com/heroku/cli/blob/master/scripts/release/homebrew.js
 
 const fs = require("fs");
@@ -8,8 +9,8 @@ const rm = require("rimraf");
 const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
+const crypto = require("crypto");
 const sh = require("shelljs");
-const _crypto = require("crypto-js");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
 const SECMAN_DIR = path.join(__dirname, "..", "..");
@@ -18,13 +19,13 @@ const PJSON = require(path.join(SECMAN_DIR, "package.json"));
 const NODE_VERSION = PJSON.oclif.update.node.version;
 const VERSION = PJSON.version;
 
-async function getText(url: any) {
+async function getText(url) {
   return new Promise((resolve, reject) => {
     https
-      .get(url, (res: any) => {
-        let buffer: any = [];
+      .get(url, (res) => {
+        let buffer = [];
 
-        res.on("data", (buf: any) => {
+        res.on("data", (buf) => {
           buffer.push(buf);
         });
 
@@ -36,13 +37,12 @@ async function getText(url: any) {
   });
 }
 
-async function getDownloadInfoForNodeVersion(version: any) {
+async function getDownloadInfoForNodeVersion(version) {
   // https://nodejs.org/download/release/v16.13.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
-  const shasums: any = await getText(url);
-
-  const shasumLine = shasums.split("\n").find((line: any) => {
-    return line.includes(`node-v${version}-darwin-x64.tar.gz`);
+  const shasums = await getText(url);
+  const shasumLine = shasums.split("\n").find((line) => {
+    return line.includes(`node-v${version}.tar.gz`);
   });
 
   if (!shasumLine) {
@@ -61,11 +61,11 @@ async function getDownloadInfoForNodeVersion(version: any) {
 //   process.exit(0);
 // }
 
-async function calculateSHA256(fileName: any) {
-  return _crypto.SHA256(fileName);
-  // hash.setEncoding("hex");
-  // await promisify(pipeline)(fs.createReadStream(fileName), hash);
-  // return hash.read();
+async function calculateSHA256(fileName) {
+  const hash = crypto.createHash("sha256");
+  hash.setEncoding("hex");
+  await promisify(pipeline)(fs.createReadStream(fileName), hash);
+  return hash.read();
 }
 
 const ROOT = __dirname;
@@ -73,7 +73,7 @@ const TEMPLATES = path.join(ROOT, "templates");
 
 const CLI_URL = "https://cli-files.secman.dev";
 
-async function updateSecmanFormula(brewDir: any) {
+async function updateSecmanFormula(brewDir) {
   const templatePath = path.join(TEMPLATES, "secman.rb");
   const template = fs.readFileSync(templatePath).toString("utf-8");
 
@@ -96,7 +96,7 @@ async function updateSecmanFormula(brewDir: any) {
   );
 }
 
-async function updateSecmanNodeFormula(brewDir: any) {
+async function updateSecmanNodeFormula(brewDir) {
   const formulaPath = path.join(brewDir, "Formula", "sm-node.rb");
 
   console.log(`updating sm-node Formula in ${formulaPath}`);
@@ -144,7 +144,7 @@ async function updateHomebrew() {
   await updateSecmanNodeFormula(homebrewDir);
   await updateSecmanFormula(homebrewDir);
 
-  const git = async (args: any, opts = {}) => {
+  const git = async (args, opts = {}) => {
     await execa("git", ["-C", homebrewDir, ...args], opts);
   };
 
@@ -158,7 +158,7 @@ async function updateHomebrew() {
   }
 }
 
-updateHomebrew().catch((err: any) => {
+updateHomebrew().catch((err) => {
   console.error(`error running scripts/brew/homebrew.js`, err);
   process.exit(1);
 });

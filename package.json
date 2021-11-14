@@ -1,7 +1,7 @@
 {
   "name": "secman",
   "description": "The command-line interface of Secman",
-  "version": "6.0.7",
+  "version": "6.0.71",
   "versionDate": "2021-11-13",
   "main": "lib/index.js",
   "license": "MIT",
@@ -54,6 +54,7 @@
     "lodash": "4.17.21",
     "lodash.template": "^4.5.0",
     "octokit": "1.7.0",
+    "package-json": "7.0.0",
     "powershell": "^2.3.2",
     "process": "^0.11.10",
     "prompts": "^2.4.2",
