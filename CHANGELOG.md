@@ -4,6 +4,20 @@
 
 ---
 
+## [[v6.0.71] 2021-11-14](#v6071-2021-11-14)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix secman help output.
+
 ## [[v6.0.7] 2021-11-13](#v607-2021-11-13)
 
 ### Added
