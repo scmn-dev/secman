@@ -14,14 +14,13 @@ We'd also love to hear about ideas for new features as issues or discussions.
 ## Build Secman
 
 ### Prerequisites:
-- `go +11`
-- `git`
-- `npm` (just for windows)
+
+- `npm` version `>= 8.0.0`
 
 ### Run
 
-* run **`make`** then **`make setup`** for MacOS/Linux
-* run **`& .\script\build.ps1`**
+* run **yarn build** to build.
+* run **yarn link** to link to secman and test it.
 
 ## Create or submitting a pull request
 

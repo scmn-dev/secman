@@ -1,19 +1,19 @@
 export function Types(flags: any) {
   switch (true) {
     case flags.logins:
-      return "-l";
+      return "l";
 
     case flags["credit-cards"]:
-      return "-c";
+      return "c";
 
     case flags.emails:
-      return "-e";
+      return "e";
 
     case flags.notes:
-      return "-n";
+      return "n";
 
     case flags.servers:
-      return "-s";
+      return "s";
 
     default:
       return "";
@@ -23,7 +23,7 @@ export function Types(flags: any) {
 export function Multi(flags: any) {
   switch (true) {
     case flags.multi:
-      return "-m";
+      return "m";
 
     default:
       return "";
@@ -33,7 +33,7 @@ export function Multi(flags: any) {
 export function ShowPassword(flags: any) {
   switch (true) {
     case flags["show-password"]:
-      return "-p";
+      return "p";
 
     default:
       return "";

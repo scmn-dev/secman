@@ -1,11 +1,6 @@
 import { Command, flags } from "@oclif/command";
-import { Octokit } from "octokit";
+import { GetLatestGHRelease } from "../../api/github/api";
 import { readConfigFile } from "../../app/config";
-import { GH_TOKEN } from "../../constants";
-
-const octokit = new Octokit({
-  auth: GH_TOKEN,
-});
 
 export default class Info extends Command {
   static description = "Information about the secman CLI.";
@@ -19,19 +14,13 @@ export default class Info extends Command {
   async run() {
     const { flags } = this.parse(Info);
 
-    const smca_version = await octokit.rest.repos
-      .listReleases({
-        owner: "scmn-dev",
-        repo: "core",
-      })
-      .then((res) => {
-        return res.data[0].tag_name;
-      });
+    const smca_version = await GetLatestGHRelease("core");
+    const name = readConfigFile("name") ?? "No User";
 
     console.log(`Secman CLI
 
 Version: v${this.config.version}
 Secman Core Version: ${smca_version}
-Current User: ${readConfigFile("name")}`);
+Current User: ${name}`);
   }
 }

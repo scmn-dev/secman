@@ -9,7 +9,6 @@ import {
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
 import cryptojs from "crypto-js";
-import chalk from "chalk";
 import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import {
@@ -22,13 +21,14 @@ import {
 import { refresh } from "../../app/refresher";
 import { EditExamples } from "../../contents/examples/edit";
 import { ShowPassword, Types, Multi } from "../../tools/flags";
+import { error, success } from "../../design/layout";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
 export default class Edit extends Command {
   static description = "Update or change a value in a password.";
 
-  static aliases = ["show", "print"];
+  static aliases = ["modify", "change"];
 
   static flags = {
     help: flags.help({ char: "h" }),
@@ -228,9 +228,9 @@ export default class Edit extends Command {
                 },
               }).then(async (res: any) => {
                 if (res.status === 200 || res.status === 202) {
-                  console.log(chalk.green("Password updated"));
+                  console.log(success("Password updated"));
                 } else {
-                  console.log(chalk.red("Password not updated"));
+                  console.log(error("Password not updated"));
                 }
               });
             }
@@ -242,10 +242,10 @@ export default class Edit extends Command {
 
         if (err.response.status === 401) {
           refresh(
-            `edit ${Types(flags)} ${ShowPassword(flags)} ${Multi(flags)} ${args.PASSWORD_NAME}`
+            `edit -${Types(flags)}${ShowPassword(flags)}${Multi(flags)} ${args.PASSWORD_NAME}`
           );
         } else {
-          console.log(chalk.red("Error: " + err));
+          console.log(error("Error: " + err));
         }
       });
   }

@@ -4,6 +4,80 @@
 
 ---
 
+## [[v6.0.71] 2021-11-14](#v6071-2021-11-14)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix secman help output.
+
+## [[v6.0.7] 2021-11-13](#v607-2021-11-13)
+
+### Added
+
+- Add `--user` and `--password` flags to `auth` command.
+- Create `--password-stdin` flag to read password from stdin to `auth` command.
+- Add errors catchers to show error messages.
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix exit from secman editor in visual studio code terminal with <kbd>Alt + E</kbd> shortcut.
+- Fix missing files error messages.
+
+## [[v6.0.61] 2021-11-10](#v6061-2021-11-10)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix version checker in `update` command.
+
+## [[v6.0.6] 2021-11-10](#v606-2021-11-10)
+
+### Added
+
+- Add `modify` & `change` aliases to `secman edit` command.
+- Build github api to `api` dir.
+
+### Changed
+
+- Build our own `update` command.
+
+### Fixed
+
+- Fix `update` command.
+
+## [[v6.0.5] 2021-11-08](#v605-2021-11-08)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix authentication check for `secman insert` command.
+
 ## [[v6.0.4] 2021-11-05](#v604-2021-11-05)
 
 ### Added
@@ -16,7 +90,7 @@ nothing
 
 ## Fixed
 
-- fix version command.
+- Fix version command.
 
 ## [[v6.0.3] 2021-11-05](#v603-2021-11-05)
 
@@ -50,6 +124,8 @@ it's comes with new features, new design, new infrastructure, and new secman
 ### Fixed
 
 - Fix many errors, bugs, and issues.
+
+---
 
 ## [[v5.3.8] 2021-09-23](#v538-2021-09-23)
 

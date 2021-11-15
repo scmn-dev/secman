@@ -25,13 +25,26 @@ jobs:
         run: yarn
 
       - name: Pack
+        run: yarn package
+
+      - name: Build .deb Package
         run: |
-          npm i @oclif/dev-cli -g
-          oclif-dev pack
-      
+          sudo yarn pack:deb
+          sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+          sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
+
       - name: Format
+        run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
+
+      - uses: actions/setup-ruby@v1
+
+      - name: Homebrew
         run: |
-          echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
+          cd ./scripts
+          ruby ./config/git-config.rb
+          cd ./brew
+          npm i
+          npm start
 
       - name: Upload It
         uses: softprops/action-gh-release@v1
@@ -44,3 +57,5 @@ jobs:
             ${{ env.FILE_FORMAT }}-win32-x64.tar.gz
             ${{ env.FILE_FORMAT }}-win32-x86.tar.gz
             ${{ env.FILE_FORMAT }}.tar.gz
+            ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+            ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb

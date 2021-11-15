@@ -10,6 +10,7 @@ on:
 jobs:
   linux:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
@@ -25,8 +26,9 @@ jobs:
       - name: Run secman version
         run: secman -v
 
-  dotdeb:
+  from_script:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
 
@@ -42,11 +44,29 @@ jobs:
       - name: Run secman version
         run: secman -v
 
-  #   homebrew:
-  #     runs-on: macos-latest
+  homebrew:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install secman from Homebrew
+        run: |
+          brew tap scmn-dev/secman
+          brew install secman
+
+      - name: Run secman
+        run: secman
+
+      - name: Run secman Help
+        run: secman -h
+
+      - name: Run secman version
+        run: secman -v
 
   windows:
     runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v2
 

@@ -1,27 +1,19 @@
 import { Command, flags } from "@oclif/command";
-const chalk = require("chalk");
 import * as sh from "shelljs";
 const powershell = require("powershell");
 import { spinner } from "@secman/spinner";
-import { homedir, platform } from "os";
+import { platform } from "os";
 import fs from "fs";
-import path from "path";
 import {
   DOT_SECMAN_PATH,
   SECMAN_CONFIG_PATH,
   SECMAN_DATA_PATH,
   SECMAN_EDITOR_PATH,
   SECMAN_SETTINGS_PATH,
-  SECMAN_SETTINGS_URL,
 } from "../../constants";
 import { InstallEditor } from "../../tools/install-editor";
-import { writeCFIle, writeDFile, writeSettingFile } from "../../app/config";
-
-const secman_dir = path.join(homedir(), DOT_SECMAN_PATH);
-const sm_config = path.join(homedir(), SECMAN_CONFIG_PATH);
-const sm_data = path.join(homedir(), SECMAN_DATA_PATH);
-const sm_setting = path.join(homedir(), SECMAN_SETTINGS_PATH);
-const sm_editor = path.join(homedir(), SECMAN_EDITOR_PATH);
+import { writeCFile, writeDFile, writeSettingFile } from "../../app/config";
+import { bold, command, error, success } from "../../design/layout";
 
 export default class Init extends Command {
   static description = "Initialize ~/.secman .";
@@ -41,10 +33,9 @@ export default class Init extends Command {
         if (Test-Path -Path ~/.secman) {
           Write-Host "~/.secman already exists"
         } else {
-          New-Item -ItemType "directory" -Path "${secman_dir}"
-          New-Item ${sm_config}
-          New-Item ${sm_data}
-          // iwr -useb ${SECMAN_SETTINGS_URL} -o ${sm_setting}
+          New-Item -ItemType "directory" -Path "${DOT_SECMAN_PATH}"
+          New-Item ${SECMAN_CONFIG_PATH}
+          New-Item ${SECMAN_DATA_PATH}
         }
       `
       );
@@ -58,43 +49,39 @@ export default class Init extends Command {
         console.log(data);
       });
 
-      initSpinner.succeed(chalk.green("💿 Initialization complete"));
-      console.log(
-        chalk.bold(`run ${chalk.grey("`secman auth`")} to authenticate`)
-      );
+      initSpinner.succeed(success("💿 Initialization complete"));
+      console.log(bold(`run ${command("`secman auth`")} to authenticate`));
     } else {
-      if (sh.test("-e", secman_dir)) {
-        initSpinner.fail(chalk.red("💿 ~/.secman already exists"));
+      if (sh.test("-e", DOT_SECMAN_PATH)) {
+        initSpinner.fail(error("💿 ~/.secman already exists"));
       } else {
-        if (!fs.existsSync(secman_dir)) {
-          fs.mkdirSync(secman_dir, { recursive: true });
+        if (!fs.existsSync(DOT_SECMAN_PATH)) {
+          fs.mkdirSync(DOT_SECMAN_PATH, { recursive: true });
         }
 
-        if (!fs.existsSync(sm_config)) {
-          sh.touch(sm_config);
-          writeCFIle();
+        if (!fs.existsSync(SECMAN_CONFIG_PATH)) {
+          sh.touch(SECMAN_CONFIG_PATH);
+          writeCFile();
         }
 
-        if (!fs.existsSync(sm_data)) {
-          sh.touch(sm_data);
+        if (!fs.existsSync(SECMAN_DATA_PATH)) {
+          sh.touch(SECMAN_DATA_PATH);
           writeDFile();
         }
 
-        if (!fs.existsSync(sm_setting)) {
-          // sh.exec(`curl -s ${SECMAN_SETTINGS_URL} > ${sm_setting}`);
-          sh.touch(sm_setting);
+        if (!fs.existsSync(SECMAN_SETTINGS_PATH)) {
+          sh.touch(SECMAN_SETTINGS_PATH);
           writeSettingFile();
         }
 
-        if (!fs.existsSync(sm_editor)) {
+        if (!fs.existsSync(SECMAN_EDITOR_PATH)) {
           InstallEditor();
         }
 
-        if (fs.existsSync(secman_dir)) {
-          initSpinner.succeed(chalk.green("💿 Initialization complete"));
-          console.log(
-            chalk.bold(`run ${chalk.grey("`secman auth`")} to authenticate`)
-          );
+        if (fs.existsSync(DOT_SECMAN_PATH)) {
+          initSpinner.succeed(success("💿 Initialization complete"));
+
+          console.log(bold(`run ${command("`secman auth`")} to authenticate`));
         }
       }
     }

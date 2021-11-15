@@ -3,8 +3,8 @@
 /.nyc_output
 dist
 /lib
-/tmp
+tmp
 node_modules
-
+.snapcraft
 .env
-/app/email/mail/index.ts
+oclif.manifest.json

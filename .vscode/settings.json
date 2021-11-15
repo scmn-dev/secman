@@ -1,10 +1,10 @@
 {
-    "search.exclude": {
-        "vendor/**": true
-    },
-
-    "editor.formatOnSave": true,
-    "[go]": {
-        "editor.formatOnSave": true
-    },
+  "search.exclude": {
+    "node_modules/**": true
+  },
+  "editor.formatOnSave": true,
+  "editor.fontLigatures": true,
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "javascript.updateImportsOnFileMove.enabled": "always"
 }

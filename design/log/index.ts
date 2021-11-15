@@ -1,18 +1,18 @@
 const { isUnicodeSupported } = require("../../tools/unicode");
-const chalk = require("chalk");
+import { blue, error, success, warning } from "../layout";
 
 const main = {
-  info: chalk.blue("ℹ"),
-  success: chalk.green("✔"),
-  warning: chalk.yellow("⚠"),
-  error: chalk.red("✖"),
+  info: blue("ℹ"),
+  success: success("✔"),
+  warning: warning("⚠"),
+  error: error("✖"),
 };
 
 const fallback = {
-  info: chalk.blue("i"),
-  success: chalk.green("√"),
-  warning: chalk.yellow("‼"),
-  error: chalk.red("×"),
+  info: blue("i"),
+  success: success("√"),
+  warning: warning("‼"),
+  error: error("×"),
 };
 
 export const logSymbols = isUnicodeSupported() ? main : fallback;

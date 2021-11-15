@@ -1,17 +1,10 @@
 import * as Config from "@oclif/config";
-const chalk = require("chalk");
 import indent from "indent-string";
 import stripAnsi from "strip-ansi";
 import { renderList } from "./list";
 import { castArray, compact, sortBy, template } from "./bool";
 import wrap from "wrap-ansi";
-
-const { underline, bold } = chalk;
-let { dim } = chalk;
-
-if (process.env.ConEmuANSI === "ON") {
-  dim = chalk.grey;
-}
+import { command, dim, underline, withSecondary } from "../design/layout";
 
 export interface HelpOptions {
   all?: boolean;
@@ -60,9 +53,9 @@ export class CommandHelp {
       .map((u) => `$ ${this.config.bin} ${u}`.trim())
       .join("\n");
     return [
-      bold.grey("USAGE\n"),
+      command("USAGE\n", true),
       indent(
-        wrap(this.render(chalk.cyan(body)), this.opts.maxWidth - 2, {
+        wrap(this.render(withSecondary(body)), this.opts.maxWidth - 2, {
           trim: false,
           hard: true,
         }),
@@ -88,7 +81,7 @@ export class CommandHelp {
       this.render(cmd.description).split("\n").slice(1).join("\n");
     if (!description) return;
     return [
-      bold.grey("DESCRIPTION\n"),
+      command("DESCRIPTION\n", true),
       indent(
         wrap(description.trim(), this.opts.maxWidth - 2, {
           trim: false,
@@ -105,9 +98,9 @@ export class CommandHelp {
       .map((a) => ["$", this.config.bin, a].join(" "))
       .join("\n");
     return [
-      bold.grey("ALIASES\n"),
+      command("ALIASES\n", true),
       indent(
-        wrap(chalk.cyan(body), this.opts.maxWidth - 2, {
+        wrap(withSecondary(body), this.opts.maxWidth - 2, {
           trim: false,
           hard: true,
         }),
@@ -124,10 +117,10 @@ export class CommandHelp {
       .map((a) => this.render(a))
       .join("\n");
 
-    const view = chalk.grey("- ") + body;
+    const view = command("- ") + body;
 
     return [
-      bold.grey("EXAMPLE" + (examples.length > 1 ? "S" : "") + "\n"),
+      command("EXAMPLE" + (examples.length > 1 ? "S" : "") + "\n", true),
       indent(
         wrap(view, this.opts.maxWidth - 2, {
           trim: false,
@@ -155,7 +148,7 @@ export class CommandHelp {
       { stripAnsi: this.opts.stripAnsi, maxWidth: this.opts.maxWidth - 2 }
     );
 
-    return [bold.grey("ARGUMENTS\n"), indent(body, 2)].join("\n");
+    return [command("ARGUMENTS\n", true), indent(body, 2)].join("\n");
   }
 
   protected arg(arg: Config.Command["args"][0]): string {
@@ -212,6 +205,6 @@ export class CommandHelp {
       { stripAnsi: this.opts.stripAnsi, maxWidth: this.opts.maxWidth - 2 }
     );
 
-    return [bold.grey("FLAGS\n"), indent(body, 2)].join("\n");
+    return [command("FLAGS\n", true), indent(body, 2)].join("\n");
   }
 }

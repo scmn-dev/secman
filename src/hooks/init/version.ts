@@ -7,5 +7,8 @@ export default async function hook() {
     console.log(`secman v${version} (${versionDate})
 https://github.com/scmn-dev/secman/releases/tag/v${version}`);
     return process.exit(0);
+  } else if (["--version-raw"].includes(process.argv[2])) {
+    console.log(version);
+    return process.exit(0);
   }
 }

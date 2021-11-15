@@ -10,6 +10,7 @@ const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
 const crypto = require("crypto");
+const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
 const SECMAN_DIR = path.join(__dirname, "..", "..");
@@ -37,11 +38,11 @@ async function getText(url) {
 }
 
 async function getDownloadInfoForNodeVersion(version) {
-  // https://nodejs.org/download/release/v12.21.0/SHASUMS256.txt
+  // https://nodejs.org/download/release/v16.13.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
   const shasums = await getText(url);
   const shasumLine = shasums.split("\n").find((line) => {
-    return line.includes(`node-v${version}-darwin-x64.tar.xz`);
+    return line.includes(`node-v${version}-darwin-x64.tar.gz`);
   });
 
   if (!shasumLine) {
@@ -55,10 +56,10 @@ async function getDownloadInfoForNodeVersion(version) {
   };
 }
 
-if (!process.env.CIRCLE_TAG) {
-  console.log("Not on stable release; skipping releasing homebrew");
-  process.exit(0);
-}
+// if (!process.env.CIRCLE_TAG) {
+//   console.log("Not on stable release; skipping releasing homebrew");
+//   process.exit(0);
+// }
 
 async function calculateSHA256(fileName) {
   const hash = crypto.createHash("sha256");
@@ -67,7 +68,7 @@ async function calculateSHA256(fileName) {
   return hash.read();
 }
 
-const ROOT = path.join(__dirname, "homebrew");
+const ROOT = __dirname;
 const TEMPLATES = path.join(ROOT, "templates");
 
 const CLI_URL = "https://cli-files.secman.dev";
@@ -79,10 +80,10 @@ async function updateSecmanFormula(brewDir) {
   const pathToDist = path.join(
     DIST_DIR,
     `secman-v${VERSION}`,
-    `secman-v${VERSION}.tar.xz`
+    `secman-v${VERSION}.tar.gz`
   );
   const sha256 = await calculateSHA256(pathToDist);
-  const url = `${CLI_URL}/secman-v${VERSION}/secman-v${VERSION}.tar.xz`;
+  const url = `${CLI_URL}/secman-v${VERSION}/secman-v${VERSION}.tar.gz`;
 
   const templateReplaced = template
     .replace("__CLI_DOWNLOAD_URL__", url)
@@ -122,7 +123,7 @@ async function updateSecmanNodeFormula(brewDir) {
 
 async function updateHomebrew() {
   const tmp = path.join(__dirname, "tmp");
-  const homebrewDir = path.join(tmp, "homebrew-brew");
+  const homebrewDir = path.join(tmp, "homebrew-secman");
   mkdirp.sync(tmp);
   rm.sync(homebrewDir);
 
@@ -132,13 +133,14 @@ async function updateHomebrew() {
 
   await execa("git", [
     "clone",
-    "git@github.com:scmn-dev/homebrew-secman.git",
+    "https://github.com/scmn-dev/homebrew-secman.git",
     homebrewDir,
   ]);
 
   console.log(`done cloning scmn-dev/homebrew-secman to ${homebrewDir}`);
 
   console.log("updating local git...");
+
   await updateSecmanNodeFormula(homebrewDir);
   await updateSecmanFormula(homebrewDir);
 
@@ -150,6 +152,7 @@ async function updateHomebrew() {
   await git(["config", "--local", "core.pager", "cat"]);
   await git(["diff", "--cached"], { stdio: "inherit" });
   await git(["commit", "-m", `secman v${VERSION}`]);
+
   if (process.env.SKIP_GIT_PUSH === undefined) {
     await git(["push", "origin", "master"]);
   }

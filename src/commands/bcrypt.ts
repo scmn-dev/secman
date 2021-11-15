@@ -1,8 +1,9 @@
 import { Command, flags } from "@oclif/command";
 import bcrypt from "bcrypt";
-import chalk from "chalk";
+import { bold } from "../../design/layout";
+
 export default class Bcrypt extends Command {
-  static description = `Encrypt data using ${chalk.bold("bcrypt")}.`;
+  static description = `Encrypt data using ${bold("bcrypt")}.`;
 
   static flags = {
     help: flags.help({ char: "h" }),
@@ -21,7 +22,8 @@ export default class Bcrypt extends Command {
     if (args.STRING) {
       let hash = await bcrypt.hash(args.STRING, flags.length);
 
-      this.log(hash);
+      this.log(`String: ${args.STRING}
+Hash: ${hash}`);
     } else {
       this.error("No string provided");
     }

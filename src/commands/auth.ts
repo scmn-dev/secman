@@ -1,10 +1,12 @@
 import { Command, flags } from "@oclif/command";
-import chalk from "chalk";
 import { PRIMARY_COLOR } from "../../constants";
 import writeConfigFile, { readConfigFile } from "../../app/config";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import { cli } from "cli-ux";
+import { cli as ux } from "cli-ux";
+import { readPipe } from "../../tools/readPipe";
+import { command, withPrimary } from "../../design/layout";
+import { AuthExamples } from "../../contents/examples/auth";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -13,53 +15,87 @@ export default class Auth extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
-    createAccount: flags.boolean({
+    "create-account": flags.boolean({
       char: "c",
       description: "Create a new account.",
+      default: false,
+    }),
+    user: flags.string({
+      char: "u",
+      description: "Email address of the account to use.",
+    }),
+    "master-password": flags.string({
+      char: "p",
+      description: "Master password of the account to use.",
+    }),
+    "password-stdin": flags.boolean({
+      description: "Take the password from stdin",
       default: false,
     }),
   };
 
   static aliases = ["login", "signin"];
 
+  static examples = AuthExamples;
+
   async run() {
     const { flags } = this.parse(Auth);
     const configFile = `${process.env.HOME}/.secman/config.json`;
 
     const _ = async (isNewLogin: boolean) => {
-      // let email = readlineSync.questionEMail("Enter your email: ");
-      const email =
-        readConfigFile("user") ??
-        (
-          await prompts({
-            type: "text",
-            name: "e",
-            message: "Enter your email: ",
+      let email;
+
+      if (flags.user) {
+        email = flags.user;
+      } else {
+        email =
+          readConfigFile("user") ??
+          (
+            await prompts({
+              type: "text",
+              name: "e",
+              message: "Enter your email: ",
+              validate: (value: string) => {
+                if (value.length > 0) {
+                  return true;
+                } else {
+                  return "Please enter your email";
+                }
+              },
+            })
+          ).e;
+      }
+
+      try {
+        let password;
+        let master_password: any;
+
+        if (flags["master-password"]) {
+          password = flags["master-password"];
+          master_password = password;
+        } else if (flags["password-stdin"]) {
+          const stdin = await readPipe();
+
+          if (stdin) {
+            password = stdin.replace(/\s/g, "");
+            master_password = password;
+          }
+        } else {
+          password = await prompts({
+            type: "password",
+            name: "mp",
+            message: "Enter your master password: ",
             validate: (value: string) => {
               if (value.length > 0) {
                 return true;
               } else {
-                return "Please enter your email";
+                return "Please enter your master password";
               }
             },
-          })
-        ).e;
-
-      try {
-        let password = await prompts({
-          type: "password",
-          name: "mp",
-          message: "Enter your master password: ",
-          validate: (value: string) => {
-            if (value.length > 0) {
-              return true;
-            } else {
-              return "Please enter your master password";
-            }
-          },
-        });
-
-        let master_password = password.mp;
+          });
+          master_password = password.mp;
+          console.log("");
+        }
 
         if (master_password) {
           const hash = CryptoTools.sha256Encrypt(master_password);
@@ -100,23 +136,24 @@ export default class Auth extends Command {
               );
 
               const msg = isNewLogin
-                ? "\n🎉 Welcome " + chalk.hex(PRIMARY_COLOR).bold(name) + "!"
-                : "\nRe-authentication successful";
+                ? "🎉 Welcome " + withPrimary(name) + "!"
+                : "Re-authentication successful";
 
               console.log(msg);
             })
             .catch(function (err: any) {
               if (err.response.status === 401) {
                 console.log(
-                  chalk.red.bold(
-                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold(
-                      "`secman auth --create-account`."
-                    )}`
+                  command(
+                    `\nInvalid email or master password. if you don't have an account, please create one using the command ${
+                      (command("`secman auth --create-account`."), true)
+                    }`,
+                    true
                   )
                 );
               } else {
                 console.log(
-                  chalk.red.bold("\nSomething went wrong. Please try again.")
+                  command("\nSomething went wrong. Please try again.", true)
                 );
               }
             });
@@ -127,8 +164,8 @@ export default class Auth extends Command {
     };
 
     switch (true) {
-      case flags.createAccount:
-        cli.open("https://auth.secman.dev");
+      case flags["create-account"]:
+        ux.open("https://auth.secman.dev");
 
         break;
 
@@ -140,13 +177,15 @@ export default class Auth extends Command {
             const reauth = await prompts({
               type: "toggle",
               name: "value",
-              message: `You are already logged in as ${chalk
-                .hex(PRIMARY_COLOR)
-                .bold(user)}. Would you like to re-authenticate?`,
+              message: `You are already logged in as ${withPrimary(
+                user
+              )}. Would you like to re-authenticate?`,
               initial: "yes",
               active: "yes",
               inactive: "no",
             });
+
+            console.log("");
 
             if (reauth.value) {
               _(false);

@@ -11,12 +11,10 @@ export const CHARS = {
   numeric: "0123456789",
   special: "_-+=)/(*&^%$#@%!?~",
 };
-export const DOT_SECMAN_PATH = ".secman";
+export const DOT_SECMAN_PATH = `${process.env.HOME}/.secman`;
 export const SECMAN_CONFIG_PATH: any = `/${DOT_SECMAN_PATH}/config.json`;
 export const SECMAN_DATA_PATH: any = `/${DOT_SECMAN_PATH}/data.json`;
 export const SECMAN_SETTINGS_PATH: any = `/${DOT_SECMAN_PATH}/settings.json`;
-export const SECMAN_SETTINGS_URL: any =
-  "https://raw.githubusercontent.com/scmn-dev/secman/main/contents/data/settings.json";
 export const SECMAN_EDITOR_PATH: any =
   platform() === "win32"
     ? `/${DOT_SECMAN_PATH}/editor.exe`

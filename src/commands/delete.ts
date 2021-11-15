@@ -1,7 +1,6 @@
 import { Command, flags } from "@oclif/command";
 import { API } from "../../contract";
 import * as cryptojs from "crypto-js";
-import chalk from "chalk";
 import { spinner } from "@secman/spinner";
 import { readDataFile } from "../../app/config";
 import { refresh } from "../../app/refresher";
@@ -9,6 +8,7 @@ import { DeleteExamples } from "../../contents/examples/delete";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 import { Types } from "../../tools/flags";
+import { error, success } from "../../design/layout";
 
 export default class Delete extends Command {
   static description = "Delete a password from the vault.";
@@ -100,11 +100,11 @@ export default class Delete extends Command {
               }).then(async (res: any) => {
                 if (res.status === 200) {
                   console.log(
-                    chalk.green(`${element.title} was deleted successfully.`)
+                    success(`${element.title} was deleted successfully.`)
                   );
                 } else {
                   console.log(
-                    chalk.red(`Failed to delete ${element.title}, try again`)
+                    error(`Failed to delete ${element.title}, try again`)
                   );
                 }
               });
@@ -117,11 +117,11 @@ export default class Delete extends Command {
       .catch((err: any) => {
         gettingDataSpinner.stop();
         if (err.response.status === 401) {
-          refresh(`delete ${Types(flags)} ${args.PASSWORD_NAME}`);
+          refresh(`delete -${Types(flags)} ${args.PASSWORD_NAME}`);
         } else if (err.response.status === 404) {
-          console.log(chalk.red("No data found"));
+          console.log(error("No data found"));
         } else {
-          console.log(chalk.red("Something went wrong"));
+          console.log(error("Something went wrong"));
         }
       });
   }
