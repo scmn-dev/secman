@@ -36,16 +36,6 @@ jobs:
       - name: Format
         run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
 
-      - uses: actions/setup-ruby@v1
-
-      - name: Homebrew
-        run: |
-          cd ./scripts
-          ruby ./config/git-config.rb
-          cd ./brew
-          npm i
-          npm start
-
       - name: Upload It
         uses: softprops/action-gh-release@v1
         with:
