@@ -5,3 +5,6 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive
 
 # Install Secman
 RUN su node -c "npm install -g secman"
+
+# Initialize `~/.secman`
+RUN secman init
