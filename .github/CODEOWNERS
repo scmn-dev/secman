@@ -1,14 +1,5 @@
 * @abdfnx
-/v1/README.md @Timothee-Cardoso @david-tomson
-/v1/CHANGELOG.md @Timothee-Cardoso
-/v1/Makefile @Timothee-Cardoso
-/v1/script/build.ps1 @Timothee-Cardoso
-/v1/core/core.go @Timothee-Cardoso @iMRxM7mD
-/v1/secman.json @Timothee-Cardoso
-/v1/.snyk @Timothee-Cardoso
-/v1/.gitpod.yml @Timothee-Cardoso
-.github/workflows/secman.yml @Timothee-Cardoso
-/v1/tools/constants/commands.go @Timothee-Cardoso
-/v1/.editorconfig @Timothee-Cardoso
-/v1/core/schema.gql @david-tomson
-/v1/.gitignore @iMRxM7mD
+snapcraft.yaml @david-tomson
+.github/workflows/secman.yml @david-tomson
+.github/workflows/pack.yml @david-tomson
+README.md @Timothee-Cardoso
