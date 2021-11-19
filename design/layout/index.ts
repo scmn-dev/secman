@@ -54,7 +54,7 @@ export const warning = (text: string, bold: boolean = false) => {
   if (bold) {
     return chalk.yellow.bold(text);
   } else {
-    return chalk.gray(text);
+    return chalk.yellow(text);
   }
 };
 
