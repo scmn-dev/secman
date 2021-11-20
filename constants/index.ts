@@ -6,12 +6,14 @@ env.config();
 export const PRIMARY_COLOR: any = "#1163E6";
 export const GH_TOKEN: any = process.env.GH_TOKEN;
 export const API_URL: any = "https://api.secman.dev";
+export const HOMEDIR: any =
+  process.platform === "win32" ? "USERPROFILE" : "HOME";
 export const CHARS = {
   alphabet: "abcdefghijklmnopqrstuvwxyz",
   numeric: "0123456789",
   special: "_-+=)/(*&^%$#@%!?~",
 };
-export const DOT_SECMAN_PATH = `${process.env.HOME}/.secman`;
+export const DOT_SECMAN_PATH = `${HOMEDIR}/.secman`;
 export const SECMAN_CONFIG_PATH: any = `/${DOT_SECMAN_PATH}/config.json`;
 export const SECMAN_DATA_PATH: any = `/${DOT_SECMAN_PATH}/data.json`;
 export const SECMAN_SETTINGS_PATH: any = `/${DOT_SECMAN_PATH}/settings.json`;

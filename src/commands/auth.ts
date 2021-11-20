@@ -7,6 +7,7 @@ import { cli as ux } from "cli-ux";
 import { readPipe } from "../../tools/readPipe";
 import { command, withPrimary } from "../../design/layout";
 import { AuthExamples } from "../../contents/examples/auth";
+import { HOMEDIR } from "../../constants";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -40,7 +41,7 @@ export default class Auth extends Command {
 
   async run() {
     const { flags } = this.parse(Auth);
-    const configFile = `${process.env.HOME}/.secman/config.json`;
+    const configFile = `${HOMEDIR}/.secman/config.json`;
 
     const _ = async (isNewLogin: boolean) => {
       let email;
