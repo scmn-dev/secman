@@ -13,7 +13,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://secman.dev/blog">Blog</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://twitter.com/_secman_">Twitter</a>
+  <a href="https://twitter.com/_secman">Twitter</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/secman-archive/secman-v1">Secman V1</a>
   <br />
