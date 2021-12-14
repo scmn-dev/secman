@@ -38,7 +38,7 @@ async function getText(url) {
 }
 
 async function getDownloadInfoForNodeVersion(version) {
-  // https://nodejs.org/download/release/v12.21.0/SHASUMS256.txt
+  // https://nodejs.org/download/release/v16.13.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
   const shasums: any = await getText(url);
   const shasumLine = shasums.split("\n").find((line) => {
@@ -140,6 +140,7 @@ async function updateHomebrew() {
   console.log(`done cloning scmn-dev/homebrew-secman to ${homebrewDir}`);
 
   console.log("updating local git...");
+
   await updateSecmanNodeFormula(homebrewDir);
   await updateSecmanFormula(homebrewDir);
 

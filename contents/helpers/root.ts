@@ -1,42 +1,40 @@
-const chalk = require("chalk");
+import { bold, command as cmd, withSecondary } from "../../design/layout";
 
 export async function root() {
-  console.log(chalk.grey.bold("\nEXAMPLES\n"));
-  console.log(chalk.grey("  -") + ` Initialize ${chalk.gray("~/.secman")}\n`);
-  console.log(chalk.cyan("    $ secman init\n"));
-  console.log(chalk.grey("  -") + " Authorize With Secman\n");
-  console.log(chalk.cyan("    $ secman auth\n"));
-  console.log(chalk.grey("  -") + " Insert a New Password\n");
-  console.log(chalk.cyan("    $ secman insert --[PASSWORD_TYPE]\n"));
-  console.log(chalk.grey("  -") + " List Passwords\n");
-  console.log(chalk.cyan("    $ secman .\n"));
-  console.log(chalk.grey("  -") + " Read The Password\n");
+  console.log(cmd("\nEXAMPLES\n", true));
+  console.log(cmd("  -") + ` Initialize ${cmd("~/.secman")}\n`);
+  console.log(withSecondary("    $ secman init\n"));
+  console.log(cmd("  -") + " Authorize With Secman\n");
+  console.log(withSecondary("    $ secman auth\n"));
+  console.log(cmd("  -") + " Insert a New Password\n");
+  console.log(withSecondary("    $ secman insert --[PASSWORD_TYPE]\n"));
+  console.log(cmd("  -") + " List Passwords\n");
+  console.log(withSecondary("    $ secman .\n"));
+  console.log(cmd("  -") + " Read The Password\n");
   console.log(
-    chalk.cyan("    $ secman read --[PASSWORD_TYPE] <PASSWORD_NAME>\n")
+    withSecondary("    $ secman read --[PASSWORD_TYPE] <PASSWORD_NAME>\n")
   );
-  console.log(chalk.grey("  -") + " Edit Password\n");
+  console.log(cmd("  -") + " Edit Password\n");
   console.log(
-    chalk.cyan("    $ secman edit --[PASSWORD_TYPE] <PASSWORD_NAME>\n")
+    withSecondary("    $ secman edit --[PASSWORD_TYPE] <PASSWORD_NAME>\n")
   );
-  console.log(chalk.grey("  -") + " Generate\n");
-  console.log(chalk.cyan("    $ secman generate\n"));
-  console.log(chalk.grey("  -") + " Edit Settings\n");
-  console.log(chalk.cyan("    $ secman settings\n"));
+  console.log(cmd("  -") + " Generate\n");
+  console.log(withSecondary("    $ secman generate\n"));
+  console.log(cmd("  -") + " Edit Settings\n");
+  console.log(withSecondary("    $ secman settings\n"));
   learnMore();
-  console.log(chalk.grey.bold("TELL US\n"));
+  console.log(cmd("TELL US\n", true));
   console.log(
-    `  Open an issue at ${chalk.bold(
-      "https://github.com/scmn-dev/secman/issues"
-    )}\n`
+    `  Open an issue at ${bold("https://github.com/scmn-dev/secman/issues")}\n`
   );
 }
 
 export function learnMore(command: any = "") {
   command = command || "";
 
-  console.log(chalk.grey.bold("LEARN MORE"));
+  console.log(cmd("LEARN MORE", true));
   console.log(`
-  Use ${chalk.grey(
+  Use ${cmd(
     "`secman " + (command || "<COMMAND>") + " --help`"
   )} for more information.
   Read 📚 at https://secman.dev/docs/cli${command ? `/${command}` : ""}

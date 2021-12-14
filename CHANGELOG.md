@@ -4,6 +4,37 @@
 
 ---
 
+## [[v6.0.71] 2021-11-14](#v6071-2021-11-14)
+
+### Added
+
+nothing
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix secman help output.
+
+## [[v6.0.7] 2021-11-13](#v607-2021-11-13)
+
+### Added
+
+- Add `--user` and `--password` flags to `auth` command.
+- Create `--password-stdin` flag to read password from stdin to `auth` command.
+- Add errors catchers to show error messages.
+
+### Changed
+
+nothing
+
+### Fixed
+
+- Fix exit from secman editor in visual studio code terminal with <kbd>Alt + E</kbd> shortcut.
+- Fix missing files error messages.
+
 ## [[v6.0.61] 2021-11-10](#v6061-2021-11-10)
 
 ### Added

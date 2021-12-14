@@ -1,8 +1,8 @@
-import chalk from "chalk";
+import { withSecondary } from "../../design/layout";
 
 export const ListExamples = [
-  `List Passwords\n\n ${chalk.cyan("$ secman list")}\n`,
-  `- List Password from spicefic password type\n\n ${chalk.cyan(
+  `List Passwords\n\n ${withSecondary("$ secman list")}\n`,
+  `- List Password from spicefic password type\n\n ${withSecondary(
     "$ secman . --servers | -s"
   )}`,
 ];

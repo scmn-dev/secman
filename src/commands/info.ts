@@ -15,11 +15,12 @@ export default class Info extends Command {
     const { flags } = this.parse(Info);
 
     const smca_version = await GetLatestGHRelease("core");
+    const name = readConfigFile("name") ?? "No User";
 
     console.log(`Secman CLI
 
 Version: v${this.config.version}
 Secman Core Version: ${smca_version}
-Current User: ${readConfigFile("name")}`);
+Current User: ${name}`);
   }
 }

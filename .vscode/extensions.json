@@ -1,6 +1,10 @@
 {
   "recommendations": [
-    // Go language extension
-    "golang.go"
+    "ms-vscode.js-debug",
+    "ms-azuretools.vscode-docker",
+    "esbenp.prettier-vscode",
+    "PKief.material-icon-theme",
+    "aaron-bond.better-comments",
+    "dsznajder.es7-react-js-snippets"
   ]
 }

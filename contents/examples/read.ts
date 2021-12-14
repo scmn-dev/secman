@@ -1,8 +1,8 @@
-import chalk from "chalk";
+import { withSecondary } from "../../design/layout";
 
 export const ReadExamples = [
-  `Read a Password\n\n ${chalk.cyan("$ secman read --logins | -l Expo")}\n`,
-  `- Show The Password\n\n ${chalk.cyan(
+  `Read a Password\n\n ${withSecondary("$ secman read --logins | -l Expo")}\n`,
+  `- Show The Password\n\n ${withSecondary(
     "$ secman read --emails | -e Gmail --show-password | -p"
   )}`,
 ];

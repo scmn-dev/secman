@@ -2,8 +2,7 @@ import { readConfigFile, readDataFile, writeDataFile } from "../config";
 import { spinner } from "@secman/spinner";
 import { API } from "../../contract";
 import { CryptoTools } from "../../tools/crypto";
-import chalk from "chalk";
-import { PRIMARY_COLOR } from "../../constants";
+import { bold, withPrimary } from "../../design/layout";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 
@@ -44,13 +43,7 @@ export async function refresh(cmd: any) {
       ).then(async () => {
         refreshSpinner.succeed("🔗 Refreshed");
 
-        console.log(
-          chalk.bold(
-            `run ${chalk
-              .hex(PRIMARY_COLOR)
-              .bold("secman " + cmd)} command again`
-          )
-        );
+        console.log(bold(`run ${withPrimary("secman " + cmd)} command again`));
       });
     };
 
