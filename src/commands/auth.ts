@@ -18,6 +18,14 @@ export default class Auth extends Command {
       description: "Create a new account.",
       default: false,
     }),
+    email: flags.string({
+      char: "e",
+      description: "Email address of the account to use.",
+    }),
+    masterPassword: flags.string({
+      char: "m",
+      description: "Master password of the account to use.",
+    }),
   };
 
   static aliases = ["login", "signin"];
@@ -29,7 +37,8 @@ export default class Auth extends Command {
     const _ = async (isNewLogin: boolean) => {
       // let email = readlineSync.questionEMail("Enter your email: ");
       const email =
-        readConfigFile("user") ??
+        flags.email ||
+        readConfigFile("user") ||
         (
           await prompts({
             type: "text",
@@ -46,18 +55,20 @@ export default class Auth extends Command {
         ).e;
 
       try {
-        let password = await prompts({
-          type: "password",
-          name: "mp",
-          message: "Enter your master password: ",
-          validate: (value: string) => {
-            if (value.length > 0) {
-              return true;
-            } else {
-              return "Please enter your master password";
-            }
-          },
-        });
+        let password =
+          flags.masterPassword ||
+          (await prompts({
+            type: "password",
+            name: "mp",
+            message: "Enter your master password: ",
+            validate: (value: string) => {
+              if (value.length > 0) {
+                return true;
+              } else {
+                return "Please enter your master password";
+              }
+            },
+          }));
 
         let master_password = password.mp;
 

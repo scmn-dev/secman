@@ -9,7 +9,7 @@ const rm = require("rimraf");
 const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
-const crypto = require("crypto");
+const _crypto = require("crypto");
 const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
@@ -40,7 +40,7 @@ async function getText(url) {
 async function getDownloadInfoForNodeVersion(version) {
   // https://nodejs.org/download/release/v12.21.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
-  const shasums = await getText(url);
+  const shasums: any = await getText(url);
   const shasumLine = shasums.split("\n").find((line) => {
     return line.includes(`node-v${version}-darwin-x64.tar.gz`);
   });
@@ -62,7 +62,7 @@ async function getDownloadInfoForNodeVersion(version) {
 // }
 
 async function calculateSHA256(fileName) {
-  const hash = crypto.createHash("sha256");
+  const hash = _crypto.createHash("sha256");
   hash.setEncoding("hex");
   await promisify(pipeline)(fs.createReadStream(fileName), hash);
   return hash.read();
