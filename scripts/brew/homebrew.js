@@ -40,7 +40,7 @@ async function getText(url) {
 async function getDownloadInfoForNodeVersion(version) {
   // https://nodejs.org/download/release/v16.13.0/SHASUMS256.txt
   const url = `${NODE_JS_BASE}/v${version}/SHASUMS256.txt`;
-  const shasums: any = await getText(url);
+  const shasums = await getText(url);
   const shasumLine = shasums.split("\n").find((line) => {
     return line.includes(`node-v${version}-darwin-x64.tar.gz`);
   });
