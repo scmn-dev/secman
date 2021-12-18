@@ -4,6 +4,21 @@
 
 ---
 
+## [[v6.0.8] 2021-12-14](#v608-2021-12-14)
+
+### Added
+
+- configure `.devcontainer` for secman
+
+### Changed
+
+nothing
+
+### Fixed
+
+- fix config files warning messages ([#120](https://github.com/scmn-dev/secman/issues/120))
+- fix Homedir bug in windows ([#121](https://github.com/scmn-dev/secman/issues/121))
+
 ## [[v6.0.71] 2021-11-14](#v6071-2021-11-14)
 
 ### Added

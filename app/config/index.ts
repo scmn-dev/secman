@@ -4,7 +4,7 @@ import {
   DOT_SECMAN_PATH,
   SECMAN_CONFIG_PATH,
   SECMAN_DATA_PATH,
-  SECMAN_SETTINGS_PATH,
+  SECMAN_SETTINGS_PATH
 } from "../../constants";
 import { writeJsonFile as writeJSON } from "../../tools/json/write";
 import { platform } from "os";
@@ -78,8 +78,8 @@ export async function writeDataFile(
         access_token: access_token,
         refresh_token: refresh_token,
         transmission_key: transmission_key,
-        master_password_hash: master_password_hash,
-      },
+        master_password_hash: master_password_hash
+      }
     },
     {}
   );
@@ -97,7 +97,7 @@ export async function writeSettingFile() {
   await writeJSON(
     SECMAN_SETTINGS_PATH,
     {
-      editor: "secman_editor",
+      editor: "secman_editor"
     },
     {}
   );
@@ -128,9 +128,10 @@ export function readDataFile(obj: any) {
     } catch {
       console.log(
         error(
-          `can't find your auth tokens, to authenticate run ${
-            (command("`secman auth`"), true)
-          }.`
+          `can't find your auth tokens, to authenticate run ${command(
+            "`secman auth`",
+            true
+          )}.`
         )
       );
       process.exit(0);
@@ -153,9 +154,8 @@ export function readSettingsFile(obj: any) {
 const fileIsNotFound = (fileName: string) => {
   console.log(
     logSymbols.warning +
-      `${warning(
-        "~/.secman/" + fileName + ".json"
-      )} does not exist, run ${command("secman init")}.`
+      warning(" ~/.secman/" + fileName + ".json ") +
+      `does not exist, run ${command("secman init")}`
   );
 
   process.exit(0);
