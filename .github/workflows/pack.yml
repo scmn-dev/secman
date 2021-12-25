@@ -19,7 +19,7 @@ jobs:
 
       - uses: actions/setup-node@v2.4.0
         with:
-          node-version: 16
+          node-version: 17
 
       - name: Install Dependencies
         run: yarn
@@ -29,7 +29,7 @@ jobs:
 
       - name: Build .deb Package
         run: |
-          sudo npm run pack:deb
+          sudo yarn pack:deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
 
