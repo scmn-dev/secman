@@ -4,6 +4,12 @@
 
 ---
 
+## [[v6.1.0] 2021-12-26](#v610-2021-12-26)
+
+### Changed
+
+- fix all secman help errors and bugs
+
 ## [[v6.0.9] 2021-12-26](#v609-2021-12-26)
 
 > a release to fix a bug in the `secman`
