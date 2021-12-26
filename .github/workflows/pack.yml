@@ -27,12 +27,14 @@ jobs:
       - name: Pack
         run: yarn package
 
-      # - name: Build .deb Package
-      #   run: |
-      #     sudo yarn pack:deb
-      #     sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
-      #     sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
-
+      - name: Build .deb Package
+        run: |
+          cd ..
+          sudo chown -R root secman
+          cd secman 
+          sudo yarn pack:deb
+          sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+          sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
       - name: Format
         run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
 
@@ -47,3 +49,5 @@ jobs:
             ${{ env.FILE_FORMAT }}-win32-x64.tar.gz
             ${{ env.FILE_FORMAT }}-win32-x86.tar.gz
             ${{ env.FILE_FORMAT }}.tar.gz
+            ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
+            ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
