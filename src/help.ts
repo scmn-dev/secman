@@ -1,6 +1,8 @@
 import { bold, command, withSecondary } from "../design/layout";
+import { HelpBase } from "@oclif/core";
+import { Command } from "@oclif/core/lib/interfaces";
+import * as Interfaces from "@oclif/core/lib/interfaces";
 
-const Help = require("@oclif/plugin-help").default;
 const { say } = require("cfonts");
 const { sortBy, uniqBy } = require("../tools/bool");
 const { renderList } = require("../tools/list");
@@ -22,7 +24,7 @@ function getHelpSubject(args: any) {
   }
 }
 
-module.exports = class MyHelpClass extends Help {
+module.exports = class MyHelpClass extends HelpBase {
   get sortedCommands() {
     let commands = this.config.commands;
 
@@ -35,7 +37,17 @@ module.exports = class MyHelpClass extends Help {
     return;
   }
 
-  get sortedTopics() {
+  private get _topics(): Interfaces.Topic[] {
+    return this.config.topics.filter((topic: Interfaces.Topic) => {
+      // it is assumed a topic has a child if it has children
+      const hasChild = this.config.topics.some((subTopic) =>
+        subTopic.name.includes(`${topic.name}:`)
+      );
+      return hasChild;
+    });
+  }
+
+  protected get sortedTopics() {
     let topics = this._topics;
     topics = topics.filter((t: any) => this.opts.all || !t.hidden);
     topics = sortBy(topics, (t: any) => t.name);
@@ -44,7 +56,7 @@ module.exports = class MyHelpClass extends Help {
     return topics;
   }
 
-  showHelp(args: any) {
+  showHelp(args: string[]): Promise<void> {
     // print secman cli version
     console.log(`${bold("Secman CLI")} ${this.config.version}`);
 
@@ -53,18 +65,19 @@ module.exports = class MyHelpClass extends Help {
     if (!subject) {
       const rootCmd = this.config.findCommand("");
       if (rootCmd) this.showCommandHelp(rootCmd);
-      this.showRootHelp();
-      return;
+      // this.showRootHelp();
+      return this.showRootHelp();
     }
 
     const command = this.config.findCommand(subject);
     if (command) {
-      this.showCommandHelp(command);
-      return;
+      return this.showCommandHelp(command);
     }
+
+    return this.showRootHelp();
   }
 
-  showCommandHelp(command: any) {
+  showCommandHelp(command: Command): Promise<void> {
     const name = command.id;
     const depth = name.split(":").length;
 
@@ -84,7 +97,7 @@ module.exports = class MyHelpClass extends Help {
       console.log("");
     }
 
-    root.learnMore(name);
+    return root.learnMore(name);
   }
 
   async showRootHelp() {
