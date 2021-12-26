@@ -25,7 +25,6 @@
     "prepack": "yarn build",
     "build": "rimraf lib && tsc -b && oclif-dev manifest",
     "package": "oclif-dev pack",
-    "pack": "oclif-dev pack",
     "pack:deb": "oclif-dev pack:deb",
     "pack:macos": "oclif-dev pack:macos",
     "pack:win": "oclif-dev pack:win",
