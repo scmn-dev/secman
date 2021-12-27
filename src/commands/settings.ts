@@ -5,6 +5,7 @@ import { spinner } from "@secman/spinner";
 import { InstallEditor } from "../../tools/install-editor";
 import { readSettingsFile } from "../../app/config";
 import { bold } from "../../design/layout";
+import { DOT_SECMAN_PATH } from "../../constants";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 const powershell = require("powershell");
@@ -43,7 +44,13 @@ ${bold(
       InstallEditor();
     } else {
       if (editor === "secman_editor") {
-        const editor = sh.find("~/.secman/editor");
+        let editor = sh.find("~/.secman");
+
+        if (platform() === "win32") {
+          editor = sh.find("~/.secman/editor.exe");
+        } else {
+          editor = sh.find("~/.secman/editor");
+        }
 
         if (editor.length === 0) {
           const qe = await prompts({
@@ -62,13 +69,15 @@ ${bold(
           }
         } else {
           if (platform() === "win32") {
-            const ps = new powershell(
-              "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
-            );
+            // const ps = new powershell(
+            //   "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
+            // );
 
-            ps.on("output", (data: any) => {
-              console.log(data);
-            });
+            // ps.on("output", (data: any) => {
+            //   console.log(data);
+            // });
+
+            sh.exec(`${DOT_SECMAN_PATH}/editor.exe ~/.secman/settings.json`);
 
             opening.stop();
           } else {

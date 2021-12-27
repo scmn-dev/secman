@@ -1,26 +1,32 @@
 import { platform } from "os";
 import env from "dotenv";
+import path from "path";
 
 env.config();
 
 export const PRIMARY_COLOR: any = "#1163E6";
 export const GH_TOKEN: any = process.env.GH_TOKEN;
 export const API_URL: any = "https://api.secman.dev";
-export const HOMEDIR: any =
-  process.platform === "win32" ? "USERPROFILE" : "HOME";
+export const HOMEDIR: any = process.env.HOME || process.env.USERPROFILE;
 export const CHARS = {
   alphabet: "abcdefghijklmnopqrstuvwxyz",
   numeric: "0123456789",
   special: "_-+=)/(*&^%$#@%!?~",
 };
-export const DOT_SECMAN_PATH = `${HOMEDIR}/.secman`;
-export const SECMAN_CONFIG_PATH: any = `/${DOT_SECMAN_PATH}/config.json`;
-export const SECMAN_DATA_PATH: any = `/${DOT_SECMAN_PATH}/data.json`;
-export const SECMAN_SETTINGS_PATH: any = `/${DOT_SECMAN_PATH}/settings.json`;
+export const DOT_SECMAN_PATH = path.join(HOMEDIR, ".secman");
+export const SECMAN_CONFIG_PATH: any = path.join(
+  DOT_SECMAN_PATH,
+  "config.json"
+);
+export const SECMAN_DATA_PATH: any = path.join(DOT_SECMAN_PATH, "data.json");
+export const SECMAN_SETTINGS_PATH: any = path.join(
+  DOT_SECMAN_PATH,
+  "settings.json"
+);
 export const SECMAN_EDITOR_PATH: any =
   platform() === "win32"
-    ? `/${DOT_SECMAN_PATH}/editor.exe`
-    : `/${DOT_SECMAN_PATH}/editor`;
+    ? path.join(DOT_SECMAN_PATH, "editor.exe")
+    : path.join(DOT_SECMAN_PATH, "editor");
 export let COMPLEXIES = [
   { name: "abc", value: CHARS.alphabet, checked: true, visible: false },
   { name: "Numbers", value: CHARS.numeric, checked: true },

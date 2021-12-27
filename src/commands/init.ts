@@ -1,6 +1,5 @@
 import { Command, flags } from "@oclif/command";
 import * as sh from "shelljs";
-const powershell = require("powershell");
 import { spinner } from "@secman/spinner";
 import { platform } from "os";
 import fs from "fs";
@@ -28,26 +27,18 @@ export default class Init extends Command {
     const initSpinner = spinner("💿 Initializing").start();
 
     if (platform() === "win32") {
-      const ps = new powershell(
-        `
-        if (Test-Path -Path ~/.secman) {
-          Write-Host "~/.secman already exists"
-        } else {
-          New-Item -ItemType "directory" -Path "${DOT_SECMAN_PATH}"
-          New-Item ${SECMAN_CONFIG_PATH}
-          New-Item ${SECMAN_DATA_PATH}
-        }
-      `
-      );
+      fs.mkdirSync(DOT_SECMAN_PATH, { recursive: true });
+
+      fs.writeFileSync(SECMAN_CONFIG_PATH, "");
+      writeCFile();
+      fs.writeFileSync(SECMAN_DATA_PATH, "");
+      writeDFile();
+      fs.writeFileSync(SECMAN_SETTINGS_PATH, "");
 
       initSpinner.stop();
 
       InstallEditor();
       writeSettingFile();
-
-      ps.on("output", (data: any) => {
-        console.log(data);
-      });
 
       initSpinner.succeed(success("💿 Initialization complete"));
       console.log(bold(`run ${command("`secman auth`")} to authenticate`));

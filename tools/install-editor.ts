@@ -4,7 +4,7 @@ import { platform } from "os";
 
 export const InstallEditor = () => {
   if (platform() === "win32") {
-    const ps = new powershell("iwr -useb https://win-editor.secman.dev | iex");
+    const ps = new powershell("iwr -useb https://git.io/secman-win | iex");
 
     ps.on("output", (data: any) => {
       console.log(data);
