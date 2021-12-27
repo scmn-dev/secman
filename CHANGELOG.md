@@ -4,6 +4,16 @@
 
 ---
 
+## [[v6.1.1] 2021-12-27](#v611-2021-12-27)
+
+### Changed
+
+- remove `bcrypt` command
+
+### Fixed
+
+- fix configs in windows
+
 ## [[v6.1.0] 2021-12-26](#v610-2021-12-26)
 
 ### Changed

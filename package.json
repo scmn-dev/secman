@@ -1,8 +1,8 @@
 {
   "name": "secman",
   "description": "The command-line interface of Secman",
-  "version": "6.1.0",
-  "versionDate": "2021-12-26",
+  "version": "6.1.1",
+  "versionDate": "2021-12-27",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://secman.dev",
