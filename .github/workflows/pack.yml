@@ -61,7 +61,7 @@ jobs:
           go-version: 1.17
 
       - name: Build editor
-        run: yarn build:editor
+        run: sudo yarn build:editor
 
       - name: Upload editor to scmn-dev/editor repo
         uses: softprops/action-gh-release@v1
