@@ -4,12 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "The New Secman Release"
+        description: "The New Secman Release (without 'v')"
         required: true
 
 env:
   RELEASE: ${{ github.event.inputs.release }}
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 permissions: write-all
 
