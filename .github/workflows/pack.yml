@@ -10,7 +10,6 @@ on:
 env:
   RELEASE: ${{ github.event.inputs.release }}
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-  GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
 permissions: write-all
 
@@ -68,6 +67,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ env.RELEASE }}
+          name: "Editor of v${{ env.RELEASE }}"
           repository: "scmn-dev/editor"
           files: |
             ./tools/editor/editor.exe

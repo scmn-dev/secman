@@ -500,13 +500,6 @@
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.88.tgz#1f18ac2e15be30376e86a688a943390e7d6683e5"
   integrity sha512-Gbdr5tmGMGV1bgWDEfgNnfqtS9YVKDCkyAgYPmYIeEQFTSjU+VzVoE0Gc1MyrzREdk3Iu5daUCRU9eQL5s+iYQ==
 
-"@types/bcrypt@5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/bcrypt/-/bcrypt-5.0.0.tgz#a835afa2882d165aff5690893db314eaa98b9f20"
-  integrity sha512-agtcFKaruL8TmcvqbndlqHPSJgsolhf/qPWchFlgnW1gECTN/nKbFcoFnvKAQRFfKbh+BO6A3SWdJu9t+xF3Lw==
-  dependencies:
-    "@types/node" "*"
-
 "@types/btoa-lite@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/btoa-lite/-/btoa-lite-1.0.0.tgz#e190a5a548e0b348adb0df9ac7fa5f1151c7cca4"

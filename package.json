@@ -78,7 +78,6 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-plugins": "^1.10.1",
-    "@types/bcrypt": "5.0.0",
     "@types/crypto-js": "^4.0.2",
     "@types/lodash.template": "^4.5.0",
     "@types/node": "^16.11.6",

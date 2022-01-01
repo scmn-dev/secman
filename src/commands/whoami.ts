@@ -1,6 +1,5 @@
 import { Command, flags } from "@oclif/command";
 import { readConfigFile } from "../../app/config";
-import { PRIMARY_COLOR } from "../../constants";
 import { bold, withPrimary } from "../../design/layout";
 
 export default class WhoamI extends Command {
