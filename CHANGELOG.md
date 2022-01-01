@@ -4,6 +4,21 @@
 
 ---
 
+## [[v6.1.2] 2022-01-01](#v612-2022-01-01)
+
+### Added
+
+- add `just-hash` flag to `crypto` command
+
+### Changed
+
+- upgrade `update` command
+- remove `base64` hash from `crypto` command
+
+### Fixed
+
+- fix secman core version in `info` command
+
 ## [[v6.1.1] 2021-12-27](#v611-2021-12-27)
 
 ### Changed
