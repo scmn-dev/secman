@@ -15,7 +15,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/_secman">Twitter</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/secman-archive/secman-v1">Secman V1</a>
+  <a href="https://github.com/scmn-dev/secman/tree/v1">Secman V1</a>
   <br />
   <hr />
 </div>
