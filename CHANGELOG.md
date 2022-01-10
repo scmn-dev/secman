@@ -4,6 +4,21 @@
 
 ---
 
+## [[v6.1.3] 2022-01-10](#v613-2022-01-10)
+
+## Added
+
+- Add `settings_editor_theme` prop in `~/.secman/settings.json`
+
+## Changed
+
+- Update pathes
+- Update `Secman V1` url to `https://github.com/scmn-dev/secman/tree/v1`
+
+## Fixed
+
+- Fix `secman settings` command
+
 ## [[v6.1.2] 2022-01-01](#v612-2022-01-01)
 
 ### Added
