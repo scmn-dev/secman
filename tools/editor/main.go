@@ -1,44 +1,53 @@
 package main
 
 import (
-	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
+	"path"
+	"io/ioutil"
 
-	"github.com/gdamore/tcell/v2"
-	"github.com/abdfnx/resto/core/editor"
-	"github.com/abdfnx/resto/core/editor/runtime"
+	editor "github.com/scmn-dev/editor/core"
+	"github.com/scmn-dev/editor/core/runtime"
+
 	"github.com/rivo/tview"
+	"github.com/tidwall/gjson"
+	"github.com/gdamore/tcell/v2"
+	"github.com/mitchellh/go-homedir"
 )
+
+var homeDir, _ = homedir.Dir()
+var settingsFile = path.Join(homeDir, ".secman", "settings.json")
 
 func saveBuffer(b *editor.Buffer, path string) error {
 	return ioutil.WriteFile(path, []byte(b.String()), 0600)
 }
 
 func main() {
-	if len(os.Args) != 2 {
-		fmt.Fprintf(os.Stderr, "usage: secman settings [filename]\n")
-		os.Exit(1)
-	}
+	content, err := ioutil.ReadFile(settingsFile)
 
-	path := os.Args[1]
-
-	content, err := ioutil.ReadFile(path)
 	if err != nil {
-		log.Fatalf("could not read %v: %v", path, err)
+		log.Fatalf("could not read %v: %v", settingsFile, err)
 	}
 
 	var colorscheme editor.Colorscheme
-	if railscast := runtime.Files.FindFile(editor.RTColorscheme, "railscast"); railscast != nil {
-		if data, err := railscast.Data(); err == nil {
+
+	vs := gjson.Get(string(content), "rs_settings.request_body.theme")
+	tm := ""
+
+	if vs.Exists() {
+		tm = vs.String()
+	} else {
+		tm = "railscast"
+	}
+
+	if theme := runtime.Files.FindFile(editor.RTColorscheme, tm); theme != nil {
+		if data, err := theme.Data(); err == nil {
 			colorscheme = editor.ParseColorscheme(string(data))
 		}
 	}
 
 	app := tview.NewApplication()
 
-	buffer := editor.NewBufferFromString(string(content), path)
+	buffer := editor.NewBufferFromString(string(content), settingsFile)
 	root := editor.NewView(buffer)
 	root.SetRuntimeFiles(runtime.Files)
 	root.SetColorscheme(colorscheme)
@@ -46,13 +55,14 @@ func main() {
 	root.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		switch event.Key() {
 			case tcell.KeyCtrlS:
-				saveBuffer(buffer, path)
+				saveBuffer(buffer, settingsFile)
 				app.Stop()
 				return nil
 			case tcell.KeyCtrlQ:
 				app.Stop()
 				return nil
-			}
+		}
+
 		return event
 	})
 

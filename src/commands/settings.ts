@@ -39,7 +39,12 @@ export default class Settings extends Command {
 ----------------
 ${bold(
   "editor"
-)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].`);
+)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
+----------------
+${bold(
+  "settings_editor_theme"
+)}: The theme to use for the settings editor, eg [ "railscast", "darcula", "bubblegum" ].
+`);
     } else if (flags["editor-install"]) {
       InstallEditor();
     } else {
@@ -69,14 +74,6 @@ ${bold(
           }
         } else {
           if (platform() === "win32") {
-            // const ps = new powershell(
-            //   "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
-            // );
-
-            // ps.on("output", (data: any) => {
-            //   console.log(data);
-            // });
-
             sh.exec(`${DOT_SECMAN_PATH}/editor.exe ~/.secman/settings.json`);
 
             opening.stop();
