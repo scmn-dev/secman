@@ -5,8 +5,8 @@ import (
 	"path"
 	"io/ioutil"
 
-	editor "github.com/scmn-dev/editor/core"
-	"github.com/scmn-dev/editor/core/runtime"
+	"github.com/abdfnx/resto/core/editor"
+	"github.com/abdfnx/resto/core/editor/runtime"
 
 	"github.com/rivo/tview"
 	"github.com/tidwall/gjson"

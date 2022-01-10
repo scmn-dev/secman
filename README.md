@@ -99,8 +99,8 @@ secman read -l Twitter
 
 #### show password
 
-```bash
-secman show -lp Twitter
+```
+secman read -lp Twitter
 
 ╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
 │ Title   │ URL                 │ Username         │ Password  │ Extra    │
