@@ -2,7 +2,7 @@ import { Command, flags } from "@oclif/command";
 import * as sh from "shelljs";
 import { platform } from "os";
 import { spinner } from "@secman/spinner";
-import { InstallEditor } from "../../tools/install-editor";
+import { InstallEditor } from "../../tools/install_editor";
 import { readSettingsFile } from "../../app/config";
 import { bold } from "../../design/layout";
 import { DOT_SECMAN_PATH } from "../../constants";
@@ -43,8 +43,7 @@ ${bold(
 ----------------
 ${bold(
   "settings_editor_theme"
-)}: The theme to use for the settings editor, eg [ "railscast", "darcula", "bubblegum" ].
-`);
+)}: The theme to use for the settings editor, eg [ "railscast", "darcula", "bubblegum" ].`);
     } else if (flags["editor-install"]) {
       InstallEditor();
     } else {

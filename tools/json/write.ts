@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { promises as fsPromises } from "fs";
 import { isPlainObject as isPlainObj, sortKeys } from "../sort";
-import detectIndent from "../detect-indent";
+import detectIndent from "../detect_indent";
 const writeFileAtomic = require("write-file-atomic");
 
 const init = (function_: any, filePath: any, data: any, options: any) => {

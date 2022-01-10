@@ -10,7 +10,7 @@ import {
   SECMAN_EDITOR_PATH,
   SECMAN_SETTINGS_PATH,
 } from "../../constants";
-import { InstallEditor } from "../../tools/install-editor";
+import { InstallEditor } from "../../tools/install_editor";
 import { writeCFile, writeDFile, writeSettingFile } from "../../app/config";
 import { bold, command, error, success } from "../../design/layout";
 

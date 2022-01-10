@@ -10,6 +10,8 @@ on:
 env:
   RELEASE: ${{ github.event.inputs.release }}
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GITHUB_ACTIONS_NAME: "github-actions[bot]"
+  GITHUB_ACTIONS_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
 
 permissions: write-all
 
@@ -72,3 +74,22 @@ jobs:
           files: |
             ./tools/editor/editor.exe
             ./tools/editor/editor
+
+      - name: Bump Homebrew tap
+        run: |
+          cd scripts/brew
+          npm i
+          npm start
+          cd tmp/homebrew-secman
+          git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
+          git diff --cached
+          git add .
+          git commit -m "secman v${{ env.RELEASE }}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          repository: "scmn-dev/homebrew-secman"
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          directory: ./scripts/brew/tmp/homebrew-secman

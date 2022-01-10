@@ -143,19 +143,6 @@ async function updateHomebrew() {
 
   await updateSecmanNodeFormula(homebrewDir);
   await updateSecmanFormula(homebrewDir);
-
-  const git = async (args, opts = {}) => {
-    await execa("git", ["-C", homebrewDir, ...args], opts);
-  };
-
-  await git(["add", "Formula"]);
-  await git(["config", "--local", "core.pager", "cat"]);
-  await git(["diff", "--cached"], { stdio: "inherit" });
-  await git(["commit", "-m", `secman v${VERSION}`]);
-
-  if (process.env.SKIP_GIT_PUSH === undefined) {
-    await git(["push", "origin", "master"]);
-  }
 }
 
 updateHomebrew().catch((err) => {
