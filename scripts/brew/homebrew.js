@@ -10,7 +10,6 @@ const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
 const _crypto = require("crypto");
-const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
 const SECMAN_DIR = path.join(__dirname, "..", "..");

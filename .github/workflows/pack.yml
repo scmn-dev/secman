@@ -36,7 +36,7 @@ jobs:
         run: |
           cd ..
           sudo chown -R root secman
-          cd secman 
+          cd secman
           sudo yarn pack:deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
@@ -78,8 +78,8 @@ jobs:
       - name: Bump Homebrew tap
         run: |
           cd scripts/brew
-          npm i
-          npm start
+          sudo yarn
+          sudo yarn start
           cd tmp/homebrew-secman
           git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
