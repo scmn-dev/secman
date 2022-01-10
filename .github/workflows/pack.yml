@@ -81,11 +81,11 @@ jobs:
           sudo yarn
           sudo yarn start
           cd tmp/homebrew-secman
-          git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
-          git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
-          git diff --cached
-          git add .
-          git commit -m "secman v${{ env.RELEASE }}"
+          sudo git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
+          sudo git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
+          sudo git diff --cached
+          sudo git add .
+          sudo git commit -m "secman v${{ env.RELEASE }}"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
