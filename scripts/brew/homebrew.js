@@ -2,18 +2,21 @@
 // This code is forked from https://github.com/heroku/cli/blob/master/scripts/release/homebrew.js
 
 const fs = require("fs");
-const execa = require("execa");
 const https = require("https");
 const path = require("path");
 const rm = require("rimraf");
 const mkdirp = require("mkdirp");
 const { promisify } = require("util");
 const { pipeline } = require("stream");
-const _crypto = require("crypto");
+const crypto = require("crypto");
+const sh = require("shelljs");
 
 const NODE_JS_BASE = "https://nodejs.org/download/release";
+const CLI_URL = "https://cli-files.secman.dev";
+const ROOT = __dirname;
 const SECMAN_DIR = path.join(__dirname, "..", "..");
 const DIST_DIR = path.join(SECMAN_DIR, "dist");
+const TEMPLATES = path.join(ROOT, "templates");
 const PJSON = require(path.join(SECMAN_DIR, "package.json"));
 const NODE_VERSION = PJSON.oclif.update.node.version;
 const VERSION = PJSON.version;
@@ -55,22 +58,12 @@ async function getDownloadInfoForNodeVersion(version) {
   };
 }
 
-// if (!process.env.CIRCLE_TAG) {
-//   console.log("Not on stable release; skipping releasing homebrew");
-//   process.exit(0);
-// }
-
 async function calculateSHA256(fileName) {
-  const hash = _crypto.createHash("sha256");
+  const hash = crypto.createHash("sha256");
   hash.setEncoding("hex");
   await promisify(pipeline)(fs.createReadStream(fileName), hash);
   return hash.read();
 }
-
-const ROOT = __dirname;
-const TEMPLATES = path.join(ROOT, "templates");
-
-const CLI_URL = "https://cli-files.secman.dev";
 
 async function updateSecmanFormula(brewDir) {
   const templatePath = path.join(TEMPLATES, "secman.rb");
@@ -130,11 +123,7 @@ async function updateHomebrew() {
     `cloning https://github.com/scmn-dev/homebrew-secman to ${homebrewDir}`
   );
 
-  await execa("git", [
-    "clone",
-    "https://github.com/scmn-dev/homebrew-secman.git",
-    homebrewDir,
-  ]);
+  sh.exec(`git clone https://github.com/scmn-dev/homebrew-secman.git ${homebrewDir}`);
 
   console.log(`done cloning scmn-dev/homebrew-secman to ${homebrewDir}`);
 

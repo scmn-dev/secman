@@ -5,8 +5,8 @@ dist
 /lib
 tmp
 node_modules
-.snapcraft
 .env
 oclif.manifest.json
 
 /tools/editor/editor
+/tools/editor/editor.exe
