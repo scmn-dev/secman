@@ -30,7 +30,7 @@ func main() {
 
 	var colorscheme editor.Colorscheme
 
-	vs := gjson.Get(string(content), "rs_settings.request_body.theme")
+	vs := gjson.Get(string(content), "settings_editor_theme")
 	tm := ""
 
 	if vs.Exists() {
