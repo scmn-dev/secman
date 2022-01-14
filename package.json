@@ -62,7 +62,6 @@
     "rimraf": "3.0.2",
     "shelljs": "^0.8.4",
     "signal-exit": "^3.0.5",
-    "store": "2.0.12",
     "string-width": "4.2.0",
     "strip-ansi": "6.0.0",
     "table": "^6.7.2",
@@ -84,11 +83,11 @@
     "@types/prompts": "^2.0.14",
     "@types/shelljs": "^0.8.9",
     "@types/signal-exit": "^3.0.1",
-    "@types/store": "2.0.2",
     "@types/whatwg-fetch": "^0.0.33",
     "@types/wrap-ansi": "^8.0.1",
     "@types/write-file-atomic": "^3.0.2",
-    "@types/yargs": "^17.0.4"
+    "@types/yargs": "^17.0.4",
+    "follow-redirects": "^1.14.7"
   },
   "engines": {
     "node": ">=8.0.0"
