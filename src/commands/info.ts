@@ -1,5 +1,5 @@
 import { Command, flags } from "@oclif/command";
-import { GetLatestGHRelease } from "../../api/github/api";
+import { GetLatest } from "../../api/latest";
 import { readConfigFile } from "../../app/config";
 
 export default class Info extends Command {
@@ -14,7 +14,7 @@ export default class Info extends Command {
   async run() {
     const { flags } = this.parse(Info);
 
-    const smca_version = await GetLatestGHRelease("core");
+    const smca_version = await GetLatest("core");
     const name = readConfigFile("name") ?? "No User";
 
     console.log(`Secman CLI

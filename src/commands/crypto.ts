@@ -11,8 +11,11 @@ export default class Crypto extends Command {
     sha256: flags.boolean({ char: "s", description: "SHA256 hash (Default)" }),
     sha512: flags.boolean({ char: "S", description: "SHA512 hash" }),
     md5: flags.boolean({ char: "m", description: "MD5 hash" }),
-    base64: flags.boolean({ char: "b", description: "Base64 encoded" }),
     aes: flags.boolean({ char: "a", description: "AES encrypted" }),
+    "just hash": flags.boolean({
+      char: "j",
+      description: "just show the hash",
+    }),
   };
 
   static args = [{ name: "STRING" }];
@@ -26,8 +29,13 @@ export default class Crypto extends Command {
       case flags.sha256:
         if (args.STRING) {
           hash = cryptojs.SHA256(args.STRING).toString();
-          console.log(`String: ${args.STRING}
+
+          if (flags["just hash"]) {
+            this.log(hash);
+          } else {
+            this.log(`String: ${args.STRING}
 Hash: ${hash}`);
+          }
         } else {
           this.error("No string provided");
         }
@@ -36,8 +44,13 @@ Hash: ${hash}`);
       case flags.sha512:
         if (args.STRING) {
           hash = cryptojs.SHA512(args.STRING).toString();
-          console.log(`String: ${args.STRING}
+
+          if (flags["just hash"]) {
+            this.log(hash);
+          } else {
+            this.log(`String: ${args.STRING}
 Hash: ${hash}`);
+          }
         } else {
           this.error("No string provided");
         }
@@ -47,19 +60,13 @@ Hash: ${hash}`);
       case flags.md5:
         if (args.STRING) {
           hash = cryptojs.MD5(args.STRING).toString();
-          console.log(`String: ${args.STRING}
-Hash: ${hash}`);
-        } else {
-          this.error("No string provided");
-        }
 
-        break;
-
-      case flags.base64:
-        if (args.STRING) {
-          hash = cryptojs.enc.Base64.stringify(args.STRING);
-          console.log(`String: ${args.STRING}
+          if (flags["just hash"]) {
+            this.log(hash);
+          } else {
+            this.log(`String: ${args.STRING}
 Hash: ${hash}`);
+          }
         } else {
           this.error("No string provided");
         }
@@ -73,8 +80,12 @@ Hash: ${hash}`);
             readDataFile("master_password_hash")
           ).toString();
 
-          console.log(`String: ${args.STRING}
+          if (flags["just hash"]) {
+            this.log(hash);
+          } else {
+            this.log(`String: ${args.STRING}
 Hash: ${hash}`);
+          }
         } else {
           this.error("No string provided");
         }
@@ -84,8 +95,12 @@ Hash: ${hash}`);
       default:
         hash = cryptojs.SHA256(args.STRING).toString();
 
-        console.log(`String: ${args.STRING}
+        if (flags["just hash"]) {
+          this.log(hash);
+        } else {
+          this.log(`String: ${args.STRING}
 Hash: ${hash}`);
+        }
 
         break;
     }

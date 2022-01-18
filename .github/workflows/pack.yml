@@ -4,11 +4,16 @@ on:
   workflow_dispatch:
     inputs:
       release:
-        description: "The New Secman Release"
+        description: "The New Secman Release (without 'v')"
         required: true
 
 env:
   RELEASE: ${{ github.event.inputs.release }}
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GITHUB_ACTIONS_NAME: "github-actions[bot]"
+  GITHUB_ACTIONS_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
+
+permissions: write-all
 
 jobs:
   build:
@@ -19,7 +24,7 @@ jobs:
 
       - uses: actions/setup-node@v2.4.0
         with:
-          node-version: 16
+          node-version: 17
 
       - name: Install Dependencies
         run: yarn
@@ -29,10 +34,12 @@ jobs:
 
       - name: Build .deb Package
         run: |
+          cd ..
+          sudo chown -R root secman
+          cd secman
           sudo yarn pack:deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_amd64.deb ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
           sudo mv ./dist/deb/secman_${{ env.RELEASE }}-1_armel.deb ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
-
       - name: Format
         run: echo "FILE_FORMAT=./dist/secman-v${{ env.RELEASE }}/secman-v${{ env.RELEASE }}" >> $GITHUB_ENV
 
@@ -49,3 +56,40 @@ jobs:
             ${{ env.FILE_FORMAT }}.tar.gz
             ./dist/deb/secman_v${{ env.RELEASE }}_amd64.deb
             ./dist/deb/secman_v${{ env.RELEASE }}_arm.deb
+
+      - name: Set up `Go`
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Build editor
+        run: sudo yarn build:editor
+
+      - name: Upload editor to scmn-dev/editor repo
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.RELEASE }}
+          name: "Editor of v${{ env.RELEASE }}"
+          repository: "scmn-dev/editor"
+          files: |
+            ./tools/editor/editor.exe
+            ./tools/editor/editor
+
+      - name: Bump Homebrew tap
+        run: |
+          cd scripts/brew
+          sudo yarn
+          sudo yarn start
+          cd tmp/homebrew-secman
+          sudo git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
+          sudo git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
+          sudo git diff --cached
+          sudo git add .
+          sudo git commit -m "secman v${{ env.RELEASE }}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          repository: "scmn-dev/homebrew-secman"
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          directory: ./scripts/brew/tmp/homebrew-secman

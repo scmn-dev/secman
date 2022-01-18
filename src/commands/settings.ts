@@ -2,9 +2,10 @@ import { Command, flags } from "@oclif/command";
 import * as sh from "shelljs";
 import { platform } from "os";
 import { spinner } from "@secman/spinner";
-import { InstallEditor } from "../../tools/install-editor";
+import { InstallEditor } from "../../tools/install_editor";
 import { readSettingsFile } from "../../app/config";
 import { bold } from "../../design/layout";
+import { DOT_SECMAN_PATH } from "../../constants";
 const prompts = require("prompts");
 prompts.override(require("yargs").argv);
 const powershell = require("powershell");
@@ -38,12 +39,22 @@ export default class Settings extends Command {
 ----------------
 ${bold(
   "editor"
-)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].`);
+)}: The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
+----------------
+${bold(
+  "settings_editor_theme"
+)}: The theme to use for the settings editor, eg [ "railscast", "darcula", "bubblegum" ].`);
     } else if (flags["editor-install"]) {
       InstallEditor();
     } else {
       if (editor === "secman_editor") {
-        const editor = sh.find("~/.secman/editor");
+        let editor = sh.find("~/.secman");
+
+        if (platform() === "win32") {
+          editor = sh.find("~/.secman/editor.exe");
+        } else {
+          editor = sh.find("~/.secman/editor");
+        }
 
         if (editor.length === 0) {
           const qe = await prompts({
@@ -62,13 +73,7 @@ ${bold(
           }
         } else {
           if (platform() === "win32") {
-            const ps = new powershell(
-              "$HOME/.secman/editor.exe $HOME/.secman/settings.json"
-            );
-
-            ps.on("output", (data: any) => {
-              console.log(data);
-            });
+            sh.exec(`${DOT_SECMAN_PATH}/editor.exe ~/.secman/settings.json`);
 
             opening.stop();
           } else {

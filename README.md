@@ -15,7 +15,7 @@
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://twitter.com/_secman">Twitter</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/secman-archive/secman-v1">Secman V1</a>
+  <a href="https://github.com/scmn-dev/secman/tree/v1">Secman V1</a>
   <br />
   <hr />
 </div>
@@ -99,8 +99,8 @@ secman read -l Twitter
 
 #### show password
 
-```bash
-secman show -lp Twitter
+```
+secman read -lp Twitter
 
 ╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
 │ Title   │ URL                 │ Username         │ Password  │ Extra    │
@@ -166,12 +166,6 @@ brew install secman
 
 ```bash
 curl -sL https://cli.secman.dev | bash
-```
-
-### Using SnapCraft
-
-```bash
-sudo snap install secman
 ```
 
 ### Via [Docker](https://docker.com)
@@ -257,11 +251,13 @@ secman settings
 - [**secman website**](https://secman.dev)
 - [**docs**](https://secman.dev/docs)
 - [**changelog**](https://secman.dev/changelog)
-  <br />
+- [**privacy policy of secman**](https://secman.dev/privacy)
 
-- [![open in visual studio code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/scmn-dev/secman)
+## Contributing
 
-- [![open in gitpod](./.github/assets/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/scmn-dev/secman)
+Thanks for your interest in contributing to `secman` . You can start a development environment with [gitpod](https://www.gitpod.io):
+
+[![open in gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/scmn-dev/secman)
 
 ## Code Status
 

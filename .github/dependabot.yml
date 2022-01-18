@@ -1,0 +1,9 @@
+---
+version: 2
+updates:
+  - package-ecosystem: "gomod"
+    directory: "/tools/editor"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - abdfnx

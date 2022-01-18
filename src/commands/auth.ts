@@ -35,7 +35,6 @@ export default class Auth extends Command {
     const configFile = `${process.env.HOME}/.secman/config.json`;
 
     const _ = async (isNewLogin: boolean) => {
-      // let email = readlineSync.questionEMail("Enter your email: ");
       const email =
         flags.email ||
         readConfigFile("user") ||

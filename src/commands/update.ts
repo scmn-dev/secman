@@ -3,7 +3,7 @@ import { spinner } from "@secman/spinner";
 import { platform } from "os";
 import * as sh from "shelljs";
 const powershell = require("powershell");
-import { GetLatestGHRelease } from "../../api/github/api";
+import { GetLatest } from "../../api/latest";
 import { bold } from "../../design/layout";
 
 export default class Update extends Command {
@@ -18,7 +18,7 @@ export default class Update extends Command {
 
     const spnr = spinner("📦 Checking for updates...");
     const currentVersion = "v" + this.config.version;
-    const latestVersion = await GetLatestGHRelease("secman");
+    const latestVersion = await GetLatest("secman")
     const successMsg =
       "Secman CLI upgraded to " + latestVersion + " successfully";
 
@@ -31,7 +31,7 @@ export default class Update extends Command {
         "🚧 Upgrading Secman CLI from " +
           bold(currentVersion) +
           " to " +
-          bold(latestVersion) +
+          latestVersion +
           "\n"
       ).start();
 
@@ -47,10 +47,9 @@ export default class Update extends Command {
         sh.exec(`
           if [ "$SM_PROVIDER" = "script" ]; then
             sudo apt-get update && sudo apt-get update -y secman
-          elif [ "$SM_PROVIDER" = "brew" ]; then
-            brew upgrade secman
-          elif [ "$SM_PROVIDER" = "snap" ]; then
-            sudo snap refresh secman
+          elif [ "$SM_PROVIDER" != "script" ]; then
+            echo "if you are using a non-script provider, you must manually update the CLI"
+            echo "like if you installed it with homebrew, run 'brew upgrade secman'"
           else
             npm upgrade -g secman
           fi

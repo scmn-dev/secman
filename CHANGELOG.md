@@ -4,6 +4,56 @@
 
 ---
 
+## [[v6.1.3] 2022-01-10](#v613-2022-01-10)
+
+### Added
+
+- Add `settings_editor_theme` prop in `~/.secman/settings.json`
+
+### Changed
+
+- Update pathes
+- Update `Secman V1` url to `https://github.com/scmn-dev/secman/tree/v1`
+
+### Fixed
+
+- Fix `secman settings` command
+
+## [[v6.1.2] 2022-01-01](#v612-2022-01-01)
+
+### Added
+
+- add `just-hash` flag to `crypto` command
+
+### Changed
+
+- upgrade `update` command
+- remove `base64` hash from `crypto` command
+
+### Fixed
+
+- fix secman core version in `info` command
+
+## [[v6.1.1] 2021-12-27](#v611-2021-12-27)
+
+### Changed
+
+- remove `bcrypt` command
+
+### Fixed
+
+- fix configs in windows
+
+## [[v6.1.0] 2021-12-26](#v610-2021-12-26)
+
+### Changed
+
+- fix all secman help errors and bugs
+
+## [[v6.0.9] 2021-12-26](#v609-2021-12-26)
+
+> a release to fix a bug in the `secman`
+
 ## [[v6.0.8] 2021-12-14](#v608-2021-12-14)
 
 ### Added

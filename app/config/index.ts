@@ -97,7 +97,8 @@ export async function writeSettingFile() {
   await writeJSON(
     SECMAN_SETTINGS_PATH,
     {
-      editor: "secman_editor"
+      editor: "secman_editor",
+      settings_editor_theme: "railscast"
     },
     {}
   );
