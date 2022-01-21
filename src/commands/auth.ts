@@ -120,7 +120,7 @@ export default class Auth extends Command {
                 console.log(
                   chalk.red.bold(
                     `\nInvalid email or master password. if you don't have an account, please create one using the command ${chalk.gray.bold(
-                      "`secman auth --create-account`."
+                      "`secman auth --createAccount`."
                     )}`
                   )
                 );
