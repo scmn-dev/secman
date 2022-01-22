@@ -62,7 +62,7 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.5",
     "signal-exit": "^3.0.5",
-    "string-width": "4.2.0",
+    "string-width": "4.2.3",
     "strip-ansi": "6.0.1",
     "table": "^6.7.2",
     "ts-node": "^8",
