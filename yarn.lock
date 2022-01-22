@@ -2027,10 +2027,10 @@ object-treeify@^1.1.4:
   resolved "https://registry.yarnpkg.com/object-treeify/-/object-treeify-1.1.33.tgz#f06fece986830a3cba78ddd32d4c11d1f76cdf40"
   integrity sha512-EFVjAYfzWqWsBMRHPMAXLCDIJnpMhdWAqR7xG6M6a2cs6PMFpl/+Z20w9zDW4vkxOFfddegBKq9Rehd0bxWE7A==
 
-octokit@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/octokit/-/octokit-1.7.0.tgz#b98a663ecba951a35428de75786fb8e2669e1467"
-  integrity sha512-oxDHhPjxjKqUD8wa/2XMl7aqp/3ypihJVFxqEN8NbrtS6uAoa9i5KJmKuT1Nik1JuQHuCNeUqObrVKbIMBPMMQ==
+octokit@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/octokit/-/octokit-1.7.1.tgz#d86e51c8e0cec65cb64822ca2c9ff1b052593799"
+  integrity sha512-1b7eRgU8uWetHOWr8f9ptnVo2EKbrkOfocMeQdpgCt7tl/LK67HptFsy2Xg4fMjsJ/+onoBJW0hy/fO0In3/uA==
   dependencies:
     "@octokit/app" "^12.0.4"
     "@octokit/core" "^3.5.1"
