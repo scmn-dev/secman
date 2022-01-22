@@ -480,10 +480,10 @@
     "@octokit/webhooks-types" "5.0.0"
     aggregate-error "^3.1.0"
 
-"@secman/spinner@0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@secman/spinner/-/spinner-0.1.3.tgz#ca2a63b271fc8dd32dfc48a9d66c350cb33502d2"
-  integrity sha512-j80nan+LgLuCYTWB06updkBQVywIVU5CNKH8UoKwwPSAMRTI04HqdEqhw56AZVVvo0l62qfvyYg05omVnHHM7g==
+"@secman/spinner@0.1.22":
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/@secman/spinner/-/spinner-0.1.22.tgz#359b7c2c85bcf7e70d01d8a4c3ab7415aa72d1f2"
+  integrity sha512-YmneHYbybQP2XKT1Z7+fV+eNblLz49A393rFFDjbhk0U4Q9jDH0W4IEjVLcF+4QFcRaHenA3ONQ/64fdtpkPfg==
   dependencies:
     bl "^5.0.0"
     chalk "^4.1.2"
