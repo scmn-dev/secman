@@ -63,7 +63,7 @@
     "shelljs": "0.8.5",
     "signal-exit": "^3.0.5",
     "string-width": "4.2.0",
-    "strip-ansi": "6.0.0",
+    "strip-ansi": "6.0.1",
     "table": "^6.7.2",
     "ts-node": "^8",
     "tslib": "^1",
