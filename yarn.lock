@@ -90,7 +90,30 @@
     is-wsl "^2.1.1"
     tslib "^2.0.0"
 
-"@oclif/core@1.0.11", "@oclif/core@^1.0.10", "@oclif/core@^1.0.8":
+"@oclif/core@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.1.0.tgz#e007f681f4d4bcad91214c1be6ba403e91984da0"
+  integrity sha512-lbNS1cvpCa3+yT3zcwiZKXFq9b3bk/Y3URomXvMAm/S+nitQdviA5L8racaJ0Qyd4yHIeePiyGjCcrI10zuNuQ==
+  dependencies:
+    "@oclif/linewrap" "^1.0.0"
+    chalk "^4.1.2"
+    clean-stack "^3.0.1"
+    cli-ux "^6.0.6"
+    debug "^4.3.3"
+    fs-extra "^9.1.0"
+    get-package-type "^0.1.0"
+    globby "^11.0.4"
+    indent-string "^4.0.0"
+    is-wsl "^2.2.0"
+    lodash "^4.17.21"
+    semver "^7.3.5"
+    string-width "^4.2.3"
+    strip-ansi "^6.0.1"
+    tslib "^2.3.1"
+    widest-line "^3.1.0"
+    wrap-ansi "^7.0.0"
+
+"@oclif/core@^1.0.10", "@oclif/core@^1.0.8":
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.0.11.tgz#5ad1258c0c756073744ac8b9403e9314757d949f"
   integrity sha512-CQw9dbzh+BTF73cp53mnDZnTJF4hth7oab761Si4pEW18PDYDLyOv7TnEtJkvPu4rlTaGBh2jge9BDXgwye4vQ==
