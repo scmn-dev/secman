@@ -8,6 +8,7 @@ require (
 	github.com/briandowns/spinner v1.18.1
 	github.com/charmbracelet/lipgloss v0.5.0
 	github.com/evertras/bubble-table v0.8.3
+	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/spf13/cobra v1.3.0
 	github.com/tidwall/gjson v1.14.0
