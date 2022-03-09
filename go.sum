@@ -525,6 +525,7 @@ github.com/sahilm/fuzzy v0.1.0/go.mod h1:VFvziUEIMCrT6A6tw2RFIXPXXmzXbOsSHF0DOI8
 github.com/schollz/pake/v3 v3.0.4/go.mod h1:Q28rSQCHYzEtMQoi80R1MdpPRgNN/Si2Xdilx4NvsoQ=
 github.com/scmn-dev/browser v0.1.0/go.mod h1:3wshMIhDXDjg9C04LwKfAWdZ28TYCWQqqHcTMAh9SHQ=
 github.com/scmn-dev/browser v0.1.2/go.mod h1:3wshMIhDXDjg9C04LwKfAWdZ28TYCWQqqHcTMAh9SHQ=
+github.com/scmn-dev/browser v0.1.3 h1:ddL6bHEZseXPHOPsDEzaHp1PMfekSJ3PUQNib+wIXx8=
 github.com/scmn-dev/browser v0.1.3/go.mod h1:3wshMIhDXDjg9C04LwKfAWdZ28TYCWQqqHcTMAh9SHQ=
 github.com/scmn-dev/gh-api v0.3.5/go.mod h1:ydYzo2zM9rLvzDhNzbMkiiIv99Q7Bm6MNZj4ewQyjyw=
 github.com/scmn-dev/gh-api v0.3.32/go.mod h1:DELTISOMbLzqHdJ/LReVEi3ERfo9hwrrK5YkPFPPBZo=
