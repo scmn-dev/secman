@@ -1,7 +1,0 @@
-{
-  "data": {
-    "access_token": "USER_ACCESS_TOKEN",
-    "transmission_key": "USER_TRANSMISSION_KEY",
-    "master_password_hash": "USER_MASTERPASSWORD_HASH"
-  }
-}
