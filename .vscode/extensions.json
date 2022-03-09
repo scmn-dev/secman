@@ -5,6 +5,8 @@
     "esbenp.prettier-vscode",
     "PKief.material-icon-theme",
     "aaron-bond.better-comments",
-    "dsznajder.es7-react-js-snippets"
+    "dsznajder.es7-react-js-snippets",
+    "golang.go",
+    "bbenoist.Nix"
   ]
 }
