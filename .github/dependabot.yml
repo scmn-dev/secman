@@ -2,7 +2,13 @@
 version: 2
 updates:
   - package-ecosystem: "gomod"
-    directory: "/tools/editor"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - abdfnx
+  - package-ecosystem: npm
+    directory: "/core"
     schedule:
       interval: "daily"
     reviewers:
