@@ -1,0 +1,64 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  SECMAN_UNIX_PATH: /usr/local/bin
+
+tasks:
+  default:
+    cmds:
+      - task: build
+      - task: build-core
+
+  set-tag-and-date:
+    cmds:
+      - if [ -f "date.txt" ]; then rm date.txt; fi
+      - if [ -f "tag.txt" ]; then rm tag.txt; fi
+      - go run ./scripts/date.go >> date.txt
+      - git describe --abbrev=0 --tags >> tag.txt
+
+  remove:
+    cmds:
+      - sudo rm -rf "{{ .SECMAN_UNIX_PATH }}"/secman
+
+  install:
+    cmds:
+      - sudo mv secman "{{ .SECMAN_UNIX_PATH }}"
+
+  build:
+    cmds:
+      - task: set-tag-and-date
+      - go mod tidy
+      - go build -ldflags "-X main.version=$(cat tag.txt) -X main.buildDate=$(cat date.txt)" -o secman
+
+  build-core:
+    dir: ./core
+    cmds:
+      - if ! [ -d ./node_modules ]; then yarn; fi
+      - yarn build
+
+  link-core:
+    dir: ./core
+    cmds:
+      - yarn link
+
+  publish-core:
+    dir: ./core
+    cmds:
+      - yarn publish
+
+  bfs:
+    desc: build from source
+    cmds:
+      - task: build
+      - task: build-core
+      - task: link-core
+      - sudo mv ./secman "{{ .SECMAN_UNIX_PATH }}"
+
+  bfsw:
+    desc: build from source (windows)
+    cmds:
+      - task: build-core
+      - task: link-core
+      - ./scripts/bfs.ps1

@@ -6,5 +6,6 @@
   "editor.fontLigatures": true,
   "git.autofetch": true,
   "git.confirmSync": false,
-  "javascript.updateImportsOnFileMove.enabled": "always"
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "compile-hero.disable-compile-files-on-did-save-code": true
 }

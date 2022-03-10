@@ -1,5 +1,1 @@
-* @abdfnx
-snapcraft.yaml @david-tomson
-.github/workflows/secman.yml @david-tomson
-.github/workflows/pack.yml @david-tomson
-README.md @Timothee-Cardoso
+* @abdfnx @Timothee-Cardoso @david-tomson

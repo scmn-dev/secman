@@ -1,6 +1,0 @@
-{
-  // The editor to use for editing the settings file, eg [ "vim", "code", "micro" ].
-  "editor": "secman_editor",
-  // The theme to use for the settings editor, eg [ "railscast", "darcula", "bubblegum" ].
-  "settings_editor_theme": "railscast"
-}

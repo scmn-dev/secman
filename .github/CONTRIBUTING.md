@@ -15,12 +15,14 @@ We'd also love to hear about ideas for new features as issues or discussions.
 
 ### Prerequisites:
 
-- `npm` version `>= 8.0.0`
+- `go` version >= `13`
+- `npm` version >= `8.0.0`
 
 ### Run
 
-* run **yarn build** to build.
-* run **yarn link** to link to secman and test it.
+* run **task build** to build secman cli.
+* run **task link** to link to secman core cli and test it.
+* run **task install** to setup secman and use it.
 
 ## Create or submitting a pull request
 

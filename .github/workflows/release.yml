@@ -1,0 +1,45 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+
+permissions: write-all
+
+jobs:
+  build-secman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up `Go`
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+
+      - name: Setup `Node.js`
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: 16
+          
+      - name: Set up `GoReleaser`
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          install-only: true
+
+      - name: Set up `Task`
+        uses: arduino/setup-task@v1
+
+      - name: Set up `Date`
+        run: go run ./scripts/date.go >> date.txt
+
+      - name: Build
+        run: BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
