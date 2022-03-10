@@ -81,7 +81,7 @@
     "@types/write-file-atomic": "^3.0.2",
     "@types/yargs": "^17.0.4",
     "follow-redirects": "^1.14.8",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^3.2.2"
   },
   "engines": {
     "node": ">=8.0.0"
