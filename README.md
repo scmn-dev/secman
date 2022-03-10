@@ -1,274 +1,211 @@
-<div align="center">
-  <h1>Secman CLI</h1>
-  <p align="center">
-   <img src="https://assets.secman.dev/assets/Secman.svg" />
-  </p>
-  <a href="https://npm.im/secman"><img alt="npm" src="https://img.shields.io/npm/v/secman?label=npm&logo=npm&style=flat-square" /></a>
-  <a href="https://github.com/scmn-dev/secman/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/scmn-dev/secman?style=flat-square" /></a>
-  <br />
-  <br />
-  <a href="https://secman.dev">Website</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://secman.dev/docs">Docs</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://secman.dev/blog">Blog</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://twitter.com/_secman">Twitter</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/scmn-dev/secman/tree/v1">Secman V1</a>
-  <br />
-  <hr />
-</div>
+# Secman CLI
 
-## Secman Products
+[**secman cli**](https://secman.dev) is a TUI password manager can store, retrieves, generates, and synchronizes passwords, The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere with **Secman Cloud** 😉.
 
-- [**Secman Desktop**](https://d.secman.dev)
-- [**Secman Extension**](https://secman.dev/extension)
+### Featuers
 
----
+- Not GPG cored.
+- It uses a master password to securely store your passwords.
+- It syncs your passwords.
+- Easy to use.
+- It is written in Go.
+- You can easily manage your passwords from everywhere, desktop, web, terminal, and more.
 
-> `secman` is a password manager can store, retrieves, generates, and synchronizes passwords, and is written in _**TypeScript**_! The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere.
+### Installation ⬇
 
-## Features
+### Using script
 
-- **Not GPG cored**.
-- **It uses a master password to securely store your passwords**.
-- **It syncs your passwords**.
-- **Easy to use**.
-- **It is written in TypeScript**.
-- **You can easily manage your passwords from everywhere, desktop, web, terminal, and more**.
-
-## Examples
-
-> Initialize `~/.secman`
+- Shell
 
 ```bash
-secman init
+curl -sL https://u.secman.dev | bash
 ```
 
-> Authenticate
-
-```bash
-secman auth
-
-# with one command
-secman auth --username EMAIL --password MASTER_PASSWORD
-
-# read the master password from stdin
-cat password.txt | secman auth -u EMAIL --password-stdin
-```
-
-> Create a new password
-
-```bash
-secman new -l
-
-✔ Title › Twitter
-✔ URL › https://twitter.com
-✔ Username › _secman
-✔ Password › *********
-✔ Extra › no extra
-
-Password created
-```
-
-> List passwords
-
-```
-secman .
-.
-├──Logins
-│  └──Twitter
-├──Credit Cards
-├──Emails
-├──Notes
-└──Servers
-```
-
-> Read It
-
-```
-secman read -l Twitter
-
-╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
-│ Title   │ URL                 │ Username         │ Password  │ Extra    │
-├─────────┼─────────────────────┼──────────────────┼───────────┼──────────┤
-│ Twitter │ https://twitter.com │ hello@secman.dev │ ••••••••• │ no extra │
-╰─────────┴─────────────────────┴──────────────────┴───────────┴──────────╯
-```
-
-#### show password
-
-```
-secman read -lp Twitter
-
-╭─────────┬─────────────────────┬──────────────────┬───────────┬──────────╮
-│ Title   │ URL                 │ Username         │ Password  │ Extra    │
-├─────────┼─────────────────────┼──────────────────┼───────────┼──────────┤
-│ Twitter │ https://twitter.com │ hello@secman.dev │ hitwitter │ no extra │
-╰─────────┴─────────────────────┴──────────────────┴───────────┴──────────╯
-```
-
-> Edit password field
-
-```bash
-secman edit -l Twitter
-
-? Pick a field › - Use arrow-keys. Return to submit.
-❯   Title
-    URL
-    Username
-    Password
-    Extra
-```
-
-#### edit multiple fields
-
-```code
-secman edit -lm Twitter
-
-? Pick a field ›
-? Pick a field ›
-Instructions:
-    ↑/↓: Highlight option
-    ←/→/[space]: Toggle selection
-    a: Toggle all
-    enter/return: Complete answer
-◯   Title
-◉   URL
-◯   Username
-◯   Password
-◉   Extra
-```
-
-## Installation ⬇
-
-### Using npm
-
-```bash
-npm i -g secman
-```
-
-> (Windows): if you get an error you might need to change the **execution policy** _**(i.e. enable Powershell)**_ via
+- PowerShell
 
 ```powershell
-Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+iwr -useb https://w.secman.dev | iex
 ```
 
-### Using [Homebrew](https://brew.sh) (macOS and Linux)
+**then restart your powershell**
 
-```bash
-brew tap scmn-dev/secman
-brew install secman
+### Homebrew
+
+```
+brew install scmn-dev/tap/secman
 ```
 
-### Using script (Ubuntu/Debian)
+### Scoop
 
-```bash
-curl -sL https://cli.secman.dev | bash
+```
+scoop install secman
 ```
 
-### Via [Docker](https://docker.com)
+## Usage
 
-> `secman cli` image
+##### to learn about secman types, check out the [secman types](https://secman.dev/docs/password-types) page.
 
-```bash
-docker run -it smcr/secman-cli
+### Initialize `~/.secman`
+
+**Command**
+
 ```
-
-see [**secman cli docs**](https://docker.secman.dev/docs/sm-cli)
-
-> `secman container` image
-
-```bash
-docker run -it smcr/secman
-```
-
-see [**secman container docs**](https://docker.secman.dev/docs/sm-container)
-
-## Build from source
-
-see [**building from source**](https://secman.dev/docs/contributing/building_from_source) doc.
-
-## Getting started with secman
-
-> Initializing
-
-```bash
 secman init
 ```
 
-> Authenticate
+**Flags**
 
-```bash
+no flags
+
+### Manage secman's authentication state.
+
+**Command**
+
+```
 secman auth
 ```
 
-> Insert a New Password
+**Other Commands**
 
-```bash
+```
+create     Create a new secman account.
+login      Authenticate with secman.
+logout     Logout of the current user account.
+refresh    Refresh the current user account.
+```
+
+**Flags**
+
+no flags
+
+### Insert a New Password
+
+**Command**
+
+```
 secman insert --[PASSWORD_TYPE]
 ```
 
-> List Passwords
+**Flags**
 
-```bash
+```
+-c, --credit-cards   Insert a credit card to your vault.
+-e, --emails         Insert a email to your vault.
+-l, --logins         Insert a login password to your vault.
+-n, --notes          Insert a note to your vault.
+-s, --servers        Insert a server to your vault.
+```
+
+### List all your passwords
+
+**Command**
+
+```
 secman .
 ```
 
-> Read The Password
+**Flags**
+
+no flags
+
+### Read a password
+
+**Command**
 
 ```
 secman read --[PASSWORD_TYPE] <PASSWORD_NAME>
 ```
 
-> Edit Password
+**Flags**
 
-```bash
+```
+-c, --credit-cards   Read password from credit cards type.
+-e, --emails         Read password from emails type.
+-j, --json           Print password in JSON view.
+-l, --logins         Read password from logins type.
+-n, --notes          Read password from notes type.
+-s, --servers        Read password from servers type.
+-p, --show-hidden    Show hidden values.
+```
+
+### Update/Edit a password value
+
+**Command**
+
+```
 secman edit --[PASSWORD_TYPE] <PASSWORD_NAME>
 ```
 
-> Generate
+**Flags**
 
-```bash
-secman generate
+```
+-c, --credit-cards   Edit password from credit cards type.
+-e, --emails         Edit password from emails type.
+-l, --logins         Edit password from logins type.
+-n, --notes          Edit password from notes type.
+-s, --servers        Edit password from servers type.
 ```
 
-> Edit Settings
+### Delete a password
 
-```bash
-secman settings
+**Command**
+
+```
+secman delete --[PASSWORD_TYPE] <PASSWORD_NAME>
 ```
 
-> see [commands](https://secman.dev/docs/cli)
+**Flags**
 
-## License
+```
+-c, --credit-cards   Delete password from credit cards type.
+-e, --emails         Delete password from emails type.
+-l, --logins         Delete password from logins type.
+-n, --notes          Delete password from notes type.
+-s, --servers        Delete password from servers type.
+```
 
-[secman][smurl] is licensed under the terms of [MIT][miturl] License
+### Generate a password
+
+**Command**
+
+```
+secman generate --length 20
+```
+
+**Flags**
+
+```
+-l, --length int   Set the length of the password. (default 10)
+-r, --raw          Generate a password and print it.
+```
+
+> to learn more about secman commands run `secman help`
 
 ## Some Resources
 
-- [**secman website**](https://secman.dev)
+- [**secman website**][smweb]
 - [**docs**](https://secman.dev/docs)
 - [**changelog**](https://secman.dev/changelog)
 - [**privacy policy of secman**](https://secman.dev/privacy)
 
+## Other Secman Products
+
+- [**Secman Desktop**](https://github.com/scmn-dev/desktop)
+- [**Secman Extension**](https://secman.dev/extension)
+
 ## Contributing
 
-Thanks for your interest in contributing to `secman` . You can start a development environment with [gitpod](https://www.gitpod.io):
+Thanks for your interest in contributing to `secman`. You can start a development environment with [gitpod](https://www.gitpod.io):
 
 [![open in gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/scmn-dev/secman)
 
-## Code Status
+## Special thanks ❤
 
-[![CodeQL](https://img.shields.io/github/workflow/status/scmn-dev/secman/CodeQL?color=blue&label=CodeQL%20Build&logo=github&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/codeql.yml)
-[![Secman CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20CI?color=blue&label=Secman%20CI&logo=github-actions&logoColor=white&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/secman.yml)
-[![Secman Docker CI](https://img.shields.io/github/workflow/status/scmn-dev/secman/Secman%20Docker%20CI?color=blue&label=Secman%20Docker%20CI&logo=docker&style=flat-square)](https://github.com/scmn-dev/secman/actions/workflows/docker.yml)
-![Codacy grade](https://img.shields.io/codacy/grade/c434720ddcc84bea982475063f903a81?color=blue&logo=codacy&style=flat-square)
+thanks to [**@charmbracelet**](https://github.com/charmbracelet) for thier awesome TUI libraries 🏗.
 
-## Stargazers over time
+## License
 
-[![Stargazers over time](https://starchart.cc/scmn-dev/secman.svg)](https://starchart.cc/scmn-dev/secman)
+[secman][smweb] is licensed under the terms of [MIT][licurl] License
 
-[smurl]: https://secman.dev
-[miturl]: https://github.com/scmn-dev/secman/blob/main/LICENSE
+[smweb]: https://secman.dev
+[licurl]: https://github.com/scmn-dev/secman/blob/main/LICENSE
