@@ -48,8 +48,9 @@ vendor
 dist
 core/lib
 tmp
-!/pkg/tmp
 
 # Other
 .DS_Store
 oclif.manifest.json
+date.txt
+tag.txt

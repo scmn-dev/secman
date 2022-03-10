@@ -11,7 +11,6 @@ var PwOpts = options.PasswordsOptions{
 	Servers: 	  false,
 	ShowHidden:   false,
 	ShowJsonView: false,
-	ShowTreeView: false,
 }
 
 var GenOpts = options.GenOptions{
