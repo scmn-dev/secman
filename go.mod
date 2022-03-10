@@ -4,6 +4,7 @@ go 1.17
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.2
+	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/abdfnx/bubbles v0.10.7
 	github.com/abdfnx/gosh v0.3.8
 	github.com/abdfnx/looker v0.1.0
@@ -23,6 +24,7 @@ require (
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
 	github.com/scmn-dev/browser v0.1.3
 	github.com/spf13/cobra v1.3.0
+	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.10.1
 	github.com/tidwall/gjson v1.14.0
 	golang.org/x/sys v0.0.0-20211210111614-af8b64212486
@@ -53,7 +55,6 @@ require (
 	github.com/spf13/afero v1.6.0 // indirect
 	github.com/spf13/cast v1.4.1 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect

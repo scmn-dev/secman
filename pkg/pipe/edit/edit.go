@@ -10,7 +10,7 @@ import (
 	"github.com/scmn-dev/secman/pkg/options"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/scmn-dev/secman/internal/shared"
-	"github.com/scmn-dev/secman/pkg/context/edit/editor"
+	"github.com/scmn-dev/secman/pkg/pipe/edit/editor"
 )
 
 type model struct {

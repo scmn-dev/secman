@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/scmn-dev/secman/pkg/context/lister"
+	"github.com/scmn-dev/secman/pkg/pipe/lister"
 )
 
 func ListCMD() *cobra.Command {
