@@ -22,6 +22,10 @@ tasks:
     cmds:
       - sudo rm -rf "{{ .SECMAN_UNIX_PATH }}"/secman
 
+  install:
+    cmds:
+      - sudo mv secman "{{ .SECMAN_UNIX_PATH }}"
+
   build:
     cmds:
       - task: set-tag-and-date
