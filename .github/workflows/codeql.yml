@@ -1,4 +1,4 @@
-name: CodeQL
+name: "CodeQL"
 
 on:
   push:
@@ -6,17 +6,21 @@ on:
   pull_request:
     branches: [ main ]
   schedule:
-    - cron: "45 10 * * 3"
+    - cron: "40 8 * * 0"
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
 
     strategy:
       fail-fast: false
       matrix:
-        language: [ "javascript", "go" ]
+        language: [ "go", "javascript" ]
 
     steps:
       - name: Checkout repository
@@ -27,6 +31,8 @@ jobs:
         with:
           languages: ${{ matrix.language }}
 
+      # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+      # If this step fails, then you should remove it and run the build manually (see below)
       - name: Autobuild
         uses: github/codeql-action/autobuild@v1
 

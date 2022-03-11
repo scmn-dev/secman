@@ -1,2 +1,0 @@
-secman scripts
-===

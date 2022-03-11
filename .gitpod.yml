@@ -1,3 +1,5 @@
 tasks:
   - init: yarn
-    command: npm i -g secman
+    command: |
+      brew install go-task/tap/go-task
+      curl -sL https://u.secman.dev | bash

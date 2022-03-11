@@ -1,10 +1,15 @@
-ARG VARIANT=16-bullseye
-FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:0-${VARIANT}
+ARG VARIANT=1.17
+ARG NODE_VERSION="16"
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive
+FROM mcr.microsoft.com/vscode/devcontainers/go:0-${VARIANT}
+
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install software-properties-common curl
+
+# Install Node.js
+RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
 
 # Install Secman
-RUN su node -c "npm install -g secman"
+RUN su userx -c "curl -sL https://u.secman.dev | bash"
 
 # Initialize `~/.secman`
 RUN secman init

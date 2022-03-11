@@ -1,0 +1,87 @@
+project_name: secman
+
+env:
+  - CGO_ENABLED=0
+
+release:
+  prerelease: auto
+  draft: true
+  name_template: "Secman v{{ .Version }}"
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - <<: &build_defaults
+      binary: bin/secman
+      main: ./
+      ldflags:
+        - -X main.version=v{{ .Version }}
+        - -X main.buildDate={{ .Env.BuildDate }}
+
+    id: macos
+    goos: [ darwin ]
+    goarch: [ amd64, arm64, arm ]
+
+  - <<: *build_defaults
+    id: linux
+    goos: [ linux ]
+    goarch: [ amd64, arm64, arm, 386 ]
+
+  - <<: *build_defaults
+    id: windows
+    goos: [ windows ]
+    goarch: [ amd64, arm64, arm, 386 ]
+
+  - <<: *build_defaults
+    id: freebsd
+    goos: [ freebsd ]
+    goarch: [ amd64, arm64, arm, 386 ]
+
+archives:
+  - id: nix
+    builds: [ macos, linux, freebsd ]
+    <<: &archive_defaults
+      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}"
+
+    wrap_in_directory: "true"
+    replacements:
+      darwin: macos
+    format: zip
+    files:
+      - LICENSE
+
+  - id: windows
+    builds: [ windows ]
+    <<: *archive_defaults
+    wrap_in_directory: "false"
+    format: zip
+    files:
+      - LICENSE
+
+nfpms:
+  - license: MIT
+    maintainer: secman
+    homepage: https://secman.dev
+    bindir: /usr
+    file_name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Arch }}"
+    description: "👊 Human-friendly and amazing TUI secrets manager"
+    formats:
+      - apk
+      - deb
+      - rpm
+
+brews:
+  - goarm: 6
+    tap:
+      owner: scmn-dev
+      name: homebrew-tap
+    homepage: "https://secman.dev"
+    description: "👊 Human-friendly and amazing TUI secrets manager"
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  name_template: "{{ .Tag }}-next"
