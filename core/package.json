@@ -66,7 +66,7 @@
     "wcwidth": "^1.0.1",
     "whatwg-fetch": "^3.6.2",
     "wrap-ansi": "6.2.0",
-    "write-file-atomic": "^3.0.3"
+    "write-file-atomic": "^4.0.1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
