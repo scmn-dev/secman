@@ -35,7 +35,7 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/core": "1.1.2",
+    "@oclif/core": "1.5.3",
     "@oclif/plugin-help": "5.1.12",
     "@oclif/plugin-not-found": "^2.2.1",
     "@secman/spinner": "0.1.3",
