@@ -73,7 +73,7 @@
     "@oclif/plugin-plugins": "^2.1.0",
     "@types/crypto-js": "^4.0.2",
     "@types/lodash.template": "^4.5.0",
-    "@types/node": "^16.11.6",
+    "@types/node": "^17.0.21",
     "@types/prompts": "^2.0.14",
     "@types/shelljs": "^0.8.9",
     "@types/signal-exit": "^3.0.1",
