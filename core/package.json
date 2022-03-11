@@ -23,11 +23,7 @@
   "scripts": {
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "yarn build",
-    "build": "rimraf lib && tsc -b && oclif-dev manifest",
-    "package": "oclif-dev pack",
-    "pack:deb": "oclif-dev pack:deb",
-    "pack:macos": "oclif-dev pack:macos",
-    "pack:win": "oclif-dev pack:win"
+    "build": "rimraf lib && tsc -b && oclif-dev manifest"
   },
   "bin": {
     "sc": "./bin/run"
@@ -97,18 +93,6 @@
     "commands": "./lib/src/commands",
     "bin": "sc",
     "dirname": "sc",
-    "update": {
-      "autoupdate": {
-        "rollout": 50,
-        "debounce": 60
-      },
-      "node": {
-        "version": "16.13.0"
-      },
-      "s3": {
-        "host": "https://cli-files.secman.dev"
-      }
-    },
     "helpClass": "./lib/src/help",
     "hooks": {
       "init": "./lib/src/hooks/init/version"

@@ -2,7 +2,10 @@ package constants
 
 import (
 	"fmt"
+	"io/ioutil"
+	"path/filepath"
 
+	"github.com/abdfnx/tran/dfs"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/evertras/bubble-table/table"
 )
@@ -81,3 +84,17 @@ $ secman delete --[PASSWORD_TYPE] <PASSWORD_NAME>
 
 $ secman generate
 `, Logo("Initialize ~/.secman"), Logo("Authorize With Secman"), Logo("Insert a New Password"), Logo("List All Passwords"), Logo("Read a Password"), Logo("Edit a Password"), Logo("Delete"), Logo("Generate"))
+
+var (
+	homeDir, homeErr = dfs.GetHomeDirectory()
+	secmanConfigPath = filepath.Join(homeDir, ".secman", "secman.json")
+	secmanConfig, smErr = ioutil.ReadFile(secmanConfigPath)
+)
+
+func SecmanConfig() []byte {
+	if smErr != nil {
+		return []byte("")
+	}
+
+	return secmanConfig
+}
