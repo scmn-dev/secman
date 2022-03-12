@@ -1,16 +1,17 @@
 package initx
 
 import (
-	"os"
 	"fmt"
 	"log"
+	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/abdfnx/gosh"
-	"github.com/spf13/viper"
 	"github.com/abdfnx/tran/dfs"
-	"github.com/scmn-dev/secman/constants"
 	gapi "github.com/scmn-dev/get-latest/api"
+	"github.com/scmn-dev/secman/constants"
+	"github.com/spf13/viper"
 )
 
 func Init() {
@@ -27,7 +28,15 @@ func Init() {
 		log.Fatal(err)
 	}
 
-	viper.AddConfigPath("$HOME/.secman")
+	secmanDirPath := ""
+
+	if runtime.GOOS == "windows" {
+		secmanDirPath = `$HOME\\.secman`
+	} else {
+		secmanDirPath = `$HOME/.secman`
+	}
+
+	viper.AddConfigPath(secmanDirPath)
 	viper.SetConfigName("secman")
 	viper.SetConfigType("json")
 
@@ -72,12 +81,13 @@ func Init() {
 
 	wCmd := fmt.Sprintf(`
 		if (-not (Test-Path -path %s/ui)) {
-			Invoke-WebRequest %s
+			Invoke-WebRequest %s -outfile smui.zip
 			Expand-Archive smui.zip
+			Move-Item -Path smui/ui -Destination .
 			Move-Item -Path ui -Destination %s
-			Remove-Item smui.zip -Recurse -Force
+			Remove-Item smui* -Recurse -Force
 		}
-	`, constants.DotSecmanPath, url, constants.DotSecmanPath)
+	`, constants.DotSecmanPath, fmt.Sprintf("\"%s\"", url), constants.DotSecmanPath)
 
 	gosh.RunMulti(uCmd, wCmd)
 }
