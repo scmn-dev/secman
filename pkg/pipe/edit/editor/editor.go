@@ -232,7 +232,7 @@ func spinnerView(m model) string {
 
 func sme(m model) tea.Cmd {
 	return func() tea.Msg {
-		err, out, errout := gosh.RunOutput("sc edit " + m.pwType + " " + m.password + " -f " +  fmt.Sprintf("\"%s\"", m.field) + " -v " + fmt.Sprintf("\"%s\"", m.value))
+		err, out, errout := gosh.RunOutput("scc edit " + m.pwType + " " + m.password + " -f " +  fmt.Sprintf("\"%s\"", m.field) + " -v " + fmt.Sprintf("\"%s\"", m.value))
 
 		if err != nil {
 			fmt.Println(errout)

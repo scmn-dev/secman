@@ -1,5 +1,5 @@
 {
-  "name": "@secman/sc",
+  "name": "@secman/scc",
   "description": "The command-line interface of Secman Core",
   "version": "0.1.1",
   "main": "lib/index.js",
@@ -26,7 +26,7 @@
     "build": "rimraf lib && tsc -b && oclif-dev manifest"
   },
   "bin": {
-    "sc": "./bin/run"
+    "scc": "./bin/run"
   },
   "dependencies": {
     "@oclif/command": "^1",
@@ -72,8 +72,8 @@
   ],
   "oclif": {
     "commands": "./lib/src/commands",
-    "bin": "sc",
-    "dirname": "sc",
+    "bin": "scc",
+    "dirname": "scc",
     "helpClass": "./lib/src/help",
     "hooks": {
       "init": "./lib/src/hooks/init/version"

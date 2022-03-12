@@ -18,8 +18,8 @@ func GetLatest(product string, isChecker bool) string {
 		p = "latest"
 	} else if product == "secman-core" {
 		p = "latest-core"
-	} else if product == "sc" {
-		p = "latest-sc"
+	} else if product == "scc" {
+		p = "latest-scc"
 	}
 
 	url := "https://api.secman.dev/" + p

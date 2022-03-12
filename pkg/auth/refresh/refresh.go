@@ -222,7 +222,7 @@ func spinnerView(m model) string {
 
 func smr(m model) tea.Cmd {
 	return func() tea.Msg {
-		err, out, _ := gosh.RunOutput("sc auth -e " + user + " -m " + m.ms)
+		err, out, _ := gosh.RunOutput("scc auth -e " + user + " -m " + m.ms)
 
 		if err != nil {
 			return shared.Message{err}

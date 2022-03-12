@@ -10,7 +10,7 @@ import (
 )
 
 func Info(version string) {
-	err, smcVersion, _ := gosh.RunOutput("sc -v")
+	err, smcVersion, _ := gosh.RunOutput("scc -v")
 	user := "`" + config.Config("config.name") + "`"
 
 	if user == "``" {
@@ -21,7 +21,7 @@ func Info(version string) {
 	smcVersion = smcVersion[:len(smcVersion)-1]
 
 	if err != nil {
-		fmt.Println("could not get sc version")
+		fmt.Println("could not get scc version")
 		return
 	}
 

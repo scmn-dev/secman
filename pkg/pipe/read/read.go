@@ -53,7 +53,7 @@ func Read(o *options.PasswordsOptions) model {
 	s.Suffix = " 📡 Preparing & Getting data..."
 	s.Start()
 
-	var err, out, errout = gosh.RunOutput("sc read " + shared.PasswordType(o) + " " + p + " " + isHidden())
+	var err, out, errout = gosh.RunOutput("scc read " + shared.PasswordType(o) + " " + p + " " + isHidden())
 
 	if err != nil {
 		fmt.Println(err)

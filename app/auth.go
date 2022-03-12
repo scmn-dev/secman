@@ -53,7 +53,7 @@ func LogoutCMD() *cobra.Command {
 		Long: "Logout of the current user account.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if AuthOpts.ConfirmLogout {
-				gosh.Run("sc logout")
+				gosh.Run("scc logout")
 				msg := "✔ Logged out successfully"
 
 				logo := "\n" + lipgloss.NewStyle().

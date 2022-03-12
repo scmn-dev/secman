@@ -20,7 +20,7 @@ func Fix(buildVersion string) {
 		bug4 string
 	)
 
-	_, out, _ := gosh.RunOutput("sc -v")
+	_, out, _ := gosh.RunOutput("scc -v")
 	if out != "" {
 		out = out[:len(out)-1]
 	}
@@ -30,12 +30,12 @@ func Fix(buildVersion string) {
 	}
 
 	if err != nil {
-		bug2 = "to install secman core cli run " + CommandStyle("`npm i -g @secman/sc`")
+		bug2 = "to install secman core cli run " + CommandStyle("`npm i -g @secman/scc`")
 	}
 
 	if err == nil {
 		if latestSCVersion != out {
-			bug3 = "to upgrade secman core cli to the latest version run " + CommandStyle("`npm update -g @secman/sc`")
+			bug3 = "to upgrade secman core cli to the latest version run " + CommandStyle("`npm update -g @secman/scc`")
 		}
 	}
 

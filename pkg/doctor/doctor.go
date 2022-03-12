@@ -14,15 +14,15 @@ import (
 )
 
 var (
-	_, err = looker.LookPath("sc")
+	_, err = looker.LookPath("scc")
 
 	smVersionStatus = ""
 	scStatus = ""
 	scVersionStatus = ""
 	secmanConfigStatus = ""
 	latestVersion = api.GetLatest("secman-cli", false)
-	latestSCVersion = api.GetLatest("sc", false)
-	outErr, out, errout = gosh.RunOutput("sc -v")
+	latestSCVersion = api.GetLatest("scc", false)
+	outErr, out, errout = gosh.RunOutput("scc -v")
 	configErr = viper.ReadConfig(bytes.NewBuffer(constants.SecmanConfig()))
 )
 

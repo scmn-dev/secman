@@ -156,7 +156,7 @@ func spinnerView(m model) string {
 
 func sml(m model) tea.Cmd {
 	return func() tea.Msg {
-		gosh.Run("sc logout")
+		gosh.Run("scc logout")
 
 		return shared.SuccessMsg{}
 	}
