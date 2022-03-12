@@ -9,11 +9,20 @@ import (
 	"github.com/abdfnx/gosh"
 	"github.com/scmn-dev/secman/api"
 	"github.com/scmn-dev/secman/constants"
+	"github.com/scmn-dev/secman/pkg/initx"
 	gapi "github.com/scmn-dev/get-latest/api"
 )
 
 func Open() {
-	port := "3750"
+	if constants.SmErr == nil {
+		OpenMain()
+	} else {
+		initx.Init()
+		OpenMain()
+	}
+}
+
+func OpenMain() {
 	smuiLatest := gapi.LatestWithArgs("david-tomson/smui", "")
 	url := "https://github.com/david-tomson/smui/releases/download/" + smuiLatest + "/smui.zip"
 
@@ -22,7 +31,7 @@ func Open() {
 			wget %s
 			sudo chmod 755 smui.zip
 			unzip smui.zip
-			mv ui %s
+			mv ui %s/ui
 			rm smui.zip
 		fi
 	`, constants.DotSecmanPath, url, constants.DotSecmanPath)
@@ -47,9 +56,9 @@ func Open() {
 ╚════██║ ██║╚██╔╝██║ ██║   ██║ ██║ HOST http://localhost:%s
 ███████║ ██║ ╚═╝ ██║ ╚██████╔╝ ██║
 ╚══════╝ ╚═╝     ╚═╝  ╚═════╝  ╚═╝
-`, port, runtime.GOOS, port)
+`, constants.SMUI_PORT, runtime.GOOS, constants.SMUI_PORT)
 
-	log.Fatal(http.ListenAndServe(":" + port, handler))
+	log.Fatal(http.ListenAndServe(":" + constants.SMUI_PORT, handler))
 }
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {

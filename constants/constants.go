@@ -10,6 +10,8 @@ import (
 	"github.com/evertras/bubble-table/table"
 )
 
+const SMUI_PORT = "3750"
+
 const PRIMARY_COLOR = "#1163E6"
 const SECONDARY_COLOR = "#B4B4B4"
 const GREEN_COLOR = "#04B575"
@@ -91,11 +93,11 @@ var (
 	SecmanConfigPath = filepath.Join(DotSecmanPath, "secman.json")
 	SMUIPath = filepath.Join(DotSecmanPath, "ui")
 	SMUIIndexPath = filepath.Join(SMUIPath, "index.html")
-	secmanConfig, smErr = ioutil.ReadFile(SecmanConfigPath)
+	secmanConfig, SmErr = ioutil.ReadFile(SecmanConfigPath)
 )
 
 func SecmanConfig() []byte {
-	if smErr != nil {
+	if SmErr != nil {
 		return []byte("")
 	}
 
