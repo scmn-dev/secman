@@ -1,9 +1,7 @@
 import * as Config from "@oclif/config";
-import indent from "indent-string";
-import stripAnsi from "strip-ansi";
+import { indentString as indent, wrapAnsi as wrap, stripAnsi as strip } from "./strings"
 import { renderList } from "./list";
 import { castArray, compact, sortBy, template } from "./bool";
-import wrap from "wrap-ansi";
 import { command, dim, underline, withSecondary } from "../design/layout";
 
 export interface HelpOptions {
@@ -43,7 +41,7 @@ export class CommandHelp {
       this.aliases(cmd.aliases),
       this.examples(cmd.examples || (cmd as any).example),
     ]).join("\n\n");
-    if (this.opts.stripAnsi) output = stripAnsi(output);
+    if (this.opts.stripAnsi) output = strip(output);
     return output;
   }
 

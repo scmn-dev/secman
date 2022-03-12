@@ -18,10 +18,6 @@ export async function root() {
   console.log(
     withSecondary("    $ secman edit --[PASSWORD_TYPE] <PASSWORD_NAME>\n")
   );
-  console.log(cmd("  -") + " Generate\n");
-  console.log(withSecondary("    $ secman generate\n"));
-  console.log(cmd("  -") + " Edit Settings\n");
-  console.log(withSecondary("    $ secman settings\n"));
   console.log(cmd("TELL US\n", true));
   console.log(
     `  Open an issue at ${bold("https://github.com/scmn-dev/secman/issues")}\n`

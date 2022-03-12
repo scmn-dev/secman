@@ -2,11 +2,10 @@ import { bold, command, withSecondary } from "../design/layout";
 import { HelpBase } from "@oclif/core";
 import { Command } from "@oclif/core/lib/interfaces";
 import * as Interfaces from "@oclif/core/lib/interfaces";
-
+import { indentString as indent } from "../tools/strings";
 const { say } = require("cfonts");
 const { sortBy, uniqBy } = require("../tools/bool");
 const { renderList } = require("../tools/list");
-const indent = require("indent-string");
 const { CommandHelp } = require("../tools/help-command");
 const root = require("../contents/helpers/root");
 const { TopicFormatter } = require("../contents/helpers/topic");
@@ -95,7 +94,7 @@ module.exports = class MyHelpClass extends HelpBase {
       console.log("");
     }
 
-    return root.end()
+    return root.end();
   }
 
   async showRootHelp() {

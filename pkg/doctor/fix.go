@@ -4,33 +4,74 @@ import (
 	"fmt"
 
 	"github.com/abdfnx/gosh"
-	"github.com/abdfnx/looker"
-	// "github.com/charmbracelet/lipgloss"
-	// "github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/initx"
-	"github.com/spf13/viper"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/constants"
 )
 
+func CommandStyle(cmd string) string {
+	return lipgloss.NewStyle().Foreground(constants.GRAY_COLOR).SetString(cmd).String()
+}
+
 func Fix(buildVersion string) {
-	_, npmErr := looker.LookPath("npm")
+	var (
+		bug1 string
+		bug2 string
+		bug3 string
+		bug4 string
+	)
 
-	if npmErr != nil {
-		fmt.Println("npm is not installed, please install it first.")
-	} else {
-		if err != nil {
-			gosh.Run("npm i -g @secman/sc@latest")
-		}
+	_, out, _ := gosh.RunOutput("sc -v")
+	if out != "" {
+		out = out[:len(out)-1]
+	}
 
-		if err == nil {
-			if latestSCVersion != out {
-				gosh.Run("npm update -g @secman/sc@latest")
-			}
-		}
+	if buildVersion != latestVersion {
+		bug1 = "to upgrade run " + CommandStyle("`secman upgrade`") + " to download the latest version of secman."
+	}
 
-		viper.SetConfigType("json")
-	
-		if configErr != nil {
-			initx.Init()
+	if err != nil {
+		bug2 = "to install secman core cli run " + CommandStyle("`npm i -g @secman/sc`")
+	}
+
+	if err == nil {
+		if latestSCVersion != out {
+			bug3 = "to upgrade secman core cli to the latest version run " + CommandStyle("`npm update -g @secman/sc`")
 		}
 	}
+
+	if configErr != nil {
+		bug4 = "to initialize secman config run " + CommandStyle("`secman init`")
+	}
+
+	fixSteps := ""
+
+	if bug1 != "" {
+		fixSteps += bug1
+	}
+
+	if bug2 != "" {
+		if fixSteps != "" {
+			fixSteps += "\n" + bug2
+		} else {
+			fixSteps += bug2
+		}
+	}
+
+	if bug3 != "" {
+		if fixSteps != "" {
+			fixSteps += "\n" + bug3
+		} else {
+			fixSteps += bug3
+		}
+	}
+
+	if bug4 != "" {
+		if fixSteps != "" {
+			fixSteps += "\n" + bug4
+		} else {
+			fixSteps += bug4
+		}
+	}
+
+	fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + fixSteps))
 }

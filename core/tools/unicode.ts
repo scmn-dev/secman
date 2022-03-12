@@ -1,5 +1,3 @@
-import * as process from "process";
-
 export function isUnicodeSupported() {
   if (process.platform !== "win32") {
     return process.env.TERM !== "linux";

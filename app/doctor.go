@@ -24,8 +24,8 @@ func DoctorCMD(buildVersion string) *cobra.Command {
 func FixCMD(buildVersion string) *cobra.Command {
 	cmd := &cobra.Command{
 		Use: "fix",
-		Short: "Fix secman issues and bugs.",
-		Long: "Fix secman issues and bugs.",
+		Short: "Show Information about how to fix secman issues and bugs.",
+		Long: "Show Information about how to fix secman issues and bugs.",
 		Run: func(cmd *cobra.Command, args []string) {
 			doctor.Fix(buildVersion)
 		},
