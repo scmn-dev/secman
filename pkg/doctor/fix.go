@@ -34,7 +34,7 @@ func Fix(buildVersion string) {
 	}
 
 	if err == nil {
-		if latestSCVersion != out {
+		if latestSCCVersion != out {
 			bug3 = "to upgrade secman core cli to the latest version run " + CommandStyle("`npm update -g @secman/scc`")
 		}
 	}

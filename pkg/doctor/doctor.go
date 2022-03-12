@@ -17,11 +17,11 @@ var (
 	_, err = looker.LookPath("scc")
 
 	smVersionStatus = ""
-	scStatus = ""
-	scVersionStatus = ""
+	sccStatus = ""
+	sccVersionStatus = ""
 	secmanConfigStatus = ""
 	latestVersion = api.GetLatest("secman-cli", false)
-	latestSCVersion = api.GetLatest("scc", false)
+	latestSCCVersion = api.GetLatest("scc", false)
 	outErr, out, errout = gosh.RunOutput("scc -v")
 	configErr = viper.ReadConfig(bytes.NewBuffer(constants.SecmanConfig()))
 )
@@ -30,9 +30,9 @@ func Doctor(buildVersion string) {
 	if len(os.Args) > 1 {
 		if (os.Args[1] == "doctor" || os.Args[1] == "check") {
 			if err == nil {
-				scStatus = constants.Checkmark + "secman core cli is installed."
+				sccStatus = constants.Checkmark + "secman core cli is installed."
 			} else {
-				scStatus = constants.X + "secman core cli is not installed."
+				sccStatus = constants.X + "secman core cli is not installed."
 			}
 
 			if buildVersion != latestVersion {
@@ -49,10 +49,10 @@ func Doctor(buildVersion string) {
 				fmt.Println(errout)
 				os.Exit(0)
 			} else {
-				if latestSCVersion == out {
-					scVersionStatus = constants.Checkmark + "secman core cli on the latest version."
+				if latestSCCVersion == out {
+					sccVersionStatus = constants.Checkmark + "secman core cli on the latest version."
 				} else {
-					scVersionStatus = constants.X + "secman core cli is not on the latest version."
+					sccVersionStatus = constants.X + "secman core cli is not on the latest version."
 				}
 			}
 
@@ -64,7 +64,7 @@ func Doctor(buildVersion string) {
 				secmanConfigStatus = constants.X + "secman config is not found."
 			}
 
-			fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + smVersionStatus + "\n" + scStatus + "\n" + scVersionStatus + "\n" + secmanConfigStatus))
+			fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + smVersionStatus + "\n" + sccStatus + "\n" + sccVersionStatus + "\n" + secmanConfigStatus))
 		}
 	}
 }
