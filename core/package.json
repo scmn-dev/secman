@@ -54,7 +54,7 @@
     "rimraf": "3.0.2",
     "shelljs": "0.8.5",
     "signal-exit": "^3.0.5",
-    "string-width": "4.2.3",
+    "string-width": "5.1.2",
     "strip-ansi": "6.0.1",
     "ts-node": "^10",
     "tslib": "^2",
