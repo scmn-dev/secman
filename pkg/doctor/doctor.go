@@ -41,7 +41,9 @@ func Doctor(buildVersion string) {
 				smVersionStatus = constants.Checkmark + "secman on the latest version."
 			}
 
-			out = out[:len(out)-1]
+			if out != "" {
+				out = out[:len(out)-1]
+			}
 
 			if outErr != nil {
 				fmt.Println(errout)
