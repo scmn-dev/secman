@@ -8,6 +8,7 @@ import (
 
 	"github.com/abdfnx/gosh"
 	"github.com/scmn-dev/secman/api"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/scmn-dev/secman/constants"
 	"github.com/scmn-dev/secman/pkg/initx"
 	gapi "github.com/scmn-dev/get-latest/api"
@@ -30,7 +31,7 @@ func OpenMain() {
 		if ! [ -d %s/ui ]; then
 			wget %s
 			sudo chmod 755 smui.zip
-			unzip smui.zip
+			unzip -qq smui.zip
 			mv ui %s/ui
 			rm smui.zip
 		fi
@@ -49,7 +50,7 @@ func OpenMain() {
 
 	handler := api.NewSFS(http.Dir(constants.SMUIPath), IndexHandler)
 
-	fmt.Printf(`
+	smuiView := fmt.Sprintf(`
 ███████╗ ███╗   ███╗ ██╗   ██╗ ██╗
 ██╔════╝ ████╗ ████║ ██║   ██║ ██║
 ███████╗ ██╔████╔██║ ██║   ██║ ██║ PORT %s         OS %s
@@ -57,6 +58,8 @@ func OpenMain() {
 ███████║ ██║ ╚═╝ ██║ ╚██████╔╝ ██║
 ╚══════╝ ╚═╝     ╚═╝  ╚═════╝  ╚═╝
 `, constants.SMUI_PORT, runtime.GOOS, constants.SMUI_PORT)
+
+	fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman UI") + "\n" + smuiView))
 
 	log.Fatal(http.ListenAndServe(":" + constants.SMUI_PORT, handler))
 }

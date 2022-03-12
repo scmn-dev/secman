@@ -103,3 +103,16 @@ func SecmanConfig() []byte {
 
 	return secmanConfig
 }
+
+var (
+	checkmarkChar = lipgloss.NewStyle().
+		SetString("✔").
+		Foreground(lipgloss.Color(GREEN_COLOR))
+
+	xChar = lipgloss.NewStyle().
+		SetString("✘").
+		Foreground(lipgloss.Color(RED_COLOR))
+
+	Checkmark = "[" + checkmarkChar.String() + "] "
+	X = "[" + xChar.String() + "] "
+)
