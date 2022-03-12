@@ -31,10 +31,10 @@ func GetLatest(product string, isChecker bool) string {
 		os.Exit(0)
 	}
 
-	suffix := " 🔍 Checking for updates..."
+	suffix := " 🔍 Requesting..."
 
 	if isChecker {
-		suffix = " 🔍 Requesting..."
+		suffix = " 🔍 Checking for updates..."
 	}
 
 	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)

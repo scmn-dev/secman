@@ -1,27 +1,27 @@
 package doctor
 
 import (
-	"os"
-	"fmt"
 	"bytes"
+	"fmt"
+	"os"
+	"strings"
 
 	"github.com/abdfnx/gosh"
-	"github.com/spf13/viper"
 	"github.com/abdfnx/looker"
-	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/api"
 	"github.com/scmn-dev/secman/constants"
+	"github.com/spf13/viper"
 )
 
 var (
 	_, err = looker.LookPath("scc")
+	status = ""
 
 	smVersionStatus = ""
 	sccStatus = ""
 	sccVersionStatus = ""
 	secmanConfigStatus = ""
-	latestVersion = api.GetLatest("secman-cli", false)
-	latestSCCVersion = api.GetLatest("scc", false)
 	outErr, out, errout = gosh.RunOutput("scc -v")
 	configErr = viper.ReadConfig(bytes.NewBuffer(constants.SecmanConfig()))
 )
@@ -29,6 +29,9 @@ var (
 func Doctor(buildVersion string) {
 	if len(os.Args) > 1 {
 		if (os.Args[1] == "doctor" || os.Args[1] == "check") {
+			latestVersion := api.GetLatest("secman-cli", false)
+			latestSCCVersion := api.GetLatest("scc", false)
+
 			if err == nil {
 				sccStatus = constants.Checkmark + "secman core cli is installed."
 			} else {
@@ -46,8 +49,9 @@ func Doctor(buildVersion string) {
 			}
 
 			if outErr != nil {
-				fmt.Println(errout)
-				os.Exit(0)
+				if strings.Contains(errout, "not") {
+					sccVersionStatus = ""
+				}
 			} else {
 				if latestSCCVersion == out {
 					sccVersionStatus = constants.Checkmark + "secman core cli on the latest version."
@@ -64,7 +68,35 @@ func Doctor(buildVersion string) {
 				secmanConfigStatus = constants.X + "secman config is not found."
 			}
 
-			fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + smVersionStatus + "\n" + sccStatus + "\n" + sccVersionStatus + "\n" + secmanConfigStatus))
+			if smVersionStatus != "" {
+				status += smVersionStatus
+			}
+
+			if sccStatus != "" {
+				if status != "" {
+					status += "\n" + sccStatus
+				} else {
+					status += sccStatus
+				}
+			}
+
+			if sccVersionStatus != "" {
+				if status != "" {
+					status += "\n" + sccVersionStatus
+				} else {
+					status += sccVersionStatus
+				}
+			}
+
+			if secmanConfigStatus != "" {
+				if status != "" {
+					status += "\n" + secmanConfigStatus
+				} else {
+					status += secmanConfigStatus
+				}
+			}
+
+			fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + status))
 		}
 	}
 }
