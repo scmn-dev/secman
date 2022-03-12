@@ -73,5 +73,9 @@ func Fix(buildVersion string) {
 		}
 	}
 
+	if fixSteps == "" {
+		fixSteps = "there's nothing to fix, everything is good"
+	}
+
 	fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Doctor") + "\n\n" + fixSteps))
 }

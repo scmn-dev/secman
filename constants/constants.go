@@ -87,8 +87,11 @@ $ secman generate
 
 var (
 	homeDir, homeErr = dfs.GetHomeDirectory()
-	secmanConfigPath = filepath.Join(homeDir, ".secman", "secman.json")
-	secmanConfig, smErr = ioutil.ReadFile(secmanConfigPath)
+	DotSecmanPath = filepath.Join(homeDir, ".secman")
+	SecmanConfigPath = filepath.Join(DotSecmanPath, "secman.json")
+	SMUIPath = filepath.Join(DotSecmanPath, "ui")
+	SMUIIndexPath = filepath.Join(SMUIPath, "index.html")
+	secmanConfig, smErr = ioutil.ReadFile(SecmanConfigPath)
 )
 
 func SecmanConfig() []byte {

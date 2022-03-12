@@ -1,27 +1,44 @@
 package api
 
 import (
+	"os"
 	"fmt"
 	"time"
 	"net/http"
 	"io/ioutil"
 
-	"github.com/tidwall/gjson"
 	"github.com/briandowns/spinner"
 	httpClient "github.com/abdfnx/resto/client"
 )
 
-func GetLatest() string {
-	url := "https://api.github.com/repos/scmn-dev/secman/releases/latest"
+func GetLatest(product string, isChecker bool) string {
+	p := ""
+
+	if product == "secman-cli" {
+		p = "latest"
+	} else if product == "secman-core" {
+		p = "latest-core"
+	} else if product == "sc" {
+		p = "latest-sc"
+	}
+
+	url := "https://api.secman.dev/" + p
 
 	req, err := http.NewRequest("GET", url, nil)
 
 	if err != nil {
-		fmt.Errorf("Error creating request: %s", err.Error())
+		fmt.Printf("Error creating request: %s \n", err.Error())
+		os.Exit(0)
+	}
+
+	suffix := " 🔍 Checking for updates..."
+
+	if isChecker {
+		suffix = " 🔍 Requesting..."
 	}
 
 	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
-	s.Suffix = " 🔍 Checking for updates..."
+	s.Suffix = suffix
 	s.Start()
 
 	client := httpClient.HttpClient()
@@ -39,42 +56,7 @@ func GetLatest() string {
 		fmt.Printf("Error reading response: %s", err.Error())
 	}
 
-	body := string(b)
-
-	tag_name := gjson.Get(body, "tag_name")
-
-	latestVersion := tag_name.String()
-
 	s.Stop()
 
-	return latestVersion
-}
-
-func GetLatestCore() string {
-	url := "https://api.secman.dev/latest-core"
-
-	req, err := http.NewRequest("GET", url, nil)
-
-	if err != nil {
-		fmt.Errorf("Error creating request: %s", err.Error())
-	}
-
-	client := httpClient.HttpClient()
-	res, err := client.Do(req)
-
-	if err != nil {
-		fmt.Printf("Error sending request: %s", err.Error())
-	}
-
-	defer res.Body.Close()
-
-	b, err := ioutil.ReadAll(res.Body)
-
-	if err != nil {
-		fmt.Printf("Error reading response: %s", err.Error())
-	}
-
-	body := string(b)
-
-	return body
+	return string(b)
 }

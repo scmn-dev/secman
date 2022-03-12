@@ -33,7 +33,7 @@ func Info(version string) {
 
 Current User: %s
 
-> Made with ❤️ by [secman](https://github.com/scmn-dev)`, version, api.GetLatestCore(), smcVersion, user)
+> Made with ❤️ by [secman](https://github.com/scmn-dev)`, version, api.GetLatest("secman-core", false), smcVersion, user)
 	
 	cli, err := glamour.Render(out1, "dark")
 
