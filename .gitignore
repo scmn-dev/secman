@@ -23,8 +23,9 @@ vendor
 # Optional npm cache directory
 .npm
 
-# Output of 'npm pack'
+# Archive files
 *.tgz
+*.zip
 
 # Yarn Integrity file
 .yarn-integrity

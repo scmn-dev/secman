@@ -62,3 +62,7 @@ tasks:
       - task: build-core
       - task: link-core
       - ./scripts/bfs.ps1
+
+  scoop:
+    cmds:
+      - node ./scripts/scoop/scoop-sm.js

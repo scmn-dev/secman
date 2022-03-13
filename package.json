@@ -21,6 +21,7 @@
     "url": "https://secman.dev"
   },
   "workspaces": [
-    "core"
+    "core",
+    "scripts/scoop"
   ]
 }

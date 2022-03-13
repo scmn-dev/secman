@@ -1,0 +1,18 @@
+{
+  "version": "CLI_VERSION",
+  "architecture": {
+    "32bit": {
+      "url": "SECMAN_32BIT_URL",
+      "bin": ["bin/secman.exe"],
+      "hash": "32BIT_HASH"
+    },
+    "64bit": {
+      "url": "SECMAN_64BIT_URL",
+      "bin": ["bin/secman.exe"],
+      "hash": "64BIT_HASH"
+    }
+  },
+  "homepage": "https://secman.dev",
+  "license": "MIT",
+  "description": "👊 Human-friendly and amazing TUI secrets manager"
+}
