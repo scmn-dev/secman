@@ -38,6 +38,7 @@ brew install scmn-dev/tap/secman
 ### Scoop
 
 ```
+scoop bucket add secman https://github.com/scmn-dev/scoop
 scoop install secman
 ```
 
