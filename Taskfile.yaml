@@ -56,13 +56,6 @@ tasks:
       - task: link-core
       - sudo mv ./secman "{{ .SECMAN_UNIX_PATH }}"
 
-  bfsw:
-    desc: build from source (windows)
-    cmds:
-      - task: build-core
-      - task: link-core
-      - ./scripts/bfs.ps1
-
   scoop:
     cmds:
       - node ./scripts/scoop/scoop-sm.js
