@@ -56,8 +56,8 @@ jobs:
         .\scripts\bfs.ps1
         echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
 
-    - name: Open SMUI
-      run: secman ui open
+    - name: Show Information
+      run: secman info
 
   from_script:
     needs: [ bfs ]
