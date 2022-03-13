@@ -7,7 +7,7 @@ $LATEST_VERSION=git describe --abbrev=0 --tags
 $DATE=cat date.txt
 
 # Build
-go mod tidy
+go mod tidy -compat="1.17"
 go build -o secman.exe -ldflags "-X main.version=$LATEST_VERSION -X main.versionDate=$DATE"
 
 # Setup
