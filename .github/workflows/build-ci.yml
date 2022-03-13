@@ -1,0 +1,102 @@
+name: Secman CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  bfs: # build from source
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Set up `Task`
+      uses: arduino/setup-task@v1
+
+    - name: Building From Source
+      run: task bfs
+
+    - name: Run Help
+      run: secman help
+
+  bfs_windows: # build from source (windows)
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+
+    - name: Set up `Task`
+      uses: arduino/setup-task@v1
+
+    - name: Building From Source
+      run: |
+        task bfsw
+        echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
+
+    - name: Open SMUI
+      run: secman ui open
+
+  from_script:
+    needs: [ bfs ]
+
+    strategy:
+      matrix:
+        oses: [ macos-latest, ubuntu-latest ]
+
+    runs-on: ${{ matrix.oses }}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install from script
+      run: curl -sL https://u.secman.dev | bash
+
+    - name: Generate a password
+      run: secman generate --length 20
+
+  from_script_windows:
+    needs: [ bfs_windows ]
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install from script
+      run: |
+        iwr -useb https://w.secman.dev | iex
+        echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
+
+    - name: Run Secman Doctor
+      run: secman doctor
+
+  homebrew:
+    needs: [ bfs ]
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get Secman via homebrew
+      run: brew install scmn-dev/tap/secman
+
+    - name: Show Version
+      run: secman version
