@@ -41,7 +41,7 @@ tasks:
   link-core:
     dir: ./core
     cmds:
-      - yarn link
+      - npm link
 
   publish-core:
     dir: ./core
