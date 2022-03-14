@@ -8,9 +8,7 @@ const { promisify } = require("util");
 const { pipeline } = require("stream");
 
 const VERSION_CMD = sh.exec("git describe --abbrev=0 --tags");
-const VERSION = VERSION_CMD.replace("\n", "")
-  .replace("\r", "")
-  .replace("v", "");
+const VERSION = VERSION_CMD.replace(/\\n/g, "").replace("v", "");
 
 const SECMAN_32BIT_URL = `https://github.com/scmn-dev/secman/releases/download/v${VERSION}/secman_windows_v${VERSION}_386.zip`;
 const SECMAN_64BIT_URL = `https://github.com/scmn-dev/secman/releases/download/v${VERSION}/secman_windows_v${VERSION}_amd64.zip`;
