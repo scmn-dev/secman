@@ -19,7 +19,7 @@ func Check(buildVersion string) {
 	primary := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.PRIMARY_COLOR))
 	yellow := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.YELLOW_COLOR))
 
-	latestVersion := api.GetLatest()
+	latestVersion := api.GetLatest("secman-cli", true)
 	isFromHomebrew := isUnderHomebrew()
 	isFromUsrBinDir := isUnderUsr()
 	isFromScoop := isUnderScoop()

@@ -191,7 +191,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m model) View() string {
 	if user == "" {
-		fmt.Println(lipgloss.NewStyle().Padding(0, 2).SetString(constants.Logo("Secman Auth") + m.styles.Error.Render("\n\nYou are not logged in. Please use ") + m.styles.Subtle.Render("`secman auth`") + m.styles.Error.Render(" command to login.")))
+		fmt.Println(lipgloss.NewStyle().Padding(0, 2).SetString(constants.Logo("Secman Auth") + m.styles.Error.Render("\n\nYou are not logged in. Please use ") + m.styles.Subtle.Render("`secman auth login`") + m.styles.Error.Render(" command to login.")))
 
 		os.Exit(0)
 
@@ -222,7 +222,7 @@ func spinnerView(m model) string {
 
 func smr(m model) tea.Cmd {
 	return func() tea.Msg {
-		err, out, _ := gosh.RunOutput("sc auth -e " + user + " -m " + m.ms)
+		err, out, _ := gosh.RunOutput("scc auth -e " + user + " -m " + m.ms)
 
 		if err != nil {
 			return shared.Message{err}

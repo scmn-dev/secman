@@ -3,17 +3,17 @@
   "private": true,
   "version": "6.2.0",
   "description": "👊 Human-friendly and amazing TUI secrets manager.",
-  "main": "core/lib/index.js",
   "license": "MIT",
   "homepage": "https://secman.dev",
   "bugs": "https://github.com/scmn-dev/secman/issues",
   "repository": "scmn-dev/secman",
   "keywords": [
-    "password manager",
+    "password-manager",
     "secman",
     "cli",
     "security",
-    "secrets management"
+    "secrets-management",
+    "secrets"
   ],
   "author": {
     "name": "Secman, Inc.",
@@ -21,6 +21,7 @@
     "url": "https://secman.dev"
   },
   "workspaces": [
-    "core"
+    "core",
+    "scripts/scoop"
   ]
 }

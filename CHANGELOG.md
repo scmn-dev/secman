@@ -4,6 +4,45 @@
 
 ---
 
+## [[v6.2.0] 2022-03-11](#v620-2022-03-11)
+
+> Secman v3 ✨
+
+this release is the first release of secman v3
+
+it's comes with **new features**, **new design**, **new infrastructure**, **and new secman**.
+
+### Added
+
+- Add `secman auth` command with `create`, `login`, `logout`, and `refresh` sub-commands.
+- Add `secman delete` command.
+- Create `secman docs` and `secman doctor` commands.
+- Build `secman edit` command.
+- Create `secman generate` command.
+- Add `secman info` and `secman init` commands.
+- Build `secman insert` command.
+- Create `secman read` command.
+- Build `secman whoami` command.
+- Initialize **@go-task** config file.
+- Add Terminal User Interface (TUI) to secman with **@charmbracelet** libraries.
+- Create `secman doctor` command with `secman doctor fix` sub-command.
+- Add `secman ui` command.
+- Build [**SMUI**](https://github.com/david-tomson/smui) by **@david-tomson**.
+
+### Changed
+
+- Move **secman v2** to secman core cli (**scc**).
+- Convert from typescript to golang with typescript.
+- Update `README.md`.
+- Update **vscode** config.
+- Update secman contributing guide.
+
+### Fixed
+
+- Fix messages.
+- Fix connections with **secman cloud**.
+- Fix Secman Core CLI (scc)
+
 ## [[v6.1.3] 2022-01-10](#v613-2022-01-10)
 
 ### Added

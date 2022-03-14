@@ -205,7 +205,7 @@ func spinnerView(m model) string {
 
 func sma(m model) tea.Cmd {
 	return func() tea.Msg {
-		err, out, errout := gosh.RunOutput("sc auth -e " + m.inputs[0].Value() + " -m " + m.inputs[1].Value())
+		err, out, errout := gosh.RunOutput("scc auth -e " + m.inputs[0].Value() + " -m " + m.inputs[1].Value())
 
 		if err != nil {
 			log.Printf("error: %v\n", err)

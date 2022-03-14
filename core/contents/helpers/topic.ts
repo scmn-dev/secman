@@ -1,7 +1,9 @@
-import indent from "indent-string";
-import stripAnsi from "strip-ansi";
+import {
+  indentString as indent,
+  stripAnsi as strip,
+  wrapAnsi as wrap,
+} from "../../tools/strings";
 import { command } from "../../design/layout";
-const wrap = require("wrap-ansi");
 import { compact } from "../../tools/bool";
 
 export function TopicFormatter(
@@ -38,7 +40,7 @@ export function TopicFormatter(
       ].join("\n"),
   ]).join("\n\n");
 
-  if (opts.stripAnsi) output = stripAnsi(output);
+  if (opts.strip) output = strip(output);
 
   return output + "\n";
 }

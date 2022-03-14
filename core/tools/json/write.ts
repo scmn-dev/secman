@@ -2,7 +2,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { promises as fsPromises } from "fs";
 import { isPlainObject as isPlainObj, sortKeys } from "../sort";
-import detectIndent from "../detect-indent";
+import { detectIndent as detect } from "../strings";
 const writeFileAtomic = require("write-file-atomic");
 
 const init = (function_: any, filePath: any, data: any, options: any) => {
@@ -41,7 +41,7 @@ const main = async (filePath: any, data: any, options: any) => {
     }
 
     if (options.detectIndent) {
-      indent = detectIndent(file).indent;
+      indent = detect(file).indent;
     }
   } catch (error) {
     throw error;
@@ -65,7 +65,7 @@ const mainSync = (filePath: any, data: any, options: any) => {
     }
 
     if (options.detectIndent) {
-      indent = detectIndent(file).indent;
+      indent = detect(file).indent;
     }
   } catch (error) {
     throw error;

@@ -42,7 +42,7 @@ func Delete(o *options.PasswordsOptions) model {
 	st := shared.DefaultStyles()
 	var p = fmt.Sprintf("\"%s\"", o.Password)
 
-	var err, out, _ = gosh.RunOutput("sc delete " + shared.PasswordType(o) + " " + p)
+	var err, out, _ = gosh.RunOutput("scc delete " + shared.PasswordType(o) + " " + p)
 
 	return model{
 		styles:   st,

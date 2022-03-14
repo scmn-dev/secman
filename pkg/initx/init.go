@@ -1,12 +1,17 @@
 package initx
 
 import (
-	"os"
+	"fmt"
 	"log"
+	"os"
 	"path/filepath"
+	"runtime"
 
-	"github.com/spf13/viper"
+	"github.com/abdfnx/gosh"
 	"github.com/abdfnx/tran/dfs"
+	gapi "github.com/scmn-dev/get-latest/api"
+	"github.com/scmn-dev/secman/constants"
+	"github.com/spf13/viper"
 )
 
 func Init() {
@@ -23,7 +28,15 @@ func Init() {
 		log.Fatal(err)
 	}
 
-	viper.AddConfigPath("$HOME/.secman")
+	secmanDirPath := ""
+
+	if runtime.GOOS == "windows" {
+		secmanDirPath = `$HOME\\.secman`
+	} else {
+		secmanDirPath = `$HOME/.secman`
+	}
+
+	viper.AddConfigPath(secmanDirPath)
 	viper.SetConfigName("secman")
 	viper.SetConfigType("json")
 
@@ -51,4 +64,30 @@ func Init() {
 			log.Fatal(err)
 		}
 	}
+
+	// Get SMUI
+	smuiLatest := gapi.LatestWithArgs("david-tomson/smui", "")
+	url := "https://github.com/david-tomson/smui/releases/download/" + smuiLatest + "/smui.zip"
+
+	uCmd := fmt.Sprintf(`
+		if ! [ -d %s/ui ]; then
+			wget %s
+			sudo chmod 755 smui.zip
+			unzip -qq smui.zip
+			mv ui %s/ui
+			rm smui.zip
+		fi
+	`, constants.DotSecmanPath, url, constants.DotSecmanPath)
+
+	wCmd := fmt.Sprintf(`
+		if (-not (Test-Path -path %s/ui)) {
+			Invoke-WebRequest %s -outfile smui.zip
+			Expand-Archive smui.zip
+			Move-Item -Path smui/ui -Destination .
+			Move-Item -Path ui -Destination %s
+			Remove-Item smui* -Recurse -Force
+		}
+	`, constants.DotSecmanPath, fmt.Sprintf("\"%s\"", url), constants.DotSecmanPath)
+
+	gosh.RunMulti(uCmd, wCmd)
 }

@@ -2,24 +2,19 @@ package config
 
 import (
 	"bytes"
-	"io/ioutil"
-	"path/filepath"
 
 	"github.com/spf13/viper"
-	"github.com/abdfnx/tran/dfs"
+	"github.com/scmn-dev/secman/constants"
 )
-
-var (
-	homeDir, _ = dfs.GetHomeDirectory()
-	secmanConfigPath = filepath.Join(homeDir, ".secman", "secman.json")
-	secmanConfig, _ = ioutil.ReadFile(secmanConfigPath)
-)
-
 
 func Config(obj string) string {
 	viper.SetConfigType("json")
 
-	viper.ReadConfig(bytes.NewBuffer(secmanConfig))
+	err := viper.ReadConfig(bytes.NewBuffer(constants.SecmanConfig()))
 
-	return viper.Get(obj).(string)
+	if err == nil {
+		return viper.Get(obj).(string)
+	}
+
+	return ""
 }

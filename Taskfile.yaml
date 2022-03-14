@@ -29,7 +29,7 @@ tasks:
   build:
     cmds:
       - task: set-tag-and-date
-      - go mod tidy
+      - go mod tidy -compat=1.17
       - go build -ldflags "-X main.version=$(cat tag.txt) -X main.buildDate=$(cat date.txt)" -o secman
 
   build-core:
@@ -41,7 +41,7 @@ tasks:
   link-core:
     dir: ./core
     cmds:
-      - yarn link
+      - npm link
 
   publish-core:
     dir: ./core
@@ -56,9 +56,6 @@ tasks:
       - task: link-core
       - sudo mv ./secman "{{ .SECMAN_UNIX_PATH }}"
 
-  bfsw:
-    desc: build from source (windows)
+  scoop:
     cmds:
-      - task: build-core
-      - task: link-core
-      - ./scripts/bfs.ps1
+      - node ./scripts/scoop/scoop-sm.js

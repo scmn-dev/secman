@@ -41,7 +41,7 @@ func readPasswords(p string) []list.Item {
 			s.Suffix = " 📡 Preparing & Getting data..."
 			s.Start()
 
-			err, out, errout := gosh.RunOutput("sc . " + p)
+			err, out, errout := gosh.RunOutput("scc . " + p)
 
 			if err != nil {
 				fmt.Println(err)

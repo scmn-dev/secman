@@ -335,7 +335,7 @@ func spinnerView(m model) string {
 
 func smi(m model) tea.Cmd {
 	return func() tea.Msg {
-		insCmd := "sc insert "
+		insCmd := "scc insert "
 		cmd := ""
 		extra := "no-extra"
 

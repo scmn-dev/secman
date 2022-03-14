@@ -41,7 +41,7 @@ func ReadCMD() *cobra.Command {
 					passwordType = "-s"
 				}
 				
-				err, out, errout := gosh.RunOutput("sc read " + passwordType + " " + PwOpts.Password + " " + showHiddenFlag)
+				err, out, errout := gosh.RunOutput("scc read " + passwordType + " " + PwOpts.Password + " " + showHiddenFlag)
 
 				if err != nil {
 					fmt.Println(errout)

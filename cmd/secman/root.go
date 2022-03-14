@@ -64,6 +64,7 @@ func Execute(f *factory.Factory, version string, buildDate string) *cobra.Comman
 	rootCmd.AddCommand(
 		app.AuthCMD(),
 		app.DocsCMD,
+		app.DoctorCMD(version),
 		app.InitCMD,
 		app.InfoCMD(version),
 		app.InsertCMD(),
@@ -72,6 +73,7 @@ func Execute(f *factory.Factory, version string, buildDate string) *cobra.Comman
 		app.EditCMD(),
 		app.ListCMD(),
 		app.DeleteCMD(),
+		app.UICMD(),
 		app.WhoamiCMD(),
 		versionCmd,
 	)

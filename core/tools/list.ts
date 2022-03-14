@@ -1,8 +1,10 @@
-import indent from "indent-string";
-import stripAnsi from "strip-ansi";
-import width from "string-width";
-import wrap from "wrap-ansi";
-import widestLine from "widest-line";
+import {
+  indentString as indent,
+  stripAnsi as strip,
+  stringWidth as width,
+  wrapAnsi as wrap,
+  widestLine,
+} from "./strings";
 
 export function renderList(
   input: (string | undefined)[][],
@@ -23,12 +25,12 @@ export function renderList(
     for (let [left, right] of input) {
       if (!left && !right) continue;
       if (left) {
-        if (opts.stripAnsi) left = stripAnsi(left);
+        if (opts.stripAnsi) left = strip(left);
         output += wrap(left.trim(), opts.maxWidth, { hard: true, trim: false });
       }
 
       if (right) {
-        if (opts.stripAnsi) right = stripAnsi(right);
+        if (opts.stripAnsi) right = strip(right);
 
         output += "\n";
         output += indent(
@@ -59,20 +61,19 @@ export function renderList(
 
     cur = left || "";
 
-    if (opts.stripAnsi) cur = stripAnsi(cur);
+    if (opts.stripAnsi) cur = strip(cur);
     if (!right) {
       cur = cur.trim();
       continue;
     }
 
-    if (opts.stripAnsi) right = stripAnsi(right);
+    if (opts.stripAnsi) right = strip(right);
 
     right = wrap(right.trim(), opts.maxWidth - (maxLength + 2), {
       hard: true,
       trim: false,
     });
 
-    // right = wrap(right.trim(), screen.stdtermwidth - (maxLength + 4), {hard: true, trim: false})
     const [first, ...lines] = right!.split("\n").map((s) => s.trim());
 
     cur += " ".repeat(maxLength - width(cur) + 2);
@@ -82,9 +83,7 @@ export function renderList(
       continue;
     }
 
-    // if we start putting too many lines down, render in multiline format
     if (lines.length > 4) return renderMultiline();
-    // if spacer is not defined, separate all rows with extra newline
     if (!opts.spacer) spacer = "\n\n";
 
     cur += "\n";

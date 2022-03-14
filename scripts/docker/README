@@ -1,0 +1,14 @@
+Welcome to secman 👋
+
+you can do your first steps
+
+* Authenticate
+- `$ secman auth login`
+* Create a new secret
+- `$ secman new --[PASSWORD_TYPE]`
+* List all secrets
+- `$ secman .`
+* Read a secret
+- `$ secman read --[PASSWORD_TYPE] <PASSWORD_NAME>`
+
+run `secman help` for get help 📄
