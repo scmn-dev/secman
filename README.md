@@ -2,14 +2,16 @@
 
 [**secman cli**](https://secman.dev) is a TUI password manager can store, retrieves, generates, and synchronizes passwords, The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere with **Secman Cloud** 😉.
 
+<img src="https://assets.secman.dev/apps/secman-cli.svg" />
+
 ### Featuers
 
-- Not GPG cored.
-- It uses a master password to securely store your passwords.
-- It syncs your passwords.
-- Easy to use.
-- It is written in Go.
-- You can easily manage your passwords from everywhere, desktop, web, terminal, and more.
+- **Not GPG cored.**
+- **It uses a master password to securely store your passwords.**
+- **It syncs your passwords.**
+- **Easy to use.**
+- **It is written in Go.**
+- **You can easily manage your passwords from everywhere, from desktop, web, terminal, and more.**
 
 ### Installation ⬇
 
