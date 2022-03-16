@@ -42,7 +42,7 @@
     "crypto-js": "^4.1.1",
     "lodash": "4.17.21",
     "lodash.template": "^4.5.0",
-    "prettier": "2.5.1",
+    "prettier": "2.6.0",
     "rimraf": "3.0.2",
     "shelljs": "0.8.5",
     "ts-node": "^10",
