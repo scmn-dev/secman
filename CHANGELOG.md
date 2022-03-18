@@ -4,6 +4,50 @@
 
 ---
 
+## [[v6.2.1] 2022-03-18](#v621-2022-03-18)
+
+### Added
+
+- Add `--tree-view` flag to `secman list` command.
+
+  ```
+  $ secman list --tree-view
+
+  .
+  ├──Logins
+  │  ├──Railway
+  │  ├──Charm
+  │  ├──Vercel
+  │  ├──Hashicorp
+  │  ├──Firebase
+  │  ├──Stripe
+  │  ├──Twitter
+  │  ├──Amazon
+  │  ├──Microsoft Account
+  │  └──MetaMask
+  ├──Credit Cards
+  │  └──paypal.com
+  ├──Emails
+  │  └──Gmail
+  ├──Notes
+  │  └──Secret
+  ├──Servers
+  └──┴──Home server
+  ```
+
+- Add `--user` flag to `secman whoami` command to display user.
+- Build `secman files` command with `secman files send` and `secman files receive` sub-commands. Ingrated with [**tran**](https://github.com/abdfnx/tran).
+- Create `secman encrypt` command with `--sha256`, `--sha512`, `--aes`, `--aes-key`, and `--md5` flags.
+- Add `--username` and `--password` flags to `secman auth login` command.
+
+### Changed
+
+- Update secman initializer and add `~/.secman` directory checker.
+
+### Fixed
+
+- Fix secman config file issue in secman auth login command.
+
 ## [[v6.2.0] 2022-03-11](#v620-2022-03-11)
 
 > Secman v3 ✨
