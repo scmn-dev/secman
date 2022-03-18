@@ -20,6 +20,9 @@ var GenOpts = options.GenOptions{
 }
 
 var AuthOpts = options.AuthOptions{
+	Username:      "",
+	Password:      "",
+	PasswordStdin: false,
 	ConfirmLogout: false,
 }
 

@@ -18,6 +18,9 @@ type GenOptions struct {
 }
 
 type AuthOptions struct {
+	Username	  string
+	Password	  string
+	PasswordStdin bool
 	ConfirmLogout bool
 }
 
