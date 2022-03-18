@@ -22,3 +22,7 @@ var GenOpts = options.GenOptions{
 var AuthOpts = options.AuthOptions{
 	ConfirmLogout: false,
 }
+
+var WhoamiOpts = options.WhoamiOptions{
+	ShowUser: false,
+}

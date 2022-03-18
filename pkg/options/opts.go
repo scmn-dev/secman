@@ -24,3 +24,7 @@ type AuthOptions struct {
 type RootOptions struct {
 	Version bool
 }
+
+type WhoamiOptions struct {
+	ShowUser bool
+}

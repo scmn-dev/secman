@@ -20,11 +20,17 @@ func WhoamiCMD() *cobra.Command {
 			primary := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.PRIMARY_COLOR))
 			bold := lipgloss.NewStyle().Bold(true)
 
-			fmt.Println(s.Render("\n👊 Hi ") + primary.Render(config.Config("config.name")) + " <" + bold.Render(config.Config("config.user")) + ">")
+			if WhoamiOpts.ShowUser {
+				fmt.Println(config.Config("config.name"))
+			} else {
+				fmt.Println(s.Render("\n👊 Hi ") + primary.Render(config.Config("config.name")) + " <" + bold.Render(config.Config("config.user")) + ">")
+			}
 
 			return nil
 		},
 	}
+
+	cmd.Flags().BoolVarP(&WhoamiOpts.ShowUser, "user", "u", false, "Just Display the username")
 
 	return cmd
 }
