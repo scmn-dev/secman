@@ -28,3 +28,11 @@ type RootOptions struct {
 type WhoamiOptions struct {
 	ShowUser bool
 }
+
+type EncryptOptions struct {
+	AES    bool
+	SHA256 bool
+	SHA512 bool
+	MD5    bool
+	AESKey string
+}

@@ -26,3 +26,11 @@ var AuthOpts = options.AuthOptions{
 var WhoamiOpts = options.WhoamiOptions{
 	ShowUser: false,
 }
+
+var EncryptOpts = options.EncryptOptions{
+	AES:	false,
+	SHA256: false,
+	SHA512: false,
+	MD5:    false,
+	AESKey: "",
+}

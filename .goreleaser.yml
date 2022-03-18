@@ -79,6 +79,7 @@ brews:
       name: homebrew-tap
     homepage: "https://secman.dev"
     description: "👊 Human-friendly and amazing TUI secrets manager"
+    license: "MIT"
 
 checksum:
   name_template: "checksums.txt"
