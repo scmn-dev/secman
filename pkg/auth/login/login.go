@@ -16,16 +16,11 @@ import (
 	"github.com/scmn-dev/secman/internal/shared"
 )
 
-const (
-	textInput shared.Index = iota
-	verfiyButton
-	cancelButton
-)
+type InitMsg struct{}
 
 type model struct {
 	styles     shared.Styles
 	focusIndex int
-	index      shared.Index
 	inputs     []textinput.Model
 	spinner    spinner.Model
 	state      shared.State
@@ -144,6 +139,12 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 			return m, nil
 
+		case InitMsg:
+			m.state = shared.Ready
+			m.message = m.styles.Error.Render("~/.secman/secman.json not found, run ") + m.styles.Subtle.Render("`secman init`")
+
+			return m, nil
+
 		case shared.ErrorMsg:
 			m.state = shared.Ready
 			m.message = m.styles.Error.Render("Invalid email or master password. if you don't have an account, please create one using the command ") + m.styles.Subtle.Render("`secman auth create`")
@@ -220,6 +221,8 @@ func sma(m model) tea.Cmd {
 			return shared.OtherMsg{}
 		} else if strings.Contains(out, "200") {
 			return shared.SuccessMsg{}
+		} else if strings.Contains(out, "init") {
+			return InitMsg{}
 		}
 
 		return shared.SetMsg(out)
