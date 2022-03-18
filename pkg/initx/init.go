@@ -1,21 +1,28 @@
 package initx
 
 import (
+	"os"
 	"fmt"
 	"log"
-	"os"
-	"path/filepath"
+	"time"
 	"runtime"
+	"path/filepath"
 
 	"github.com/abdfnx/gosh"
-	"github.com/abdfnx/tran/dfs"
-	gapi "github.com/scmn-dev/get-latest/api"
-	"github.com/scmn-dev/secman/constants"
 	"github.com/spf13/viper"
+	"github.com/abdfnx/tran/dfs"
+	"github.com/briandowns/spinner"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/constants"
+	gapi "github.com/scmn-dev/get-latest/api"
 )
 
 func Init() {
 	var err error
+
+	s := spinner.New(spinner.CharSets[11], 100*time.Millisecond)
+	s.Suffix = " 💿 Initializing..."
+	s.Start()
 
 	homeDir, err := dfs.GetHomeDirectory()
 
@@ -72,7 +79,7 @@ func Init() {
 	uCmd := fmt.Sprintf(`
 		if ! [ -d %s/ui ]; then
 			wget %s
-			sudo chmod 755 smui.zip
+			chmod 755 smui.zip
 			unzip -qq smui.zip
 			mv ui %s/ui
 			rm smui.zip
@@ -90,4 +97,10 @@ func Init() {
 	`, constants.DotSecmanPath, fmt.Sprintf("\"%s\"", url), constants.DotSecmanPath)
 
 	gosh.RunMulti(uCmd, wCmd)
+
+	s.Stop()
+
+	if _, err := os.Stat(constants.DotSecmanPath); err == nil {
+		fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Checkmark + "Initialization Successful!").String())
+	}
 }
