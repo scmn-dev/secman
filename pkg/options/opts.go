@@ -9,6 +9,7 @@ type PasswordsOptions struct {
 	Servers	     bool
 	ShowHidden   bool
 	ShowJsonView bool
+	ShowTreeView bool
 }
 
 type GenOptions struct {
@@ -17,9 +18,7 @@ type GenOptions struct {
 }
 
 type AuthOptions struct {
-	Username       string
-	MasterPassword string
-	ConfirmLogout  bool
+	ConfirmLogout bool
 }
 
 type RootOptions struct {
