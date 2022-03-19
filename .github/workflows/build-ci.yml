@@ -12,7 +12,7 @@ env:
 
 jobs:
   bfs: # build from source
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -96,7 +96,7 @@ jobs:
   homebrew:
     needs: [ bfs ]
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
