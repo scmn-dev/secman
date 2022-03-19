@@ -80,8 +80,7 @@ brews:
     homepage: "https://secman.dev"
     description: "👊 Human-friendly and amazing TUI secrets manager"
     license: "MIT"
-    post_install: |
-      system "sudo", "npm", "install", "--global", "@secman/scc"
+    post_install: system "npm install --global @secman/scc"
 
 checksum:
   name_template: "checksums.txt"
