@@ -7,6 +7,8 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GITHUB_ACTIONS_NAME: "github-actions[bot]"
+  GITHUB_ACTIONS_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
 
 permissions: write-all
 
