@@ -102,7 +102,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Get Secman via homebrew
-      run: brew install scmn-dev/tap/secman
+      run: |
+        sudo chown -R 501:20 "/Users/runner/.npm"
+        brew install scmn-dev/tap/secman
 
     - name: Show Version
       run: secman version
