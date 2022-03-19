@@ -20,28 +20,53 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Set up `Go`
+      - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: 1.17
 
-      - name: Setup `Node.js`
+      - name: Setup Node.js
         uses: actions/setup-node@v2.5.0
         with:
           node-version: 16
-          
-      - name: Set up `GoReleaser`
+
+      - name: Set up Tag
+        id: ghtag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
+      - name: Set up GoReleaser
         uses: goreleaser/goreleaser-action@v2
         with:
           install-only: true
 
-      - name: Set up `Task`
+      - name: Set up Task
         uses: arduino/setup-task@v1
 
-      - name: Set up `Date`
+      - name: Set up Date
         run: go run ./scripts/date.go >> date.txt
 
       - name: Build
         run: |
           BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
+          cd ./scripts/scoop
+          yarn
+          cd ../..
           task scoop
+
+      - name: Commit files
+        env:
+          TAG: ${{ steps.ghtag.outputs.tag }}
+        run: |
+          cd ./scripts/scoop/tmp/scoop
+          git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
+          git diff --cached
+          git add .
+          git commit -m "Scoop update for secman version ${TAG}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          repository: "scmn-dev/scoop"
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          directory: ./scripts/scoop/tmp/scoop
