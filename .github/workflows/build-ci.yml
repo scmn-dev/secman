@@ -101,10 +101,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2.5.0
+      with:
+        node-version: 16
+
     - name: Get Secman via homebrew
-      run: |
-        sudo chown -R 501:20 "/Users/runner/.npm"
-        brew install scmn-dev/tap/secman
+      run: brew install scmn-dev/tap/secman
 
     - name: Show Version
       run: secman version
