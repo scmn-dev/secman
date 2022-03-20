@@ -55,7 +55,3 @@ tasks:
       - task: build-core
       - task: link-core
       - sudo mv ./secman "{{ .SECMAN_UNIX_PATH }}"
-
-  scoop:
-    cmds:
-      - node ./scripts/scoop/scoop-sm.js

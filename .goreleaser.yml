@@ -6,7 +6,7 @@ env:
 release:
   prerelease: auto
   draft: true
-  name_template: "Secman v{{ .Version }}"
+  name_template: "Secman {{ .Tag }}"
 
 before:
   hooks:
@@ -17,7 +17,7 @@ builds:
       binary: bin/secman
       main: ./
       ldflags:
-        - -X main.version=v{{ .Version }}
+        - -X main.version={{ .Tag }}
         - -X main.buildDate={{ .Env.BuildDate }}
 
     id: macos
@@ -43,7 +43,7 @@ archives:
   - id: nix
     builds: [ macos, linux, freebsd ]
     <<: &archive_defaults
-      name_template: "{{ .ProjectName }}_{{ .Os }}_v{{ .Version }}_{{ .Arch }}"
+      name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Tag }}_{{ .Arch }}"
 
     wrap_in_directory: "true"
     replacements:
@@ -53,7 +53,7 @@ archives:
       - LICENSE
 
   - id: windows
-    builds: [ windows ]
+    builds: [windows]
     <<: *archive_defaults
     wrap_in_directory: "false"
     format: zip
@@ -65,7 +65,7 @@ nfpms:
     maintainer: secman
     homepage: https://secman.dev
     bindir: /usr
-    file_name_template: "{{ .ProjectName }}_v{{ .Version }}_{{ .Arch }}"
+    file_name_template: "{{ .ProjectName }}_{{ .Tag }}_{{ .Arch }}"
     description: "👊 Human-friendly and amazing TUI secrets manager"
     formats:
       - apk
@@ -79,11 +79,25 @@ brews:
       name: homebrew-tap
     homepage: "https://secman.dev"
     description: "👊 Human-friendly and amazing TUI secrets manager"
-    license: "MIT"
+    license: MIT
     post_install: system "npm install --global @secman/scc"
+
+scoop:
+  url_template: "https://github.com/scmn-dev/secman/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+
+  bucket:
+    owner: scmn-dev
+    name: scoop
+
+  homepage: "https://secman.dev"
+  description: "👊 Human-friendly and amazing TUI secrets manager"
+
+  license: MIT
+
+  post_install: ["npm install --global @secman/scc"]
 
 checksum:
   name_template: "checksums.txt"
 
 snapshot:
-  name_template: "{{ .Tag }}-next"
+  name_template: "{{ .Version }}-next"
