@@ -3,7 +3,7 @@ module github.com/scmn-dev/secman
 go 1.17
 
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.2
+	github.com/AlecAivazis/survey/v2 v2.3.3
 	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/abdfnx/bubbles v0.10.7
 	github.com/abdfnx/gosh v0.3.8
