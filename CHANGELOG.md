@@ -4,6 +4,20 @@
 
 ---
 
+## [[v6.2.2] 2022-03-24](#v622-2022-03-24)
+
+### Added
+
+- Add `--auto-generate` flag to `secman insert` command (this flag only works with login type).
+
+### Changed
+
+- Update `secman list` interface view.
+
+### Fixed
+
+nothing
+
 ## [[v6.2.1] 2022-03-18](#v621-2022-03-18)
 
 ### Added
