@@ -2,6 +2,7 @@ package lister
 
 import (
 	"github.com/abdfnx/bubbles/list"
+	"github.com/charmbracelet/bubbles/key"
 	"github.com/scmn-dev/secman/constants"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/bubbles/spinner"
@@ -113,6 +114,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func Lister() *model {
+	var tab = key.NewBinding(
+		key.WithKeys("tab"),
+		key.WithHelp("tab", "switch"),
+	)
+
 	loginPWs := conf.PWs("-l")
 	ccPWs := conf.PWs("-c")
 	emailPWs := conf.PWs("-e")
@@ -125,29 +131,45 @@ func Lister() *model {
 	l.SetShowFilter(false)
 	l.SetFilteringEnabled(false)
 
+	l.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{tab}
+	}
+
 	c := list.NewModel(ccPWs, list.NewDefaultDelegate(), constants.SECMAN_LIST_WIDTH, constants.SECMAN_LIST_HEIGHT)
 	c.Title = "Credit Cards List"
 	c.Styles.Title = st.ListTitle
 	c.SetShowFilter(false)
 	c.SetFilteringEnabled(false)
+	c.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{tab}
+	}
 	
 	e := list.NewModel(emailPWs, list.NewDefaultDelegate(), constants.SECMAN_LIST_WIDTH, constants.SECMAN_LIST_HEIGHT)
 	e.Title = "Emails List"
 	e.Styles.Title = st.ListTitle
 	e.SetShowFilter(false)
 	e.SetFilteringEnabled(false)
+	e.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{tab}
+	}
 
 	n := list.NewModel(notePWs, list.NewDefaultDelegate(), constants.SECMAN_LIST_WIDTH, constants.SECMAN_LIST_HEIGHT)
 	n.Title = "Notes List"
 	n.Styles.Title = st.ListTitle
 	n.SetShowFilter(false)
 	n.SetFilteringEnabled(false)
+	n.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{tab}
+	}
 
 	r := list.NewModel(serverPWs, list.NewDefaultDelegate(), constants.SECMAN_LIST_WIDTH, constants.SECMAN_LIST_HEIGHT)
 	r.Title = "Servers List"
 	r.Styles.Title = st.ListTitle
 	r.SetShowFilter(false)
 	r.SetFilteringEnabled(false)
+	r.AdditionalShortHelpKeys = func() []key.Binding {
+		return []key.Binding{tab}
+	}
 
 	s := spinner.New()
 	s.Spinner = spinner.Dot

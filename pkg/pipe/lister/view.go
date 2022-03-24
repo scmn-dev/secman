@@ -470,8 +470,5 @@ func (m model) detailView() string {
 func (m model) View() string {
 	m.viewport.SetContent(m.detailView())
 
-	return lipgloss.JoinVertical(
-		lipgloss.Center,
-		lipgloss.JoinHorizontal(lipgloss.Top, m.listView(), m.viewport.View()),
-	)
+	return lipgloss.JoinHorizontal(lipgloss.Bottom, m.listView(), m.viewport.View())
 }
