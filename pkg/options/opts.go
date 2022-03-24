@@ -10,6 +10,7 @@ type PasswordsOptions struct {
 	ShowHidden   bool
 	ShowJsonView bool
 	ShowTreeView bool
+	AutoGenerate bool
 }
 
 type GenOptions struct {

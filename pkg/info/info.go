@@ -4,25 +4,33 @@ import (
 	"fmt"
 
 	"github.com/abdfnx/gosh"
+	"github.com/abdfnx/looker"
 	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/glamour"
 	"github.com/scmn-dev/secman/internal/config"
 )
 
 func Info(version string) {
-	err, smcVersion, _ := gosh.RunOutput("scc -v")
 	user := "`" + config.Config("config.name") + "`"
 
 	if user == "``" {
 		user = "`No User`"
 	}
 
-	// remove the last line
-	smcVersion = smcVersion[:len(smcVersion)-1]
+	var smcVersion string
+
+	_, err := looker.LookPath("scc")
 
 	if err != nil {
-		fmt.Println("could not get scc version")
-		return
+		smcVersion = "`Unkown`"
+	} else {
+		err, out, _ := gosh.RunOutput("scc -v")
+
+		if err != nil {
+			smcVersion = "`Unkown`"
+		}
+
+		smcVersion = out[:len(out)-1]
 	}
 
 	out1 := fmt.Sprintf(`# Secman CLI

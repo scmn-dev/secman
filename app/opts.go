@@ -12,6 +12,7 @@ var PwOpts = options.PasswordsOptions{
 	ShowHidden:   false,
 	ShowJsonView: false,
 	ShowTreeView: false,
+	AutoGenerate: false,
 }
 
 var GenOpts = options.GenOptions{

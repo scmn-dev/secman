@@ -30,6 +30,7 @@ func InsertCMD() *cobra.Command {
 	cmd.Flags().BoolVarP(&PwOpts.Emails, "emails", "e", false, "Insert a email to your vault.")
 	cmd.Flags().BoolVarP(&PwOpts.Notes, "notes", "n", false, "Insert a note to your vault.")
 	cmd.Flags().BoolVarP(&PwOpts.Servers, "servers", "s", false, "Insert a server to your vault.")
+	cmd.Flags().BoolVarP(&PwOpts.AutoGenerate, "auto-generate", "g", false, "Auto generate a secure password for password field (Only works with Logins type).")
 
 	return cmd
 }

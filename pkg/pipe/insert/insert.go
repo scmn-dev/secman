@@ -11,6 +11,7 @@ import (
 	"github.com/scmn-dev/secman/constants"
 	"github.com/scmn-dev/secman/pkg/options"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/scmn-dev/secman/pkg/generator"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
 	"github.com/scmn-dev/secman/internal/shared"
@@ -19,14 +20,15 @@ import (
 const okButton shared.Index = iota
 
 type model struct {
-	styles     shared.Styles
-	focusIndex int
-	index      shared.Index
-	inputs     []textinput.Model
-	spinner    spinner.Model
-	state      shared.State
-	pwType     string
-	message    string
+	styles     		shared.Styles
+	focusIndex 		int
+	index      		shared.Index
+	inputs     		[]textinput.Model
+	spinner    		spinner.Model
+	state      		shared.State
+	pwType          string
+	message         string
+	autoGenerateOpt bool
 }
 
 func Insert(o *options.PasswordsOptions) model {
@@ -48,12 +50,15 @@ func Insert(o *options.PasswordsOptions) model {
 		return 0
 	}
 
+	autoGenerateOpt := o.AutoGenerate
+
 	m := model{
 		styles:  st,
 		inputs:  make([]textinput.Model, inps()),
 		spinner: shared.NewSpinner(),
 		state:   shared.Ready,
 		pwType:  shared.PasswordType(o),
+		autoGenerateOpt: autoGenerateOpt,
 	}
 
 	var t textinput.Model
@@ -81,7 +86,7 @@ func Insert(o *options.PasswordsOptions) model {
 				case 3:
 					t.Placeholder = "Password"
 					t.EchoMode = textinput.EchoPassword
-					t.EchoCharacter = '•'
+					t.EchoCharacter = '•'		
 
 				case 4:
 					t.Placeholder = "Extra"
@@ -230,7 +235,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 								return m, tea.Quit
 							}
 						}
-			
+
 						if s == "up" || s == "shift+tab" {
 							m.focusIndex--
 						} else {
@@ -309,12 +314,16 @@ func (m *model) updateInputs(msg tea.Msg) tea.Cmd {
 }
 
 func (m model) View() string {
-	s := "\n\nCreate a new password for your account.\n\n"
+	s := "\n\nCreate a new password for your vault.\n\n"
 
 	if m.state == shared.Loading {
 		s += spinnerView(m)
 	} else {
 		for i := range m.inputs {
+			if m.pwType == "-l" && m.autoGenerateOpt {
+				m.inputs[3].SetValue(generator.SMGenerator(15))
+			}
+
 			s += m.inputs[i].View() + "\n"
 		}
 	
@@ -337,21 +346,10 @@ func smi(m model) tea.Cmd {
 	return func() tea.Msg {
 		insCmd := "scc insert "
 		cmd := ""
-		extra := "no-extra"
-
-		if m.pwType == "-l" {
-			if m.inputs[4].Value() != "" {
-				extra = m.inputs[4].Value()
-			}
-		} else if m.pwType == "-s" {
-			if m.inputs[9].Value() != "" {
-				extra = m.inputs[9].Value()
-			}
-		}
 
 		var CMD = func() string {
 			if m.pwType == "-l" {
-				cmd = insCmd + m.pwType + " -t " + fmt.Sprintf("\"%s\"", m.inputs[0].Value()) + " -u " + fmt.Sprintf("\"%s\"", m.inputs[1].Value()) + " -U " + fmt.Sprintf("\"%s\"", m.inputs[2].Value()) + " -p " + fmt.Sprintf("\"%s\"", m.inputs[3].Value()) + " -x " + extra
+				cmd = insCmd + m.pwType + " -t " + fmt.Sprintf("\"%s\"", m.inputs[0].Value()) + " -u " + fmt.Sprintf("\"%s\"", m.inputs[1].Value()) + " -U " + fmt.Sprintf("\"%s\"", m.inputs[2].Value()) + " -p " + fmt.Sprintf("\"%s\"", m.inputs[3].Value()) + " -x " + fmt.Sprintf("\"%s\"", m.inputs[4].Value())
 			} else if m.pwType == "-c" {
 				cmd = insCmd + m.pwType + " -t " + fmt.Sprintf("\"%s\"", m.inputs[0].Value()) + " -C " + fmt.Sprintf("\"%s\"", m.inputs[1].Value()) + " -T " + fmt.Sprintf("\"%s\"", m.inputs[2].Value()) + " -N " + fmt.Sprintf("\"%s\"", m.inputs[3].Value()) + " -E " + fmt.Sprintf("\"%s\"", m.inputs[4].Value()) + " -V " + fmt.Sprintf("\"%s\"", m.inputs[5].Value())
 			} else if m.pwType == "-e" {
