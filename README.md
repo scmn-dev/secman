@@ -208,7 +208,7 @@ thanks to [**@charmbracelet**](https://github.com/charmbracelet) for thier aweso
 
 ## License
 
-[secman][smweb] is licensed under the terms of [MIT][licurl] License
+[**secman**][smweb] is licensed under the terms of [MIT][licurl] License
 
 [smweb]: https://secman.dev
 [licurl]: https://github.com/scmn-dev/secman/blob/main/LICENSE
