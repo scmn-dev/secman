@@ -15,13 +15,32 @@
     "secrets-management",
     "secrets"
   ],
+  "workspaces": [
+    "core",
+    "desktop",
+    "crypto",
+    "tools/spinner"
+  ],
+  "scripts": {
+    "dev": "yarn export:node:options && turbo run dev --parallel",
+    "build": "yarn export:node:options && turbo run build",
+    "export:node:options": "export NODE_OPTIONS=--openssl-legacy-provider",
+    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../desktop && rimraf node_modules && cd ../crypt && rimraf node_modules"
+  },
   "author": {
     "name": "Secman, Inc.",
     "email": "hello@secman.dev",
     "url": "https://secman.dev"
   },
-  "workspaces": [
-    "core",
-    "scripts/scoop"
-  ]
+  "dependencies": {
+    "axios": "0.26.1",
+    "chalk": "^4.1.2",
+    "crypto-js": "4.1.1",
+    "rimraf": "3.0.2",
+    "ts-node": "10.7.0"
+  },
+  "devDependencies": {
+    "turbo": "1.1.10"
+  },
+  "packageManager": "yarn@1.22.17"
 }

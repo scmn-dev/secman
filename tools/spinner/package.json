@@ -1,0 +1,15 @@
+{
+  "name": "@secman/spinner",
+  "version": "0.1.0",
+  "description": "simple spinner for secman core cli.",
+  "main": "main.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "node example.js",
+    "clean": "rimraf *.d.ts",
+    "build": "yarn clean && npx -p typescript tsc *.js --declaration --allowJs --emitDeclarationOnly --outDir ."
+  },
+  "dependencies": {
+    "bl": "^5.0.0"
+  }
+}

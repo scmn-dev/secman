@@ -9,7 +9,7 @@ tasks:
   default:
     cmds:
       - task: build
-      - task: build-core
+      - yarn build
 
   set-tag-and-date:
     cmds:
@@ -47,6 +47,10 @@ tasks:
     dir: ./core
     cmds:
       - yarn publish
+
+  test:
+    cmds:
+      - yarn dev
 
   bfs:
     desc: build from source

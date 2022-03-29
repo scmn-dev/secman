@@ -1,0 +1,12 @@
+{
+  "name": "@secman/crypto",
+  "version": "0.0.1",
+  "main": "./main.ts",
+  "types": "./main.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node ./example.ts",
+    "clean": "rimraf *.d.ts",
+    "build": "yarn clean && npx -p typescript tsc *.ts --declaration --emitDeclarationOnly --esModuleInterop --outDir ."
+  }
+}

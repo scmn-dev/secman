@@ -7,10 +7,9 @@ import {
   SERVERS_ENCRYPTED_FIELDS,
 } from "../../constants";
 import { API } from "../../contract";
-import { CryptoTools } from "../../tools/crypto";
+import { CryptoTools } from "@secman/crypto";
 import { readData } from "../../config";
 import { InsertExamples } from "../../contents/examples/insert";
-import { error, success } from "../../design/layout";
 
 export default class Insert extends Command {
   static description = "Insert a password to your vault.";

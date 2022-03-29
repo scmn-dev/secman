@@ -7,7 +7,7 @@ import {
   SERVERS_ENCRYPTED_FIELDS,
 } from "../../constants";
 import { API } from "../../contract";
-import { CryptoTools } from "../../tools/crypto";
+import { CryptoTools } from "@secman/crypto";
 import cryptojs from "crypto-js";
 import { ReadExamples } from "../../contents/examples/read";
 import { spinner } from "@secman/spinner";

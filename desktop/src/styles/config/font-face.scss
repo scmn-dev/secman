@@ -1,0 +1,54 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: normal; /*400*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/Inter/Inter-Regular.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500; /*500*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/Inter/Inter-Medium.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: bold; /*600*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/Inter/Inter-SemiBold.ttf")
+    format("truetype");
+}
+
+// 'IBM Plex Sans'
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: bold; /*600*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/IBMPlexSans/IBMPlexSans-SemiBold.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 500; /*500*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/IBMPlexSans/IBMPlexSans-Medium.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: bold; /*600*/
+  font-display: swap;
+  src: url("https://assets.secman.dev/assets/desktop/IBMPlexSans/IBMPlexSans-Regular.ttf")
+    format("truetype");
+}

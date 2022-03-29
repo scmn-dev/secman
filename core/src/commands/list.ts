@@ -12,7 +12,7 @@ import {
   NOTES_ENCRYPTED_FIELDS,
   SERVERS_ENCRYPTED_FIELDS,
 } from "../../constants";
-import { CryptoTools } from "../../tools/crypto";
+import { CryptoTools } from "@secman/crypto";
 
 export default class List extends Command {
   static description = "List all passwords.";
@@ -48,7 +48,7 @@ export default class List extends Command {
     tree: flags.boolean({
       char: "t",
       description: "list password in tree view.",
-    })
+    }),
   };
 
   static examples = ListExamples;

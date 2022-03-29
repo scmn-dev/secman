@@ -1,7 +1,7 @@
 import { Command, flags } from "@oclif/command";
 import writeConfigFile, { readConfig } from "../../config";
 import { API } from "../../contract";
-import { CryptoTools } from "../../tools/crypto";
+import { CryptoTools } from "@secman/crypto";
 
 export default class Auth extends Command {
   static description = "Manage secman's authentication state.";
