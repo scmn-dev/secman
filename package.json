@@ -25,7 +25,7 @@
     "dev": "yarn export:node:options && turbo run dev --parallel",
     "build": "yarn export:node:options && turbo run build",
     "export:node:options": "export NODE_OPTIONS=--openssl-legacy-provider",
-    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../desktop && rimraf node_modules && cd ../crypt && rimraf node_modules"
+    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../desktop && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../.."
   },
   "author": {
     "name": "Secman, Inc.",
