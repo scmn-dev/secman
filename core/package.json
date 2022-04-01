@@ -37,7 +37,7 @@
     "@oclif/plugin-not-found": "^2.2.1",
     "@secman/crypto": "*",
     "@secman/spinner": "*",
-    "cfonts": "2.10.0",
+    "cfonts": "2.10.1",
     "chalk": "^4.1.2",
     "cli-ux": "^6.0.9",
     "lodash": "4.17.21",
