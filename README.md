@@ -68,7 +68,7 @@ scoop install secman
 
 > ### Secman Hub
 
-Refer to [secman hub](https://secman.dev/docs/hub) for instructions.
+Refer to [secman hub](https://secman.dev/docs/hub) instructions.
 
 > ### Secman Web Extension
 
@@ -95,6 +95,6 @@ thanks to [**@charmbracelet**](https://github.com/charmbracelet) for thier aweso
 
 ## License
 
-[**secman**][smweb] is licensed under the terms of [MIT][https://github.com/scmn-dev/secman/blob/main/LICENSE] License
+[**secman**][smweb] is licensed under the terms of [MIT](https://github.com/scmn-dev/secman/blob/main/LICENSE) License
 
 [smweb]: https://secman.dev
