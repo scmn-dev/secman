@@ -1,19 +1,41 @@
-# Secman CLI
+<p align="center">
+  <a href="https://secman.dev/#gh-light-mode-only" target="_blank">
+    <img src="https://assets.secman.dev/logo.svg" alt="Secman" width="300">
+  </a>
+  <a href="https://secman.dev/#gh-dark-mode-only" target="_blank">
+    <img src="https://assets.secman.dev/logo_w.svg" alt="Secman" width="300">
+  </a>
+</p>
 
-[**secman cli**](https://secman.dev) is a TUI password manager can store, retrieves, generates, and synchronizes passwords, The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere with **Secman Cloud** 😉.
+[**secman**][smweb] is a password manager can store, retrieves, generates, and synchronizes passwords, The most important difference is secman is not GPG cored. Instead, it uses a master password to securely store your passwords. and you can easily manage your passwords from everywhere with **Secman Cloud** 😉.
 
-<img src="https://assets.secman.dev/apps/secman-cli.svg" />
+<p align="center">
+  <img src="https://raw.githubusercontent.com/scmn-dev/.github/main/assets/secman.svg" />
+</p>
 
-### Featuers
+## Projects
+
+| Project     | Package                                                                   | Version                                                                                                                                                                          | Links                                 |
+| ----------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| **CLI**     | [`scmn-dev/secman`](https://pkg.go.dev/github.com/scmn-dev/secman/v6)     | ![version](https://img.shields.io/github/v/release/scmn-dev/secman?label=go%40latest&logo=go&style=flat-square)                                                                  | [`README.md`](README.md)              |
+| **Core**    | [`@secman/core`](https://github.com/scmn-dev/secman/tree/main/core)       | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=core%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square)   | [`README.md`](core/README.md)         |
+| **Hub** | [`@secman/hub`](https://github.com/scmn-dev/secman/tree/main/hub) | ![version](https://img.shields.io/github/package-json/v/scmn-dev/secman?filename=hub%2Fpackage.json&label=npm%40latest&logo=npm&style=flat-square)                           | [`README.md`](hub/README.md)      |
+| **Crypto**  | [`@secman/crypto`](https://github.com/scmn-dev/secman/tree/main/crypto)   | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=crypto%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square) | [`README.md`](crypto/README.md) |
+
+## Featuers
 
 - **Not GPG cored.**
 - **It uses a master password to securely store your passwords.**
 - **It syncs your passwords.**
 - **Easy to use.**
-- **It is written in Go.**
-- **You can easily manage your passwords from everywhere, from desktop, web, terminal, and more.**
+- **It is written in Go to be fast.**
+- **You can easily manage your passwords from everywhere, from desktop, web, command line, and more.**
 
-### Installation ⬇
+#### to learn about secman types, check out the [secman types](https://secman.dev/docs/password-types) page.
+
+## Installation ⬇
+
+> ### Secman CLI
 
 ### Using script
 
@@ -44,161 +66,26 @@ scoop bucket add secman https://github.com/scmn-dev/scoop
 scoop install secman
 ```
 
+> ### Secman Hub
+
+Refer to [secman hub](https://secman.dev/docs/hub) for instructions.
+
+> ### Secman Web Extension
+
+Check out [secman web extension](https://secman.dev/docs/extension) for installation instructions.
+
 ## Usage
-
-##### to learn about secman types, check out the [secman types](https://secman.dev/docs/password-types) page.
-
-### Initialize `~/.secman`
-
-**Command**
-
-```
-secman init
-```
-
-**Flags**
-
-no flags
-
-### Manage secman's authentication state.
-
-**Command**
-
-```
-secman auth
-```
-
-**Other Commands**
-
-```
-create     Create a new secman account.
-login      Authenticate with secman.
-logout     Logout of the current user account.
-refresh    Refresh the current user account.
-```
-
-**Flags**
-
-no flags
-
-### Insert a New Password
-
-**Command**
-
-```
-secman insert --[PASSWORD_TYPE]
-```
-
-**Flags**
-
-```
--c, --credit-cards   Insert a credit card to your vault.
--e, --emails         Insert a email to your vault.
--l, --logins         Insert a login password to your vault.
--n, --notes          Insert a note to your vault.
--s, --servers        Insert a server to your vault.
-```
-
-### List all your passwords
-
-**Command**
-
-```
-secman .
-```
-
-**Flags**
-
-no flags
-
-### Read a password
-
-**Command**
-
-```
-secman read --[PASSWORD_TYPE] <PASSWORD_NAME>
-```
-
-**Flags**
-
-```
--c, --credit-cards   Read password from credit cards type.
--e, --emails         Read password from emails type.
--j, --json           Print password in JSON view.
--l, --logins         Read password from logins type.
--n, --notes          Read password from notes type.
--s, --servers        Read password from servers type.
--p, --show-hidden    Show hidden values.
-```
-
-### Update/Edit a password value
-
-**Command**
-
-```
-secman edit --[PASSWORD_TYPE] <PASSWORD_NAME>
-```
-
-**Flags**
-
-```
--c, --credit-cards   Edit password from credit cards type.
--e, --emails         Edit password from emails type.
--l, --logins         Edit password from logins type.
--n, --notes          Edit password from notes type.
--s, --servers        Edit password from servers type.
-```
-
-### Delete a password
-
-**Command**
-
-```
-secman delete --[PASSWORD_TYPE] <PASSWORD_NAME>
-```
-
-**Flags**
-
-```
--c, --credit-cards   Delete password from credit cards type.
--e, --emails         Delete password from emails type.
--l, --logins         Delete password from logins type.
--n, --notes          Delete password from notes type.
--s, --servers        Delete password from servers type.
-```
-
-### Generate a password
-
-**Command**
-
-```
-secman generate --length 20
-```
-
-**Flags**
-
-```
--l, --length int   Set the length of the password. (default 10)
--r, --raw          Generate a password and print it.
-```
-
-> to learn more about secman commands run `secman help`
 
 ## Some Resources
 
-- [**secman website**][smweb]
+- [**website**][smweb]
 - [**docs**](https://secman.dev/docs)
-- [**changelog**](https://secman.dev/changelog)
+- [**blog**](https://secman.dev/blog)
 - [**privacy policy of secman**](https://secman.dev/privacy)
-
-## Other Secman Products
-
-- [**Secman Desktop**](https://github.com/scmn-dev/desktop)
-- [**Secman Extension**](https://secman.dev/extension)
 
 ## Contributing
 
-Thanks for your interest in contributing to `secman`. You can start a development environment with [gitpod](https://www.gitpod.io):
+Thanks for your interest in contributing to `secman`. You can start a development environment with [gitpod](https://www.gitpod.io)
 
 [![open in gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/scmn-dev/secman)
 
@@ -208,7 +95,6 @@ thanks to [**@charmbracelet**](https://github.com/charmbracelet) for thier aweso
 
 ## License
 
-[**secman**][smweb] is licensed under the terms of [MIT][licurl] License
+[**secman**][smweb] is licensed under the terms of [MIT][https://github.com/scmn-dev/secman/blob/main/LICENSE] License
 
 [smweb]: https://secman.dev
-[licurl]: https://github.com/scmn-dev/secman/blob/main/LICENSE

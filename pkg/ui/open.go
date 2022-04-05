@@ -3,13 +3,13 @@ package ui
 import (
 	"fmt"
 	"log"
-	"runtime"
 	"net/http"
+	"runtime"
 
-	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/initx"
+	"github.com/scmn-dev/secman/v6/api"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/pkg/initx"
 )
 
 func Open() {

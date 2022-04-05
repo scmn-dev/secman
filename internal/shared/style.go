@@ -2,9 +2,9 @@ package shared
 
 import (
 	"github.com/abdfnx/bubbles/list"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
 	"github.com/charmbracelet/bubbles/spinner"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
 )
 
 type Styles struct {

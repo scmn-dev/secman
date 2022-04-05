@@ -1,20 +1,20 @@
 package initx
 
 import (
-	"os"
 	"fmt"
 	"log"
-	"time"
-	"runtime"
+	"os"
 	"path/filepath"
+	"runtime"
+	"time"
 
 	"github.com/abdfnx/gosh"
-	"github.com/spf13/viper"
 	"github.com/abdfnx/tran/dfs"
 	"github.com/briandowns/spinner"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
 	gapi "github.com/scmn-dev/get-latest/api"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/spf13/viper"
 )
 
 func Init() {

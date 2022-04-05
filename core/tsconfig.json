@@ -16,14 +16,11 @@
   },
   "include": [
     "src/**/*",
-    "api/**/*",
-    "app/**/*",
     "constants/**/*",
     "contents/**/*",
     "contract/**/*",
     "design/**/*",
-    "tools/**/*",
-    "config/**/*"
+    "tools/**/*"
   ],
   "exclude": ["node_modules", "node_modules/*", "dist"]
 }

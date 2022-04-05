@@ -1,6 +1,7 @@
 {
   "name": "@secman/crypto",
   "version": "0.0.1",
+  "description": "Secman Crypto",
   "main": "./main.ts",
   "types": "./main.ts",
   "license": "MIT",

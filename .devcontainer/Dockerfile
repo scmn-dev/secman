@@ -1,4 +1,4 @@
-ARG VARIANT=1.17
+ARG VARIANT=1.18
 ARG NODE_VERSION="16"
 
 FROM mcr.microsoft.com/vscode/devcontainers/go:0-${VARIANT}

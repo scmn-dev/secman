@@ -13,16 +13,42 @@ We'd also love to hear about ideas for new features as issues or discussions.
 
 ## Build Secman
 
-### Prerequisites:
+## Prerequisites:
 
-- `go` version >= `13`
-- `npm` version >= `8.0.0`
+- `go` version >= `17`.
+- `npm` version >= `8.0.0`.
+- `yarn` is installed.
+- [`task`](https://taskfile.dev) is installed.
 
-### Run
+## Clone secman repo
 
-* run **task build** to build secman cli.
-* run **task link** to link to secman core cli and test it.
-* run **task install** to setup secman and use it.
+```bash
+# GitHub CLI
+$ gh repo clone scmn-dev/secman
+
+# Git
+$ git clone https://github.com/scmn-dev/secman
+```
+
+## Change directory to secman repo
+
+```bash
+$ cd secman
+```
+
+### Build secman
+
+- run **task bfs** to build secman cli.
+
+```bash
+$ task bfs
+```
+
+### Check secman
+
+```bash
+$ secman version
+```
 
 ## Create or submitting a pull request
 

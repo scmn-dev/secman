@@ -7,9 +7,9 @@ import (
 	"github.com/abdfnx/gosh"
 	"github.com/abdfnx/tran/dfs"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/initx"
 	gapi "github.com/scmn-dev/get-latest/api"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/pkg/initx"
 )
 
 func Update() {

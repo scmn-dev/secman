@@ -5,9 +5,9 @@ import (
 
 	"github.com/abdfnx/gosh"
 	"github.com/abdfnx/looker"
-	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/glamour"
-	"github.com/scmn-dev/secman/internal/config"
+	"github.com/scmn-dev/secman/v6/api"
+	"github.com/scmn-dev/secman/v6/internal/config"
 )
 
 func Info(version string) {

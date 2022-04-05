@@ -1,16 +1,16 @@
 package logout
 
 import (
-	"os"
 	"fmt"
+	"os"
 
 	"github.com/abdfnx/gosh"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/bubbles/spinner"
-	"github.com/scmn-dev/secman/internal/config"
-	"github.com/scmn-dev/secman/internal/shared"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/config"
+	"github.com/scmn-dev/secman/v6/internal/shared"
 )
 
 const (

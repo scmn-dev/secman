@@ -9,8 +9,8 @@ import (
 	"github.com/abdfnx/gosh"
 	"github.com/abdfnx/looker"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/api"
-	"github.com/scmn-dev/secman/constants"
+	"github.com/scmn-dev/secman/v6/api"
+	"github.com/scmn-dev/secman/v6/constants"
 	"github.com/spf13/viper"
 )
 

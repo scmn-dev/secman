@@ -1,13 +1,13 @@
 package doctor
 
 import (
-	"os"
 	"fmt"
+	"os"
 
 	"github.com/abdfnx/gosh"
-	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
+	"github.com/scmn-dev/secman/v6/api"
+	"github.com/scmn-dev/secman/v6/constants"
 )
 
 func CommandStyle(cmd string) string {

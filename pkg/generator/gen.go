@@ -1,15 +1,15 @@
 package generator
 
 import (
-    "fmt"
-    "time"
-    "strings"
-    "math/rand"
+	"fmt"
+	"math/rand"
+	"strings"
+	"time"
 
 	"github.com/charmbracelet/glamour"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/options"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/pkg/options"
 )
 
 func Generator(opts *options.GenOptions) {

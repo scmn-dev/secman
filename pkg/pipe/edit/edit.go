@@ -1,16 +1,16 @@
 package edit
 
 import (
-	"os"
 	"fmt"
+	"os"
 
 	"github.com/abdfnx/bubbles/list"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/options"
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/scmn-dev/secman/internal/shared"
-	"github.com/scmn-dev/secman/pkg/pipe/edit/editor"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
+	"github.com/scmn-dev/secman/v6/pkg/options"
+	"github.com/scmn-dev/secman/v6/pkg/pipe/edit/editor"
 )
 
 type model struct {

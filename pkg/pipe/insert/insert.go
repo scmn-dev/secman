@@ -1,20 +1,20 @@
 package insert
 
 import (
-	"os"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/abdfnx/gosh"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/pkg/options"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/scmn-dev/secman/pkg/generator"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/textinput"
-	"github.com/scmn-dev/secman/internal/shared"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
+	"github.com/scmn-dev/secman/v6/pkg/generator"
+	"github.com/scmn-dev/secman/v6/pkg/options"
 )
 
 const okButton shared.Index = iota

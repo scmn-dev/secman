@@ -2,7 +2,7 @@
   "name": "secman",
   "private": true,
   "version": "6.2.2",
-  "description": "👊 Human-friendly and amazing TUI secrets manager.",
+  "description": "👊 Human-friendly and amazing secrets manager.",
   "license": "MIT",
   "homepage": "https://secman.dev",
   "bugs": "https://github.com/scmn-dev/secman/issues",
@@ -17,15 +17,14 @@
   ],
   "workspaces": [
     "core",
-    "desktop",
+    "hub",
     "crypto",
     "tools/spinner"
   ],
   "scripts": {
-    "dev": "yarn export:node:options && turbo run dev --parallel",
-    "build": "yarn export:node:options && turbo run build",
-    "export:node:options": "export NODE_OPTIONS=--openssl-legacy-provider",
-    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../desktop && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../.."
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../hub && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../.."
   },
   "author": {
     "name": "Secman, Inc.",

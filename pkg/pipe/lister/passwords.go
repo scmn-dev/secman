@@ -1,19 +1,19 @@
 package lister
 
 import (
-	"os"
-	"fmt"
-	"time"
 	"bytes"
+	"fmt"
+	"os"
 	"strings"
+	"time"
 
-	"github.com/abdfnx/gosh"
-	"github.com/spf13/viper"
-	"github.com/briandowns/spinner"
 	"github.com/abdfnx/bubbles/list"
+	"github.com/abdfnx/gosh"
+	"github.com/briandowns/spinner"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/internal/shared"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
+	"github.com/spf13/viper"
 )
 
 type Passwords struct {

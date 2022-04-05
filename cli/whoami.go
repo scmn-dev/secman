@@ -1,0 +1,36 @@
+package cli
+
+import (
+	"fmt"
+
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/config"
+	"github.com/spf13/cobra"
+)
+
+func WhoamiCMD() *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "whoami",
+		Short: "Display the current user.",
+		Long:  "Display the current user.",
+		RunE: func(cmd *cobra.Command, args []string) error {
+			s := lipgloss.NewStyle().PaddingLeft(2)
+
+			primary := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.PRIMARY_COLOR))
+			bold := lipgloss.NewStyle().Bold(true)
+
+			if WhoamiOpts.ShowUser {
+				fmt.Println(config.Config("config.name"))
+			} else {
+				fmt.Println(s.Render("\n👊 Hi ") + primary.Render(config.Config("config.name")) + " <" + bold.Render(config.Config("config.user")) + ">")
+			}
+
+			return nil
+		},
+	}
+
+	cmd.Flags().BoolVarP(&WhoamiOpts.ShowUser, "user", "u", false, "Just Display the username")
+
+	return cmd
+}

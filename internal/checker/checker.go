@@ -5,15 +5,15 @@ import (
 	"strings"
 
 	"github.com/abdfnx/looker"
-	"github.com/scmn-dev/secman/api"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	"github.com/scmn-dev/secman/cmd/factory"
+	"github.com/scmn-dev/secman/v6/api"
+	"github.com/scmn-dev/secman/v6/cli/factory"
+	"github.com/scmn-dev/secman/v6/constants"
 )
 
 func Check(buildVersion string) {
-	cmdFactory := factory.New()
-	stderr := cmdFactory.IOStreams.ErrOut
+	cliFactory := factory.New()
+	stderr := cliFactory.IOStreams.ErrOut
 
 	s := lipgloss.NewStyle().PaddingLeft(2)
 	primary := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.PRIMARY_COLOR))

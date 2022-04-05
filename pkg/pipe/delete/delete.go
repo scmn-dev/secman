@@ -1,17 +1,17 @@
 package delete
 
 import (
-	"os"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/abdfnx/gosh"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/scmn-dev/secman/pkg/options"
 	"github.com/charmbracelet/bubbles/spinner"
-	"github.com/scmn-dev/secman/internal/shared"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
+	"github.com/scmn-dev/secman/v6/pkg/options"
 )
 
 const (

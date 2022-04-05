@@ -1,6 +1,6 @@
 package shared
 
-import "github.com/scmn-dev/secman/pkg/options"
+import "github.com/scmn-dev/secman/v6/pkg/options"
 
 func PasswordType(o *options.PasswordsOptions) string {
 	if o.Logins {

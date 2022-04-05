@@ -1100,10 +1100,10 @@
     is-wsl "^2.1.1"
     tslib "^2.3.1"
 
-"@oclif/core@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.6.3.tgz#3d1dd4e033f5512ac35963a73878257142390838"
-  integrity sha512-a3DrPNlOYemwnzxuJ3tINjqpMVIYe56Mg+XaQo0nGsqGSk69wF5Q/hD8plsWrtwdkeIxwxhgl7T699EJypAUwg==
+"@oclif/core@1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@oclif/core/-/core-1.6.4.tgz#fd213265199a8ef93adb358e15a04d74927eb522"
+  integrity sha512-eUnh03MWxs3PHQUdZbo43ceLqmeOgGegsfimeqd6xfhcKwSv8dqarRyAoMCjg7P6Qm5qCjaNFZ6eS4ao349xvQ==
   dependencies:
     "@oclif/linewrap" "^1.0.0"
     "@oclif/screen" "^3.0.2"
@@ -2862,12 +2862,12 @@ center-align@^0.1.1:
     align-text "^0.1.3"
     lazy-cache "^1.0.3"
 
-cfonts@2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/cfonts/-/cfonts-2.10.0.tgz#6230a1dc3de6aa9e406496e86d551958efe145f4"
-  integrity sha512-NWeeq6vrzAZjq8xX4DndeTI6j6p426MX1uUgYL7PjnhqG8FeENqP62fZKzrJkVLujGcB5IKiBo+X3Nc50vW9Sg==
+cfonts@2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/cfonts/-/cfonts-2.10.1.tgz#3a0d1301418f439a287d7bd3fa0f233eb11356a8"
+  integrity sha512-l5IcLv4SaOdL/EGR6BpOF5SEro88VcGJJ6+xbvJb+wXi19YC6UeHE/brv7a4vIcLZopnt3Ys3zWeNnyfB04UPg==
   dependencies:
-    chalk "^4.1.2"
+    chalk "^4"
     window-size "^1.1.1"
 
 chalk@^1.1.3:
@@ -2898,7 +2898,7 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
+chalk@^4, chalk@^4.0.0, chalk@^4.1.0, chalk@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.1.2.tgz#aac4e2b7734a740867aeb16bf02aad556a1e7a01"
   integrity sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==

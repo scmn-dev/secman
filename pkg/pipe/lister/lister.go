@@ -3,11 +3,11 @@ package lister
 import (
 	"github.com/abdfnx/bubbles/list"
 	"github.com/charmbracelet/bubbles/key"
-	"github.com/scmn-dev/secman/constants"
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/viewport"
-	"github.com/scmn-dev/secman/internal/shared"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
 )
 
 type model struct {

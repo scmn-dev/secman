@@ -3,8 +3,8 @@ package config
 import (
 	"bytes"
 
+	"github.com/scmn-dev/secman/v6/constants"
 	"github.com/spf13/viper"
-	"github.com/scmn-dev/secman/constants"
 )
 
 func Config(obj string) string {

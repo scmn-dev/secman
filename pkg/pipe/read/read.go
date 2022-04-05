@@ -1,20 +1,20 @@
 package read
 
 import (
-	"os"
 	"fmt"
-	"time"
+	"os"
 	"strings"
+	"time"
 
 	"github.com/abdfnx/gosh"
-	"github.com/tidwall/gjson"
 	"github.com/briandowns/spinner"
-	"github.com/charmbracelet/lipgloss"
-	"github.com/scmn-dev/secman/constants"
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/evertras/bubble-table/table"
-	"github.com/scmn-dev/secman/pkg/options"
-	"github.com/scmn-dev/secman/internal/shared"
+	"github.com/scmn-dev/secman/v6/constants"
+	"github.com/scmn-dev/secman/v6/internal/shared"
+	"github.com/scmn-dev/secman/v6/pkg/options"
+	"github.com/tidwall/gjson"
 )
 
 type model struct {

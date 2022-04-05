@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/muesli/reflow/wordwrap"
-	"github.com/scmn-dev/secman/constants"
 	"github.com/evertras/bubble-table/table"
+	"github.com/muesli/reflow/wordwrap"
+	"github.com/scmn-dev/secman/v6/constants"
 )
 
 var (
