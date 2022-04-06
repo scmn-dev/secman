@@ -34,7 +34,7 @@
     "@types/crypto-js": "^4.1.0",
     "@vue/cli-plugin-babel": "~5.0.4",
     "@vue/cli-plugin-pwa": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-router": "~5.0.4",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
