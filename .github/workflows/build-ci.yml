@@ -51,8 +51,8 @@ jobs:
 
     - name: Building From Source
       run: |
-        task build-core
-        task link-core
+        task build-scc
+        task link-scc
         .\scripts\bfs.ps1
         echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
 

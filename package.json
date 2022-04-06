@@ -16,15 +16,15 @@
     "secrets"
   ],
   "workspaces": [
-    "core",
-    "hub",
     "crypto",
+    "hub",
+    "scc",
     "tools/spinner"
   ],
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "clean": "rimraf node_modules && cd core && rimraf node_modules && cd ../hub && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../.."
+    "clean": "rimraf node_modules && cd scc && rimraf node_modules && cd ../hub && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../.."
   },
   "author": {
     "name": "Secman, Inc.",

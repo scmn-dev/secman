@@ -48,7 +48,7 @@ vendor
 # Builds, Secman CLI Core Lib, Cache and Tmp
 .cache
 dist
-core/lib
+scc/lib
 tmp
 
 # Other

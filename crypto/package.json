@@ -1,7 +1,7 @@
 {
   "name": "@secman/crypto",
-  "version": "0.0.1",
-  "description": "Secman Crypto",
+  "version": "0.0.2",
+  "description": "A library for encrypting and decrypting data using in Secman products.",
   "main": "./main.ts",
   "types": "./main.ts",
   "license": "MIT",

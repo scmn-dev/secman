@@ -1,7 +1,7 @@
 {
   "name": "@secman/scc",
   "description": "The command-line interface of Secman Core.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://secman.dev",

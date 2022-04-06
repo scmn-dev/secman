@@ -32,19 +32,28 @@ tasks:
       - go mod tidy -compat=1.18
       - go build -ldflags "-X main.version=$(cat tag.txt) -X main.buildDate=$(cat date.txt)" -o secman
 
-  build-core:
-    dir: ./core
+  build-scc:
+    dir: ./scc
     cmds:
       - if ! [ -d ./node_modules ]; then yarn; fi
       - yarn build
 
-  link-core:
-    dir: ./core
+  build-smui:
+    dir: ./hub
+    cmds:
+      - task: set-tag-and-date
+      - yarn build
+      - mv dist ui
+      - cp tag.txt ui
+      - zip -9 -r smui.zip ui
+
+  link-scc:
+    dir: ./scc
     cmds:
       - npm link
 
-  publish-core:
-    dir: ./core
+  publish-scc:
+    dir: ./scc
     cmds:
       - yarn publish
 
@@ -56,6 +65,6 @@ tasks:
     desc: build from source
     cmds:
       - task: build
-      - task: build-core
-      - task: link-core
+      - task: build-scc
+      - task: link-scc
       - task: install

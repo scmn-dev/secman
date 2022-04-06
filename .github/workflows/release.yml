@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
@@ -30,9 +30,8 @@ jobs:
         with:
           node-version: 16
 
-      - name: Set up Tag
-        id: ghtag
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+      - name: Set up `Task`
+        uses: arduino/setup-task@v1
 
       - name: Set up GoReleaser
         uses: goreleaser/goreleaser-action@v2
@@ -40,7 +39,15 @@ jobs:
           install-only: true
 
       - name: Set up Date
-        run: go run ./scripts/date.go >> date.txt
+        run: task set-tag-and-date
 
       - name: Build
         run: BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
+
+      - name: Build SMUI
+        run: task build-smui
+
+      - name: Upload SMUI
+        uses: softprops/action-gh-release@v1
+        with:
+          files: smui.zip

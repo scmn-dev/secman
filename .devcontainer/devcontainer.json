@@ -34,6 +34,6 @@
     "golang.go",
     "bbenoist.Nix"
   ],
-  "postCreateCommand": "go mod tidy && cd core && yarn",
+  "postCreateCommand": "go mod tidy && cd scc && yarn",
   "remoteUser": "userx"
 }

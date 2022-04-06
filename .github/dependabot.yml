@@ -8,7 +8,13 @@ updates:
     reviewers:
       - abdfnx
   - package-ecosystem: npm
-    directory: "/core"
+    directory: "/scc"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - abdfnx
+  - package-ecosystem: npm
+    directory: "/hub"
     schedule:
       interval: "daily"
     reviewers:
