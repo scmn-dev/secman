@@ -73,8 +73,8 @@ func Init() {
 	}
 
 	// Get SMUI
-	smuiLatest := gapi.LatestWithArgs("david-tomson/smui", "")
-	url := "https://github.com/david-tomson/smui/releases/download/" + smuiLatest + "/smui.zip"
+	smuiLatest := gapi.LatestWithArgs("scmn-dev/secman", "")
+	url := "https://github.com/scmn-dev/secman/releases/download/" + smuiLatest + "/smui.zip"
 
 	uCmd := fmt.Sprintf(`
 		if ! [ -d %s/ui ]; then

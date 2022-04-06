@@ -61,6 +61,10 @@ tasks:
     cmds:
       - yarn dev
 
+  deploy:
+    cmds:
+      - yarn deploy
+
   bfs:
     desc: build from source
     cmds:
