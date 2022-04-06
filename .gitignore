@@ -45,8 +45,9 @@ vendor
 .env.production.local
 .env.local
 
-# Builds, Secman CLI Core Lib, Cache and Tmp
+# Builds, Vercel Config, Secman CLI Core Lib, Cache and Tmp
 .cache
+.vercel
 dist
 scc/lib
 tmp

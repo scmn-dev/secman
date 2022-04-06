@@ -7,6 +7,13 @@
       >
         <VIcon name="sm-logo" />
       </button>
+      <button
+        @click="installPWA"
+        v-tooltip="`Install Secman Hub as Desktop App`"
+        class="btn ml-1 trsn"
+      >
+        <VIcon name="install-pwa" size="14px" />
+      </button>
     </header>
     <!-- Content -->
     <RouterView />
@@ -28,6 +35,7 @@ export default {
   beforeMount() {
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
+      this.installEvent = e;
       this.shown = true;
     });
 
@@ -41,18 +49,20 @@ export default {
     }
   },
 
-  installPWA() {
-    this.installEvent.prompt();
-    // then refresh the page
-    this.installEvent.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        window.location.reload();
-      }
-    });
-  },
+  methods: {
+    installPWA() {
+      this.installEvent.prompt();
+      // then refresh the page
+      this.installEvent.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          window.location.reload();
+        }
+      });
+    },
 
-  dismissPrompt() {
-    this.shown = false;
+    dismissPrompt() {
+      this.shown = false;
+    },
   },
 };
 </script>
@@ -64,6 +74,21 @@ export default {
   color: $color-gray-200;
   line-height: 16px;
   padding-top: 4px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background-color: $color-gray-500;
+  color: $color-gray-300;
+}
+
+.btn:hover {
+  color: $color-secondary;
 }
 
 .app-header {

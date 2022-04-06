@@ -6,7 +6,7 @@
 
 ## Security
 
-**1. Secman uses The Advanced Encryption Standard (AES) encryption algorithm with Galois/Counter Mode (GCM) symmetric-key cryptographic mode. Passwords encrypted with AES can only be decrypted with the passphrase defined in the _config.yml_ file.**
+**1. Secman uses The Advanced Encryption Standard (AES) encryption algorithm with Galois/Counter Mode (GCM) symmetric-key cryptographic mode.**
 
 **2. Endpoints are protected with security middlewares against attacks like XSS.**
 

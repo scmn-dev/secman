@@ -19,7 +19,7 @@
 Visit [hub.secman.dev](https://hub.secman.dev)
 
 1. Wait until `App is available` is displayed in the status bar.
-2. Click the `Install Secman Hub As Desktop App` button.
+2. Click the `Install Secman Hub as Desktop App` button.
 3. When the installation is complete, refresh the page.
 
 ## Build & Run
