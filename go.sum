@@ -45,8 +45,8 @@ github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1
 github.com/disintegration/imaging v1.6.2/go.mod h1:44/5580QXChDfwIclfc/PCwrr44amcmDAg8hxG0Ewe4=
 github.com/dlclark/regexp2 v1.4.0 h1:F1rxgk7p4uKjwIQxBs9oAXe5CqrXlCduYEJvrF4u93E=
 github.com/dlclark/regexp2 v1.4.0/go.mod h1:2pZnwuY/m+8K6iRw6wQdMtk+rH5tNGR1i55kozfMjCc=
-github.com/evertras/bubble-table v0.8.4 h1:8VP8IPHASriMQuQYu69PWayHfPNAB3KM8nSwaS6spJ4=
-github.com/evertras/bubble-table v0.8.4/go.mod h1:OZq5XdGas3p4OZi/if0NLoAeIlgpCDvCgcGG6lD4oGY=
+github.com/evertras/bubble-table v0.9.0 h1:cJQXAoRNgy7tXyubOLsqVChdF7HPlhMtiAwNCU/d5pU=
+github.com/evertras/bubble-table v0.9.0/go.mod h1:OZq5XdGas3p4OZi/if0NLoAeIlgpCDvCgcGG6lD4oGY=
 github.com/fatih/color v1.7.0/go.mod h1:Zm6kSWBoL9eyXnKyktHP6abPY2pDugNf5KwzbycvMj4=
 github.com/fatih/color v1.13.0 h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w=
 github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYFFOfk=
