@@ -18,6 +18,7 @@ func Check(buildVersion string) {
 	s := lipgloss.NewStyle().PaddingLeft(2)
 	primary := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.PRIMARY_COLOR))
 	yellow := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.YELLOW_COLOR))
+	gray := lipgloss.NewStyle().Foreground(lipgloss.Color(constants.SECONDARY_COLOR))
 
 	latestVersion := api.GetLatest("secman-cli", true)
 	isFromHomebrew := isUnderHomebrew()
@@ -46,7 +47,7 @@ func Check(buildVersion string) {
 		primary.Render(latestVersion) + "\n")
 
 		if command() != "" {
-			fmt.Fprintf(stderr, yellow.Render("To upgrade, run: %s"), command() + "\n")
+			fmt.Fprintf(stderr, yellow.Render("  To upgrade, run: %s"), gray.Render(command()) + "\n")
 		}
 	}
 }
