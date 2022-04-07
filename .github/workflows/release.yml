@@ -25,12 +25,12 @@ jobs:
         with:
           go-version: 1.18
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v2.5.0
         with:
           node-version: 16
 
-      - name: Set up `Task`
+      - name: Set up Task
         uses: arduino/setup-task@v1
 
       - name: Set up GoReleaser
@@ -42,7 +42,9 @@ jobs:
         run: task setup
 
       - name: Build
-        run: BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
+        run: |
+          yarn
+          BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
 
       - name: Build SMUI
         run: task build-smui
