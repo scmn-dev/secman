@@ -15,7 +15,7 @@ tasks:
     cmds:
       - if [ -f "date.txt" ]; then rm date.txt; fi
       - if [ -f "tag.txt" ]; then rm tag.txt; fi
-      - if [ -d "node_modules" ]; then if ! [ -f "node_modules/@vercel/go/go.mod" ]; then touch node_modules/@vercel/go/go.mod; fi; fi
+      - task: fix-vercel-go-mod
       - go run ./scripts/date.go >> date.txt
       - git describe --abbrev=0 --tags >> tag.txt
 
@@ -33,6 +33,7 @@ tasks:
 
   release:
     cmds:
+      - task: node_checks
       - BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
 
   build:
@@ -88,3 +89,12 @@ tasks:
       - cd scoop
       - rm secman.json
       - cp ../dist/secman.json .
+
+  node_checks:
+    cmds:
+      - if ! [ -d ./node_modules ]; then yarn; fi
+      - task: fix-vercel-go-mod
+
+  fix-vercel-go-mod:
+    cmds:
+      - if [ -d "node_modules" ]; then if ! [ -f "node_modules/@vercel/go/go.mod" ]; then touch node_modules/@vercel/go/go.mod; fi; fi
