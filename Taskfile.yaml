@@ -31,6 +31,10 @@ tasks:
     cmds:
       - sudo mv secman "{{ .SECMAN_UNIX_PATH }}"
 
+  release:
+    cmds:
+      - BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
+
   build:
     cmds:
       - task: setup
@@ -49,7 +53,7 @@ tasks:
       - task: setup
       - yarn build
       - mv dist ui
-      - cp tag.txt ui
+      - cp ../tag.txt ui
       - zip -9 -r smui.zip ui
 
   link-scc:
@@ -77,3 +81,10 @@ tasks:
       - task: build-scc
       - task: link-scc
       - task: install
+
+  upload-scoop-manifest:
+    cmds:
+      - git clone https://github.com/scmn-dev/scoop
+      - cd scoop
+      - rm secman.json
+      - cp ../dist/secman.json .

@@ -7,6 +7,8 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+  GITHUB_ACTIONS_NAME: "github-actions[bot]"
+  GITHUB_ACTIONS_EMAIL: "41898282+github-actions[bot]@users.noreply.github.com"
 
 permissions: write-all
 
@@ -38,13 +40,32 @@ jobs:
         with:
           install-only: true
 
-      - name: Set up Date
+      - name: Set up Build Info
         run: task setup
 
+      - name: Set up Tag
+        id: ghtag
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+
       - name: Build
+        env:
+          TAG: ${{ steps.ghtag.outputs.tag }}
         run: |
-          yarn
-          BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
+          task release
+          task upload-scoop-manifes
+          cd ./scoop
+          git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
+          git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
+          git diff --cached
+          git add .
+          git commit -m "Scoop update for secman version ${TAG}"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          repository: "scmn-dev/scoop"
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          directory: ./scoop
 
       - name: Build SMUI
         run: task build-smui
@@ -52,4 +73,4 @@ jobs:
       - name: Upload SMUI
         uses: softprops/action-gh-release@v1
         with:
-          files: smui.zip
+          files: hub/smui.zip
