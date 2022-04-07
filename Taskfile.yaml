@@ -33,7 +33,7 @@ tasks:
 
   release:
     cmds:
-      - task: node_checks
+      - task: node-checks
       - BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m
 
   build:
@@ -90,7 +90,7 @@ tasks:
       - rm secman.json
       - cp ../dist/secman.json .
 
-  node_checks:
+  node-checks:
     cmds:
       - if ! [ -d ./node_modules ]; then yarn; fi
       - task: fix-vercel-go-mod
