@@ -52,7 +52,7 @@ jobs:
           TAG: ${{ steps.ghtag.outputs.tag }}
         run: |
           task release
-          task upload-scoop-manifes
+          task upload-scoop-manifest
           cd ./scoop
           git config --local user.email "${{ env.GITHUB_ACTIONS_EMAIL }}"
           git config --local user.name "${{ env.GITHUB_ACTIONS_NAME }}"
