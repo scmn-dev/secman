@@ -80,6 +80,3 @@ require (
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
-
-// Ignore these packages
-exclude github.com/scmn-dev/secman/v6/node_modules v0.0.0
