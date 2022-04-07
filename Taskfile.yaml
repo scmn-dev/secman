@@ -86,9 +86,7 @@ tasks:
   upload-scoop-manifest:
     cmds:
       - git clone https://github.com/scmn-dev/scoop
-      - cd scoop
-      - rm secman.json
-      - cp ../dist/secman.json .
+      - cd scoop && rm secman.json && cp ../dist/secman.json .
 
   node-checks:
     cmds:
