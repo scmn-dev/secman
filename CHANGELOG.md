@@ -4,7 +4,27 @@
 
 ---
 
-## [[v6.2.2] 2022-03-24](#v622-2022-03-24)
+## [v6.2.3](https://github.com/scmn-dev/secman/releases/tag/v6.2.3) - 2022-04-07
+
+### Added
+
+nothing
+
+### Changed
+
+- Bring `scmn-dev/desktop` repo to `secman` repo.
+- Rename **Secman Desktop** to **Secman Hub**.
+- Build `secman` monorepo.
+- Upgrade `go` to `go1.18`.
+- Rename **Secman Core CLI** to `scc`.
+
+### Fixed
+
+- Fix github security vulnerabilities.
+- Fix `secman ui` command.
+
+
+## [v6.2.2](https://github.com/scmn-dev/secman/releases/tag/v6.2.2) - 2022-03-24
 
 ### Added
 
@@ -18,7 +38,7 @@
 
 nothing
 
-## [[v6.2.1] 2022-03-18](#v621-2022-03-18)
+## [v6.2.1](https://github.com/scmn-dev/secman/releases/tag/v6.2.1) - 2022-03-18
 
 ### Added
 
@@ -62,7 +82,7 @@ nothing
 
 - Fix secman config file issue in secman auth login command.
 
-## [[v6.2.0] 2022-03-11](#v620-2022-03-11)
+## [v6.2.0](https://github.com/scmn-dev/secman/releases/tag/v6.2.0) - 2022-03-11
 
 > Secman v3 ✨
 
@@ -101,7 +121,7 @@ it's comes with **new features**, **new design**, **new infrastructure**, **and 
 - Fix connections with **secman cloud**.
 - Fix Secman Core CLI (scc)
 
-## [[v6.1.3] 2022-01-10](#v613-2022-01-10)
+## [v6.1.3](https://github.com/scmn-dev/secman/releases/tag/v6.1.3) - 2022-01-10
 
 ### Added
 
@@ -116,7 +136,7 @@ it's comes with **new features**, **new design**, **new infrastructure**, **and 
 
 - Fix `secman settings` command
 
-## [[v6.1.2] 2022-01-01](#v612-2022-01-01)
+## [v6.1.2](https://github.com/scmn-dev/secman/releases/tag/v6.1.2) - 2022-01-01
 
 ### Added
 
@@ -131,7 +151,7 @@ it's comes with **new features**, **new design**, **new infrastructure**, **and 
 
 - fix secman core version in `info` command
 
-## [[v6.1.1] 2021-12-27](#v611-2021-12-27)
+## [v6.1.1](https://github.com/scmn-dev/secman/releases/tag/v6.1.1) - 2021-12-27
 
 ### Changed
 
@@ -141,17 +161,17 @@ it's comes with **new features**, **new design**, **new infrastructure**, **and 
 
 - fix configs in windows
 
-## [[v6.1.0] 2021-12-26](#v610-2021-12-26)
+## [v6.1.0](https://github.com/scmn-dev/secman/releases/tag/v6.1.0) - 2021-12-26
 
 ### Changed
 
 - fix all secman help errors and bugs
 
-## [[v6.0.9] 2021-12-26](#v609-2021-12-26)
+## [v6.0.9](https://github.com/scmn-dev/secman/releases/tag/v6.0.9) - 2021-12-26
 
 > a release to fix a bug in the `secman`
 
-## [[v6.0.8] 2021-12-14](#v608-2021-12-14)
+## [v6.0.8](https://github.com/scmn-dev/secman/releases/tag/v6.0.8) - 2021-12-14
 
 ### Added
 
@@ -166,7 +186,7 @@ nothing
 - fix config files warning messages ([#120](https://github.com/scmn-dev/secman/issues/120))
 - fix Homedir bug in windows ([#121](https://github.com/scmn-dev/secman/issues/121))
 
-## [[v6.0.71] 2021-11-14](#v6071-2021-11-14)
+## [v6.0.71](https://github.com/scmn-dev/secman/releases/tag/v6.0.71) - 2021-11-14
 
 ### Added
 
@@ -180,7 +200,7 @@ nothing
 
 - Fix secman help output.
 
-## [[v6.0.7] 2021-11-13](#v607-2021-11-13)
+## [v6.0.7](https://github.com/scmn-dev/secman/releases/tag/v6.0.7) - 2021-11-13
 
 ### Added
 
@@ -197,7 +217,7 @@ nothing
 - Fix exit from secman editor in visual studio code terminal with <kbd>Alt + E</kbd> shortcut.
 - Fix missing files error messages.
 
-## [[v6.0.61] 2021-11-10](#v6061-2021-11-10)
+## [v6.0.61](https://github.com/scmn-dev/secman/releases/tag/v6.0.61) - 2021-11-10
 
 ### Added
 
@@ -211,7 +231,7 @@ nothing
 
 - Fix version checker in `update` command.
 
-## [[v6.0.6] 2021-11-10](#v606-2021-11-10)
+## [v6.0.6](https://github.com/scmn-dev/secman/releases/tag/v6.0.6) - 2021-11-10
 
 ### Added
 
@@ -226,7 +246,7 @@ nothing
 
 - Fix `update` command.
 
-## [[v6.0.5] 2021-11-08](#v605-2021-11-08)
+## [v6.0.5](https://github.com/scmn-dev/secman/releases/tag/v6.0.5) - 2021-11-08
 
 ### Added
 
@@ -240,7 +260,7 @@ nothing
 
 - Fix authentication check for `secman insert` command.
 
-## [[v6.0.4] 2021-11-05](#v604-2021-11-05)
+## [v6.0.4](https://github.com/scmn-dev/secman/releases/tag/v6.0.4) - 2021-11-05
 
 ### Added
 
@@ -254,7 +274,7 @@ nothing
 
 - Fix version command.
 
-## [[v6.0.3] 2021-11-05](#v603-2021-11-05)
+## [v6.0.3](https://github.com/scmn-dev/secman/releases/tag/v6.0.3) - 2021-11-05
 
 > Secman V2
 
@@ -289,7 +309,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 
 ---
 
-## [[v5.3.8] 2021-09-23](#v538-2021-09-23)
+## [v5.3.8](https://github.com/scmn-dev/secman/releases/tag/v5.3.8) - 2021-09-23
 
 ### Added
 
@@ -314,7 +334,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 
 - Fix `fetch` command in **windows** by adding `FetchClone` in `sync` command.
 
-## [[v5.3.73] 2021-08-09](#v5373-2021-08-09)
+## [v5.3.73](https://github.com/scmn-dev/secman/releases/tag/v5.3.73) - 2021-08-09
 
 ### Added
 
@@ -330,7 +350,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 
 - Fix `sm-win` issues in windows.
 
-## [[v5.3.72] 2021-08-04](#v5372-2021-08-04)
+## [v5.3.72](https://github.com/scmn-dev/secman/releases/tag/v5.3.72) - 2021-08-04
 
 ### Added
 
@@ -344,7 +364,7 @@ it's comes with new features, new design, new infrastructure, and new secman
 
 Nothing.
 
-## [[v5.3.71] 2021-07-03](#v5371-2021-07-03)
+## [v5.3.71](https://github.com/scmn-dev/secman/releases/tag/v5.3.71) - 2021-07-03
 
 ### Added
 
@@ -363,7 +383,7 @@ Nothing.
 
 nothing
 
-## [[v5.3.7] 2021-06-20](#v537-2021-06-20)
+## [v5.3.7](https://github.com/scmn-dev/secman/releases/tag/v5.3.7) - 2021-06-20
 
 ### Added
 
@@ -380,7 +400,7 @@ nothing
 - Fix [**#57**](https://github.com/scmn-dev/secman/issues/57): **Fetching in windows**.
 - Fix upgrading in windows.
 
-## [[v5.3.63] 2021-06-04](#v5363-2021-06-04)
+## [v5.3.63](https://github.com/scmn-dev/secman/releases/tag/v5.3.63) - 2021-06-04
 
 ### Added
 
@@ -394,7 +414,7 @@ nothing
 
 - Fix [**#52**](https://github.com/scmn-dev/secman/issues/52)
 
-## [[v5.3.62] 2021-06-01](#v5362-2021-06-01)
+## [v5.3.62](https://github.com/scmn-dev/secman/releases/tag/v5.3.62) - 2021-06-01
 
 ### Added
 
@@ -408,7 +428,7 @@ nothing
 
 fix [**#49**](https://github.com/scmn-dev/secman/issues/49)
 
-## [[v5.3.61] 2021-05-26](#v5361-2021-05-26)
+## [v5.3.61](https://github.com/scmn-dev/secman/releases/tag/v5.3.61) - 2021-05-26
 
 ### Added
 
@@ -432,7 +452,7 @@ fix [**#49**](https://github.com/scmn-dev/secman/issues/49)
 - Fix [**#43**](https://github.com/scmn-dev/secman/issues/43)
 - Fix [**#42**](https://github.com/scmn-dev/secman/issues/42)
 
-## [[v5.3.6] 2021-05-18](#v536-2021-05-18)
+## [v5.3.6](https://github.com/scmn-dev/secman/releases/tag/v5.3.6) - 2021-05-18
 
 ### Added
 
@@ -447,7 +467,7 @@ nothing
 
 - Fix `Upgrade` command
 
-## [[v5.3.5] 2021-05-10](#v535-2021-05-10)
+## [v5.3.5](https://github.com/scmn-dev/secman/releases/tag/v5.3.5) - 2021-05-10
 
 ### Added
 
@@ -474,7 +494,7 @@ nothing
 
 - Fix version checks in windows [#29](https://github.com/scmn-dev/secman/issues/29)
 
-## [[v5.3.4] 2021-04-19](#v534-2021-04-19)
+## [v5.3.4](https://github.com/scmn-dev/secman/releases/tag/v5.3.4) - 2021-04-19
 
 ### Added
 
@@ -507,7 +527,7 @@ nothing
 
 - Fix **error: exit status 1 when type `secman -h`**
 
-## [[v5.3.3] 2021-04-12](#v533-2021-04-12)
+## [v5.3.3](https://github.com/scmn-dev/secman/releases/tag/v5.3.3) - 2021-04-12
 
 ### Added
 
@@ -529,7 +549,7 @@ nothing
 
 - Fix upgrade command
 
-## [[v5.3.2] 2021-04-03](#v532-2021-04-03)
+## [v5.3.2](https://github.com/scmn-dev/secman/releases/tag/v5.3.2) - 2021-04-03
 
 ### Added
 
@@ -554,7 +574,7 @@ nothing
 - Fix syncing in windows
 - Fix installing for windows
 
-## [[v5.3.1] 2021-03-26](#v531-2021-03-26)
+## [v5.3.1](https://github.com/scmn-dev/secman/releases/tag/v5.3.1) - 2021-03-26
 
 ### Added
 
@@ -568,7 +588,7 @@ nothing
 
 nothing
 
-## [[v5.3.0] 2021-03-10](#v530-2021-03-10)
+## [v5.3.0](https://github.com/scmn-dev/secman/releases/tag/v5.3.0) - 2021-03-10
 
 ### Added
 
@@ -590,7 +610,7 @@ nothing
 - Fix instllation errors in secman_latest_version_x64.rpm
 - Fix update checker in windows
 
-## [[v5.2.1] 2021-03-03](#v521-2021-03-03)
+## [v5.2.1](https://github.com/scmn-dev/secman/releases/tag/v5.2.1) - 2021-03-03
 
 ### Added
 
@@ -618,7 +638,7 @@ nothing
 - Fix `Docker CI` in github actions
 - Fix **fetch** command in windows
 
-## [[v5.2.0] 2021-02-21](#v520-2021-02-21)
+## [v5.2.0](https://github.com/scmn-dev/secman/releases/tag/v5.2.0) - 2021-02-21
 
 ### Added
 
@@ -632,7 +652,7 @@ nothing
 
 nothing
 
-## [[v5.1.21] 2021-02-20](#v5121-2021-02-20)
+## [v5.1.21](https://github.com/scmn-dev/secman/releases/tag/v5.1.21) - 2021-02-20
 
 ### Added
 
@@ -648,7 +668,7 @@ nothing
 - Fix `secman-sync` URLs
 - Fix Github CIs/CDs
 
-## [[v5.1.2] 2021-01-26](#v512-2021-01-26)
+## [v5.1.2](https://github.com/scmn-dev/secman/releases/tag/v5.1.2) - 2021-01-26
 
 ### Added
 
@@ -662,7 +682,7 @@ nothing
 
 - Fix verx urls in upgrade command
 
-## [[v5.1.1] 2021-01-23](#v511-2021-01-23)
+## [v5.1.1](https://github.com/scmn-dev/secman/releases/tag/v5.1.1) - 2021-01-23
 
 ### Added
 
@@ -693,7 +713,7 @@ syncing...
 - Fix url errors
 - Fix CI actions
 
-## [[v5.1.0] 2021-01-22](#v510-2021-01-22)
+## [v5.1.0](https://github.com/scmn-dev/secman/releases/tag/v5.1.0) - 2021-01-22
 
 ### Added
 
@@ -718,7 +738,7 @@ syncing...
 - Fix urls errors in `secman` installers & tools, `cgit` & `verx`
 - Fix all sync problems & errors
 
-## [[v5.0.2] 2021-01-15](#v502-2021-01-15)
+## [v5.0.2](https://github.com/scmn-dev/secman/releases/tag/v5.0.2) - 2021-01-15
 
 ### Added
 
@@ -736,7 +756,7 @@ M **backup** command
   - Github url
 - Fix **vm** command with `CID`
 
-## [[v5.0.1] 2021-01-15](#v501-2021-01-15)
+## [v5.0.1](https://github.com/scmn-dev/secman/releases/tag/v5.0.1) - 2021-01-15
 
 ### Added
 
@@ -751,7 +771,7 @@ M **backup** command
 
 - Fix secman version command
 
-## [[v5.0.0] 2021-01-14](#v500-2021-01-14)
+## [v5.0.0](https://github.com/scmn-dev/secman/releases/tag/v5.0.0) - 2021-01-14
 
 ### Added
 
@@ -769,7 +789,7 @@ M **backup** command
 
 Nothing
 
-## [[v4.0.0] 2021-01-12](#v400-2021-01-12)
+## [v4.0.0](https://github.com/scmn-dev/secman/releases/tag/v4.0.0) - 2021-01-12
 
 ### Added
 
@@ -784,11 +804,11 @@ Nothing
 
 - Fix secman installers
 
-## [[v3.0.1] 2021-01-12](#v301-2021-01-12)
+## [v3.0.1](https://github.com/scmn-dev/secman/releases/tag/v3.0.1) - 2021-01-12
 
 Release for tests
 
-## [[v3.0.0] 2021-01-10](#v300-2021-01-10)
+## [v3.0.0](https://github.com/scmn-dev/secman/releases/tag/v3.0.0) - 2021-01-10
 
 ### Added
 
@@ -803,7 +823,7 @@ Release for tests
 
 Nothing
 
-## [[v2.0.0] 2020-12-27](#v200-2020-12-27)
+## [v2.0.0](https://github.com/scmn-dev/secman/releases/tag/v2.0.0) - 2020-12-27
 
 ### Added
 

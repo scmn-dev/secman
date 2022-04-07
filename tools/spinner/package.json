@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "node example.js",
     "clean": "rimraf *.d.ts",
-    "build": "yarn clean && npx -p typescript tsc *.js --declaration --allowJs --emitDeclarationOnly --outDir .",
-    "postinstall": "touch node_modules/@vercel/go/go.mod"
+    "build": "yarn clean && npx -p typescript tsc *.js --declaration --allowJs --emitDeclarationOnly --outDir ."
   },
   "dependencies": {
     "bl": "^5.0.0"

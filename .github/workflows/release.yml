@@ -39,7 +39,7 @@ jobs:
           install-only: true
 
       - name: Set up Date
-        run: task set-tag-and-date
+        run: task setup
 
       - name: Build
         run: BuildDate="$(cat date.txt)" goreleaser release --rm-dist --timeout 100m

@@ -5,8 +5,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "postinstall": "touch node_modules/@vercel/go/go.mod"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@secman/crypto": "*",

@@ -11,12 +11,17 @@ tasks:
       - task: build
       - yarn build
 
-  set-tag-and-date:
+  setup:
     cmds:
       - if [ -f "date.txt" ]; then rm date.txt; fi
       - if [ -f "tag.txt" ]; then rm tag.txt; fi
+      - if [ -d "node_modules" ]; then if ! [ -f "node_modules/@vercel/go/go.mod" ]; then touch node_modules/@vercel/go/go.mod; fi; fi
       - go run ./scripts/date.go >> date.txt
       - git describe --abbrev=0 --tags >> tag.txt
+
+  export-node-options:
+    cmds:
+      - export NODE_OPTIONS=--openssl-legacy-provider
 
   remove:
     cmds:
@@ -28,7 +33,7 @@ tasks:
 
   build:
     cmds:
-      - task: set-tag-and-date
+      - task: setup
       - go mod tidy -compat=1.18
       - go build -ldflags "-X main.version=$(cat tag.txt) -X main.buildDate=$(cat date.txt)" -o secman
 
@@ -41,7 +46,7 @@ tasks:
   build-smui:
     dir: ./hub
     cmds:
-      - task: set-tag-and-date
+      - task: setup
       - yarn build
       - mv dist ui
       - cp tag.txt ui
