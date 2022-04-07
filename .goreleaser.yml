@@ -40,7 +40,7 @@ builds:
     goarch: [ amd64, arm64, arm, 386 ]
 
 archives:
-  - id: nix
+  - id: unix
     builds: [ macos, linux, freebsd ]
     <<: &archive_defaults
       name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Tag }}_{{ .Arch }}"
@@ -84,16 +84,12 @@ brews:
 
 scoop:
   url_template: "https://github.com/scmn-dev/secman/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-
   bucket:
     owner: scmn-dev
     name: scoop
-
   homepage: "https://secman.dev"
   description: "👊 Human-friendly and amazing TUI secrets manager"
-
   license: MIT
-
   post_install: ["npm install --global @secman/scc"]
 
 checksum:

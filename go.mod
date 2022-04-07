@@ -10,6 +10,7 @@ require (
 	github.com/abdfnx/looker v0.1.0
 	github.com/abdfnx/resto v0.1.6
 	github.com/abdfnx/tran v0.1.3
+	github.com/aws/aws-lambda-go v1.29.0
 	github.com/briandowns/spinner v1.18.1
 	github.com/charmbracelet/bubbles v0.10.3
 	github.com/charmbracelet/bubbletea v0.20.0
@@ -22,6 +23,7 @@ require (
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
+	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/scmn-dev/browser v0.1.3
 	github.com/scmn-dev/get-latest v0.1.2
 	github.com/scmn-dev/tran v0.0.2
@@ -78,3 +80,6 @@ require (
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
+
+// Ignore these packages
+exclude github.com/scmn-dev/secman/v6/node_modules v0.0.0

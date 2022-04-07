@@ -1,7 +1,7 @@
 {
   "name": "secman",
   "private": true,
-  "version": "6.2.2",
+  "version": "6.2.3",
   "description": "👊 Human-friendly and amazing secrets manager.",
   "license": "MIT",
   "homepage": "https://secman.dev",
@@ -25,7 +25,8 @@
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "clean": "rimraf node_modules && cd scc && rimraf node_modules && cd ../hub && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../..",
-    "deploy": "vercel"
+    "deploy": "vercel",
+    "postinstall": "touch node_modules/@vercel/go/go.mod"
   },
   "author": {
     "name": "Secman, Inc.",

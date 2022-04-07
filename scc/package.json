@@ -24,7 +24,8 @@
     "postpack": "rimraf oclif.manifest.json",
     "prepack": "yarn build",
     "dev": "yarn prepack",
-    "build": "rimraf lib && tsc -b && oclif-dev manifest"
+    "build": "rimraf lib && tsc -b && oclif-dev manifest",
+    "postinstall": "touch node_modules/@vercel/go/go.mod"
   },
   "bin": {
     "scc": "./bin/run"
