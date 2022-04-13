@@ -1,14 +1,14 @@
 package api
 
 import (
-	"os"
 	"fmt"
-	"time"
-	"net/http"
 	"io/ioutil"
+	"net/http"
+	"os"
+	"time"
 
-	"github.com/briandowns/spinner"
 	httpClient "github.com/abdfnx/resto/client"
+	"github.com/briandowns/spinner"
 )
 
 func GetLatest(product string, isChecker bool) string {
@@ -28,7 +28,7 @@ func GetLatest(product string, isChecker bool) string {
 
 	if err != nil {
 		fmt.Printf("Error creating request: %s \n", err.Error())
-		os.Exit(0)
+		os.Exit(2)
 	}
 
 	suffix := " 🔍 Requesting..."

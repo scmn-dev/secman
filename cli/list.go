@@ -41,7 +41,7 @@ func ListCMD() *cobra.Command {
 
 						fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Lister") + st.Wrap.Render(head + body)).String())
 
-						os.Exit(0)
+						os.Exit(2)
 					}
 
 					fmt.Println(errout)
@@ -51,7 +51,7 @@ func ListCMD() *cobra.Command {
 			} else {
 				if err := tea.NewProgram(lister.Lister(), tea.WithAltScreen()).Start(); err != nil {
 					fmt.Printf("could not start program: %s\n", err)
-					os.Exit(1)
+					os.Exit(2)
 				}
 			}
 

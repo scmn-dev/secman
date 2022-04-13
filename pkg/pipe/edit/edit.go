@@ -41,7 +41,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					if ok {
 						if err := tea.NewProgram(editor.Editor(m.pwType, string(i), m.password)).Start(); err != nil {
 							fmt.Printf("could not start editor: %s\n", err)
-							os.Exit(1)
+							os.Exit(2)
 						}
 					}
 
@@ -93,6 +93,6 @@ func Edit(o *options.PasswordsOptions) {
 
 	if err := tea.NewProgram(m).Start(); err != nil {
 		fmt.Println("Error running program:", err)
-		os.Exit(1)
+		os.Exit(2)
 	}
 }

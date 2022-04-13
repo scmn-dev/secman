@@ -22,7 +22,7 @@ func DeleteCMD() *cobra.Command {
 
 			if err := tea.NewProgram(delete.Delete(&PwOpts)).Start(); err != nil {
 				fmt.Printf("could not start program: %s\n", err)
-				os.Exit(1)
+				os.Exit(2)
 			}
 
 			return nil

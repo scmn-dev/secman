@@ -18,7 +18,7 @@ func InsertCMD() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if err := tea.NewProgram(insert.Insert(&PwOpts)).Start(); err != nil {
 				fmt.Printf("could not start program: %s\n", err)
-				os.Exit(1)
+				os.Exit(2)
 			}
 
 			return nil

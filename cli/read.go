@@ -45,14 +45,14 @@ func ReadCMD() *cobra.Command {
 
 				if err != nil {
 					fmt.Println(errout)
-					os.Exit(1)
+					os.Exit(2)
 				} else {
 					fmt.Print("\n" + out)
 				}
 			} else {
 				if err := tea.NewProgram(read.Read(&PwOpts)).Start(); err != nil {
 					fmt.Printf("could not start program: %s\n", err)
-					os.Exit(0)
+					os.Exit(2)
 				}
 			}
 
