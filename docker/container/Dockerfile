@@ -44,11 +44,9 @@ ENV HOME="/home/secman_yo"
 WORKDIR $HOME
 USER secman_yo
 
-RUN echo "installing"
-
 ### secman ###
 RUN sudo curl -sL https://u.secman.dev | bash
-RUN secman init
+RUN sudo npm i -g @secman/scc
 
 ### zsh ###
 ENV src=".zshrc"
@@ -64,7 +62,7 @@ RUN zsh && \
 RUN sudo rm -rf $src
 
 ### wget new files ###
-RUN wget $SECMAN_DOCKER_UTILS_URL/zshrc -o $src
+RUN wget $SECMAN_DOCKER_UTILS_URL/zshrc -O $src
 RUN wget $SECMAN_DOCKER_UTILS_URL/README
 
 CMD /bin/bash -c "cat README && zsh"
