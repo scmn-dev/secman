@@ -8,7 +8,7 @@
         <VIcon name="sm-logo" />
       </button>
       <button
-        v-if="!shown"
+        v-if="shown"
         @click="installPWA"
         v-tooltip="`Install Secman Hub as Desktop App`"
         class="btn ml-1 trsn"
