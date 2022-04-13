@@ -60,11 +60,11 @@ func ReadCMD() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().BoolVarP(&PwOpts.Logins, "logins", "l", false, "Read password from logins type.")
-	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-cards", "c", false, "Read password from credit cards type.")
-	cmd.Flags().BoolVarP(&PwOpts.Emails, "emails", "e", false, "Read password from emails type.")
-	cmd.Flags().BoolVarP(&PwOpts.Notes, "notes", "n", false, "Read password from notes type.")
-	cmd.Flags().BoolVarP(&PwOpts.Servers, "servers", "s", false, "Read password from servers type.")
+	cmd.Flags().BoolVarP(&PwOpts.Logins, "login", "l", false, "Read password from logins type.")
+	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-card", "c", false, "Read password from credit cards type.")
+	cmd.Flags().BoolVarP(&PwOpts.Emails, "email", "e", false, "Read password from emails type.")
+	cmd.Flags().BoolVarP(&PwOpts.Notes, "note", "n", false, "Read password from notes type.")
+	cmd.Flags().BoolVarP(&PwOpts.Servers, "server", "s", false, "Read password from servers type.")
 	cmd.Flags().BoolVarP(&PwOpts.ShowHidden, "show-hidden", "p", false, "Show hidden values.")
 	cmd.Flags().BoolVarP(&PwOpts.ShowJsonView, "json", "j", false, "Print password in JSON view.")
 

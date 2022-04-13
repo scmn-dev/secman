@@ -29,11 +29,11 @@ func DeleteCMD() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().BoolVarP(&PwOpts.Logins, "logins", "l", false, "Delete password from logins type.")
-	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-cards", "c", false, "Delete password from credit cards type.")
-	cmd.Flags().BoolVarP(&PwOpts.Emails, "emails", "e", false, "Delete password from emails type.")
-	cmd.Flags().BoolVarP(&PwOpts.Notes, "notes", "n", false, "Delete password from notes type.")
-	cmd.Flags().BoolVarP(&PwOpts.Servers, "servers", "s", false, "Delete password from servers type.")
+	cmd.Flags().BoolVarP(&PwOpts.Logins, "login", "l", false, "Delete password from logins type.")
+	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-card", "c", false, "Delete password from credit cards type.")
+	cmd.Flags().BoolVarP(&PwOpts.Emails, "email", "e", false, "Delete password from emails type.")
+	cmd.Flags().BoolVarP(&PwOpts.Notes, "note", "n", false, "Delete password from notes type.")
+	cmd.Flags().BoolVarP(&PwOpts.Servers, "server", "s", false, "Delete password from servers type.")
 
 	return cmd
 }

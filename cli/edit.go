@@ -22,11 +22,11 @@ func EditCMD() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().BoolVarP(&PwOpts.Logins, "logins", "l", false, "Edit password from logins type.")
-	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-cards", "c", false, "Edit password from credit cards type.")
-	cmd.Flags().BoolVarP(&PwOpts.Emails, "emails", "e", false, "Edit password from emails type.")
-	cmd.Flags().BoolVarP(&PwOpts.Notes, "notes", "n", false, "Edit password from notes type.")
-	cmd.Flags().BoolVarP(&PwOpts.Servers, "servers", "s", false, "Edit password from servers type.")
+	cmd.Flags().BoolVarP(&PwOpts.Logins, "login", "l", false, "Edit password from logins type.")
+	cmd.Flags().BoolVarP(&PwOpts.CreditCards, "credit-card", "c", false, "Edit password from credit cards type.")
+	cmd.Flags().BoolVarP(&PwOpts.Emails, "email", "e", false, "Edit password from emails type.")
+	cmd.Flags().BoolVarP(&PwOpts.Notes, "note", "n", false, "Edit password from notes type.")
+	cmd.Flags().BoolVarP(&PwOpts.Servers, "server", "s", false, "Edit password from servers type.")
 
 	return cmd
 }
