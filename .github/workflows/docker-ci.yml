@@ -6,7 +6,6 @@ on:
       - main
 
 env:
-  SM_DOCKER_REPO: https://github.com/scmn-dev/docker
   SM_CONTAINER_DH_IMAGE: smcr/secman
   SM_CONTAINER_GHCR_IMAGE: ghcr.io/scmn-dev/secman
   SM_CLI_IMAGE: smcr/secman-cli
@@ -28,7 +27,6 @@ jobs:
       - name: Run Build
         run: |
           docker pull $SM_CONTAINER_DH_IMAGE:latest
-          git clone $SM_DOCKER_REPO
           docker build -t $SM_CONTAINER_DH_IMAGE --cache-from $SM_CONTAINER_DH_IMAGE:latest --file ./docker/container/Dockerfile .
           docker push $SM_CONTAINER_DH_IMAGE
 
@@ -60,7 +58,6 @@ jobs:
       - name: Run Build
         run: |
           docker pull $SM_CONTAINER_GHCR_IMAGE:latest
-          git clone $SM_DOCKER_REPO
           docker build -t $SM_CONTAINER_GHCR_IMAGE --cache-from $SM_CONTAINER_GHCR_IMAGE:latest --file ./docker/container/Dockerfile .
           docker push $SM_CONTAINER_GHCR_IMAGE
 
@@ -95,7 +92,6 @@ jobs:
       - name: Build Secman CLI
         run: |
           docker pull $SM_CLI_IMAGE:latest
-          git clone $SM_DOCKER_REPO
           docker build -t $SM_CLI_IMAGE --cache-from $SM_CLI_IMAGE:latest --file ./docker/cli/Dockerfile .
           docker push $SM_CLI_IMAGE
 
