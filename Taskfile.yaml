@@ -57,6 +57,11 @@ tasks:
       - cp ../tag.txt ui
       - zip -9 -r smui.zip ui
 
+  build-docker:
+    cmds:
+      - task: build-docker-cli
+      - task: build-docker-container
+
   link-scc:
     dir: ./scc
     cmds:
