@@ -96,3 +96,15 @@ tasks:
   fix-vercel-go-mod:
     cmds:
       - if [ -d "node_modules" ]; then if ! [ -f "node_modules/@vercel/go/go.mod" ]; then touch node_modules/@vercel/go/go.mod; fi; fi
+
+  build-docker-cli:
+    dir: docker/cli
+    cmds:
+      - docker build -t smcr/secman-cli .
+      - docker push smcr/secman-cli
+
+  build-docker-container:
+    dir: docker/container
+    cmds:
+      - docker build -t smcr/secman .
+      - docker push smcr/secman

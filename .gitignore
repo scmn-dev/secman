@@ -13,6 +13,7 @@ yarn-error.log*
 *.so
 *.dylib
 /secman
+/docker/cli/secman
 
 # Nyc test coverage
 .nyc_output
