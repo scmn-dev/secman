@@ -193,7 +193,7 @@ func (m model) View() string {
 	if user == "" {
 		fmt.Println(lipgloss.NewStyle().Padding(0, 2).SetString(constants.Logo("Secman Auth") + m.styles.Error.Render("\n\nYou are not logged in. Please use ") + m.styles.Subtle.Render("`secman auth login`") + m.styles.Error.Render(" command to login.")))
 
-		os.Exit(0)
+		os.Exit(2)
 
 		return ""
 	} else {
@@ -208,7 +208,7 @@ func (m model) View() string {
 
 			if m.message != "" {
 				fmt.Println(lipgloss.NewStyle().Padding(0, 2).SetString(m.message).String())
-				os.Exit(0)
+				os.Exit(2)
 			}
 		}
 

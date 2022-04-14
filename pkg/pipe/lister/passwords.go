@@ -47,7 +47,7 @@ func readPasswords(p string) []list.Item {
 				fmt.Println(err)
 				fmt.Println(errout)
 
-				os.Exit(1)
+				os.Exit(2)
 			}
 
 			s.Stop()
@@ -60,7 +60,7 @@ func readPasswords(p string) []list.Item {
 
 				fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Lister") + st.Wrap.Render(head + body)).String())
 
-				os.Exit(0)
+				os.Exit(2)
 			}
 
 			viper.SetConfigType("yaml")

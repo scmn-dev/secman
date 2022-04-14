@@ -58,7 +58,7 @@ func Read(o *options.PasswordsOptions) model {
 	if err != nil {
 		fmt.Println(err)
 		fmt.Println(errout)
-		os.Exit(0)
+		os.Exit(2)
 	}
 
 	s.Stop()
@@ -69,7 +69,7 @@ func Read(o *options.PasswordsOptions) model {
 
 		fmt.Println(lipgloss.NewStyle().PaddingLeft(2).SetString(constants.Logo("Secman Reader") + m.styles.Wrap.Render(head + body)).String())
 
-		os.Exit(0)
+		os.Exit(2)
 	} else if o.Logins {
 		title := gjson.Get(out, "title")
 		url := gjson.Get(out, "url")

@@ -331,7 +331,7 @@ func (m model) View() string {
 
 		if m.message != "" {
 			fmt.Println(lipgloss.NewStyle().Padding(0, 2).SetString(m.message).String())
-			os.Exit(0)
+			os.Exit(2)
 		}
 	}
 

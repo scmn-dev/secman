@@ -1,11 +1,11 @@
 package cli
 
 import (
-	"os"
 	"fmt"
+	"os"
 
-	"github.com/spf13/cobra"
 	"github.com/scmn-dev/browser"
+	"github.com/spf13/cobra"
 )
 
 var DocsCMD = &cobra.Command{
@@ -18,7 +18,7 @@ var DocsCMD = &cobra.Command{
 		if err != nil {
 			fmt.Printf("could not open browser: %s\n", err)
 
-			os.Exit(1)
+			os.Exit(2)
 		}
 	},
 }

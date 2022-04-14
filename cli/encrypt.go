@@ -1,15 +1,15 @@
 package cli
 
 import (
-	"io"
-	"os"
-    "fmt"
 	"crypto/aes"
+	"crypto/cipher"
 	"crypto/md5"
-    "crypto/rand"
-    "crypto/cipher"
+	"crypto/rand"
 	"crypto/sha256"
 	"crypto/sha512"
+	"fmt"
+	"io"
+	"os"
 
 	"github.com/spf13/cobra"
 )
@@ -23,7 +23,7 @@ func EncryptCMD() *cobra.Command {
 			if EncryptOpts.AES {
 				if len(EncryptOpts.AESKey) < 32 {
 					fmt.Println("AES key must be 32 characters or longer.")
-					os.Exit(1)
+					os.Exit(2)
 				} else {
 					text := []byte(args[0])
 					key := []byte(EncryptOpts.AESKey)
@@ -60,7 +60,7 @@ func EncryptCMD() *cobra.Command {
 				fmt.Printf("%x\n", hash)
 			} else {
 				fmt.Println("No encryption algorithm selected.")
-				os.Exit(1)
+				os.Exit(2)
 			}
 		},
 	}

@@ -70,7 +70,7 @@ func LoginCMD() *cobra.Command{
 			} else {
 				if err := tea.NewProgram(login.Login()).Start(); err != nil {
 					fmt.Printf("could not start program: %s\n", err)
-					os.Exit(1)
+					os.Exit(2)
 				}
 			}
 
@@ -105,7 +105,7 @@ func LogoutCMD() *cobra.Command {
 			} else {
 				if err := tea.NewProgram(logout.Logout()).Start(); err != nil {
 					fmt.Printf("could not start program: %s\n", err)
-					os.Exit(1)
+					os.Exit(2)
 				}
 			}
 
@@ -128,7 +128,7 @@ var CreateCMD = &cobra.Command{
 		if err != nil {
 			fmt.Printf("could not open browser: %s\n", err)
 
-			os.Exit(1)
+			os.Exit(2)
 		}
 
 		return nil
@@ -142,7 +142,7 @@ var RefreshCMD = &cobra.Command{
 	RunE: func(cmd *cobra.Command, args []string) error {
 		if err := tea.NewProgram(refresh.Refresh()).Start(); err != nil {
 			fmt.Printf("could not start program: %s\n", err)
-			os.Exit(1)
+			os.Exit(2)
 		}
 		
 		return nil
