@@ -68,11 +68,8 @@ func readPasswords(p string) []list.Item {
 			items := make([]list.Item, 0)
 
 			for _, line := range strings.Split(viper.GetString("passwords"), "\n") {
-				if line[0] == '#' || len(line) == 0 {
+				if len(line) == 0 || line[0] == '#'  {
 					continue
-				} else {
-					fmt.Println("Passwords Not Found")
-					os.Exit(2)
 				}
 
 				fields := strings.Split(line, "-|-")
