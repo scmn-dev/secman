@@ -31,3 +31,5 @@ dist/
 
 # spec
 *.spec
+
+**/secman
