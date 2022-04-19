@@ -10,20 +10,18 @@ require (
 	github.com/abdfnx/looker v0.1.0
 	github.com/abdfnx/resto v0.1.6
 	github.com/abdfnx/tran v0.1.31
-	github.com/aws/aws-lambda-go v1.30.0
 	github.com/briandowns/spinner v1.18.1
 	github.com/charmbracelet/bubbles v0.10.3
 	github.com/charmbracelet/bubbletea v0.20.0
 	github.com/charmbracelet/glamour v0.5.0
 	github.com/charmbracelet/lipgloss v0.5.0
-	github.com/evertras/bubble-table v0.10.1
+	github.com/evertras/bubble-table v0.11.0
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/mattn/go-colorable v0.1.12
 	github.com/mattn/go-isatty v0.0.14
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
-	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/scmn-dev/browser v0.1.3
 	github.com/scmn-dev/get-latest v0.1.2
 	github.com/scmn-dev/tran v0.0.2
