@@ -1,3 +1,9 @@
+## Archived
+
+since 30 april 2022, secman has archived after two years of working, the reason is that there is not enough interest in this project
+
+---
+
 <p align="center">
   <a href="https://secman.dev/#gh-light-mode-only" target="_blank">
     <img src="https://assets.secman.dev/logo.svg" alt="Secman" width="300">
