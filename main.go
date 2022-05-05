@@ -11,7 +11,6 @@ import (
 	"github.com/mgutz/ansi"
 	"github.com/scmn-dev/secman/v6/cli/factory"
 	"github.com/scmn-dev/secman/v6/cli/secman"
-	"github.com/scmn-dev/secman/v6/internal/checker"
 	"github.com/scmn-dev/secman/v6/tools"
 	"github.com/spf13/cobra"
 )
@@ -84,8 +83,6 @@ func mainRun() exitCode {
 	if secman.HasFailed() {
 		return exitError
 	}
-
-	checker.Check(version)
 
 	return exitOK
 }

@@ -22,7 +22,7 @@ func Update() {
 }
 
 func UpdateMain() {
-	smuiLatest := gapi.LatestWithArgs("scmn-dev/secman", "")
+	smuiLatest := gapi.LatestWithArgs("scmn-dev/secman", "", false)
 	url := "https://github.com/scmn-dev/secman/releases/download/" + smuiLatest + "/smui.zip"
 
 	currentSMUIVersion, err := dfs.ReadFileContent(filepath.Join(constants.SMUIPath, "tag.txt"))

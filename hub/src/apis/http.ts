@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-export let baseURL = "https://api.secman.dev";
+export let baseURL = "https://sm-api.up.railway.app";
 
 const client = Axios.create({
   baseURL,

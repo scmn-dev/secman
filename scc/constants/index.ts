@@ -1,7 +1,7 @@
 import path from "path";
 
 export const PRIMARY_COLOR: any = "#1163E6";
-export const API_URL: any = "https://api.secman.dev";
+export const API_URL: any = "https://sm-api.up.railway.app";
 export const HOMEDIR: any = process.env.HOME || process.env.USERPROFILE;
 export const CHARS = {
   alphabet: "abcdefghijklmnopqrstuvwxyz",

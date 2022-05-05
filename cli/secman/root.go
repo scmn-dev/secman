@@ -65,7 +65,6 @@ func Execute(f *factory.Factory, version string, buildDate string) *cobra.Comman
 		cli.AuthCMD(),
 		cli.DocsCMD,
 		cli.EncryptCMD(),
-		cli.DoctorCMD(version),
 		cli.InitCMD,
 		cli.InfoCMD(version),
 		cli.InsertCMD(),

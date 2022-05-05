@@ -59,40 +59,6 @@ jobs:
     - name: Show Information
       run: secman info
 
-  from_script:
-    needs: [ bfs ]
-
-    strategy:
-      matrix:
-        oses: [ macos-latest, ubuntu-latest ]
-
-    runs-on: ${{ matrix.oses }}
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install from script
-      run: curl -sL https://u.secman.dev | bash
-
-    - name: Generate a password
-      run: secman generate --length 20
-
-  from_script_windows:
-    needs: [ bfs_windows ]
-
-    runs-on: windows-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install from script
-      run: |
-        iwr -useb https://w.secman.dev | iex
-        echo "::add-path::C:\Users\runneradmin\AppData\Local\secman\bin\;"
-
-    - name: Run Secman Doctor
-      run: secman doctor
-
   homebrew:
     needs: [ bfs ]
 

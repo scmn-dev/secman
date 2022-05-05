@@ -6,7 +6,6 @@ import (
 	"github.com/abdfnx/gosh"
 	"github.com/abdfnx/looker"
 	"github.com/charmbracelet/glamour"
-	"github.com/scmn-dev/secman/v6/api"
 	"github.com/scmn-dev/secman/v6/internal/config"
 )
 
@@ -36,12 +35,11 @@ func Info(version string) {
 	out1 := fmt.Sprintf(`# Secman CLI
 
 * Version: %s
-* Secman Core Version: %s
 * Secman Core CLI Version: %s
 
 Current User: %s
 
-> Made with ❤️ by [secman](https://github.com/scmn-dev)`, version, api.GetLatest("secman-core", false), smcVersion, user)
+> Made with ❤️ by [secman](https://github.com/scmn-dev)`, version, smcVersion, user)
 	
 	cli, err := glamour.Render(out1, "dark")
 
