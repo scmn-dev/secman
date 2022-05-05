@@ -4,6 +4,10 @@
 
 ---
 
+## [v6.3.0](https://github.com/scmn-dev/secman/releases/tag/v6.3.0) - 2022-05-05
+
+> This is the latest version of secman. thanks for using secman!
+
 ## [v6.2.3](https://github.com/scmn-dev/secman/releases/tag/v6.2.3) - 2022-04-07
 
 ### Added

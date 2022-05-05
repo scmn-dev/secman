@@ -1,7 +1,7 @@
 {
   "name": "secman",
   "private": true,
-  "version": "6.2.3",
+  "version": "6.3.0",
   "description": "👊 Human-friendly and amazing secrets manager.",
   "license": "MIT",
   "homepage": "https://secman.dev",

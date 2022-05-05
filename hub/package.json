@@ -1,6 +1,6 @@
 {
   "name": "@secman/hub",
-  "version": "1.1.3",
+  "version": "1.2.0",
   "description": "📦 Secman hub is a web application for managing your passwords and other secrets.",
   "license": "MIT",
   "scripts": {
