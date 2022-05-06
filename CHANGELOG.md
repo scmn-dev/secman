@@ -27,7 +27,6 @@ nothing
 - Fix github security vulnerabilities.
 - Fix `secman ui` command.
 
-
 ## [v6.2.2](https://github.com/scmn-dev/secman/releases/tag/v6.2.2) - 2022-03-24
 
 ### Added
@@ -326,11 +325,11 @@ it's comes with new features, new design, new infrastructure, and new secman
 ### Changed
 
 - Update the installers url
-  * unix: [**unix.secman.dev**](https://unix.secman.dev)
-  * windows: [**win.secman.dev**](https://win.secman.dev)
+  - unix: [**unix.secman.dev**](https://unix.secman.dev)
+  - windows: [**win.secman.dev**](https://win.secman.dev)
 - Change the infrastructure of secman docker images
-  * `smcr/secman`: secman container image for full experince.
-  * `smcr/secman-cli`: lightweight image for demo.
+  - `smcr/secman`: secman container image for full experince.
+  - `smcr/secman-cli`: lightweight image for demo.
 - Move [`scmn-dev/gh-api`](https://github.com/scmn-dev/gh-api) & [`david-tomson/git`](https://github.com/david-tomson/git) repos to secman.
 - upgrade secman docker CI.
 
@@ -443,12 +442,12 @@ fix [**#49**](https://github.com/scmn-dev/secman/issues/49)
 ### Changed
 
 - Change Secman Help Form with
-  * **USAGE**
-  * **COMMANDS**
-  * **FLAGS**
-  * **EXAMPLES**
-  * **LEARN MORE**
-  * **FEEDBACK**
+  - **USAGE**
+  - **COMMANDS**
+  - **FLAGS**
+  - **EXAMPLES**
+  - **LEARN MORE**
+  - **FEEDBACK**
 - Change CLI Website from **get.secman.dev** to [**cli.secman.dev**](https://cli.secman.dev).
 
 ### Fixed
@@ -465,7 +464,7 @@ nothing
 ### Changed
 
 - Complete `Uninstall` command with
-  * `-d` & `--delete-data` flags (Just MacOS & Linux)
+  - `-d` & `--delete-data` flags (Just MacOS & Linux)
 
 ### Fixed
 
@@ -477,15 +476,15 @@ nothing
 
 - Add `Open` command, creator: @abdfnx
 - Add `Sync`, creator: @abdfnx
-  * Start
-  * Clone
-  * Push
-  * Pull
+  - Start
+  - Clone
+  - Push
+  - Pull
 - Add new websites
-  * https://secman.dev
-  * https://get.secman.dev
-  * https://assets.secman.dev
-  * https://changelog.secman.dev
+  - https://secman.dev
+  - https://get.secman.dev
+  - https://secman-assets.vercel.app
+  - https://changelog.secman.dev
 
 ### Changed
 
@@ -503,15 +502,15 @@ nothing
 ### Added
 
 - Add Secman Docker Image, creator: @abdfnx
-  * in [Docker Hub](https://hub.docker.com/r/smcr/secman)
-  * in [Github Packages](https://github.com/orgs/scmn-dev/packages/container/package/secman)
+  - in [Docker Hub](https://hub.docker.com/r/smcr/secman)
+  - in [Github Packages](https://github.com/orgs/scmn-dev/packages/container/package/secman)
 - Add Github Commands, creator: @abdfnx
-  * Auth
+  - Auth
     - Login
     - Logout
     - Refresh
     - Status
-  * Repo
+  - Repo
     - Clone
     - Create
     - Fork
@@ -599,9 +598,9 @@ nothing
 - Create `clean` command
 
 - In _sm-win_ folder
-  * Add [**vx.ps1**](https://github.com/scmn-dev/sm-win/blob/code/vx.ps1)
-  * Add [**ct.ps1**](https://github.com/scmn-dev/sm-win/blob/code/ct.ps1)
-  * Add [**secman-sync.ps1**](https://github.com/scmn-dev/sm-win/blob/code/secman-sync.ps1)
+  - Add [**vx.ps1**](https://github.com/scmn-dev/sm-win/blob/code/vx.ps1)
+  - Add [**ct.ps1**](https://github.com/scmn-dev/sm-win/blob/code/ct.ps1)
+  - Add [**secman-sync.ps1**](https://github.com/scmn-dev/sm-win/blob/code/secman-sync.ps1)
 
 ### Changed
 

@@ -8,7 +8,7 @@ export default {
   methods: {
     getLogo(url) {
       if (url.includes("secman.dev")) {
-        return "https://assets.secman.dev/sm-ogp.svg";
+        return "https://secman-assets.vercel.app/sm-ogp.svg";
       } else {
         return `http://logo.clearbit.com/${this.domainFromURL(url)}`;
       }

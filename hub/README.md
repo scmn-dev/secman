@@ -1,7 +1,7 @@
 # Secman hub
 
 <p align="center">
-  <img src="https://assets.secman.dev/apps/desktop.svg" />
+  <img src="https://secman-assets.vercel.app/apps/desktop.svg" />
 </p>
 
 <p align="center">
@@ -33,7 +33,7 @@ Visit [hub.secman.dev](https://hub.secman.dev)
 
 ### Run
 
-``` bash
+```bash
 # install deps
 yarn
 

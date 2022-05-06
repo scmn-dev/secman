@@ -6,10 +6,10 @@ since 30 april 2022, secman has archived after two years of working, the reason 
 
 <p align="center">
   <a href="https://secman.dev/#gh-light-mode-only" target="_blank">
-    <img src="https://assets.secman.dev/logo.svg" alt="Secman" width="300">
+    <img src="https://secman-assets.vercel.app/logo.svg" alt="Secman" width="300">
   </a>
   <a href="https://secman.dev/#gh-dark-mode-only" target="_blank">
-    <img src="https://assets.secman.dev/logo_w.svg" alt="Secman" width="300">
+    <img src="https://secman-assets.vercel.app/logo_w.svg" alt="Secman" width="300">
   </a>
 </p>
 
@@ -21,12 +21,12 @@ since 30 april 2022, secman has archived after two years of working, the reason 
 
 ## Projects
 
-| Project     | Package                                                                   | Version                                                                                                                                                                          | Links                                 |
-| ----------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| **CLI**     | [`scmn-dev/secman`](https://pkg.go.dev/github.com/scmn-dev/secman/v6)     | ![version](https://img.shields.io/github/v/release/scmn-dev/secman?label=go%40latest&logo=go&style=flat-square)                                                                  | [`README.md`](README.md)              |
-| **Hub** | [`@secman/hub`](https://github.com/scmn-dev/secman/tree/main/hub) | ![version](https://img.shields.io/github/package-json/v/scmn-dev/secman?filename=hub%2Fpackage.json&label=npm%40latest&logo=npm&style=flat-square)                           | [`README.md`](hub/README.md)      |
-| **Scc**    | [`@secman/scc`](https://github.com/scmn-dev/secman/tree/main/scc)       | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=scc%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square)   | [`README.md`](scc/README.md)         |
-| **Crypto**  | [`@secman/crypto`](https://github.com/scmn-dev/secman/tree/main/crypto)   | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=crypto%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square) | [`README.md`](crypto/README.md) |
+| Project    | Package                                                                 | Version                                                                                                                                                                          | Links                           |
+| ---------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| **CLI**    | [`scmn-dev/secman`](https://pkg.go.dev/github.com/scmn-dev/secman/v6)   | ![version](https://img.shields.io/github/v/release/scmn-dev/secman?label=go%40latest&logo=go&style=flat-square)                                                                  | [`README.md`](README.md)        |
+| **Hub**    | [`@secman/hub`](https://github.com/scmn-dev/secman/tree/main/hub)       | ![version](https://img.shields.io/github/package-json/v/scmn-dev/secman?filename=hub%2Fpackage.json&label=npm%40latest&logo=npm&style=flat-square)                               | [`README.md`](hub/README.md)    |
+| **Scc**    | [`@secman/scc`](https://github.com/scmn-dev/secman/tree/main/scc)       | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=scc%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square)    | [`README.md`](scc/README.md)    |
+| **Crypto** | [`@secman/crypto`](https://github.com/scmn-dev/secman/tree/main/crypto) | ![version)](https://img.shields.io/github/package-json/v/scmn-dev/secman?color=blue&filename=crypto%2Fpackage.json&label=npm%40latest&logo=npm&logoColor=blue&style=flat-square) | [`README.md`](crypto/README.md) |
 
 ## Featuers
 

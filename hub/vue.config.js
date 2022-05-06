@@ -1,4 +1,4 @@
-const smIconLink = "https://assets.secman.dev/apps/icons/dsk.svg";
+const smIconLink = "https://secman-assets.vercel.app/apps/icons/dsk.svg";
 
 module.exports = {
   css: {
