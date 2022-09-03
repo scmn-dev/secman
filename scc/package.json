@@ -57,7 +57,7 @@
     "@types/shelljs": "^0.8.9",
     "@types/write-file-atomic": "^4.0.0",
     "follow-redirects": "^1.14.8",
-    "node-fetch": "^3.2.2"
+    "node-fetch": "^3.2.10"
   },
   "engines": {
     "node": ">=8.0.0"
