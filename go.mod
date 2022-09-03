@@ -11,13 +11,13 @@ require (
 	github.com/abdfnx/tran v0.1.43
 	github.com/briandowns/spinner v1.19.0
 	github.com/charmbracelet/bubbles v0.13.0
-	github.com/charmbracelet/bubbletea v0.22.0
+	github.com/charmbracelet/bubbletea v0.22.1
 	github.com/charmbracelet/glamour v0.5.0
 	github.com/charmbracelet/lipgloss v0.5.0
 	github.com/evertras/bubble-table v0.11.1
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510
 	github.com/mattn/go-colorable v0.1.12
-	github.com/mattn/go-isatty v0.0.14
+	github.com/mattn/go-isatty v0.0.16
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
@@ -28,7 +28,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.12.0
 	github.com/tidwall/gjson v1.14.1
-	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a
+	golang.org/x/sys v0.0.0-20220811171246-fbc7d0a398ab
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 )
 
@@ -53,11 +53,12 @@ require (
 	github.com/ledongthuc/pdf v0.0.0-20210621053716-e28cb8259002 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/magiconair/properties v1.8.6 // indirect
+	github.com/mattn/go-localereader v0.0.1 // indirect
 	github.com/mattn/go-runewidth v0.0.13 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.17 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/muesli/ansi v0.0.0-20211018074035-2e021307bc4b // indirect
-	github.com/muesli/cancelreader v0.2.1 // indirect
+	github.com/muesli/cancelreader v0.2.2 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
