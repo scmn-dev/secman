@@ -3,13 +3,12 @@ module github.com/scmn-dev/secman/v6
 go 1.18
 
 require (
-	github.com/AlecAivazis/survey/v2 v2.3.4
+	github.com/AlecAivazis/survey/v2 v2.3.5
 	github.com/MakeNowJust/heredoc v1.0.0
 	github.com/abdfnx/bubbles v0.10.7
 	github.com/abdfnx/gosh v0.3.8
 	github.com/abdfnx/looker v0.1.0
 	github.com/abdfnx/tran v0.1.31
-	github.com/aws/aws-lambda-go v1.31.1
 	github.com/briandowns/spinner v1.18.1
 	github.com/charmbracelet/bubbles v0.10.3
 	github.com/charmbracelet/bubbletea v0.20.0
@@ -22,7 +21,6 @@ require (
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
-	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/scmn-dev/browser v0.1.3
 	github.com/scmn-dev/get-latest v0.1.3
 	github.com/scmn-dev/tran v0.0.2
@@ -30,7 +28,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.11.0
 	github.com/tidwall/gjson v1.14.1
-	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad
+	golang.org/x/sys v0.0.0-20220422013727-9388b58f7150
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211
 )
 
