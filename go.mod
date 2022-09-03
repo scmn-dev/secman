@@ -9,10 +9,9 @@ require (
 	github.com/abdfnx/gosh v0.3.8
 	github.com/abdfnx/looker v0.1.0
 	github.com/abdfnx/tran v0.1.31
-	github.com/aws/aws-lambda-go v1.31.1
 	github.com/briandowns/spinner v1.18.1
-	github.com/charmbracelet/bubbles v0.10.3
-	github.com/charmbracelet/bubbletea v0.20.0
+	github.com/charmbracelet/bubbles v0.13.0
+	github.com/charmbracelet/bubbletea v0.21.0
 	github.com/charmbracelet/glamour v0.5.0
 	github.com/charmbracelet/lipgloss v0.5.0
 	github.com/evertras/bubble-table v0.11.1
@@ -22,7 +21,6 @@ require (
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/muesli/reflow v0.3.0
 	github.com/muesli/termenv v0.11.1-0.20220212125758-44cd13922739
-	github.com/phayes/freeport v0.0.0-20220201140144-74d24b5ae9f5
 	github.com/scmn-dev/browser v0.1.3
 	github.com/scmn-dev/get-latest v0.1.3
 	github.com/scmn-dev/tran v0.0.2
@@ -39,7 +37,7 @@ require (
 	github.com/alecthomas/chroma v0.10.0 // indirect
 	github.com/atotto/clipboard v0.1.4 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
-	github.com/charmbracelet/harmonica v0.1.0 // indirect
+	github.com/charmbracelet/harmonica v0.2.0 // indirect
 	github.com/containerd/console v1.0.3 // indirect
 	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/dlclark/regexp2 v1.4.0 // indirect
@@ -59,6 +57,7 @@ require (
 	github.com/microcosm-cc/bluemonday v1.0.17 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/muesli/ansi v0.0.0-20211018074035-2e021307bc4b // indirect
+	github.com/muesli/cancelreader v0.2.0 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.0-beta.8 // indirect
