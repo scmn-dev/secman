@@ -15,18 +15,11 @@
     "secrets-management",
     "secrets"
   ],
-  "workspaces": [
-    "crypto",
-    "hub",
-    "scc",
-    "tools/spinner"
-  ],
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "clean": "rimraf node_modules && cd scc && rimraf node_modules && cd ../hub && rimraf node_modules && cd ../crypto && rimraf node_modules && cd ../tools/spinner && rimraf node_modules && cd ../..",
-    "deploy": "vercel",
-    "postinstall": "touch node_modules/@vercel/go/go.mod"
+    "deploy": "vercel"
   },
   "author": {
     "name": "Secman, Inc.",
