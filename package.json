@@ -27,7 +27,7 @@
     "url": "https://secman.dev"
   },
   "dependencies": {
-    "axios": "0.26.1",
+    "axios": "0.27.2",
     "chalk": "^4.1.2",
     "crypto-js": "4.1.1",
     "rimraf": "3.0.2",
