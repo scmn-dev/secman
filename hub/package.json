@@ -36,7 +36,7 @@
     "@vue/cli-plugin-pwa": "~4.5.0",
     "@vue/cli-plugin-router": "~5.0.4",
     "@vue/cli-plugin-typescript": "~5.0.4",
-    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~5.0.8",
     "@vue/cli-service": "~4.5.0",
     "babel-loader": "8.2.5",
     "babel-plugin-module-resolver": "^4.1.0",
